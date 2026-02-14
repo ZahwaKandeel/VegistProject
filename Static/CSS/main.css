@@ -3,3 +3,14 @@
     margin: 0px;
     box-sizing: border-box;
 }
+
+/* cart styles */
+table {
+    min-width: 600px;
+}
+.quantity .btn:hover {
+    background-color: #5fa800;
+}
+.remove-btn:hover{
+    color: #5fa800;
+}

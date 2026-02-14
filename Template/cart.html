@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../Static/CSS/main.css" />
+</head>
+
+<body>
+    <header class="container-md sticky-top">
+        <div class="d-flex">
+            <a href="home.html">
+                <img src="../Static/Images/logo-1.svg" alt="logo" class="w-50 h-100" />
+            </a>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="home.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Collection</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                        Shop
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                        Pages
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <form class="d-flex h-25 mt-4" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="container my-5">
+            <div class="row gap-5">
+                <div class="col-12 col-lg-8">
+    <h4>Your Cart:</h4>
+
+   <div class="table-responsive">
+     <table class="table">
+        <thead class="text-center">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="cart-item">
+                <td class="w-50 align-middle">
+                    <div class="card mb-3 bg-transparent border-0">
+                        <div class="row g-0">
+                            <div class="col-4">
+                                <img src="../Static/Images/cart/39.webp"
+                                     class="img-fluid"
+                                     alt="Product title">
+                            </div>
+
+                            <div class="col-8">
+                                <div class="card-body p-2">
+                                    <h5 class="card-title mb-1">Card title</h5>
+
+                                    <p class="card-text price fw-bold m-1">
+                                        $30.00
+                                        <span class="fw-normal text-decoration-line-through">
+                                            $45.00
+                                        </span>
+                                    </p>
+
+                                    <p class="card-text fw-bold m-1">
+                                        Size:
+                                        <span class="size fw-normal">1kg</span>
+                                    </p>
+
+                                    <p class="card-text fw-bold m-1">
+                                        Material:
+                                        <span class="material fw-normal">Canada</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="align-middle text-center">
+                    <div class="d-flex justify-content-center align-items-center gap-2">
+
+                        <div class="quantity border d-flex w-50">
+                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 decrease-btn" type="button">-</button>
+
+                           <input type="number" class="w-50 text-center ps-2 border-0" value="1" readonly class="quantity-input">
+
+                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 increase-btn" type="button">+</button>
+                        </div>
+
+                        <button class="bg-transparent border-0 remove-btn">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+
+                    </div>
+                </td>
+
+                <td class="fw-bold align-middle text-center item-total">
+                    $30.00
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="return-btn my-4 d-flex justify-content-end">
+        <a href="home.html" class="btn rounded-1 fw-semibold px-5 py-2" style="color: white; background-color: #5fa800;">Return to store</a>
+
+    </div>
+
+    <h5 class="mb-4">Order special instraction</h5>
+    <textarea name="instractions" id="instractions" placeholder="Order special instructions" class="w-100 p-2" rows="5"></textarea>
+
+   </div>
+</div>
+
+                <div class="col-12 col-lg-3 bg-body-secondary p-3" style="max-height: fit-content;">
+                    <div class="d-flex justify-content-between align-items-center fw-bold">
+                        <span class="h4">Subtotal</span>
+                        <span>$65.00 dollar</span>
+                    </div>
+                    <p class="text-secondary my-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, soluta.</p>
+<button type="button" class="btn w-100 rounded-1 fw-semibold" style="color: white; background-color: #5fa800;">Chechout</button>
+                </div>
+            </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
