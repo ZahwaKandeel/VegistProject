@@ -4,6 +4,27 @@
     box-sizing: border-box;
 }
 
+/* header tag */
+
+header i {
+    font-size: 20px;
+}
+header .cart-icon path {
+    fill: white;
+    stroke: black;
+    stroke-width: 35;
+}
+header .search-btn > svg {
+    fill: white;
+}
+header rform > #search {
+    position: relative;
+    right: 45px;
+}
+header .nav {
+    --bs-nav-link-color: black;
+}
+
 /* cart styles */
 table {
     min-width: 600px;
