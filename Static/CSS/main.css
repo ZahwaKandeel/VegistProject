@@ -25,6 +25,12 @@ header .nav {
     --bs-nav-link-color: black;
 }
 
+/* footer tag */
+
+footer .li-dashed {
+    border-bottom: 1px dashed #000;
+}
+
 /* cart styles */
 table {
     min-width: 600px;
