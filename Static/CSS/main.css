@@ -30,14 +30,3 @@ header .nav {
 footer .li-dashed {
     border-bottom: 1px dashed #000;
 }
-
-/* cart styles */
-table {
-    min-width: 600px;
-}
-.quantity .btn:hover {
-    background-color: #5fa800;
-}
-.remove-btn:hover{
-    color: #5fa800;
-}
