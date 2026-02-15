@@ -96,6 +96,15 @@
     }
 }
 
+.btnpage:hover{
+    background-color: rgb(245, 171, 30);
+    color: white !important;
+}
+.leftside{
+    height: 300px ;
+    
+}
+
 </style>
 
     </head>
@@ -457,31 +466,32 @@
 
 <div class="row    ">  <!--start  of row  1 --> 
 
-<section class=" d-none  d-lg-block  col-3 "><!--start  of section 1 --> 
+<section class=" d-none  d-lg-block  col-3 sectionleft"><!--start  of section 1 --> 
 
-
-    <p> Categories </p>
+<div class="leftside border-bottom "> <!-- first left side div-->
+ <p> Categories </p>
 <div class="border h-75 overflow-auto ">
-
-
 
 <ul class="myul ">
 <li><input type="checkbox" id="check1"> <label for="check1"> Bagel </label>  </li>
 <li><input type="checkbox" id="check2"> <label for="check2"> Backer's rack </label>  </li>
 <li><input type="checkbox" id="check3"> <label for="check3"> Beans </label>  </li>
 <li><input type="checkbox" id="check4"> <label for="check4"> Bestseller </label>  </li>
-<li><input type="checkbox" id="check5"> <label for="check5">Bestseller </label>  </li>
-<li><input type="checkbox" id="check6"> <label for="check6"> Bagel</label>  </li>
-<li><input type="checkbox" id="check7"> <label for="check7"> Bagel</label>  </li>
-<li><input type="checkbox" id="check8"> <label for="check8"> Bagel</label>  </li>
-<li><input type="checkbox" id="check9"> <label for="check9"> Bagel</label>  </li>
-<li><input type="checkbox" id="check10"> <label for="check10"> Bagel</label>  </li>
-<li><input type="checkbox" id="check11"> <label for="check11"> Bagel</label>  </li>
+<li><input type="checkbox" id="check5"> <label for="check5">Bread </label>  </li>
+<li><input type="checkbox" id="check6"> <label for="check6"> Biscuite</label>  </li>
+<li><input type="checkbox" id="check7"> <label for="check7"> Breakfast</label>  </li>
+<li><input type="checkbox" id="check8"> <label for="check8"> Cake</label>  </li>
+<li><input type="checkbox" id="check9"> <label for="check9"> Cookie</label>  </li>
+<li><input type="checkbox" id="check10"> <label for="check10"> cupcake</label>  </li>
+<li><input type="checkbox" id="check11"> <label for="check11"> Diary&chesse</label>  </li>
+<li><input type="checkbox" id="check11"> <label for="check11"> Dinner</label>  </li>
 </ul>
+</div>
+</div >
 
-
-
-
+   <div class="border-bottom p-1"> <!-- second left side div-->
+<p>Filter</p>
+<p class="text-secondary " > 22 products</p>
 </div>
 
 
@@ -542,13 +552,13 @@
 
 
 
-
-
-
 <div class="row  g-4  "  > <!--start  of row  2 --> 
 
 <section class="d-none  d-lg-block  col-3 " > <!--start  of section 1 --> 
-    <div class=" h-25 overflow-auto">
+
+ 
+    
+    <div class="  overflow-auto leftside border-bottom"> <!-- third left side-->
        <p> Price </p>
 <div class="" >
 <!-- <p class="text-secondary">The highest price is €67,00</p> -->
@@ -567,7 +577,7 @@
     </div>
 <!---------------------------->
 
-    <div class=" h-25 overflow-auto my-2">
+    <div class=" leftside overflow-auto my-2 border-bottom">
        <p> size </p>
 <div class=" " >
 <p class="text-secondary">selected</p>
@@ -582,16 +592,14 @@
 <li><input type="checkbox" id="5ltr"> <label for="5ltr">5ltr</label> </li>
 <li><input type="checkbox" id="10ltr"> <label for="">10ltr</label> </li>
 
-
 </ul>
-
 
 </div> 
     </div>
 
     <!---------------------------->
 
-    <div class="  overflow-auto my-2">
+    <div class=" border-bottom  overflow-auto my-2 leftside">
        <p> Material </p>
 <div class="" >
 <p class="text-secondary">selected</p> 
@@ -700,7 +708,7 @@
 
 <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 3 -->
 
-        
+      
 
         <div class="position-relative">
     <img src="../Static/Images/porduct_list/3.jpg" class="img-fluid w-100 main-img">
@@ -1192,12 +1200,19 @@
     </div>   <!--end  of card 19 -->
 
 </div> <!--end  of all cards  --> <!--end  of section 1 --> 
-
-
+ 
 
 </div><!--end  of row  2 --> 
 
+<div class="row "> <!--end  of row  3 --> 
+<div class=" d-none d-lg-block  col-lg-3">  </div>
+<div class="text-center col-12  col-lg-9  "> 
+<input type="button" class="btnpage btn text-warning shadow" value="1">
+<input type="button" class="btnpage btn text-warning shadow" value="2">
+<input type="button" class="btnpage btn text-warning shadow" value=">">
 
+</div> 
+</div> <!--end  of row  3--> 
 
 
 
