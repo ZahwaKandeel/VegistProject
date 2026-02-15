@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> </title>
+        <title>Home</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -42,7 +42,7 @@
                 <section>
                     <a href="home.html">
                         <img
-                            src="../Static/Images/logo-1.svg"
+                            src="../Static/Images/home/logo-1.svg"
                             alt="logo"
                             class="w-50 h-100"
                         />
@@ -387,6 +387,16 @@
         </header>
         <main>
             <style>
+                html, body {
+                    overflow-x: hidden;
+                }
+                main{
+                    box-sizing: border-box;
+                }
+                img{
+                    max-width: 100%;
+                    height: auto;
+                }
                 #main_carousel{
                     margin-top: 20px;
                     margin-bottom: 50px;
@@ -399,7 +409,25 @@
                     border-radius: 50%;
                     background-color: #f5ab1e;
                 }
-                
+                .small-img{
+                    width: 170px;
+                    height: 90px;
+                    object-fit: contain;
+                }
+                #shopnow{
+                    border-radius: 20px;
+                    background-color: #f5ab1e;
+                    color: white;
+                }
+                #shopnow:hover{
+                    transition: background-color 0.3s ease;
+                    background-color: transparent;
+                    border-color: #f5ab1e;
+                    color: #f5ab1e;
+                }
+                #customers{
+                    background-color: #f9f9f9;
+                }
                 
             </style>
             <section id="main_carousel">
@@ -430,27 +458,81 @@
                     </button>
                 </div>
             </section>
-            <section class="banner-wrap" class="col-12 col-md-auto">
-                <div class="row justify-content-center g-5">
-                    <div class="col-auto">
-                        <img src="../Static/Images/home/banner-1.jpg" alt="banner1" class="img-fluid d-block">
-                        <!-- <h2>Fresh fruit, vegetable on our product</h2> -->
-                        <!-- <input type="button" name="shopnow" class="shopnow" value="Shop now"> -->
+            <section class="banner-wrap container my-5">
+                <div class="row g-5">
+                    
+                    <div class="col-12 col-md-6">
+                        <div class="banner position-relative overflow-hidden">
+                            <img src="../Static/Images/home/banner-1.jpg" alt="banner1" class="img-fluid w-100">
+                            <div class="banner-content position-absolute top-50 start-0 translate-middle-y text-black text-start ps-4 w-50">
+                                <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">Fresh fruit, vegetable on our product</h2>
+                                <button id="shopnow" class="btn btn-light mt-2"><b>Shop now</b></button>
+                            </div>    
+                        </div>     
                     </div>
-                    <div class="col-auto">
-                        <img src="../Static/Images/home/banner-3.jpg" alt="banner2" class="img-fluid d-block">
-                        <!-- <h2>Vegetable eggplant 100% fresh food</h2> -->
-                        <!-- <input type="button" name="shopnow" class="shopnow" value="Shop now"> -->
+                    <div class="col-12 col-md-6">
+                        <div class="banner position-relative overflow-hidden">
+                            <img src="../Static/Images/home/banner-3.jpg" alt="banner2" class="img-fluid w-100">
+                            <div class="banner-content position-absolute top-50 start-0 translate-middle-y text-black text-start ps-4 w-50">
+                                <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">Vegetable eggplant 100% fresh food</h2>
+                                <button id="shopnow" class="btn mt-2"><b>Shop now</b></button>
+                            </div>    
+                        </div>     
                     </div>
                 </div>
             </section>
-            <section id="categories"></section>
+            <!-- <section id="categories"></section> -->
             <section id="trending"></section>
-            <section id="products"></section>
-            <section id="customers"></section>
+            <!-- <section id="products"></section> -->
+            <section id="customers">
+                <h2 class="fw-bold text-center fs-4 fs-md-3 fs-lg-2">Our Customers Say</h2>
+                <div id="customersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-md-6 mb-4">
+                                    <div class="card h-100 text-center p-4">
+                                        <h5 class="fw-bold">“For customer support”</h5>
+                                        <p class="mb-3">Excellent customer support! I highly recommend this. I have been having many troubles making the product page look exactly as I want. the customer support was very responsive and efficient in solving my problems. thank you very much!</p>
+                                        <small class="fw-bold">By clin1</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-4">
+                                    <div class="card h-100 text-center p-4">
+                                        <h5 class="fw-bold">“For customer support”</h5>
+                                        <p class="mb-3">Excellent customer support! I highly recommend this. I have been having many troubles making the product page look exactly as I want. the customer support was very responsive and efficient in solving my problems. thank you very much!</p>
+                                        <small class="fw-bold">By clin1</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </section>
             <section id="recent_news"></section>
-            <section id="mailing_list"></section>
-            <section id="small_carousel"></section>
+            <!-- <section id="mailing_list"></section> -->
+            <section id="mini_carousel" class="container my-5">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../Static/Images/home/mini-carousel1.png" class="img-fluid small-img" alt="slide1">
+                            <img src="../Static/Images/home/mini-carousel2.png" class="img-fluid small-img" alt="slide2">
+                            <img src="../Static/Images/home/mini-carousel3.png" class="img-fluid small-img" alt="slide3">
+                            <img src="../Static/Images/home/mini-carousel4.webp" class="img-fluid small-img" alt="slide4">
+                            <img src="../Static/Images/home/mini-carousel5.png" class="img-fluid small-img" alt="slide5">
+                            <img src="../Static/Images/home/mini-carousel6.png" class="img-fluid small-img" alt="slide6">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
           
