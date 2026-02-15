@@ -17,12 +17,14 @@
 
 <style>
    
+
+
 .icons{
     cursor: pointer;
        display: flex;
     opacity: 1;
      transition: 0.3s;
-     bottom: 100px;
+     bottom: 110px;
 }
    
 
@@ -104,6 +106,29 @@
     height: 300px ;
     
 }
+.leftside3{
+    height: 200px ;
+}
+.leftside5{
+      height: 250px ;
+}
+
+.rating i{
+ font-size: .7rem;
+  cursor: pointer;
+}
+
+.ratingspa{
+    font-size: .7rem;
+}
+
+.bg-image {
+            background-image: url("../Static/Images/porduct_list/breadcrumb.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 80px; 
+            }
 
 </style>
 
@@ -461,6 +486,18 @@
         <main>
 
 
+<div class="position-relative">
+                <nav class="bg-image d-flex justify-content-center align-items-center">
+                    <div class="bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item z-3"><a href="home.html" class="text-decoration-none text-white">Home</a></li>
+                        <li class="breadcrumb-item active text-white z-3">Account</li>
+                    </ul>
+                </nav>
+                </div>
+
+            
+
 <div class="container-fluid container-md   ">
 
 
@@ -558,7 +595,7 @@
 
  
     
-    <div class="  overflow-auto leftside border-bottom"> <!-- third left side-->
+    <div class="  overflow-auto leftside3 border-bottom"> <!-- third left side-->
        <p> Price </p>
 <div class="" >
 <!-- <p class="text-secondary">The highest price is €67,00</p> -->
@@ -577,9 +614,9 @@
     </div>
 <!---------------------------->
 
-    <div class=" leftside overflow-auto my-2 border-bottom">
+    <div class=" leftside overflow-auto my-2 border-bottom"><!-- fourth left side-->
        <p> size </p>
-<div class=" " >
+<div class="  " >
 <p class="text-secondary">selected</p>
 <ul class="myul p-1">
 <li><input type="checkbox"  id="1kg"> <label for="1kg">1kg</label> </li>
@@ -599,7 +636,7 @@
 
     <!---------------------------->
 
-    <div class=" border-bottom  overflow-auto my-2 leftside">
+    <div class=" border-bottom  overflow-auto my-2 leftside5"><!-- fifth left side-->
        <p> Material </p>
 <div class="" >
 <p class="text-secondary">selected</p> 
@@ -619,7 +656,9 @@
   <!---------------------------->
 
     </div>
- <div class="  overflow-auto my-2">
+
+     <!---------------------------->
+ <div class="  overflow-auto my-2 border-bottom"> <!-- six left side-->
        <p> Availability </p>
 <div class="" >
 <p class="text-secondary"> 0 selected</p> 
@@ -630,11 +669,25 @@
 </ul>
 
 </div> 
-
+</div>
   <!---------------------------->
+<div class=" overflow-auto my-2 border-bottom"> <!-- seven left side-->
+    <p>Brand</p>
+    <p class="text-secondary">0 selected</p>
+    <input type="checkbox" name="" id="vegist"> 
+    <label for="vegist">vegist </label>
+</div>
+   <!---------------------------->  
 
-    </div>
+<div class=" overflow-auto my-3 border-bottom"> <!-- seven left side-->
+    <p>Product type </p>
+    <p class="text-secondary">0 selected</p>
+    <input type="checkbox" name="" id="Vegetable"> 
+    <label for="Vegetable">Vegetable </label>
+</div>
 
+
+   <!---------------------------->  
 
 <div class="w-100 col-3 bannerImage">
 <img src="../Static/Images/porduct_list/side-banner.webp" class="w-100" alt="">
@@ -670,6 +723,18 @@
 <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+
+        <div class="d-flex align-items-center  "> <!-- review by stars -->
+    <div class="text-warning me-2 rating ">
+      <i class=" fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
        
     </div>  <!--end  of card 1 -->
@@ -701,6 +766,17 @@
       <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 2 -->
@@ -732,6 +808,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 3 -->
@@ -764,6 +851,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 4 -->
@@ -793,6 +891,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 5 -->
@@ -823,6 +932,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 6 -->
@@ -851,6 +971,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 7 -->
@@ -881,6 +1012,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 8 -->
@@ -910,6 +1052,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 9 -->
@@ -940,6 +1093,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 10 -->
@@ -969,6 +1133,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 11 -->
@@ -997,6 +1172,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 12 -->
@@ -1025,6 +1211,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 13 -->
@@ -1054,6 +1251,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 14 -->
@@ -1082,6 +1290,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 15 -->
@@ -1111,6 +1330,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 16 -->
@@ -1139,6 +1369,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 17 -->
@@ -1167,6 +1408,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 18 -->
@@ -1195,6 +1447,17 @@
         <div>
 <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
         <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
 </div>
 
     </div>   <!--end  of card 19 -->
@@ -1206,19 +1469,20 @@
 
 <div class="row "> <!--end  of row  3 --> 
 <div class=" d-none d-lg-block  col-lg-3">  </div>
-<div class="text-center col-12  col-lg-9  "> 
-<input type="button" class="btnpage btn text-warning shadow" value="1">
-<input type="button" class="btnpage btn text-warning shadow" value="2">
-<input type="button" class="btnpage btn text-warning shadow" value=">">
+<div class="text-center col-12  col-lg-9 my-2 "> 
+
+<a href="#" class="btn text-warning  btnpage shadow">
+  1
+</a>
+<a href="#" class="btn text-warning  btnpage shadow">
+  2
+</a>
+<a href="#" class="btn text-warning  btnpage shadow">
+ >
+</a>
 
 </div> 
 </div> <!--end  of row  3--> 
-
-
-
-
-
-
 
 
 
@@ -1278,6 +1542,7 @@
 
             </section>
         </footer>
+
 
 
         <script
