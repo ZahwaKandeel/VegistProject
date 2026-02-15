@@ -25,6 +25,14 @@ header .nav {
     --bs-nav-link-color: black;
 }
 
+.bg-image {
+            background-image: url("/Static/Images/auth/breadcrumb.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 80px; 
+            }
+
 /* footer tag */
 
 footer .li-dashed {
