@@ -26,12 +26,12 @@ header .nav {
 }
 
 .bg-image {
-            background-image: url("/Static/Images/auth/breadcrumb.webp");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 80px; 
-            }
+    background-image: url("/Static/Images/auth/breadcrumb.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80px; 
+}
 
 /* footer tag */
 
