@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Login</title>
+        <title>Register</title>
         <link rel="icon" type="image/png" href="../Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -244,11 +244,23 @@
                 </nav>
             </div>
             <div class="d-lg-flex justify-content-center align-items-center">
-                <section class="col-lg-4 col-xxl-3">
+                <section class="col-lg-4 col-xxl-3 my-xxl-4">
                     <form action="" class="border border-1 p-2 mx-3 my-5 p-lg-4 needs-validation" novalidate>
-                        <h2>Login</h2>
+                        <h2>Create Account</h2>
                         <div class="mb-3 mb-lg-4">
-                            <small class="d-block pb-4">Please login below account detail</small>
+                            <small class="d-block pb-4">Please register below account detail</small>
+                            <input type="text" class="form-control rounded-pill" placeholder="First Name" required>
+                            <div class="invalid-feedback">
+                                Please insert your first name.
+                            </div>
+                        </div>
+                        <div class="mb-3 my-lg-4">
+                            <input type="text" class="form-control rounded-pill" placeholder="Last Name" required>
+                            <div class="invalid-feedback">
+                                Please insert your first name.
+                            </div>
+                        </div>
+                        <div class="mb-3 mb-lg-4">
                             <input type="email" class="form-control rounded-pill" placeholder="Email" required>
                             <div class="invalid-feedback">
                                 Please insert your email.
@@ -261,15 +273,15 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-warning rounded-pill w-100 text-white hover-bg-white my-lg-2"><b>Sign In</b></button>
+                            <button type="submit" class="btn btn-warning rounded-pill w-100 text-white hover-bg-white my-lg-2"><b>Create</b></button>
                             <p class="text-warning mt-2"><b>Forgot your password?</b></p>
                         </div>
                     </form>
                 </section>
                 <section class="col-lg-4 col-xxl-3">
                     <div class="text-center">
-                        <p><b>Don't have an account?</b></p>
-                        <button type="submit" class="btn btn-warning rounded-pill text-white px-4"><b>Creat account</b></button>
+                        <p><b>ِAlready an account holder?</b></p>
+                        <button type="submit" class="btn btn-warning rounded-pill text-white px-4"><b>Log in</b></button>
                     </div>
                     <div class="px-3 py-2 mb-4">
                         <small class="text-warning"><span class="text-secondary">*</span><b>Terms & conditions.</b></small>
