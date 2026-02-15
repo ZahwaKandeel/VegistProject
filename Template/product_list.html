@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> </title>
+        <title> Product List </title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -455,11 +455,6 @@
 <div class="container-fluid container-md   ">
 
 
-
-
-
-
-
 <div class="row    ">  <!--start  of row  1 --> 
 
 <section class=" d-none  d-lg-block  col-3 "><!--start  of section 1 --> 
@@ -471,14 +466,17 @@
 
 
 <ul class="myul ">
-<li><input type="checkbox" id="check1"> <label for="check1">  Bagel </label>  </li>
+<li><input type="checkbox" id="check1"> <label for="check1"> Bagel </label>  </li>
 <li><input type="checkbox" id="check2"> <label for="check2"> Backer's rack </label>  </li>
-<li><input type="checkbox"> <label for=""> Beans </label>  </li>
-<li><input type="checkbox"> <label for=""> Bestseller </label>  </li>
-<li><input type="checkbox"> <label for="">Bestseller </label>  </li>
-<li><input type="checkbox"> <label for=""> Bagel</label>  </li>
-<li><input type="checkbox"> <label for=""> Bagel</label>  </li>
-<li><input type="checkbox"> <label for=""> Bagel</label>  </li>
+<li><input type="checkbox" id="check3"> <label for="check3"> Beans </label>  </li>
+<li><input type="checkbox" id="check4"> <label for="check4"> Bestseller </label>  </li>
+<li><input type="checkbox" id="check5"> <label for="check5">Bestseller </label>  </li>
+<li><input type="checkbox" id="check6"> <label for="check6"> Bagel</label>  </li>
+<li><input type="checkbox" id="check7"> <label for="check7"> Bagel</label>  </li>
+<li><input type="checkbox" id="check8"> <label for="check8"> Bagel</label>  </li>
+<li><input type="checkbox" id="check9"> <label for="check9"> Bagel</label>  </li>
+<li><input type="checkbox" id="check10"> <label for="check10"> Bagel</label>  </li>
+<li><input type="checkbox" id="check11"> <label for="check11"> Bagel</label>  </li>
 </ul>
 
 
@@ -500,6 +498,45 @@
              <img src="../Static/Images/porduct_list/banner.webp"  alt="banner furits" class=" img-fluid w-100 overflow-hidden">
     </div>
 
+    <p> Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luc...</p>
+
+    <div>
+<nav class="navbar navbar-expand-lg bg-body-white">
+  <div class="container-fluid">
+    
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+         <a href="" class="text-dark"> <i class="fa-solid fa-border-all"></i> </a>
+        </li>
+
+        <li class="nav-item">
+         <a href="" class="text-dark"> <i class="fa-solid fa-bars-staggered"></i> </a>
+        </li>
+     
+      </ul>
+
+<!--------------------------------------------------------->
+      
+      <span class="navbar-text">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <span class="fw-bold">Sort by:</span> <span class="text-secondary">Alphabetically, Z-A</span> 
+          </a>
+          <ul class="dropdown-menu ">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+             </li>
+       </ul>
+      
+      </span>
+    </div>
+  </div>
+</nav>
+
+    </div>
 </section> <!--end  of section 2 --> 
 </div> <!--end  of row  1 --> 
 
@@ -511,11 +548,12 @@
 <div class="row  g-4  "  > <!--start  of row  2 --> 
 
 <section class="d-none  d-lg-block  col-3 " > <!--start  of section 1 --> 
-    <div class="border h-25 overflow-auto">
+    <div class=" h-25 overflow-auto">
        <p> Price </p>
 <div class="" >
-<p class="text-secondary">The highest price is €67,00</p>
-<input type="range" name="" id="">
+<!-- <p class="text-secondary">The highest price is €67,00</p> -->
+<label for="range1" class="form-label text-secondary">The highest price is €67,00</label>
+<input type="range" class="form-range" id="range1">
 <div class="d-flex">
 <div ><label for="">from</label>
 <input class="w-25" type="text"></div>
@@ -529,7 +567,7 @@
     </div>
 <!---------------------------->
 
-    <div class="border h-25 overflow-auto my-2">
+    <div class=" h-25 overflow-auto my-2">
        <p> size </p>
 <div class=" " >
 <p class="text-secondary">selected</p>
@@ -553,7 +591,7 @@
 
     <!---------------------------->
 
-    <div class="border h-25 overflow-auto my-2">
+    <div class="  overflow-auto my-2">
        <p> Material </p>
 <div class="" >
 <p class="text-secondary">selected</p> 
@@ -573,6 +611,23 @@
   <!---------------------------->
 
     </div>
+ <div class="  overflow-auto my-2">
+       <p> Availability </p>
+<div class="" >
+<p class="text-secondary"> 0 selected</p> 
+<ul class="myul p-1">
+<li><input type="checkbox"  id="In"> <label for="In">In stock</label> </li>
+<li><input type="checkbox" id="out"> <label for="out">out of  stock</label> </li>
+
+</ul>
+
+</div> 
+
+  <!---------------------------->
+
+    </div>
+
+
 <div class="w-100 col-3 bannerImage">
 <img src="../Static/Images/porduct_list/side-banner.webp" class="w-100" alt="">
    
