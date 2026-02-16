@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
+        <title> </title>
+        <link rel="icon" type="image/png" href="../Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -16,43 +17,19 @@
         />
         <link rel="stylesheet" href="../Static/CSS/main.css" />
         <style>
-            i {
-                font-size: 20px;
-            }
-            .cart-icon path {
-                fill: white;
-                stroke: black;
-                stroke-width: 35;
-            }
-            .search-btn > svg {
-                fill: white;
-            }
-            form > #search {
-                position: relative;
-                right: 45px;
-            }
-            .nav {
-                --bs-nav-link-color: black;
-            }
+            
         </style>
     </head>
     <body>
-        <header class="container-md sticky-top p-3 bg-white">
-            <div class="d-flex align-items-center justify-content-between">
+        <header class="container-fluid px-lg-5 sticky-top p-3 bg-white">
+            <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
                     <a href="home.html">
-                        <img
-                            src="../images/logo-1.svg"
-                            alt="logo"
-                            class="w-50 h-100"
-                        />
+                        <img src="../Static/Images/logo-1.svg" alt="logo" class="w-50 h-100"/>
                     </a>
                 </section>
                 <form class="d-none d-lg-flex input-group w-50" role="search">
-                    <label
-                        for="global-search"
-                        class="d-flex position-relative w-100"
-                    >
+                    <label for="global-search" class="d-flex position-relative w-100">
                         <input
                             class="form-control rounded-pill d-block w-100"
                             type="search"
@@ -62,12 +39,8 @@
                         />
                         <button
                             class="btn py-2 search-btn bg-black input-group-text rounded-pill position-absolute end-0 h-100"
-                            id="search"
-                            type="submit"
-                        >
-                            <i
-                                class="fa-solid fa-magnifying-glass text-light"
-                            ></i>
+                            id="search"type="submit">
+                            <i class="fa-solid fa-magnifying-glass text-light"></i>
                         </button>
                     </label>
                 </form>
@@ -98,100 +71,33 @@
                                     ></button>
                                 </div>
                                 <div class="offcanvas-body">
-                                    <ul
-                                        class="navbar-nav justify-content-end flex-grow-1 pe-3"
-                                    >
-                                        <li class="nav-item">
-                                            <a
-                                                class="nav-link active"
-                                                href="home.html"
-                                            >
-                                                Home
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"
-                                                >Collection</a
-                                            >
-                                        </li>
+                                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                        <li class="nav-item"><a class="nav-link active"href="home.html">Home</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Collection</a></li>
                                         <li class="nav-item dropdown">
-                                            <a
-                                                class="nav-link dropdown-toggle"
-                                                href="#"
-                                                data-bs-toggle="dropdown"
-                                            >
+                                            <a class="nav-link dropdown-toggle"
+                                                href="product_list.html"
+                                                data-bs-toggle="dropdown">
                                                 Shop
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li>
-                                                    <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <hr
-                                                        class="dropdown-divider"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Something else here
-                                                    </a>
-                                                </li>
+                                                <li><a class="dropdown-item"href="#">Action</a></li>
+                                                <li><a class="dropdown-item"href="#">Another action</a></li>
+                                                <li><hr class="dropdown-divider"/></li>
+                                                <li><a class="dropdown-item"href="#">Something else here</a></li>
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a
-                                                class="nav-link dropdown-toggle"
+                                            <a class="nav-link dropdown-toggle"
                                                 href="#"
-                                                data-bs-toggle="dropdown"
-                                            >
+                                                data-bs-toggle="dropdown">
                                                 Pages
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li>
-                                                    <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <hr
-                                                        class="dropdown-divider"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Something else here
-                                                    </a>
-                                                </li>
+                                                <li><a class="dropdown-item"href="#">Action</a></li>
+                                                <li><a class="dropdown-item"href="#">Another action</a></li>
+                                                <li><hr class="dropdown-divider"/></li>
+                                                <li><a class="dropdown-item"href="#">Something else here</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -207,17 +113,9 @@
                             data-bs-target="#searchOffcanvas"
                             aria-controls="searchOffcanvas"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 640 640"
-                                width="40"
-                                height="40"
-                                class="mx-1"
-                            >
-                                <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                                <path
-                                    d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 128 128 192.5 128 272C128 351.5 192.5 416 272 416z"
-                                />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" 
+                                width="40" height="40" class="mx-1">
+                                <path d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 128 128 192.5 128 272C128 351.5 192.5 416 272 416z"/>
                             </svg>
                         </button>
                     </div>
@@ -237,1068 +135,1651 @@
                             ></button>
                         </div>
                         <div class="offcanvas-body">
-                            <h5
-                                class="offcanvas-title text-center"
-                                id="searchOffcanvasLabel"
-                            >
+                            <h5 class="offcanvas-title text-center">
                                 What are you looking for?
                             </h5>
                             <br />
                             <form class="d-flex input-group" role="search">
-                                <input
-                                    class="form-control rounded-pill me-2"
-                                    type="search"
-                                    placeholder="Search our store"
-                                    aria-label="Search"
-                                />
-                                <button
-                                    class="btn py-2 search-btn bg-black input-group-text rounded-pill"
-                                    id="search"
-                                    type="submit"
-                                >
-                                    <i
-                                        class="fa-solid fa-magnifying-glass text-light"
-                                    ></i>
+                                <input class="form-control rounded-pill me-2"
+                                    type="search" placeholder="Search our store" aria-label="Search"/>
+                                <button class="btn py-2 search-btn bg-black input-group-text rounded-pill"
+                                    id="search" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass text-light"></i>
                                 </button>
                             </form>
                         </div>
                     </div>
                     <div class=" d-flex align-items-center">
                         <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" 
-                            viewBox="0 0 640 640" 
-                            width="45"
-                            height="45"
-                            class="mx-1">
-                                <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                                <path d="M240 192C240 147.8 275.8 112 320 112C364.2 112 400 147.8 400 192C400 236.2 364.2 272 320 272C275.8 272 240 236.2 240 192zM448 192C448 121.3 390.7 64 320 64C249.3 64 192 121.3 192 192C192 262.7 249.3 320 320 320C390.7 320 448 262.7 448 192zM144 544C144 473.3 201.3 416 272 416L368 416C438.7 416 496 473.3 496 544L496 552C496 565.3 506.7 576 520 576C533.3 576 544 565.3 544 552L544 544C544 446.8 465.2 368 368 368L272 368C174.8 368 96 446.8 96 544L96 552C96 565.3 106.7 576 120 576C133.3 576 144 565.3 144 552L144 544z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="45"
+                            height="45" class="mx-1">
+                            <path d="M240 192C240 147.8 275.8 112 320 112C364.2 112 400 147.8 400 192C400 236.2 364.2 272 320 272C275.8 272 240 236.2 240 192zM448 192C448 121.3 390.7 64 320 64C249.3 64 192 121.3 192 192C192 262.7 249.3 320 320 320C390.7 320 448 262.7 448 192zM144 544C144 473.3 201.3 416 272 416L368 416C438.7 416 496 473.3 496 544L496 552C496 565.3 506.7 576 520 576C533.3 576 544 565.3 544 552L544 544C544 446.8 465.2 368 368 368L272 368C174.8 368 96 446.8 96 544L96 552C96 565.3 106.7 576 120 576C133.3 576 144 565.3 144 552L144 544z"/></svg>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
-                            <a href="" class="fs-6 text-dark text-decoration-none"><b>Account</b></a>
+                            <a href="profile.html" class="fs-6 text-dark text-decoration-none link-warning"><b>Account</b></a>
                             <div class="d-flex">
-                                <a href="" class="border-1 border-end pe-1 fw-light text-dark text-decoration-none"
+                                <a href="register.html" class="border-1 border-end pe-1 fw-light text-dark text-decoration-none link-warning"
                                     >Register</a
                                 >
-                                <a href="" class="fw-light text-dark ms-1 text-decoration-none">Login</a>
+                                <a href="login.html" class="fw-light text-dark ms-1 text-decoration-none link-warning">Login</a>
                             </div>
                         </div>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 640 640"
-                            width="45"
-                            height="45"
-                            class="mx-1"
-                        >
-                            <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                            <path
-                                d="M442.9 144C415.6 144 389.9 157.1 373.9 179.2L339.5 226.8C335 233 327.8 236.7 320.1 236.7C312.4 236.7 305.2 233 300.7 226.8L266.3 179.2C250.3 157.1 224.6 144 197.3 144C150.3 144 112.2 182.1 112.2 229.1C112.2 279 144.2 327.5 180.3 371.4C221.4 421.4 271.7 465.4 306.2 491.7C309.4 494.1 314.1 495.9 320.2 495.9C326.3 495.9 331 494.1 334.2 491.7C368.7 465.4 419 421.3 460.1 371.4C496.3 327.5 528.2 279 528.2 229.1C528.2 182.1 490.1 144 443.1 144zM335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1C576 297.7 533.1 358 496.9 401.9C452.8 455.5 399.6 502 363.1 529.8C350.8 539.2 335.6 543.9 320 543.9C304.4 543.9 289.2 539.2 276.9 529.8C240.4 502 187.2 455.5 143.1 402C106.9 358.1 64 297.7 64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1L320 171.8L335 151.1z"
-                            />
-                        </svg>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 640 640"
-                            width="45"
-                            height="45"
-                            class="cart-icon mx-1"
-                        >
-                            <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                            <path
-                                d="M256 144C256 108.7 284.7 80 320 80C355.3 80 384 108.7 384 144L384 192L256 192L256 144zM208 192L144 192C117.5 192 96 213.5 96 240L96 448C96 501 139 544 192 544L448 544C501 544 544 501 544 448L544 240C544 213.5 522.5 192 496 192L432 192L432 144C432 82.1 381.9 32 320 32C258.1 32 208 82.1 208 144L208 192zM232 240C245.3 240 256 250.7 256 264C256 277.3 245.3 288 232 288C218.7 288 208 277.3 208 264C208 250.7 218.7 240 232 240zM384 264C384 250.7 394.7 240 408 240C421.3 240 432 250.7 432 264C432 277.3 421.3 288 408 288C394.7 288 384 277.3 384 264z"
-                            />
-                        </svg>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"width="45" 
+                            height="45" class="mx-1">
+                                <path d="M442.9 144C415.6 144 389.9 157.1 373.9 179.2L339.5 226.8C335 233 327.8 236.7 320.1 236.7C312.4 236.7 305.2 233 300.7 226.8L266.3 179.2C250.3 157.1 224.6 144 197.3 144C150.3 144 112.2 182.1 112.2 229.1C112.2 279 144.2 327.5 180.3 371.4C221.4 421.4 271.7 465.4 306.2 491.7C309.4 494.1 314.1 495.9 320.2 495.9C326.3 495.9 331 494.1 334.2 491.7C368.7 465.4 419 421.3 460.1 371.4C496.3 327.5 528.2 279 528.2 229.1C528.2 182.1 490.1 144 443.1 144zM335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1C576 297.7 533.1 358 496.9 401.9C452.8 455.5 399.6 502 363.1 529.8C350.8 539.2 335.6 543.9 320 543.9C304.4 543.9 289.2 539.2 276.9 529.8C240.4 502 187.2 455.5 143.1 402C106.9 358.1 64 297.7 64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1L320 171.8L335 151.1z"/>
+                            </svg>
+                        </a>
+                        <a href="cart.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="45"
+                                height="45"class="cart-icon mx-1">
+                                <path d="M256 144C256 108.7 284.7 80 320 80C355.3 80 384 108.7 384 144L384 192L256 192L256 144zM208 192L144 192C117.5 192 96 213.5 96 240L96 448C96 501 139 544 192 544L448 544C501 544 544 501 544 448L544 240C544 213.5 522.5 192 496 192L432 192L432 144C432 82.1 381.9 32 320 32C258.1 32 208 82.1 208 144L208 192zM232 240C245.3 240 256 250.7 256 264C256 277.3 245.3 288 232 288C218.7 288 208 277.3 208 264C208 250.7 218.7 240 232 240zM384 264C384 250.7 394.7 240 408 240C421.3 240 432 250.7 432 264C432 277.3 421.3 288 408 288C394.7 288 384 277.3 384 264z"/>
+                            </svg>
+                        </a>
                     </div>
                 </section>
             </div>
-            <hr class="d-none d-xxl-block m-2" />
-            <section class="d-none d-xxl-flex just">
+            <hr class="d-none d-xxl-block mx-4 my-2"/>
+            <section class="d-none d-xxl-flex just px-4">
                 <nav>
-                    <ul
-                        class="nav nav-tabs justify-content-around col-12 gap-5"
-                    >
-                        <li class="nav-item">
-                            <a class="nav-link active" href="home.html">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Collection</a>
-                        </li>
+                    <ul class="nav nav-tabs justify-content-around col-12 gap-5">
+                        <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Collection</a></li>
                         <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
+                            <a class="nav-link dropdown-toggle"
                                 href="#"
+                                id="shopDropdown"
+                                role="button"
                                 data-bs-toggle="dropdown"
-                            >
+                                aria-expanded="false">
                                 Shop
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        Action
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        Another action
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        Something else here
-                                    </a>
-                                </li>
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                data-bs-toggle="dropdown"
-                            >
-                                Pages
-                            </a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"href="#"data-bs-toggle="dropdown">Pages</a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        Action
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        Another action
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        Something else here
-                                    </a>
-                                </li>
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
             </section>
         </header>
-        <main>
+
+         <main>
             <style>
-                html, body {
-                    overflow-x: hidden;
+                html,
+                body {
+                overflow-x: hidden;
                 }
-                main{
-                    box-sizing: border-box;
+                main {
+                box-sizing: border-box;
                 }
-                img{
-                    max-width: 100%;
-                    height: auto;
+                img {
+                max-width: 100%;
+                height: auto;
                 }
-                #main_carousel{
-                    margin-top: 20px;
-                    margin-bottom: 50px;
+                #main_carousel {
+                margin-top: 20px;
+                margin-bottom: 50px;
                 }
 
-                .carousel-item{
-                    transition: transform 1s ease-in-out;
+                .carousel-item {
+                transition: transform 1s ease-in-out;
                 }
                 .carousel-control-prev-icon,
-                .carousel-control-next-icon{
-                    border-radius: 50%;
-                    background-color: #f5ab1e;
+                .carousel-control-next-icon {
+                border-radius: 50%;
+                background-color: #f5ab1e;
                 }
-                .small-img{
-                    width: 170px;
-                    height: 90px;
-                    object-fit: contain;
+                .small-img {
+                width: 170px;
+                height: 90px;
+                object-fit: contain;
                 }
-                #shopnow{
-                    border-radius: 20px;
-                    background-color: #f5ab1e;
-                    color: white;
+                #shopnow {
+                border-radius: 20px;
+                background-color: #f5ab1e;
+                color: white;
                 }
-                #shopnow:hover{
-                    transition: background-color 0.3s ease;
-                    background-color: transparent;
-                    border-color: #f5ab1e;
-                    color: #f5ab1e;
+                #shopnow:hover {
+                transition: background-color 0.3s ease;
+                background-color: transparent;
+                border-color: #f5ab1e;
+                color: #f5ab1e;
                 }
-                .customer-card{
-                    width: 350px;
-                    max-width:90%;
-                    height: 100%;
+                .customer-card {
+                width: 350px;
+                max-width: 90%;
+                height: 100%;
                 }
-                #customers{
-                    background-color: #f9f9f9;
+                #customers {
+                background-color: #f9f9f9;
                 }
-                #customers .carousel-item{
-                    min-height: 360px;
+                #customers .carousel-item {
+                min-height: 360px;
                 }
-                #customers .card p{
-                    line-height: 1.6;
+                #customers .card p {
+                line-height: 1.6;
                 }
-                .stars{
-                  color:#ffb503;
+                .stars {
+                color: #ffb503;
+                }
+
+                .icons{
+                    cursor: pointer;
+                    display: flex;
+                    opacity: 1;
+                    transition: 0.3s;
+                    bottom: 110px;
                 }
                 
+
+                .cards:hover .icons{
+                opacity: 1;
+
+
+                }
+                .icon{
+                    background-color: rgb(255, 255, 255);
+                    font-size: 16px;
+                    display: inline-block;
+
+                
+                }
+                .icon:hover{
+                    background-color: rgb(95, 168, 0);
+                    color: white;
+                }
+
+                .para{
+                    color: black;
+
+                }
+                .para:hover{
+                    color: rgb(95, 168, 0);
+                }
+
+
+
+                .hover-img {
+                    opacity: 0;
+                    transition: 0.4s ease;
+                }
+
+                .cards:hover .hover-img {
+                    opacity: 1;
+                }
+
+                .myul{
+                    list-style: none;
+                
+                }
+                .myul label:hover{
+                    color:  rgb(95, 168, 0);
+
+                }
+
+                .bannerImage{
+                    overflow: hidden;  
+                }
+                .bannerImage:hover img{
+                    
+                        transition: all .2s ease-in-out ; 
+                        cursor: pointer;
+                            transform: scale(1.1);
+                    
+                    
+                        
+                }
+
+                @media (min-width: 960px) {
+                .icons {
+                        opacity: 0;
+                    
+                    }
+
+                    .cards:hover .icons {
+                        opacity: 1;
+                        
+                    }
+                }
+
+                .btnpage:hover{
+                    background-color: rgb(245, 171, 30);
+                    color: white !important;
+                }
+                .leftside{
+                    height: 300px ;
+                    
+                }
+                .leftside3{
+                    height: 200px ;
+                }
+                .leftside5{
+                    height: 250px ;
+                }
+
+                .rating i{
+                font-size: .7rem;
+                cursor: pointer;
+                }
+
+                .ratingspa{
+                    font-size: .7rem;
+                }
             </style>
             <section id="main_carousel">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-wrap="true">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../images/main_slider1.jpg" class="d-block w-100" alt="slide1">
-                            <div id="main_slide1-content" class="position-absolute top-50 start-0 translate-middle-y w-100 px-5 d-flex justify-content-start">
-                                <div class="text-start text-color-#232323">
+                <div
+                id="carouselExampleIndicators"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-bs-interval="3000"
+                data-bs-wrap="true"
+                >
+                <div class="carousel-indicators">
+                    <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                    ></button>
+                    <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                    ></button>
+                    <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                    ></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img
+                        src="../images/main_slider1.jpg"
+                        class="d-block w-100"
+                        alt="slide1"
+                    />
+                    <div
+                        id="main_slide1-content"
+                        class="position-absolute top-50 start-0 translate-middle-y w-100"
+                    >
+                        <div class = "container">    
+                            <div class="row">    
+                                <div class="col-lg-6 text-start text-color-#232323">
                                     <span class="fs-6 fs-md-5 fs-lg-4">Summer vege sale</span>
-                                    <h1 class="fw-bold display-6 display-md-5 display-lg-4">Fresh Fruits <br>& Vegetables <br></h1>
-                                    <button id="shopnow" class="btn btn-light fw-bold mt-2 px-4 py-2">Shop now</button>
+                                    <h1 class="fw-bold display-6 display-md-5 display-lg-4">
+                                        Fresh Fruits <br />& Vegetables <br />
+                                    </h1>
+                                    <button
+                                        id="shopnow"
+                                        class="btn btn-light fw-bold mt-2 px-4 py-2"
+                                    >
+                                        Shop now
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../images/main_slider2.jpg" class="d-block w-100" alt="slide2">
-                            <div id="main_slide2-content" class="position-absolute top-50 start-0 translate-middle-y w-100 px-5 d-flex justify-content-end">
-                                <div class="text-end text-color-#232323">
-                                    <span class="fs-6 fs-md-5 fs-lg-4">Organic Indian Masala</span>
-                                    <h1 class="fw-bold display-6 display-md-5 display-lg-4">Prod of indian<br>100% Packaging<br></h1>
-                                    <button id="shopnow" class="btn btn-light fw-bold mt-2 px-4 py-2">Shop now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../images/main_slider3.jpg" class="d-block w-100" alt="slide3">
-                            <div id="main_slide3-content" class="position-absolute top-50 start-0 translate-middle-y w-100 px-5 d-flex justify-content-center">
-                                <div class="text-center text-color-#232323">
-                                    <span class="fs-6 fs-md-5 fs-lg-4">Top Selling!</span>
-                                    <h1 class="fw-bold display-6 display-md-5 display-lg-4">Fresh for your health<br></h1>
-                                    <button id="shopnow" class="btn btn-light fw-bold mt-2 px-4 py-2">Shop now</button>
-                                </div>    
+                        </div>    
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <img
+                        src="../images/main_slider2.jpg"
+                        class="d-block w-100"
+                        alt="slide2"
+                    />
+                    <div
+                        id="main_slide2-content"
+                        class="position-absolute top-50 start-0 translate-middle-y w-100"
+                    >
+                    <div class="container">
+                        <div class="row justify-content-end">
+                            <div class="col-lg-6 text-end text-color-#232323">
+                            <span class="fs-6 fs-md-5 fs-lg-4"
+                                >Organic Indian Masala</span
+                            >
+                            <h1 class="fw-bold display-6 display-md-5 display-lg-4">
+                                Prod of indian<br />100% Packaging<br />
+                            </h1>
+                            <button
+                                id="shopnow"
+                                class="btn btn-light fw-bold mt-2 px-4 py-2"
+                            >
+                                Shop now
+                            </button>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <img
+                        src="../images/main_slider3.jpg"
+                        class="d-block w-100"
+                        alt="slide3"
+                    />
+                    <div
+                        id="main_slide3-content"
+                        class="position-absolute top-50 start-0 translate-middle-y w-100 px-5 d-flex justify-content-center"
+                    >
+                        <div class="text-center text-color-#232323">
+                        <span class="fs-6 fs-md-5 fs-lg-4">Top Selling!</span>
+                        <h1 class="fw-bold display-6 display-md-5 display-lg-4">
+                            Fresh for your health<br />
+                        </h1>
+                        <button
+                            id="shopnow"
+                            class="btn btn-light fw-bold mt-2 px-4 py-2"
+                        >
+                            Shop now
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev"
+                >
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next"
+                >
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
                 </div>
             </section>
             <section class="banner-wrap container my-5">
                 <div class="row g-5">
-                    
-                    <div class="col-12 col-md-6">
-                        <div class="banner position-relative overflow-hidden">
-                            <img src="../images/banner-1.jpg" alt="banner1" class="img-fluid w-100">
-                            <div class="banner-content position-absolute top-50 start-0 translate-middle-y text-black text-start ps-4 w-50">
-                                <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">Fresh fruit, vegetable on our product</h2>
-                                <button id="shopnow" class="btn btn-light fw-bold mt-2 px-4 py-2">Shop now</button>
-                            </div>    
-                        </div>     
+                <div class="col-12 col-md-6">
+                    <div class="banner position-relative overflow-hidden">
+                    <img
+                        src="../images/banner-1.jpg"
+                        alt="banner1"
+                        class="img-fluid w-100"
+                    />
+                    <div
+                        class="banner-content position-absolute top-50 start-0 translate-middle-y text-black text-start ps-4 w-50"
+                    >
+                        <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">
+                        Fresh fruit, vegetable on our product
+                        </h2>
+                        <button
+                        id="shopnow"
+                        class="btn btn-light fw-bold mt-2 px-4 py-2"
+                        >
+                        Shop now
+                        </button>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="banner position-relative overflow-hidden">
-                            <img src="../images/banner-3.jpg" alt="banner2" class="img-fluid w-100">
-                            <div class="banner-content position-absolute top-50 start-0 translate-middle-y text-black text-start ps-4 w-50">
-                                <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">Vegetable eggplant 100% fresh food</h2>
-                                <button id="shopnow" class="btn mt-2"><b>Shop now</b></button>
-                            </div>    
-                        </div>     
                     </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="banner position-relative overflow-hidden">
+                    <img
+                        src="../images/banner-3.jpg"
+                        alt="banner2"
+                        class="img-fluid w-100"
+                    />
+                    <div
+                        class="banner-content position-absolute top-50 start-0 translate-middle-y text-black text-start ps-4 w-50"
+                    >
+                        <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">
+                        Vegetable eggplant 100% fresh food
+                        </h2>
+                        <button id="shopnow" class="btn mt-2"><b>Shop now</b></button>
+                    </div>
+                    </div>
+                </div>
                 </div>
             </section>
             <!-- <section id="categories"></section> -->
             <!-- <section id="trending"></section> -->
-            <section id="products">
-            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                        <div class="  col-12   col-lg-9  row g-4 px-0 mx-0"> <!--div of all cards  -->  <!--start  of section 2 --> 
+            <section id="products" class="py-5">
+                <div class="container">
+                    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <!--Slide 1 cards 1 to 8-->
 
-                            <div class="cards  col-6  col-md-4  col-lg-3   position-relative "> <!--div of card 1 -->
+                            <div class="row g-3">
+                                <!--div of all cards  -->
+                                <!--start  of section 2 -->
 
-                            <div class=" position-relative  ">
-                                <img src="/productList/images/1.2.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/1.2.jpg" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
-                            </div>
+                                <div class="cards col-6 col-md-4 col-lg-3 position-relative">
 
-                            <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 ">
+                                <!--div of card 1 -->
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                            <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-
-                                    <div class="d-flex align-items-center  "> <!-- review by stars -->
-                                <div class="text-warning me-2 rating ">
-                                <i class=" fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
+                                <div class="position-relative">
+                                    <img
+                                    src="/productList/images/1.2.jpg"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="/productList/images/1.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
                                 </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-                                
-                                </div>  <!--end  of card 1 -->
 
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
 
-
-                            <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 2 -->
-
-
-                                    <div class="position-relative">
-                                <img src="/productList/images/2.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/2.2.webp" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
+                                    <span class="icon p-2">
                                     <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
+                                    </span>
+                                </div>
+
                                 <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
                                     <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
+
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
                                 </div>
-                                <span class="text-muted ratingspa">No reviews</span>
+                                </div>
+                                <!--end  of card 1 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 position-relative">
+
+                                <!--div of card 2 -->
+
+                                <div class="position-relative">
+                                    <img
+                                    src="/productList/images/2.jpg"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="/productList/images/2.2.webp"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 2 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 position-relative">
+
+                                <!--div of card 3 -->
+
+                                <div class="position-relative">
+                                    <img
+                                    src="/productList/images/3.jpg"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="/productList/images/3.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 3 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 position-relative">
+
+                                <!--div of card 4 -->
+
+                                <div class="position-relative">
+                                    <img
+                                    src="../productList/images/4.webp"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="../productList/images/4.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 4 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 d-none d-md-block position-relative">
+
+                                <!--div of card 5 -->
+
+                                <div class="position-relative">
+                                    <img
+                                    src="../productList/images/5.jpg"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="../productList/images/5.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 5 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 d-none d-md-block position-relative">
+
+                                <!--div of card 6 -->
+
+                                <div class="position-relative">
+                                    <img
+                                    src="../productList/images/6.jpg"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="../productList/images/6.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 6 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 d-none d-lg-block position-relative">
+
+                                <!--div of card 7 -->
+                                <div class="position-relative">
+                                    <img
+                                    src="../productList/images/7.jpg"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="../productList/images/6.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 7 -->
+
+                                <div class="cards col-6 col-md-4 col-lg-3 d-none d-lg-block position-relative">
+
+                                <!--div of card 8 -->
+
+                                <div class="position-relative">
+                                    <img
+                                    src="../productList/images/8.webp"
+                                    class="img-fluid w-100 main-img"
+                                    />
+                                    <img
+                                    src="../productList/images/6.2.jpg"
+                                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                    />
+                                </div>
+
+                                <div
+                                    class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                >
+                                    <span class="icon p-2">
+                                    <i class="fa-regular fa-heart"></i>
+                                    </span>
+                                    <span class="icon p-2">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    </span>
+
+                                    <span class="icon p-2">
+                                    <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p class="">
+                                    <a href="" class="para text-decoration-none">
+                                        Vegetable tomato</a
+                                    >
+                                    </p>
+                                    <p class="fw-bold">€55,00</p>
+                                    <div class="d-flex align-items-center">
+                                    <!-- review by stars -->
+                                    <div class="text-warning me-2 rating">
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-muted ratingspa">No reviews</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--end  of card 8 -->
                             </div>
                             </div>
+                            <div class="carousel-item"><!--Slide2 Cards 9 to 16-->
 
-                                </div>   <!--end  of card 2 -->
+                                <div class="row g-3">
+                                    <div class="cards col-6 col-md-4 col-lg-3 position-relative">
 
-
-                            <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 3 -->
-
-                                
+                                    <!--div of card 9 -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/3.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/3.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/9.jpg"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/9.1.jpg"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 9 -->
 
-                                </div>   <!--end  of card 3 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 position-relative">
 
-
-
-                            <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 4 -->
-
-                                
-
-                                    <div class="position-relative  ">
-                                <img src="/productList/images/4.webp" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/4.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                                    <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-
-                                </div>   <!--end  of card 4 -->
-
-
-                            <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 5 -->
+                                    <!--div of card 10 -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/5.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/5.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/10.2.jpg"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/10.jpg"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 10 -->
 
-                                </div>   <!--end  of card 5 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 position-relative">
 
-
-                            <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 6 -->
-
+                                    <!--div of card 11  -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/6.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/6.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/11.jpg"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/8.2.jpg"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 11 -->
 
-                                </div>   <!--end  of card 6 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 position-relative">
 
-
-                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 7 -->
-                                    <div class="position-relative">
-                                <img src="/productList/images/7.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/6.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                                    <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-
-                                </div>   <!--end  of card 7 -->
-
-
-
-                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 8 -->
+                                    <!--div of card 12  -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/8.webp" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/6.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/12.1.webp"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/12.2.jpg"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 12 -->
 
-                                </div>   <!--end  of card 8 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 d-none d-md-block position-relative">
 
-
-                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 9 -->
+                                    <!--div of card 13  -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/9.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/9.1.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/13.1.webp"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/13.2.webp"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 13 -->
 
-                                </div>   <!--end  of card 9 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 d-none d-md-block position-relative">
 
-
-                                
-                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 10 -->
+                                    <!--div of card 14  -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/10.2.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/10.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/14.1.jpg"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/14.2.jpg"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 14 -->
 
-                                </div>   <!--end  of card 10 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 d-lg-block position-relative">
 
-                                
-                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 11  -->
+                                    <!--div of card 15  -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/11.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/8.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/15.jpg"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/7.jpg"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 15 -->
 
-                                </div>   <!--end  of card 11 -->
+                                    <div class="cards col-6 col-md-4 col-lg-3 d-none d-lg-block position-relative">
 
-                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 12  -->
+                                    <!--div of card 16  -->
 
                                     <div class="position-relative">
-                                <img src="/productList/images/12.1.webp" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/12.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
+                                        <img
+                                        src="../productList/images/16.1.webp"
+                                        class="img-fluid w-100 main-img"
+                                        />
+                                        <img
+                                        src="../productList/images/16.2.webp"
+                                        class="img-fluid w-100 hover-img position-absolute top-0 start-0"
+                                        />
+                                    </div>
 
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                                    <div
+                                        class="icons position-absolute start-50 translate-middle-x d-flex gap-2"
+                                    >
+                                        <span class="icon p-2">
+                                        <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        </span>
 
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
+                                        <span class="icon p-2">
+                                        <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
 
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
                                     <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
+                                        <p class="">
+                                        <a href="" class="para text-decoration-none">
+                                            Vegetable tomato</a
+                                        >
+                                        </p>
+                                        <p class="fw-bold">€55,00</p>
+                                        <div class="d-flex align-items-center">
+                                        <!-- review by stars -->
+                                        <div class="text-warning me-2 rating">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <span class="text-muted ratingspa">No reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end  of card 16 -->
+                                </div>    
                             </div>
-                            </div>
+                            <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#productCarousel"
+                                data-bs-slide="prev"
+                            >
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
 
-                                </div>   <!--end  of card 12 -->
-
-                                    <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 13  -->
-
-                                    <div class="position-relative">
-                                <img src="/productList/images/13.1.webp" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/13.2.webp" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                                    <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-
-                                </div>   <!--end  of card 13 -->
-
-
-                                        <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 14  -->
-
-                                    <div class="position-relative">
-                                <img src="/productList/images/14.1.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/14.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                                    <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-
-                                </div>   <!--end  of card 14 -->
-
-                                            <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 15  -->
-
-                                    <div class="position-relative">
-                                <img src="/productList/images/15.jpg" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/7.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                                    <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-
-                                </div>   <!--end  of card 15 -->
-
-
-                                                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 16  -->
-
-                                    <div class="position-relative">
-                                <img src="/productList/images/16.1.webp" class="img-fluid w-100 main-img">
-                                <img src="/productList/images/16.2.webp" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
-                            </div>
-
-                                    <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
-
-                            <span class="icon  p-2   "  >
-                            <i class="fa-regular fa-heart "></i>
-                            </span>
-                            <span class="icon  p-2   ">
-                                <i class="fa fa-shopping-bag"></i>
-                            </span>
-
-                            <span class="icon  p-2   ">
-                                    <i class="fa fa-eye"></i>
-                                </span> 
-                            </div>
-                                
-                                    <div>
-                            <p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
-                                    <p class="fw-bold">€55,00</p>
-                                        <div class="d-flex align-items-center"> <!-- review by stars -->
-                                <div class="text-warning me-2 rating">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                
-                                </div>
-                                <span class="text-muted ratingspa">No reviews</span>
-                            </div>
-                            </div>
-
-                                </div>   <!--end  of card 16 -->
+                            <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#productCarousel"
+                                data-bs-slide="next"
+                            >
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
                         </div>
                     </div>
                 </div>    
-
+                </div>
             </section>
             <section id="customers" class="container my-5">
-                <h2 class="fw-bold text-center fs-4 fs-md-3 fs-lg-2 my-5">Our Customers Say</h2>
+                <h2 class="fw-bold text-center fs-4 fs-md-3 fs-lg-2 my-5">
+                Our Customers Say
+                </h2>
 
-                <div id="customersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-                    
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <div class="d-flex justify-content-center gap-4 align-items-stretch">
-                                
-                                <div class="customer-card card text-center p-4 bg-transparent">
-                                        <h5 class="fw-bold">“For customer support”</h5>
-                                        <p class="mb-3">Excellent customer support! I highly recommend this. I have been having many troubles making the product page look exactly as I want. the customer support was very responsive and efficient in solving my problems. thank you very much!</p>
-                                        <small class="fw-bold">By clin1</small>
-                                        <p class="stars">&star;&star;&star;&star;&star;</p>
-                                    </div>
-
-                                    <div class="customer-card card text-center p-4 bg-transparent d-none d-md-block">
-                                        <h5 class="fw-bold">“For customer support”</h5>
-                                        <p class="mb-3">Excellent customer support! I highly recommend this. I have been having many troubles making the product page look exactly as I want. the customer support was very responsive and efficient in solving my problems. thank you very much!</p>
-                                        <small class="fw-bold">By clin1</small>
-                                        <p class="stars">&star;&star;&star;&star;&star;</p>
-                                    </div>
-                            </div>
+                <div
+                id="customersCarousel"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-bs-interval="4000"
+                >
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <div
+                        class="d-flex justify-content-center gap-4 align-items-stretch"
+                    >
+                        <div class="customer-card card text-center p-4 bg-transparent">
+                        <h5 class="fw-bold">“For customer support”</h5>
+                        <p class="mb-3">
+                            Excellent customer support! I highly recommend this. I have
+                            been having many troubles making the product page look
+                            exactly as I want. the customer support was very responsive
+                            and efficient in solving my problems. thank you very much!
+                        </p>
+                        <small class="fw-bold">By clin1</small>
+                        <p class="stars">&star;&star;&star;&star;&star;</p>
                         </div>
-                        
-                        <div class="carousel-item">
-                            <div class="d-flex justify-content-center gap-4 align-items-stretch">
-                                
-                                <div class="customer-card card text-center p-4 bg-transparent">
-                                        <h5 class="fw-bold">“For customer support”</h5>
-                                        <p class="mb-3">The theme is very clean. I want to say that the support is extremely responsive and has been very patient with me. thank you so much for your help!</p>
-                                        <small class="fw-bold">By tokenfaith</small>
-                                        <p class="stars">&star;&star;&star;&star;&star;</p>
-                                    </div>
 
-                                    <div class="customer-card card text-center p-4 bg-transparent d-none d-md-block">
-                                        <h5 class="fw-bold">“For customer support”</h5>
-                                        <p class="mb-3">We needed a number of adjustments and changes before sending the site from draft/staging to a live site. support, was quick to make the necessary adjustments and changes.</p>
-                                        <small class="fw-bold">By refine_digital</small>
-                                        <p class="stars">&star;&star;&star;&star;&star;</p>
-                                    </div>
-                            </div>
+                        <div
+                        class="customer-card card text-center p-4 bg-transparent d-none d-md-block"
+                        >
+                        <h5 class="fw-bold">“For customer support”</h5>
+                        <p class="mb-3">
+                            Excellent customer support! I highly recommend this. I have
+                            been having many troubles making the product page look
+                            exactly as I want. the customer support was very responsive
+                            and efficient in solving my problems. thank you very much!
+                        </p>
+                        <small class="fw-bold">By clin1</small>
+                        <p class="stars">&star;&star;&star;&star;&star;</p>
                         </div>
-                        
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#customersCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#customersCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    </div>
+
+                    <div class="carousel-item">
+                    <div
+                        class="d-flex justify-content-center gap-4 align-items-stretch"
+                    >
+                        <div class="customer-card card text-center p-4 bg-transparent">
+                        <h5 class="fw-bold">“For customer support”</h5>
+                        <p class="mb-3">
+                            The theme is very clean. I want to say that the support is
+                            extremely responsive and has been very patient with me.
+                            thank you so much for your help!
+                        </p>
+                        <small class="fw-bold">By tokenfaith</small>
+                        <p class="stars">&star;&star;&star;&star;&star;</p>
+                        </div>
+
+                        <div
+                        class="customer-card card text-center p-4 bg-transparent d-none d-md-block"
+                        >
+                        <h5 class="fw-bold">“For customer support”</h5>
+                        <p class="mb-3">
+                            We needed a number of adjustments and changes before sending
+                            the site from draft/staging to a live site. support, was
+                            quick to make the necessary adjustments and changes.
+                        </p>
+                        <small class="fw-bold">By refine_digital</small>
+                        <p class="stars">&star;&star;&star;&star;&star;</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#customersCarousel"
+                    data-bs-slide="prev"
+                >
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#customersCarousel"
+                    data-bs-slide="next"
+                >
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
                 </div>
             </section>
             <!-- <section id="recent_news"></section> -->
             <!-- <section id="mailing_list"></section> -->
             <!-- <section id="mini_carousel" class="container my-5">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../images/mini-carousel1.png" class="img-fluid small-img" alt="slide1">
-                            <img src="../images/mini-carousel2.png" class="img-fluid small-img" alt="slide2">
-                            <img src="../images/mini-carousel3.png" class="img-fluid small-img" alt="slide3">
-                            <img src="../images/mini-carousel4.webp" class="img-fluid small-img" alt="slide4">
-                            <img src="../images/mini-carousel5.png" class="img-fluid small-img" alt="slide5">
-                            <img src="../images/mini-carousel6.png" class="img-fluid small-img" alt="slide6">
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../images/mini-carousel1.png" class="img-fluid small-img" alt="slide1">
+                                    <img src="../images/mini-carousel2.png" class="img-fluid small-img" alt="slide2">
+                                    <img src="../images/mini-carousel3.png" class="img-fluid small-img" alt="slide3">
+                                    <img src="../images/mini-carousel4.webp" class="img-fluid small-img" alt="slide4">
+                                    <img src="../images/mini-carousel5.png" class="img-fluid small-img" alt="slide5">
+                                    <img src="../images/mini-carousel6.png" class="img-fluid small-img" alt="slide6">
+                                </div>
+                            </div>
+                        </div>
+                    </section> -->
+            </main>
+
+        <footer class="container-fluid p-0 bg-warning bg-opacity-10">
+            <div class="d-flex flex-column align-items-center mx-lg-auto">
+                <section class="container-lg d-flex flex-column mx-lg-5 flex-xxl-row py-xxl-5">
+                    <div class="d-lg-flex col-xxl-6">
+                        <div class="d-flex align-items-center my-3 col-lg-6">
+                            <section class="border-1 border-warning rounded-circle p-3 bg-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                width="40" height="40" fill="white">
+                                    <path d="M32 160C32 124.7 60.7 96 96 96L384 96C419.3 96 448 124.7 448 160L448 192L498.7 192C515.7 192 532 198.7 544 210.7L589.3 256C601.3 268 608 284.3 608 301.3L608 448C608 483.3 579.3 512 544 512L540.7 512C530.3 548.9 496.3 576 456 576C415.7 576 381.8 548.9 371.3 512L268.7 512C258.3 548.9 224.3 576 184 576C143.7 576 109.8 548.9 99.3 512L96 512C60.7 512 32 483.3 32 448L32 160zM544 352L544 301.3L498.7 256L448 256L448 352L544 352zM224 488C224 465.9 206.1 448 184 448C161.9 448 144 465.9 144 488C144 510.1 161.9 528 184 528C206.1 528 224 510.1 224 488zM456 528C478.1 528 496 510.1 496 488C496 465.9 478.1 448 456 448C433.9 448 416 465.9 416 488C416 510.1 433.9 528 456 528z"/></svg>
+                            </section>
+                            <p class="ms-3">
+                                Free delivery
+                            </p>
+                        </div>
+                        <div class="d-flex align-items-center my-2 col-lg-6">
+                            <section class="border-1 border-warning rounded-circle p-3 bg-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" 
+                                width="40" height="40" fill="white">
+                                    <path d="M128 128C92.7 128 64 156.7 64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192C576 156.7 547.3 128 512 128L128 128zM320 208C381.9 208 432 258.1 432 320C432 381.9 381.9 432 320 432C258.1 432 208 381.9 208 320C208 258.1 258.1 208 320 208zM128 248L128 200C128 195.6 131.6 192 136 192L184 192C188.4 192 192.1 195.6 191.5 200C187.9 229 164.9 251.9 136 255.5C131.6 256 128 252.4 128 248zM128 392C128 387.6 131.6 383.9 136 384.5C165 388.1 187.9 411.1 191.5 440C192 444.4 188.4 448 184 448L136 448C131.6 448 128 444.4 128 440L128 392zM504 255.5C475 251.9 452.1 228.9 448.5 200C448 195.6 451.6 192 456 192L504 192C508.4 192 512 195.6 512 200L512 248C512 252.4 508.4 256.1 504 255.5zM512 392L512 440C512 444.4 508.4 448 504 448L456 448C451.6 448 447.9 444.4 448.5 440C452.1 411 475.1 388.1 504 384.5C508.4 384 512 387.6 512 392zM304 252C293 252 284 261 284 272C284 281.7 290.9 289.7 300 291.6L300 340L296 340C285 340 276 349 276 360C276 371 285 380 296 380L344 380C355 380 364 371 364 360C364 349 355 340 344 340L340 340L340 272C340 261 331 252 320 252L304 252z"/></svg>
+                            </section>
+                            <p class="ms-3">
+                                Cash on delivery
+                            </p>
                         </div>
                     </div>
+                    <div class="d-lg-flex col-xxl-6">
+                        <div class="d-flex align-items-center my-2 col-lg-6">
+                            <section class="border-1 border-warning rounded-circle p-3 bg-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                width="40" height="40" fill="white">
+                                <path d="M129.9 292.5C143.2 199.5 223.3 128 320 128C373 128 421 149.5 455.8 184.2C456 184.4 456.2 184.6 456.4 184.8L464 192L416.1 192C398.4 192 384.1 206.3 384.1 224C384.1 241.7 398.4 256 416.1 256L544.1 256C561.8 256 576.1 241.7 576.1 224L576.1 96C576.1 78.3 561.8 64 544.1 64C526.4 64 512.1 78.3 512.1 96L512.1 149.4L500.8 138.7C454.5 92.6 390.5 64 320 64C191 64 84.3 159.4 66.6 283.5C64.1 301 76.2 317.2 93.7 319.7C111.2 322.2 127.4 310 129.9 292.6zM573.4 356.5C575.9 339 563.7 322.8 546.3 320.3C528.9 317.8 512.6 330 510.1 347.4C496.8 440.4 416.7 511.9 320 511.9C267 511.9 219 490.4 184.2 455.7C184 455.5 183.8 455.3 183.6 455.1L176 447.9L223.9 447.9C241.6 447.9 255.9 433.6 255.9 415.9C255.9 398.2 241.6 383.9 223.9 383.9L96 384C87.5 384 79.3 387.4 73.3 393.5C67.3 399.6 63.9 407.7 64 416.3L65 543.3C65.1 561 79.6 575.2 97.3 575C115 574.8 129.2 560.4 129 542.7L128.6 491.2L139.3 501.3C185.6 547.4 249.5 576 320 576C449 576 555.7 480.6 573.4 356.5z"/></svg>
+                            </section>
+                            <p class="ms-3">
+                                30 days returns
+                            </p>
+                        </div>
+                        <div class="d-flex align-items-center my-3 col-lg-6">
+                            <section class="border-1 border-warning rounded-circle p-3 bg-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                width="40" height="40" fill="white">
+                                <path d="M320 128C241 128 175.3 185.3 162.3 260.7C171.6 257.7 181.6 256 192 256L208 256C234.5 256 256 277.5 256 304L256 400C256 426.5 234.5 448 208 448L192 448C139 448 96 405 96 352L96 288C96 164.3 196.3 64 320 64C443.7 64 544 164.3 544 288L544 456.1C544 522.4 490.2 576.1 423.9 576.1L336 576L304 576C277.5 576 256 554.5 256 528C256 501.5 277.5 480 304 480L336 480C362.5 480 384 501.5 384 528L384 528L424 528C463.8 528 496 495.8 496 456L496 435.1C481.9 443.3 465.5 447.9 448 447.9L432 447.9C405.5 447.9 384 426.4 384 399.9L384 303.9C384 277.4 405.5 255.9 432 255.9L448 255.9C458.4 255.9 468.3 257.5 477.7 260.6C464.7 185.3 399.1 127.9 320 127.9z"/></svg>
+                            </section>
+                            <p class="ms-3">
+                                Online support
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <hr/>
+                <section class=" container-lg d-flex flex-column flex-lg-row justify-content-lg-between mx-lg-5 align-items-xxl-center">
+                    <div class="col-lg-3 col-xxl-4 g-5">
+                        <div class="w-75">
+                            <a href="home.html" class="d-none d-lg-block">
+                                <img src="../Static/Images/logo-1.svg" alt="logo" class="w-50">
+                            </a>
+                            <a href="home.html" class="d-block d-lg-none">
+                                <img src="../Static/Images/logo-1.svg" alt="logo" class="w-25">
+                            </a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur labore perspiciatis eligendi. Qui, amet consectetur adipisicing elit
+                        </p>
+                    </div>
+                    <div class="d-flex col-lg-3 col-xxl-4 g-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="30" height="40" fill="#ffc107">
+                            <path d="M128 252.6C128 148.4 214 64 320 64C426 64 512 148.4 512 252.6C512 371.9 391.8 514.9 341.6 569.4C329.8 582.2 310.1 582.2 298.3 569.4C248.1 514.9 127.9 371.9 127.9 252.6zM320 320C355.3 320 384 291.3 384 256C384 220.7 355.3 192 320 192C284.7 192 256 220.7 256 256C256 291.3 284.7 320 320 320z"/>
+                        </svg>
+                        <section>
+                            <h5 class="text-warning m-0">Address</h5>
+                            <p class="m-0">Lorem ipsum dolor sit,</p>
+                            <p class="m-0">amet consectetur adipisicing elit</p>
+                        </section>
+                    </div>
+                    <br>
+                    <div class="d-flex col-lg-3 col-xxl-4 g-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="30" height="40" fill="#ffc107">
+                            <path d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z"/></svg>
+                        <section>
+                            <h5 class="text-warning m-0">Get in touch</h5>
+                            <p class="m-0">(+20) 1234567890</p>
+                            <p class="m-0">support@demo.com</p>
+                        </section>
+                    </div>
+                </section>
+                <section class="container-lg d-flex flex-column mx-5">
+                    <hr class="opacity-25">
+                    <div class="container-lg d-lg-none px-0">
+                        <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button border-0 bg-warning bg-opacity-10 text-warning px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    <b>Top categories</b>
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body bg-warning bg-opacity-10">
+                                        <p><a href="" class="text-decoration-none text-black link-warning">Fresh fruits</a></p>
+                                        <p><a href="" class="text-decoration-none text-black link-warning">Organic juice</a></p>
+                                        <p><a href="" class="text-decoration-none text-black link-warning">Dairy & cheese</a></p>
+                                        <p><a href="" class="text-decoration-none text-black link-warning">Fresh meet</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed border-0 bg-warning bg-opacity-10 text-warning px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                    <b>Services</b>
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                <div class="accordion-body bg-warning bg-opacity-10">
+                                    <p><a href="" class="text-decoration-none text-black link-warning">About vegist</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Faq's</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Contact us</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Store location</a></p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed border-0 bg-warning bg-opacity-10 text-warning px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                    <b>Privacy & terms</b>
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body bg-warning bg-opacity-10">
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Privacy & terms</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Payment policy</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Return policy</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">Shipping policy</a></p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed border-0 bg-warning bg-opacity-10 text-warning px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                    <b>My account</b>
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body bg-warning bg-opacity-10">
+                                    <p><a href="" class="text-decoration-none text-black link-warning">My account</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">My Cart</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">My wishlist</a></p>
+                                    <p><a href="" class="text-decoration-none text-black link-warning">My address</a></p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-lg  d-lg-flex justify-content-lg-center">
+                        <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>Top categories</b>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Fresh fruits</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Organic juice</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Dairy & cheese</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Fresh meet</a></li>
+                        </ul>
+                        <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>Services</b>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">About vegist</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Faq's</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Contact us</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Store location</a></li>
+                        </ul>
+                        <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>Privacy & terms</b>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Payment policy</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Privacy policy</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Return policy</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">Shipping policy</a></li>
+                        </ul>
+                        <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>My account</b>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">My account</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">My Cart</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">My wishlist</a></li>
+                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-black link-warning">My address</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <br>
+            <section class="bg-warning px-4 d-xxl-flex align-items-xxl-center py-xxl-3">
+                <p class="text-center text-white fw-medium col-xxl-4">Copyright &copy; 2023 spacingtech all rights reserved</p>
+                <div class="d-flex justify-content-center col-xxl-4">
+                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" fill="#ffc107">
+                            <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
+                    </a>
+                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" fill="#ffc107">
+                            <path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>
+                    </a>
+                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" fill="#ffc107">
+                            <path d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/></svg>
+                    </a>
+                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" fill="#ffc107">
+                            <path d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/></svg>
+                    </a>
+                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" fill="#ffc107">
+                            <path d="M332 70.5C229.4 70.5 128 138.9 128 249.6C128 320 167.6 360 191.6 360C201.5 360 207.2 332.4 207.2 324.6C207.2 315.3 183.5 295.5 183.5 256.8C183.5 176.4 244.7 119.4 323.9 119.4C392 119.4 442.4 158.1 442.4 229.2C442.4 282.3 421.1 381.9 352.1 381.9C327.2 381.9 305.9 363.9 305.9 338.1C305.9 300.3 332.3 263.7 332.3 224.7C332.3 158.5 238.4 170.5 238.4 250.5C238.4 267.3 240.5 285.9 248 301.2C234.2 360.6 206 449.1 206 510.3C206 529.2 208.7 547.8 210.5 566.7C213.9 570.5 212.2 570.1 217.4 568.2C267.8 499.2 266 485.7 288.8 395.4C301.1 418.8 332.9 431.4 358.1 431.4C464.3 431.4 512 327.9 512 234.6C512 135.3 426.2 70.5 332 70.5z"/></svg>
+                    </a>
+                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" fill="#ffc107">
+                            <path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z"/></svg>
+                    </a>
                 </div>
-            </section> -->
-
-
-          
-        </main>
-        <footer class="container-md p-3">
-            <section class="bg-warning bg-opacity-10 d-flex flex-column">
-                <div class="d-flex align-items-center my-2">
-                    <section class="border-1 border-warning rounded-circle p-3 bg-warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
-                        width="40" height="40" fill="white">
-                            <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M32 160C32 124.7 60.7 96 96 96L384 96C419.3 96 448 124.7 448 160L448 192L498.7 192C515.7 192 532 198.7 544 210.7L589.3 256C601.3 268 608 284.3 608 301.3L608 448C608 483.3 579.3 512 544 512L540.7 512C530.3 548.9 496.3 576 456 576C415.7 576 381.8 548.9 371.3 512L268.7 512C258.3 548.9 224.3 576 184 576C143.7 576 109.8 548.9 99.3 512L96 512C60.7 512 32 483.3 32 448L32 160zM544 352L544 301.3L498.7 256L448 256L448 352L544 352zM224 488C224 465.9 206.1 448 184 448C161.9 448 144 465.9 144 488C144 510.1 161.9 528 184 528C206.1 528 224 510.1 224 488zM456 528C478.1 528 496 510.1 496 488C496 465.9 478.1 448 456 448C433.9 448 416 465.9 416 488C416 510.1 433.9 528 456 528z"/></svg>
-                    </section>
-                    <p class="ms-3">
-                        Free delivery
-                    </p>
-                </div>
-                <div class="d-flex align-items-center my-2">
-                    <section class="border-1 border-warning rounded-circle p-3 bg-warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" 
-                        width="40" height="40" fill="white">
-                            <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M128 128C92.7 128 64 156.7 64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192C576 156.7 547.3 128 512 128L128 128zM320 208C381.9 208 432 258.1 432 320C432 381.9 381.9 432 320 432C258.1 432 208 381.9 208 320C208 258.1 258.1 208 320 208zM128 248L128 200C128 195.6 131.6 192 136 192L184 192C188.4 192 192.1 195.6 191.5 200C187.9 229 164.9 251.9 136 255.5C131.6 256 128 252.4 128 248zM128 392C128 387.6 131.6 383.9 136 384.5C165 388.1 187.9 411.1 191.5 440C192 444.4 188.4 448 184 448L136 448C131.6 448 128 444.4 128 440L128 392zM504 255.5C475 251.9 452.1 228.9 448.5 200C448 195.6 451.6 192 456 192L504 192C508.4 192 512 195.6 512 200L512 248C512 252.4 508.4 256.1 504 255.5zM512 392L512 440C512 444.4 508.4 448 504 448L456 448C451.6 448 447.9 444.4 448.5 440C452.1 411 475.1 388.1 504 384.5C508.4 384 512 387.6 512 392zM304 252C293 252 284 261 284 272C284 281.7 290.9 289.7 300 291.6L300 340L296 340C285 340 276 349 276 360C276 371 285 380 296 380L344 380C355 380 364 371 364 360C364 349 355 340 344 340L340 340L340 272C340 261 331 252 320 252L304 252z"/></svg>
-                    </section>
-                    <p class="ms-3">
-                        Cash on delivery
-                    </p>
-                </div>
-                <div class="d-flex align-items-center my-2">
-                    <section class="border-1 border-warning rounded-circle p-3 bg-warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
-                        width="40" height="40" fill="white">
-                            <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M129.9 292.5C143.2 199.5 223.3 128 320 128C373 128 421 149.5 455.8 184.2C456 184.4 456.2 184.6 456.4 184.8L464 192L416.1 192C398.4 192 384.1 206.3 384.1 224C384.1 241.7 398.4 256 416.1 256L544.1 256C561.8 256 576.1 241.7 576.1 224L576.1 96C576.1 78.3 561.8 64 544.1 64C526.4 64 512.1 78.3 512.1 96L512.1 149.4L500.8 138.7C454.5 92.6 390.5 64 320 64C191 64 84.3 159.4 66.6 283.5C64.1 301 76.2 317.2 93.7 319.7C111.2 322.2 127.4 310 129.9 292.6zM573.4 356.5C575.9 339 563.7 322.8 546.3 320.3C528.9 317.8 512.6 330 510.1 347.4C496.8 440.4 416.7 511.9 320 511.9C267 511.9 219 490.4 184.2 455.7C184 455.5 183.8 455.3 183.6 455.1L176 447.9L223.9 447.9C241.6 447.9 255.9 433.6 255.9 415.9C255.9 398.2 241.6 383.9 223.9 383.9L96 384C87.5 384 79.3 387.4 73.3 393.5C67.3 399.6 63.9 407.7 64 416.3L65 543.3C65.1 561 79.6 575.2 97.3 575C115 574.8 129.2 560.4 129 542.7L128.6 491.2L139.3 501.3C185.6 547.4 249.5 576 320 576C449 576 555.7 480.6 573.4 356.5z"/></svg>
-                    </section>
-                    <p class="ms-3">
-                        30 days returns
-                    </p>
-                </div>
-                <div class="d-flex align-items-center my-2">
-                    <section class="border-1 border-warning rounded-circle p-3 bg-warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
-                        width="40" height="40" fill="white">
-                            <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M320 128C241 128 175.3 185.3 162.3 260.7C171.6 257.7 181.6 256 192 256L208 256C234.5 256 256 277.5 256 304L256 400C256 426.5 234.5 448 208 448L192 448C139 448 96 405 96 352L96 288C96 164.3 196.3 64 320 64C443.7 64 544 164.3 544 288L544 456.1C544 522.4 490.2 576.1 423.9 576.1L336 576L304 576C277.5 576 256 554.5 256 528C256 501.5 277.5 480 304 480L336 480C362.5 480 384 501.5 384 528L384 528L424 528C463.8 528 496 495.8 496 456L496 435.1C481.9 443.3 465.5 447.9 448 447.9L432 447.9C405.5 447.9 384 426.4 384 399.9L384 303.9C384 277.4 405.5 255.9 432 255.9L448 255.9C458.4 255.9 468.3 257.5 477.7 260.6C464.7 185.3 399.1 127.9 320 127.9z"/></svg>
-                    </section>
-                    <p class="ms-3">
-                        Online support
-                    </p>
-                </div>
-            </section>
-            <hr>
-            <section>
-
-            </section>
-            <section>
-
+                <section class="text-center d-flex justify-content-center col-xxl-4">
+                    <div class="d-flex d-lg-none justify-content-around w-25">
+                        <div class="rounded-1 bg-white m-1">
+                            <img src="/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-100" alt="">
+                        </div>
+                        <div class="rounded-1 bg-white m-1">
+                            <img src="/Static/Images/PayPal-Logo.wine.svg" class="w-100" alt="">
+                        </div>
+                        <div class="rounded-1 bg-white m-1">
+                            <img src="/Static/Images/Mastercard-Logo.wine.svg" class="w-100" alt="">
+                        </div>
+                    </div>
+                    <div class="d-none d-lg-flex d-xxl-none justify-content-around w-25">
+                        <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
+                            <img src="/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-75" alt="">
+                        </div>
+                        <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
+                            <img src="/Static/Images/PayPal-Logo.wine.svg" class="w-75" alt="">
+                        </div>
+                        <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
+                            <img src="/Static/Images/Mastercard-Logo.wine.svg" class="w-75" alt="">
+                        </div>
+                    </div>
+                    <div class="d-none d-xxl-flex justify-content-around w-50">
+                        <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
+                            <img src="/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-75" alt="">
+                        </div>
+                        <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
+                            <img src="/Static/Images/PayPal-Logo.wine.svg" class="w-75" alt="">
+                        </div>
+                        <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
+                            <img src="/Static/Images/Mastercard-Logo.wine.svg" class="w-75" alt="">
+                        </div>
+                    </div>
+                </section>
             </section>
         </footer>
         <script
