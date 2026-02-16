@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> </title>
+        <link rel="icon" type="image/png" href="../Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <link rel="stylesheet" href="../Static/CSS/main.css" />
+        <style>
+            .checkout .productImage{
+                width: 50px;
+            }
+            .checkout .productName, .productPrice{
+                font-size: 13px;
+            }
+            .checkout .productDetails{
+                font-size: 11px;
+            }
+            .accordion-button:focus {
+                box-shadow: none;
+                color: #fd7e14
+            }
+            form input::placeholder{
+                font-size: 12px;
+            }
+            #country{
+                font-size: 13px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="container-fluid sticky-top py-3 bg-white">
+            <div class="d-flex align-items-center justify-content-between px-xxl-4">
+                <section>
+                    <a href="home.html">
+                        <img src="../Static/Images/logo-1.svg" alt="logo" class="w-50 h-100"/>
+                    </a>
+                </section>
+                <section class="d-flex align-items-center">
+                    <div class=" d-flex align-items-center">
+                        <a href="cart.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="45"
+                                height="45"class="cart-icon mx-1">
+                                <path d="M256 144C256 108.7 284.7 80 320 80C355.3 80 384 108.7 384 144L384 192L256 192L256 144zM208 192L144 192C117.5 192 96 213.5 96 240L96 448C96 501 139 544 192 544L448 544C501 544 544 501 544 448L544 240C544 213.5 522.5 192 496 192L432 192L432 144C432 82.1 381.9 32 320 32C258.1 32 208 82.1 208 144L208 192zM232 240C245.3 240 256 250.7 256 264C256 277.3 245.3 288 232 288C218.7 288 208 277.3 208 264C208 250.7 218.7 240 232 240zM384 264C384 250.7 394.7 240 408 240C421.3 240 432 250.7 432 264C432 277.3 421.3 288 408 288C394.7 288 384 277.3 384 264z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </header>
+        <hr class="mb-0"/>
+        <main>
+            <section class="container-lg d-lg-none px-0">
+                <div class="accordion accordion-flush mb-3">
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button border-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            Order summary
+                        </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                            <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
+                                <form action="" class="checkout">
+                                    <main class="d-flex flex-column">
+                                        <section class="d-flex justify-content-between align-items-center mb-3">
+                                            <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
+                                                <img src="/Static/Images/cart/39.webp" alt="" class="productImage">
+                                            </div>
+                                            <div class="col-7 productContect">
+                                                <p class="m-0 productName">Organic conconet</p>
+                                                <small class="text-secondary productDetails">1kg/ Canada</small>
+                                            </div>
+                                            <div class="col-2 productPrice">
+                                                <p>35.55</p>
+                                            </div>
+                                        </section>
+                                        <section class="d-flex justify-content-between align-items-center mb-3">
+                                            <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
+                                                <img src="/Static/Images/cart/39.webp" alt="" class="productImage">
+                                            </div>
+                                            <div class="col-7 productContect">
+                                                <p class="m-0 productName">Fresh organic fruit(50gm)</p>
+                                                <small class="text-secondary productDetails">5kg</small>
+                                            </div>
+                                            <div class="col-2 productPrice">
+                                                <p>35.55</p>
+                                            </div>
+                                        </section>
+                                        <section class="d-flex mb-3">
+                                            <input type="text" id="discount" class="border border-1 border-secondary-subtle rounded-2 p-2 w-75" placeholder="Discount code"/>
+                                            <label for="disount" class="border border-1 bg-secondary bg-opacity-10 text-secondary rounded-2 py-2 px-3 ms-4 me-2">Apply</label>
+                                        </section>
+                                        <section class="mb-3">
+                                            <div class="d-flex justify-content-between">
+                                                <small class="mb-2">Subtotal . <span>2 items</span></small>
+                                                <small>68.00</small>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <small>Shipping</small>
+                                                <small>13.95</small>
+                                            </div>
+                                        </section>
+                                        <section class="d-flex justify-content-between">
+                                            <p><b>Total</b></p>
+                                            <p><b>81.95</b></p>
+                                        </section>
+                                    </main>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0"/>
+                </div>
+                <div class="d-flex flex-column">
+                    <form action="" class="p-2">
+                        <section class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <h3>Content</h3>
+                                <a href="login.html" class="mainTextTheme">Sing in</a>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Email or mobile phone number" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-2">
+                                    <input type="checkbox" id="newDetails" class="form-check-input me-1">
+                                    <label for="newDetails"><small>Email me with new offers</small></label>
+                            </div>
+                        </section>
+                        <section>
+                            <h3>Delivery</h3>
+                            <div class="mb-3">
+                                <select name="country" id="country" class="form-select py-2 mb-3">
+                                    <option id="firstSelectOption" disabled selected hidden>Country/Region</option>
+                                    <option>Egypt</option>
+                                    <option>United States</option>
+                                    <option>United Kingdom</option>
+                                    <option>Saudi Arabia</option>
+                                    <option>United Arab Emirates</option>
+                                    <option>India</option>
+                                    <option>China</option>
+                                    <option>France</option>
+                                    <option>Germany</option>
+                                    <option>Italy</option>
+                                </select>
+                                <input type="text" placeholder="First name (optional)" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="Last name" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="Address" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="Apartment, suite, etc. (optional)" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="Postal code" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="City" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="checkbox" id="newDetails" class="form-check-input me-1">
+                                <label for="newDetails"><small>Save this information for next time</small></label>
+                            </div>
+                            <div>
+                                <p><b>Shipping mehtod</b></p>
+                                <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
+                                    <p><small>Standard</small></p>
+                                    <p><small><b>13.95</b></small></p>
+                                </section>
+                            </div>
+                        </section>
+                        <section>
+                            <div>
+                                <h3>Payment</h3>
+                                <form action="">
+                                    
+                                </form>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

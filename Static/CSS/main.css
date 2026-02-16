@@ -25,6 +25,13 @@ header .nav {
     --bs-nav-link-color: black;
 }
 
+.mainTextTheme{
+    color: #fd7e14;
+}
+.mainColorTheme{
+    color: #fd7e14;
+}
+
 .bg-image {
     background-image: url("/Static/Images/auth/breadcrumb.webp");
     background-size: cover;
