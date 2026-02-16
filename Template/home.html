@@ -425,8 +425,22 @@
                     border-color: #f5ab1e;
                     color: #f5ab1e;
                 }
+                .customer-card{
+                    width: 350px;
+                    max-width:90%;
+                    height: 100%;
+                }
                 #customers{
                     background-color: #f9f9f9;
+                }
+                #customers .carousel-item{
+                    min-height: 360px;
+                }
+                #customers .card p{
+                    line-height: 1.6;
+                }
+                .stars{
+                  color:#ffb503;
                 }
                 
             </style>
@@ -483,43 +497,66 @@
             </section>
             <!-- <section id="categories"></section> -->
             <section id="trending"></section>
-            <!-- <section id="products"></section> -->
-            <section id="customers">
-                <h2 class="fw-bold text-center fs-4 fs-md-3 fs-lg-2">Our Customers Say</h2>
+            <section id="products"></section>
+            <section id="customers" class="container my-5">
+                <h2 class="fw-bold text-center fs-4 fs-md-3 fs-lg-2 my-5">Our Customers Say</h2>
+
                 <div id="customersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                    
                     <div class="carousel-inner">
+
                         <div class="carousel-item active">
-                            <div class="row justify-content-center">
-                                <div class="col-12 col-md-6 mb-4">
-                                    <div class="card h-100 text-center p-4">
+                            <div class="d-flex justify-content-center gap-4 align-items-stretch">
+                                
+                                <div class="customer-card card text-center p-4 bg-transparent">
                                         <h5 class="fw-bold">“For customer support”</h5>
                                         <p class="mb-3">Excellent customer support! I highly recommend this. I have been having many troubles making the product page look exactly as I want. the customer support was very responsive and efficient in solving my problems. thank you very much!</p>
                                         <small class="fw-bold">By clin1</small>
+                                        <p class="stars">&star;&star;&star;&star;&star;</p>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-6 mb-4">
-                                    <div class="card h-100 text-center p-4">
+
+                                    <div class="customer-card card text-center p-4 bg-transparent d-none d-md-block">
                                         <h5 class="fw-bold">“For customer support”</h5>
                                         <p class="mb-3">Excellent customer support! I highly recommend this. I have been having many troubles making the product page look exactly as I want. the customer support was very responsive and efficient in solving my problems. thank you very much!</p>
                                         <small class="fw-bold">By clin1</small>
+                                        <p class="stars">&star;&star;&star;&star;&star;</p>
                                     </div>
-                                </div>
                             </div>
                         </div>
+                        
+                        <div class="carousel-item">
+                            <div class="d-flex justify-content-center gap-4 align-items-stretch">
+                                
+                                <div class="customer-card card text-center p-4 bg-transparent">
+                                        <h5 class="fw-bold">“For customer support”</h5>
+                                        <p class="mb-3">The theme is very clean. I want to say that the support is extremely responsive and has been very patient with me. thank you so much for your help!</p>
+                                        <small class="fw-bold">By tokenfaith</small>
+                                        <p class="stars">&star;&star;&star;&star;&star;</p>
+                                    </div>
+
+                                    <div class="customer-card card text-center p-4 bg-transparent d-none d-md-block">
+                                        <h5 class="fw-bold">“For customer support”</h5>
+                                        <p class="mb-3">We needed a number of adjustments and changes before sending the site from draft/staging to a live site. support, was quick to make the necessary adjustments and changes.</p>
+                                        <small class="fw-bold">By refine_digital</small>
+                                        <p class="stars">&star;&star;&star;&star;&star;</p>
+                                    </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#customersCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#customersCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
             </section>
-            <section id="recent_news"></section>
+            <!-- <section id="recent_news"></section> -->
             <!-- <section id="mailing_list"></section> -->
-            <section id="mini_carousel" class="container my-5">
+            <!-- <section id="mini_carousel" class="container my-5">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -532,7 +569,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
 
           
