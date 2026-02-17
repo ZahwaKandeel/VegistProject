@@ -43,6 +43,29 @@ text-align: center;
         background-color: rgb(255, 243, 243); 
         color: rgb(248, 54, 54) ;
     }
+    .card-custom {
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      background: #fff;
+      height: 100%;
+     
+    }
+        .pipeline-bar {
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+      .bg-soft-purple {
+         background: #e9e6ff; 
+        }
+    .bg-soft-green {
+         background: #d9f2e6; 
+
+        }
+    .bg-soft-pink {
+         background: #ffe3e3;
+         }
 </style>
 
 </head>
@@ -581,16 +604,18 @@ text-align: center;
 <!--------------------------------------------------------------------------->
 
 
-<div class="row"> <!--start of the row 2 -->
+<div class="row my-2"> <!--start of the row 2 -->
 
 
 
     
-    <div class=" col-12   col-lg-8  "><!--start  Card onee-->
+    <div class=" col-12   col-lg-8 my-2 "><!--start  Card onee-->
       <div class="card p-4">
         
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h5 class="mb-0">Revenue</h5>
+
+
 
           <div class="btn-toggle btn-group">
             <button class="btn btn-sm btn-light">Today</button>
@@ -604,7 +629,7 @@ text-align: center;
       </div>
     </div><!--end  Card onee-->
 
-<div class="col-lg-4"> <!--start  Card twoo-->
+<div class="col-lg-4 my-2"> <!--start  Card twoo-->
       <div class="card p-4">
         <h5>Retention Rate</h5>
 
@@ -625,6 +650,96 @@ text-align: center;
 
 
 </div> <!--end of the row 2 -->
+<!--------------------------------------------------------------------------->
+
+<div class="row my-2"><!--start of the row 3 -->
+
+<div class="col-12 col-md-6 col-xl-4 my-2">     <!--start of the card  -->
+      <div class="card-custom">
+        <div class="d-flex justify-content-around">
+        <h5 class="mb-4">Upcoming Meetings</h5>
+
+        <div class="dropdown">
+  <a class="btn bg-soft-green shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+   <i class="fa-solid fa-ellipsis"></i>
+  </a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Edit</a></li>
+    <li><a class="dropdown-item" href="#">Delete</a></li>
+  </ul>
+</div>
+</div>
+
+        
+        <div class="mb-3 p-3 bg-light rounded">
+          <strong>HR</strong>
+          <div class="text-muted small">06:00 - 07:00</div>
+        </div>
+
+        <div class="mb-3 p-3 bg-light rounded">
+          <strong>Team Stand Up</strong>
+          <div class="text-muted small">Marketing · 06:00 - 07:00</div>
+        </div>
+
+        <div class="p-3 bg-light rounded">
+          <strong>All Hands Meeting</strong>
+          <div class="text-muted small">Manager · 06:00 - 07:00</div>
+        </div>
+      </div>
+    </div><!--end of the card  -->
+<!--------------------------------------------------------------------------->
+ <div class="col-12 col-md-6 col-xl-4 my-2"> 
+      <div class="card-custom">
+        <h5 class="mb-4">Deals Overview</h5> <!--start of the card  -->
+
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div class="p-3 bg-light rounded text-center">
+              <h6>Closed Deals</h6>
+              <h4>27</h4>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-light rounded text-center">
+              <h6>Pipeline Value</h6>
+              <h4>$5.2M</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-soft-purple p-4 rounded text-center">
+          <strong>Conversion Rate 16%</strong>
+        </div>
+      </div>
+    </div><!--end of the card  -->
+<!--------------------------------------------------------------------------->
+
+<div class="col-12 col-md-12 col-xl-4 my-2">
+      <div class="card-custom">
+        <h5 class="mb-4">Sales Pipeline Overview</h5>
+        <h3>$2,56,054.50</h3>
+
+        <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
+          Leads <span class="ms-auto">120</span>
+        </div>
+
+        <div class="pipeline-bar bg-soft-green d-flex align-items-center px-3">
+          Prospects <span class="ms-auto">85</span>
+        </div>
+
+        <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
+          Opportunities <span class="ms-auto">40</span>
+        </div>
+
+        <div class="pipeline-bar bg-soft-pink d-flex align-items-center px-3">
+          Closed Deals <span class="ms-auto">20</span>
+        </div>
+      </div>
+    </div>
+
+
+</div><!--end of the row 3 -->
 
 </div><!--end of the container-->
         </main><!--end of the main-->
