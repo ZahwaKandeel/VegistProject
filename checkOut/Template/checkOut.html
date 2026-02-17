@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Checkout</title>
-        <link rel="icon" type="image/png" href="../Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
+        <link rel="icon" type="image/png" href="/Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -41,26 +41,6 @@
         </script>
     </head>
     <body>
-        <!-- <header class="container-fluid sticky-top py-3 bg-white">
-            <div class="d-flex align-items-center justify-content-between px-xxl-4">
-                <section>
-                    <a href="/home/Template/home.html">
-                        <img src="/Static/Images/logo-1.svg" alt="logo" class="w-50 h-100"/>
-                    </a>
-                </section>
-                <section class="d-flex align-items-center">
-                    <div class=" d-flex align-items-center">
-                        <a href="/cart/Template/cart.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="45"
-                                height="45"class="cart-icon mx-1">
-                                <path d="M256 144C256 108.7 284.7 80 320 80C355.3 80 384 108.7 384 144L384 192L256 192L256 144zM208 192L144 192C117.5 192 96 213.5 96 240L96 448C96 501 139 544 192 544L448 544C501 544 544 501 544 448L544 240C544 213.5 522.5 192 496 192L432 192L432 144C432 82.1 381.9 32 320 32C258.1 32 208 82.1 208 144L208 192zM232 240C245.3 240 256 250.7 256 264C256 277.3 245.3 288 232 288C218.7 288 208 277.3 208 264C208 250.7 218.7 240 232 240zM384 264C384 250.7 394.7 240 408 240C421.3 240 432 250.7 432 264C432 277.3 421.3 288 408 288C394.7 288 384 277.3 384 264z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </section>
-            </div>
-        </header> -->
-        
         <hr class="my-0"/>
         <main>
             <section class="container-fluid d-flex flex-column flex-lg-row justify-content-between px-0">
@@ -187,7 +167,7 @@
                                             <input type="radio" name="payment" value="card" class="me-2">
                                             <small>Credit Card</small>
                                         </button>
-                                        </h2>
+                                    </h2>
                                         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                                             <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
                                                 <form action="">
@@ -209,10 +189,10 @@
                                 <div class="accordion mb-3">
                                     <div class="accordion-item border-0">
                                         <h2 class="accordion-header">
-                                        <button class="accordion-button rounded-top-0 rounded-bottom bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-                                            <input type="radio" name="payment" value="card" class="me-2">
-                                            <small>Cash on Delivery</small>
-                                        </button>
+                                            <button class="accordion-button rounded-top-0 rounded-bottom bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+                                                <input type="radio" name="payment" value="card" class="me-2">
+                                                <small>Cash on Delivery</small>
+                                            </button>
                                         </h2>
                                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                                             <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom rounded-bottom py-0">
@@ -223,13 +203,15 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="mx-2 ps-xxl-5">
-                            <h5 class="ps-xxl-5">Billing address</h5>
-                            <div class="border-0 bg-secondary bg-opacity-10 px-3 py-2 ps-xxl-5 rounded-top">
+                    </form>
+                    <form action="" class="p-2 ps-xl-5">
+                        <section class="ps-xxl-5">
+                            <h5 class="">Billing address</h5>
+                            <div class="d-flex border-0 bg-secondary bg-opacity-10 px-3 py-2 rounded-top">
                                 <input type="radio" name="payment" value="card" class="me-2 d-block">
-                                <small>Use a different billing address</small>
+                                <label><small>Use a different billing address</small></label>
                             </div>
-                            <div class="accordion mb-3 ps-xxl-5">
+                            <div class="accordion mb-3">
                                     <div class="accordion-item border-0">
                                         <h2 class="accordion-header">
                                         <button class="accordion-button border border-bottom rounded-bottom rounded-top-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
@@ -271,9 +253,9 @@
                                     </div>
                                 </div>
                         </section>
-                        <section class="d-flex flex-column  mx-2 me-2 ps-xxl-5">
+                        <section class="d-flex flex-column ps-xl-5  me-2 ps-xxl-5">
                             <div class="d-flex justify-content-between ps-xxl-5">
-                                <p class="d-flex flex-column ms-4">
+                                <p class="d-flex flex-column ms-5">
                                     <b>Total</b>
                                     <small>items</small>
                                 </p>
