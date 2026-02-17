@@ -4,6 +4,43 @@
     box-sizing: border-box;
 }
 
+/* main theme */
+
+:root {
+    --main-footer-bg: #fbe2cb;
+    --main-text-color: #e29911;
+    --secondry-text-color: #b87700;
+    --main-main-color: #f5ab1e;
+}
+
+/* dark theme */
+
+[data-bs-theme="dark"] {
+    --main-footer-bg: #393939;
+    --main-text-color: #e29911;
+    --secondry-text-color: #b87700;
+    --main-main-color: #f5ab1e;
+}
+
+.mainFooterTheme {
+    background-color: var(--main-footer-bg);
+}
+
+.mainTextTheme {
+    color: var(--main-text-color);
+}
+.secondryTextTheme {
+    color: var(--secondry-text-color);
+}
+
+.secondryTextTheme:hover {
+    color: var(--main-text-color);
+}
+
+.mainBackgroundTheme {
+    background-color: var(--main-main-color);
+}
+
 /* header tag */
 
 header i {
@@ -25,12 +62,6 @@ header .nav {
     --bs-nav-link-color: black;
 }
 
-.mainTextTheme{
-    color: #fd7e14;
-}
-.mainColorTheme{
-    background-color: #fd7e14;
-}
 
 .bg-image {
     background-image: url("/Static/Images/auth/breadcrumb.webp");
