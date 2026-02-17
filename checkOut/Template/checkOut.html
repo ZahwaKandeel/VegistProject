@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,31 +15,33 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-        <link rel="stylesheet" href="../Static/CSS/main.css" />
-        <style>
-            .checkout .productImage{
-                width: 50px;
-            }
-            .checkout .productName, .productPrice{
-                font-size: 13px;
-            }
-            .checkout .productDetails{
-                font-size: 11px;
-            }
-            .accordion-button:focus {
-                box-shadow: none;
-                color: #fd7e14
-            }
-            form input::placeholder{
-                font-size: 12px;
-            }
-            #country{
-                font-size: 13px;
-            }
-        </style>
+        <link rel="stylesheet" href="/Static/CSS/main.css" />
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+        <script type="module">
+            import {header} from "/componant/header.js"
+            $("body").prepend(header())
+        </script>
+        <script>
+            $(function(){
+                document.addEventListener("click", function (e) {
+                if (e.target.id === "themeToggle") {
+                    let html = document.documentElement;
+                    let current = html.getAttribute("data-bs-theme");
+    
+                    if (current === "dark") {
+                    html.setAttribute("data-bs-theme", "light");
+                    e.target.textContent = "🌙";
+                    } else {
+                    html.setAttribute("data-bs-theme", "dark");
+                    e.target.textContent = "☀️";
+                    }
+                }
+                });
+            })
+        </script>
     </head>
     <body>
-        <header class="container-fluid sticky-top py-3 bg-white">
+        <!-- <header class="container-fluid sticky-top py-3 bg-white">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
                     <a href="/home/Template/home.html">
@@ -57,7 +59,8 @@
                     </div>
                 </section>
             </div>
-        </header>
+        </header> -->
+        
         <hr class="mb-0"/>
         <main>
             <section class="container-lg d-lg-none px-0">

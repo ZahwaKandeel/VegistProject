@@ -11,6 +11,8 @@
     --main-text-color: #e29911;
     --secondry-text-color: #b87700;
     --main-main-color: #f5ab1e;
+    --main-accordion-button-bg: #fbe2cb;
+    --main-accordion-body-bg: #e6cbb3;
 }
 
 /* dark theme */
@@ -20,6 +22,8 @@
     --main-text-color: #e29911;
     --secondry-text-color: #b87700;
     --main-main-color: #f5ab1e;
+    --main-accordion-button-bg: #393939;
+    --main-accordion-body-bg: #464545;
 }
 
 .mainFooterTheme {
@@ -39,6 +43,12 @@
 
 .mainBackgroundTheme {
     background-color: var(--main-main-color);
+}
+.mainAccourdionButtonBgColor{
+    background-color: var(--main-accordion-button-bg);
+}
+.mainAccourdionBodyBgColor{
+    background-color: var(--main-accordion-body-bg);
 }
 
 /* header tag */
@@ -62,7 +72,26 @@ header .nav {
     --bs-nav-link-color: black;
 }
 
+svg{
+    fill: black;
+}
+html[data-bs-theme="dark"]  svg{
+    fill: white;
+}
+html[data-bs-theme="dark"] .iconLink{
+    fill: #000000;
+}
+.icon i {
+    font-size: 1.25rem;
+}
 
+@media (min-width: 1200px) {
+    .icon i {
+        font-size: 2.5rem; /* bigger on xl screens */
+    }
+}
+
+/* main nav img */
 .bg-image {
     background-image: url("/Static/Images/auth/breadcrumb.webp");
     background-size: cover;
@@ -75,4 +104,13 @@ header .nav {
 
 footer .li-dashed {
     border-bottom: 1px dashed #000;
+}
+
+
+.accordion-button:focus {
+    box-shadow: none !important;         /* remove focus shadow */
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--main-footer-bg) ;  /* override expanded color */
 }

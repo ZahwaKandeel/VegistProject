@@ -53,10 +53,10 @@ export function footer() {
                     <div class="col-lg-3 col-xxl-4 g-5">
                         <div class="w-75">
                             <a href="home.html" class="d-none d-lg-block">
-                                <img src="../Static/Images/logo-1.svg" alt="logo" class="w-50">
+                                <img src="/Static/Images/logo-1.svg" alt="logo" class="w-50">
                             </a>
                             <a href="home.html" class="d-block d-lg-none">
-                                <img src="../Static/Images/logo-1.svg" alt="logo" class="w-25">
+                                <img src="/Static/Images/logo-1.svg" alt="logo" class="w-25">
                             </a>
                         </div>
                         <p>
@@ -90,12 +90,12 @@ export function footer() {
                         <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item border-0">
                                 <h2 class="accordion-header">
-                                <button class="accordion-button border-0 mainBackgroundTheme bg-opacity-10 mainTextTheme px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <button class="accordion-button mainAccourdionButtonBgColor border-0 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                     <b>Top categories</b>
                                 </button>
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                                    <div class="accordion-body mainBackgroundTheme bg-opacity-10">
+                                    <div class="accordion-body mainAccourdionButtonBgColor ">
                                         <p><a href="" class="text-decoration-none text-body link-warning">Fresh fruits</a></p>
                                         <p><a href="" class="text-decoration-none text-body link-warning">Organic juice</a></p>
                                         <p><a href="" class="text-decoration-none text-body link-warning">Dairy & cheese</a></p>
@@ -105,12 +105,12 @@ export function footer() {
                             </div>
                             <div class="accordion-item border-0">
                                 <h2 class="accordion-header">
-                                <button class="accordion-button collapsed border-0 mainBackgroundTheme bg-opacity-10 mainTextTheme px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                <button class="accordion-button mainAccourdionButtonBgColor collapsed border-0 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                                     <b>Services</b>
                                 </button>
                                 </h2>
                                 <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                <div class="accordion-body mainBackgroundTheme bg-opacity-10">
+                                <div class="accordion-body mainAccourdionButtonBgColor ">
                                     <p><a href="" class="text-decoration-none text-body link-warning">About vegist</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Faq's</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Contact us</a></p>
@@ -120,12 +120,12 @@ export function footer() {
                             </div>
                             <div class="accordion-item border-0">
                                 <h2 class="accordion-header">
-                                <button class="accordion-button collapsed border-0 mainBackgroundTheme bg-opacity-10 mainTextTheme px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <button class="accordion-button mainAccourdionButtonBgColor collapsed border-0 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                     <b>Privacy & terms</b>
                                 </button>
                                 </h2>
                                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                                <div class="accordion-body mainBackgroundTheme bg-opacity-10">
+                                <div class="accordion-body mainAccourdionButtonBgColor ">
                                     <p><a href="" class="text-decoration-none text-body link-warning">Privacy & terms</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Payment policy</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Return policy</a></p>
@@ -135,12 +135,12 @@ export function footer() {
                             </div>
                             <div class="accordion-item border-0">
                                 <h2 class="accordion-header">
-                                <button class="accordion-button collapsed border-0 mainBackgroundTheme bg-opacity-10 mainTextTheme px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <button class="accordion-button mainAccourdionButtonBgColor collapsed border-0 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                     <b>My account</b>
                                 </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                                <div class="accordion-body mainBackgroundTheme bg-opacity-10">
+                                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                                <div class="accordion-body mainAccourdionButtonBgColor ">
                                     <p><a href="" class="text-decoration-none text-body link-warning">My account</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">My Cart</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">My wishlist</a></p>
@@ -182,27 +182,27 @@ export function footer() {
             <section class="mainBackgroundTheme px-4 d-xxl-flex align-items-xxl-center py-xxl-3">
                 <p class="text-center text-white fw-medium col-xxl-4">Copyright &copy; 2023 spacingtech all rights reserved</p>
                 <div class="d-flex justify-content-center col-xxl-4">
-                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                    <a href="https://whatsapp.com" class="p-1 m-1 bg-white rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" class="iconLink">
                             <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
                     </a>
-                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                    <a href="https://facebook.com" class="p-1 m-1 bg-white rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" class="iconLink">
                             <path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>
                     </a>
-                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                    <a href="https://x.com" class="p-1 m-1 bg-white rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" class="iconLink">
                             <path d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/></svg>
                     </a>
-                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                    <a href="https://instagram.com" class="p-1 m-1 bg-white rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" class="iconLink">
                             <path d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/></svg>
                     </a>
-                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                    <a href="https://www.pinterest.com/" class="p-1 m-1 bg-white rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" class="iconLink">
                             <path d="M332 70.5C229.4 70.5 128 138.9 128 249.6C128 320 167.6 360 191.6 360C201.5 360 207.2 332.4 207.2 324.6C207.2 315.3 183.5 295.5 183.5 256.8C183.5 176.4 244.7 119.4 323.9 119.4C392 119.4 442.4 158.1 442.4 229.2C442.4 282.3 421.1 381.9 352.1 381.9C327.2 381.9 305.9 363.9 305.9 338.1C305.9 300.3 332.3 263.7 332.3 224.7C332.3 158.5 238.4 170.5 238.4 250.5C238.4 267.3 240.5 285.9 248 301.2C234.2 360.6 206 449.1 206 510.3C206 529.2 208.7 547.8 210.5 566.7C213.9 570.5 212.2 570.1 217.4 568.2C267.8 499.2 266 485.7 288.8 395.4C301.1 418.8 332.9 431.4 358.1 431.4C464.3 431.4 512 327.9 512 234.6C512 135.3 426.2 70.5 332 70.5z"/></svg>
                     </a>
-                    <a href="" class="p-1 m-1 bg-white rounded-circle">
+                    <a href="https://youtube.com" class="p-1 m-1 bg-white rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" class="iconLink">
                             <path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z"/></svg>
                     </a>

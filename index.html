@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,26 +15,33 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-        <link rel="stylesheet" href="../Static/CSS/main.css" />
-        <style>
-            svg{
-                fill: black;
-            }
-            html[data-bs-theme="dark"]  svg{
-                fill: white;
-            }
-            html[data-bs-theme="dark"] .iconLink{
-                fill: #000000;
-            }
-        </style>
+        <link rel="stylesheet" href="/Static/CSS/main.css" />
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
         <script type="module">
             import {header} from "/componant/header.js"
-            $("body").prepend(header)
+            $("body").prepend(header())
         </script>
         <script type="module">
             import {footer} from "/componant/footer.js"
-            $("body").append(footer)
+            $("body").append(footer())
+        </script>
+        <script>
+            $(function(){
+                document.addEventListener("click", function (e) {
+                if (e.target.id === "themeToggle") {
+                    let html = document.documentElement;
+                    let current = html.getAttribute("data-bs-theme");
+    
+                    if (current === "dark") {
+                    html.setAttribute("data-bs-theme", "light");
+                    e.target.textContent = "🌙";
+                    } else {
+                    html.setAttribute("data-bs-theme", "dark");
+                    e.target.textContent = "☀️";
+                    }
+                }
+                });
+            })
         </script>
     </head>
     <body>
@@ -46,21 +53,5 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-        <script>
-            document.addEventListener("click", function (e) {
-            if (e.target.id === "themeToggle") {
-                let html = document.documentElement;
-                let current = html.getAttribute("data-bs-theme");
-
-                if (current === "dark") {
-                html.setAttribute("data-bs-theme", "light");
-                e.target.textContent = "🌙";
-                } else {
-                html.setAttribute("data-bs-theme", "dark");
-                e.target.textContent = "☀️";
-                }
-            }
-            });
-        </script>
     </body>
 </html>
