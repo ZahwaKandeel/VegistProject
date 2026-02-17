@@ -93,7 +93,7 @@ html[data-bs-theme="dark"] .iconLink{
 
 /* main nav img */
 .bg-image {
-    background-image: url("/Static/Images/auth/breadcrumb.webp");
+    background-image: url("/Static/Images/breadcrumb.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
