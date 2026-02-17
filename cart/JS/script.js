@@ -52,21 +52,10 @@ $(document).ready(function () {
 });
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function addToCart({ id, productName, productPrice, discountPrice, productImage, productSize, productMaterial }) {
-    let product = { id, productName, productPrice, discountPrice, productImage, productSize, productMaterial };
-    const existing = cart.find(item => item.id === product.id);
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    } 
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
 
 $(document).ready(function() {
 
-// addToCart({ id: 1, productName: 'Organic coconet', productPrice: '40.00', discountPrice: '35.00', productImage: '../images/39.webp', productSize: '1Kg', productMaterial: 'Vegetables' });
+// addToCart({ id: 2, productName: 'Organic coconet', productPrice: '40.00', discountPrice: '35.00', productImage: '../images/39.webp', productSize: '1Kg', productMaterial: 'Vegetables' });
 
 function displayCart() {
 
@@ -79,11 +68,11 @@ function displayCart() {
                 ></div>`);
   }
     cart.forEach(item => {
-    $('.cart-item').append(`<div class="row align-items-center">
+    $('.cart-items').append(`<div class="row align-items-center border-bottom p-2 mb-3">
                   <!-- Product -->
                   <div class="col-12 col-md-6">
                     <div class="card mb-3 bg-transparent border-0">
-                      <div class="row g-0">
+                      <div class="row g-0 ">
                         <div class="col-4">
                           <img
                             src="${item.productImage}"
