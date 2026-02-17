@@ -1,6 +1,6 @@
 export function header(){
     return`
-        <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
+        <header class="container-fluid px-lg-5 sticky-top p-3 bg-bg-white">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
                     <a href="/home/Template/home.html">
