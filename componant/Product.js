@@ -53,4 +53,22 @@ export class Product{
     {
         return this.stock;
     }
+
+    set Category(_category)
+    {
+        this.category = _category;
+    }
+    get Category()
+    {
+        return this.category;
+    }
+
+    set ImageUrl(_imageUrl)
+    {
+        this.imageUrl = _imageUrl;
+    }
+    get ImageUrl()
+    {
+        return this.imageUrl;
+    }
 }
