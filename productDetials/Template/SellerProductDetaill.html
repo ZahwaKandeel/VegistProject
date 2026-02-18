@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Product Detail</title>
+        <title>Seller Product Detail</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-        <link rel="icon" type="image/png" href="../Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
+        <link rel="icon" type="image/png" href="/Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -17,15 +17,19 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-        <link rel="stylesheet" href="/Static/CSS/main.css" />
+        <link rel="stylesheet" type="text/css" href="/Static/CSS/main.css"/>
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
         <script type="module">
             import {header} from "/componant/header.js"
-            $("body").prepend(header())
-        </script>
-        <script type="module">
             import {footer} from "/componant/footer.js"
-            $("body").append(footer())
+            import {getBasePath} from "/componant/basepath.js"
+            $("body").prepend(header(getBasePath()))
+            $("body").append(footer(getBasePath()))
         </script>
         <script>
             $(function(){
@@ -384,56 +388,12 @@
                 
                 <div class="d-none d-xxl-block col-xxl-3">
         
-                    <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
-                        <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <img src="../images/deliveryIcon.jpg" width="30" alt="delivery">
-                        </div>
-                        <h6 class="fw-bold">DELIVERY INFO</h6>
-                        <p class="text-muted small">From then, delivery is generally within 2-10 days, depending on your location.</p>
-                    </div>
-        
-                    <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
-                        <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <img src="../images/dollarIcon.png" width="30" alt="delivery">
-                        </div>
-                        <h6 class="fw-bold">30 DAYS RETURNS</h6>
-                        <p class="text-muted small">Not the right fit? No worries. We'll arrange pick up and a full refund within 7 days including the delivery fee.</p>
-                    </div>
-                    <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
-                        <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <img src="../images/warranty.jpeg" width="30" alt="delivery">
-                        </div>
-                        <h6 class="fw-bold">10 YEAR WARRANTY</h6>
-                        <p class="text-muted small">Quality comes first and our products are designed to last.</p>
-                    </div>
                 </div>  <!-- End Row1 Col 3 big screens -->
 
-            </div>  <!-- End Row 1 -->
+        </div>  <!-- End Row 1 -->
 
             <div class="col-12 d-xxl-none">
-    
-                <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
-                    <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <img src="../images/deliveryIcon.jpg" width="30" alt="delivery">
-                    </div>
-                    <h6 class="fw-bold">DELIVERY INFO</h6>
-                    <p class="text-muted small">From then, delivery is generally within 2-10 days, depending on your location.</p>
-                </div>
-    
-                <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
-                    <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <img src="../images/dollarIcon.png" width="30" alt="delivery">
-                    </div>
-                    <h6 class="fw-bold">30 DAYS RETURNS</h6>
-                    <p class="text-muted small">Not the right fit? No worries. We'll arrange pick up and a full refund within 7 days including the delivery fee.</p>
-                </div>
-                <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
-                    <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <img src="../images/warranty.jpeg" width="30" alt="delivery">
-                    </div>
-                    <h6 class="fw-bold">10 YEAR WARRANTY</h6>
-                    <p class="text-muted small">Quality comes first and our products are designed to last.</p>
-                </div>
+
             </div>  <!-- End Row1 Col 3 small screens -->
             
 
@@ -755,6 +715,10 @@
     </div> <!-- End Container -->
 
         </main>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../JS/productDetails.js"></script>
+
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
