@@ -1,4 +1,4 @@
-export function footer() {
+export function footer(basepath) {
     return `
         <footer class="container-fluid p-0 mainFooterTheme">
             <div class="d-flex flex-column align-items-center mx-lg-auto">
@@ -52,11 +52,11 @@ export function footer() {
                 <section class=" container-lg d-flex flex-column flex-lg-row justify-content-lg-between mx-lg-5 align-items-xxl-center">
                     <div class="col-lg-3 col-xxl-4 g-5">
                         <div class="w-75">
-                            <a href="home.html" class="d-none d-lg-block">
-                                <img src="/Static/Images/logo-1.svg" alt="logo" class="w-50">
+                            <a href="${basepath}/home/Template/home.html" class="d-none d-lg-block">
+                                <img src="${basepath}/Static/Images/logo-1.svg" alt="logo" class="w-50">
                             </a>
-                            <a href="home.html" class="d-block d-lg-none">
-                                <img src="/Static/Images/logo-1.svg" alt="logo" class="w-25">
+                            <a href="${basepath}/home/Template/home.html" class="d-block d-lg-none">
+                                <img src="${basepath}/Static/Images/logo-1.svg" alt="logo" class="w-25">
                             </a>
                         </div>
                         <p>
@@ -210,35 +210,35 @@ export function footer() {
                 <section class="text-center d-flex justify-content-center col-xxl-4">
                     <div class="d-flex d-lg-none justify-content-around w-25">
                         <div class="rounded-1 bg-white m-1">
-                            <img src="/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-100" alt="">
+                            <img src="${basepath}/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-100" alt="">
                         </div>
                         <div class="rounded-1 bg-white m-1">
-                            <img src="/Static/Images/PayPal-Logo.wine.svg" class="w-100" alt="">
+                            <img src="${basepath}/Static/Images/PayPal-Logo.wine.svg" class="w-100" alt="">
                         </div>
                         <div class="rounded-1 bg-white m-1">
-                            <img src="/Static/Images/Mastercard-Logo.wine.svg" class="w-100" alt="">
+                            <img src="${basepath}/Static/Images/Mastercard-Logo.wine.svg" class="w-100" alt="">
                         </div>
                     </div>
                     <div class="d-none d-lg-flex d-xxl-none justify-content-around w-25">
                         <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
-                            <img src="/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-75" alt="">
+                            <img src="${basepath}/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-75" alt="">
                         </div>
                         <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
-                            <img src="/Static/Images/PayPal-Logo.wine.svg" class="w-75" alt="">
+                            <img src="${basepath}/Static/Images/PayPal-Logo.wine.svg" class="w-75" alt="">
                         </div>
                         <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
-                            <img src="/Static/Images/Mastercard-Logo.wine.svg" class="w-75" alt="">
+                            <img src="${basepath}/Static/Images/Mastercard-Logo.wine.svg" class="w-75" alt="">
                         </div>
                     </div>
                     <div class="d-none d-xxl-flex justify-content-around w-50">
                         <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
-                            <img src="/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-75" alt="">
+                            <img src="${basepath}/Static/Images/Visa_Inc.-Logo.wine.svg" class="w-75" alt="">
                         </div>
                         <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
-                            <img src="/Static/Images/PayPal-Logo.wine.svg" class="w-75" alt="">
+                            <img src="${basepath}/Static/Images/PayPal-Logo.wine.svg" class="w-75" alt="">
                         </div>
                         <div class="rounded-1 bg-white my-1 w-25 d-flex justify-content-center align-items-center">
-                            <img src="/Static/Images/Mastercard-Logo.wine.svg" class="w-75" alt="">
+                            <img src="${basepath}/Static/Images/Mastercard-Logo.wine.svg" class="w-75" alt="">
                         </div>
                     </div>
                 </section>
