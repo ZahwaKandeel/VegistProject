@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en" data-bs-theme="light">
-    <head>
+     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Home</title>
-        <link rel="icon" type="image/png" href="../Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
+        <link rel="icon" type="image/png" href="./Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -15,15 +15,19 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-        <link rel="stylesheet" href="/Static/CSS/main.css" />
+        <link rel="stylesheet" href="./Static/CSS/main.css"/>
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
         <script type="module">
-            import {header} from "/componant/header.js"
-            $("body").prepend(header())
-        </script>
-        <script type="module">
-            import {footer} from "/componant/footer.js"
-            $("body").append(footer())
+            import {header} from "./componant/header.js"
+            import {footer} from "./componant/footer.js"
+            import {getBasePath} from "./componant/basepath.js"
+            $("body").prepend(header(getBasePath()))
+            $("body").append(footer(getBasePath()))
         </script>
         <script>
             $(function(){
@@ -75,12 +79,14 @@
                 height: 90px;
                 object-fit: contain;
                 }
-                #shopnow {
+        
+               .shopnow  {
                 border-radius: 20px;
                 background-color: #f5ab1e;
                 color: white;
                 }
-                #shopnow:hover {
+                
+               .shopnow:hover { 
                 transition: background-color 0.3s ease;
                 background-color: transparent;
                 border-color: #f5ab1e;
@@ -165,10 +171,10 @@
                     
                         transition: all .2s ease-in-out ; 
                         cursor: pointer;
-                            transform: scale(1.1);
-                    
-                    
-                        
+                            transform: scale(1.1);   
+                }
+                .products img:hover{
+                    cursor: pointer;
                 }
 
                 @media (min-width: 960px) {
@@ -256,8 +262,8 @@
                                         Fresh Fruits <br />& Vegetables <br />
                                     </h1>
                                     <button
-                                        id="shopnow"
-                                        class="btn btn-light fw-bold mt-2 px-4 py-2"
+                                        
+                                        class="shopnow btn btn-light fw-bold mt-2 px-4 py-2"
                                     >
                                         Shop now
                                     </button>
@@ -286,8 +292,8 @@
                                 Prod of indian<br />100% Packaging<br />
                             </h1>
                             <button
-                                id="shopnow"
-                                class="btn btn-light fw-bold mt-2 px-4 py-2"
+                                
+                                class="shopnow btn btn-light fw-bold mt-2 px-4 py-2"
                             >
                                 Shop now
                             </button>
@@ -312,8 +318,8 @@
                             Fresh for your health<br />
                         </h1>
                         <button
-                            id="shopnow"
-                            class="btn btn-light fw-bold mt-2 px-4 py-2"
+                            
+                            class="shopnow btn btn-light fw-bold mt-2 px-4 py-2"
                         >
                             Shop now
                         </button>
@@ -357,8 +363,8 @@
                         Fresh fruit, vegetable on our product
                         </h2>
                         <button
-                        id="shopnow"
-                        class="btn btn-light fw-bold mt-2 px-4 py-2"
+                        
+                        class="shopnow btn btn-light fw-bold mt-2 px-4 py-2"
                         >
                         Shop now
                         </button>
@@ -378,15 +384,18 @@
                         <h2 class="fw-bold fs-4 fs-md-3 fs-lg-2">
                         Vegetable eggplant 100% fresh food
                         </h2>
-                        <button id="shopnow" class="btn mt-2"><b>Shop now</b></button>
+                        <button
+                        
+                        class="shopnow btn btn-light fw-bold mt-2 px-4 py-2"
+                        >
+                        Shop now
+                        </button>
                     </div>
                     </div>
                 </div>
                 </div>
             </section>
-            <!-- <section id="categories"></section> -->
-            <!-- <section id="trending"></section> -->
-            <section id="products" class="py-5">
+            <section class="products py-5">
                 <div class="container">
                     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -1129,7 +1138,7 @@
                                     </div>
                                     <!--end  of card 14 -->
 
-                                    <div class="cards col-6 col-md-4 col-lg-3 d-lg-block position-relative">
+                                    <div class="cards col-6 col-md-4 col-lg-3 d-none d-lg-block position-relative">
 
                                     <!--div of card 15  -->
 
@@ -1350,27 +1359,7 @@
                 </button>
                 </div>
             </section>
-            <!-- <section id="recent_news"></section> -->
-            <!-- <section id="mailing_list"></section> -->
-            <!-- <section id="mini_carousel" class="container my-5">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../images/mini-carousel1.png" class="img-fluid small-img" alt="slide1">
-                                    <img src="../images/mini-carousel2.png" class="img-fluid small-img" alt="slide2">
-                                    <img src="../images/mini-carousel3.png" class="img-fluid small-img" alt="slide3">
-                                    <img src="../images/mini-carousel4.webp" class="img-fluid small-img" alt="slide4">
-                                    <img src="../images/mini-carousel5.png" class="img-fluid small-img" alt="slide5">
-                                    <img src="../images/mini-carousel6.png" class="img-fluid small-img" alt="slide6">
-                                </div>
-                            </div>
-                        </div>
-                    </section> -->
             </main>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-        ></script>
+        <script src="/home/JS/home.js"></script>
     </body>
 </html>
