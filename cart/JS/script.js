@@ -55,7 +55,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 $(document).ready(function() {
 
-// addToCart({ id: 2, productName: 'Organic coconet', productPrice: '40.00', discountPrice: '35.00', productImage: '../images/39.webp', productSize: '1Kg', productMaterial: 'Vegetables' });
+ // addToCart({ id: 3, productName: 'Organic coconet', productPrice: '40.00', discountPrice: '35.00', productImage: '../images/39.webp', productSize: '1Kg', productMaterial: 'Vegetables' });
 
 function displayCart() {
 
