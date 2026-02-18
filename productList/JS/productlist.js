@@ -61,7 +61,7 @@ console.log(response.products[1].thumbnail)
                     </div>
                 `;
                 let html2 = `
-                  <div class="cards  col-12  my-5   " "> <!--div of card 1  with icons   -->
+                  <div class="cards  col-12  my-5    "> <!--div of card 1  with icons   -->
 
 <div     class="     row  "  >
                     <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -127,6 +127,81 @@ console.log(response.products[1].thumbnail)
             console.error("Error fetching products:", error);
         }
     });
+
+    // breakkkkk--------------------------------------------------------
+
+
+$(".btnheart").click(function(){
+  open("../../wishlist/Template/wishlist.html" ,' width=800, height=600')
+})
+
+$(".btnbag").click(function(){
+   open("../../productDetials/Template/ProductPopUp.html" ,' width=800px, height=600px')
+})
+
+$(".btneye").click(function(){
+   open("../../productDetials/Template/ProductPopUp.html" )
+})
+
+$(".bagel").click(function(){
+    open("../Template/Bagel.html" , "_self" )
+})
+
+
+
+
+//----------------break---------------
+
+
+
+    let itemsPerPage = 10; // number of products in page
+    let items = $("#divlayout1 .cards");
+    let totalItems = items.length;
+    let totalPages = Math.ceil(totalItems / itemsPerPage);
+
+
+    console.log(items.length)
+    function showPage(page) {
+
+        items.hide(); 
+
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        items.slice(start, end).show();  
+    }
+
+    //button for slide
+    function createPagination() {  
+
+        $("#pagination").html("");
+
+        for (let i = 1; i <= totalPages; i++) {
+            $("#pagination").append(`
+                <li class="page-item">
+                    <a class="page-link" href="#">${i}</a>
+                </li>
+            `);
+        }
+
+        $("#pagination li:first").addClass("active");
+
+        $(".page-link").click(function (e) {
+            e.preventDefault();
+
+            const page = parseInt($(this).text());
+
+            $(".page-item").removeClass("active");
+            $(this).parent().addClass("active");
+
+            showPage(page);
+        });
+    }
+
+    showPage(1);
+    createPagination();
+
+        
 
 
 
