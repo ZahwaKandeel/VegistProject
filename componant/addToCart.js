@@ -1,14 +1,14 @@
 // This function adds a product to the shopping cart
-// Send the product object as parameter 
+// Send the product id and quantity as parameters
 
-function addToCart(product) {
+function addToCart(product_id, p_quantity=1) {
     
     // check if the product already exists or not
-    const existing = cart.find(item => item.id === product.id);
+    const existing = cart.find(item => item.id === product_id);
     if (existing) {
-        existing.quantity += productQuantity || 1;
+        existing.quantity += p_quantity;
     } else {
-        cart.push({...product, quantity: productQuantity || 1 });
+        cart.push({product_id, quantity: p_quantity });
     } 
 
     // save the cart to localStorage
