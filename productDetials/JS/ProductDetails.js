@@ -1,49 +1,59 @@
-// when add to cart button clicked it goes to add to cart page
-// document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function() {
+    // --- 1. Quantity Plus/Minus Logic ---
+    $('#button-plus').on('click', function() {
+        let qty = parseInt($('#quantity-input').val());
+        $('#quantity-input').val(qty + 1);
+    });
 
-//     const warningButtons = document.querySelectorAll(".btn-warning");
-
-//     warningButtons.forEach(function (button) {
-
-//         if (button.textContent.trim() === "Add to cart") {
-//             button.addEventListener("click", function () {
-//                 window.location.href = "cart/Template/cart.html";
-//             });
-//         }
-//     });
-// });
-
-
-
-// when buy it now button clicked it goes to check out page
-// document.addEventListener("DOMContentLoaded", function () {
-
-//     const buyItNowBtn = document.querySelector(".btn-dark");
-
-//     if (buyItNowBtn) {
-//         buyItNowBtn.addEventListener("click", function () {
-//             window.location.href = "VegistProject/checkOut/Template/checkOut.html";
-//         });
-//     }
-
-// });
-
-
-// --- Event Listener 1: Add to Cart ---
-document.addEventListener("DOMContentLoaded", function () {
-    const addToCartButtons = document.querySelectorAll(".btn-warning");
-
-    addToCartButtons.forEach(function (button) {
-        // We check the text to make sure we hit the right button
-        if (button.textContent.trim().toLowerCase() === "add to cart") {
-            button.addEventListener("click", function() {
-                redirectToCart();
-            });
+    $('#button-minus').on('click', function() {
+        let qty = parseInt($('#quantity-input').val());
+        if (qty > 1) {
+            $('#quantity-input').val(qty - 1);
         }
+    });
+
+    // --- 2. Button Redirects ---
+    
+    // Add to Cart button
+    $('.btn-warning').on('click', function() {
+        if ($(this).text().trim() === "Add to cart") {
+            window.location.href = "../../cart/Template/cart.html";
+        }
+    });
+
+    // Buy it Now button
+    $('.btn-dark').on('click', function() {
+        if ($(this).text().trim() === "Buy it now") {
+            window.location.href = "../../checkOut/Template/checkOut.html";
+        }
+    });
+
+    // Wishlist Link
+    $('.bi-heart').closest('a').on('click', function(e) {
+        e.preventDefault();
+        window.location.href = "../../wishlist/Template/wishlist.html";
     });
 });
 
-function redirectToCart() {
-    console.log("Navigating to Cart...");
-    window.location.href = "cart/Template/cart.html";
-}
+$(document).ready(function() {
+
+    // --- Heart Icon: Wishlist ---
+    $('.fa-heart').closest('.icon').on('click', function() {
+        console.log("jQuery: Redirecting to Wishlist...");
+        window.location.href = "../../wishlist/Template/wishlist.html";
+    });
+
+    // --- Shopping Bag Icon: Cart ---
+    $('.fa-shopping-bag').closest('.icon').on('click', function() {
+        console.log("jQuery: Redirecting to Cart...");
+        window.location.href = "../../cart/Template/cart.html";
+    });
+
+    // --- Eye Icon: Product Details ---
+    $('.fa-eye').closest('.icon').on('click', function() {
+        console.log("jQuery: Redirecting to Product Details...");
+        // This usually points to the current page or a specific product detail page
+        window.location.href = "../../productDetials/Template/ProductPopUp.html";
+    });
+
+});
