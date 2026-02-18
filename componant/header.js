@@ -1,6 +1,6 @@
 export function header(basepath){
     return`
-        <header class="container-fluid px-lg-5 sticky-top p-3 bg-white">
+        <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
                     <a href="${basepath}/home/Template/home.html">
