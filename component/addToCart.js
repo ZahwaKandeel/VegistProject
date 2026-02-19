@@ -4,7 +4,7 @@
 function addToCart(product_id, p_quantity=1) {
     
     // check if the product already exists or not
-    const existing = cart.find(item => item.id === product_id);
+    const existing = cart.find(item => item.product_id === product_id);
     if (existing) {
         existing.quantity += p_quantity;
     } else {
