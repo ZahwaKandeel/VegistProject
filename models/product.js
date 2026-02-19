@@ -1,6 +1,6 @@
 // Product prototype
 
-const resetDB = () => {
+export const resetDB = () => {
     const Product = [
         {
             id: 0,
@@ -25,16 +25,6 @@ const resetDB = () => {
     ];
     localStorage.setItem("Products", JSON.stringify(Product));
 };
-// const product = {
-//     form.title,
-//     form.description,
-//     form.stock
-//     rating:{
-//         total:0,
-//         count:0
-//     }
-// }
-
 
 // GET products
 const getDB=()=>{
