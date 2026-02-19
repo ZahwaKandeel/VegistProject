@@ -1,216 +1,191 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Product Details Popup</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
-        <link rel="stylesheet" href="../Static/CSS/main.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details Popup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<style>
-    .badge.rounded-circle {
-        width: 40px;
-        height: 40px;
-        line-height: 40px; 
-        text-align: center;
-        font-weight: 500;
-        padding: 0;
-    }
-    .btn-variant-pill {
-        background-color: #f8f9fa !important;
-        border: 1px solid transparent !important;
-        border-radius: 50rem !important;    
-        font-weight: 500;
-        text-transform: uppercase;
-        transition: all 0.2s;
-    }
-    .btn-check:checked + .btn-variant-pill {
-        background-color: #ffffff !important;
-        color: #212529 !important; 
-        border-color: #ffc107 !important; 
-        box-shadow: none !important;
-    }
-    .btn-check:focus + .btn-variant-pill,
-    .btn-check:checked + .btn-variant-pill {
-        box-shadow: none !important;
-    }
-    .btn-warning:hover {
-        background-color: #e5a622 !important;
-    }
-    .bi {
-        vertical-align: middle;
-        font-size: 1rem;
-    }
-    .bi-facebook:hover { color: #3b5998; }
-    .bi-twitter-x:hover { color: #000; }
-    .bi-pinterest:hover { color: #cb2027; }
+    <style>
+        .badge.rounded-circle {
+            width: 40px; height: 40px; line-height: 40px; 
+            text-align: center; font-weight: 500; padding: 0;
+        }
+        .btn-variant-pill {
+            background-color: #f8f9fa !important;
+            border: 1px solid transparent !important;
+            border-radius: 50rem !important;    
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-check:checked + .btn-variant-pill {
+            background-color: #ffffff !important;
+            color: #212529 !important; 
+            border-color: #ffc107 !important; 
+            box-shadow: none !important;
+        }
+        .bi-facebook:hover { color: #3b5998; }
+        .bi-twitter-x:hover { color: #000; }
+        .bi-pinterest:hover { color: #cb2027; }
+        @media (min-width: 992px) {
+            .modal-xl { max-width: 1000px; }
+        }
+    </style>
+</head>
+<body>
 
-</style>
-        
-    </head>
-        <body>
-            <div class="container d-flex flex-column">
-                    <div class="d-flex align-items-start mt-5">
-                            <div class="col-5 pb-5">
-                                <div id="carouselVeg" class="carousel slide border overflow-hidden position-relative">
-                                    
-                                    <div class="carousel-inner w-100">
-                                        <div class="carousel-item active">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/1.jpg" class="w-100" style="object-fit: cover;" alt="veg1">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/1.2.jpg" class="w-100" style="object-fit: cover;" alt="veg2">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/3.2.jpg" class="w-100" style="object-fit: cover;" alt="veg3">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/5.2.jpg" class="w-100" style="object-fit: cover;" alt="veg4">
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="container mt-5 text-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+            View Product Details
+        </button>
+    </div>
 
-                                    <button class="carousel-control-prev opacity-0" type="button" data-bs-target="#carouselVeg" data-bs-slide="prev" 
-                                            style="transition: opacity 0.3s;"
-                                            onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
-                                            onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
-                                        <span class="carousel-control-prev-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
-                                            style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
-                                        </span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next opacity-0" type="button" data-bs-target="#carouselVeg" data-bs-slide="next" 
-                                            style="transition: opacity 0.3s;"
-                                            onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
-                                            onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
-                                        <span class="carousel-control-next-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
-                                            style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
-                                        </span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="d-flex justify-content-evenly align-items-center gap-2 mt-3">
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="0" class="">
-                                            <img src="../images/1.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="1" class="">
-                                            <img src="../images/1.2.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="2" class="">
-                                            <img src="../images/3.2.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="3" class="">
-                                            <img src="../images/5.2.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div> <!-- End Row1 Col 1 -->
-
-                            <div class="col-7 pb-5">
-                                <div class="px-2" >
-                                    <h2 class="fw-bold">Product Name (Weight)</h2>
-                                    <hr>
-                                    <div class="text-warning mb-2">
-                                        <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-                                        <span class="text-muted ms-2">No reviews</span>
-                                    </div>
-
-                                    <p class="mb-2"><strong>Availability:</strong> <span class="text-success">● 18 in stock</span></p>
-
-                                    <div class="d-flex align-items-center mb-3">
-                                        <span class="fs-4 fw-bold me-2">€14,00</span>
-                                        <span class="text-decoration-line-through text-muted me-2">€20,00</span>
-                                        <span class="badge bg-danger">30%</span>
-                                    </div>
-
-                                    <p class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-
-                                    <div class="mb-4">
-                                        <label class="d-block fw-bold mb-2">Size:</label>
-                                        <div class="d-flex gap-2">
-                                            <input type="radio" class="btn-check" name="size_choice" id="size1" autocomplete="off" checked>
-                                            <label class="btn btn-variant-pill" for="size1">2KG</label>
-
-                                            <input type="radio" class="btn-check" name="size_choice" id="size2" autocomplete="off">
-                                            <label class="btn btn-variant-pill" for="size2">3KG</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex align-items-center mb-4">
-                                        <span class="me-3 fw-bold text-dark">Quantity:</span>
-                                        
-                                        <div class="input-group btn-variant-pill d-flex align-items-center bg-light border" style="width: 140px; padding: 2px 5px;">
-                                            <button class="btn btn-sm border-0 bg-transparent fw-bold" type="button" id="button-minus" style="box-shadow: none;">−</button>
-                                            <input type="text" class="form-control form-control-sm text-center border-0 bg-transparent fw-bold" value="1" id="quantity-input" readonly style="box-shadow: none;">
-                                            <button class="btn btn-sm border-0 bg-transparent fw-bold" type="button" id="button-plus" style="box-shadow: none;">+</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <button class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
-                                        <button class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
-                                    </div>
-
-                                    <div class="mt-4">
-                                        <div class="mb-2">
-                                            <a href="#" class="text-decoration-none text-muted small">
-                                                <i class="bi bi-heart me-2"></i>Wishlist
-                                            </a>
-                                        </div>
-
-                                        <hr>
-
-                                        <div class="mb-2 small">
-                                            <span class="fw-bold">SKU:</span> 
-                                            <span class="text-muted">123456</span>
-                                        </div>
-
-                                        <div class="d-flex align-items-center gap-3">
-                                            <span class="fw-bold">Share:</span>
-                                            <div class="d-flex gap-3">
-                                                <a href="https://facebook.com" class="text-dark"><i class="bi bi-facebook"></i></a>
-                                                <a href="https://x.com" class="text-dark"><i class="bi bi-twitter-x"></i></a>
-                                                <a href="https://pinterest.com" class="text-dark"><i class="bi bi-pinterest"></i></a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>  <!-- End Row1 Col 2 -->
-
-                    </div>  <!-- End Row 1 -->
-            </div>
+<div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
             
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="../JS/productDetails.js"></script>
-        </body>
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body pt-0">
+                <div class="container-fluid">
+                    <div class="row align-items-start">
+                        
+                        <div class="col-12 col-md-6 col-xxl-4">
+                            <div id="carouselVeg" class="carousel slide border overflow-hidden position-relative">
+                                <div class="carousel-inner w-100">
+                                    <div class="carousel-item active">
+                                        <div class="ratio ratio-1x1">
+                                            <img src="../images/tomato1.jpg" class="w-100" style="object-fit: cover;" alt="veg1">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="ratio ratio-1x1">
+                                            <img src="../images/product1.jpeg" class="w-100" style="object-fit: cover;" alt="veg2">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="ratio ratio-1x1">
+                                            <img src="../images/tomato3.jpeg" class="w-100" style="object-fit: cover;" alt="veg3">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="ratio ratio-1x1">
+                                            <img src="../images/tomato4.webp" class="w-100" style="object-fit: cover;" alt="veg4">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-control-prev opacity-0" type="button" data-bs-target="#carouselVeg" data-bs-slide="prev" 
+                                        style="transition: opacity 0.3s;"
+                                        onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
+                                        onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
+                                    <span class="carousel-control-prev-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
+                                          style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
+                                    </span>
+                                </button>
+                                <button class="carousel-control-next opacity-0" type="button" data-bs-target="#carouselVeg" data-bs-slide="next" 
+                                        style="transition: opacity 0.3s;"
+                                        onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
+                                        onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
+                                    <span class="carousel-control-next-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
+                                          style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="d-flex justify-content-evenly align-items-center gap-2 mt-3">
+                                <a href="javascript:void(0)" data-bs-target="#carouselVeg" data-bs-slide-to="0" class="col-3">
+                                    <img src="../images/tomato1.jpg" class="img-fluid border">
+                                </a>
+                                <a href="javascript:void(0)" data-bs-target="#carouselVeg" data-bs-slide-to="1" class="col-3">
+                                    <img src="../images/product1.jpeg" class="img-fluid border">
+                                </a>
+                                <a href="javascript:void(0)" data-bs-target="#carouselVeg" data-bs-slide-to="2" class="col-3">
+                                    <img src="../images/tomato3.jpeg" class="img-fluid border">
+                                </a>
+                                <a href="javascript:void(0)" data-bs-target="#carouselVeg" data-bs-slide-to="3" class="col-3">
+                                    <img src="../images/tomato4.webp" class="img-fluid border">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xxl-8">
+                            <div class="px-2">
+                                <h2 class="fw-bold">Product Name (Weight)</h2>
+                                <div class="text-warning mb-2">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                                    <span class="text-muted ms-2 small">No reviews</span>
+                                </div>
+
+                                <p class="mb-2"><strong>Availability:</strong> <span class="text-success">● 18 in stock</span></p>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <span class="fs-4 fw-bold me-2">€14,00</span>
+                                    <span class="text-decoration-line-through text-muted me-2">€20,00</span>
+                                    <span class="badge bg-danger">30%</span>
+                                </div>
+
+                                <p class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+
+                                <div class="alert alert-danger d-flex flex-column flex-xl-row justify-content-between align-items-center py-2 px-3">
+                                    <p class="fw-bold mb-0 small">Hurry up! Sale ends in:</p>
+                                    <p class="font-monospace fw-bold text-danger mb-0">8809 : 22 : 37 : 54</p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="d-block fw-bold mb-2 small">Size:</label>
+                                    <div class="d-flex gap-2">
+                                        <input type="radio" class="btn-check" name="modal_size" id="m_size1" checked>
+                                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1 small" for="m_size1">2KG</label>
+                                        <input type="radio" class="btn-check" name="modal_size" id="m_size2">
+                                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1 small" for="m_size2">3KG</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center mb-4 gap-3">
+                                    <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+                                        <button class="btn btn-light border-0" type="button">−</button>
+                                        <input type="text" class="form-control border-0 text-center bg-transparent fw-bold" value="1" readonly>
+                                        <button class="btn btn-light border-0" type="button">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex gap-2 mb-3">
+                                    <button class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
+                                    <button class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
+                                </div>
+
+                                <hr>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="fw-bold small">Share:</span>
+                                    <div class="d-flex gap-3">
+                                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                                        <a href="#" class="text-dark"><i class="bi bi-twitter-x"></i></a>
+                                        <a href="#" class="text-dark"><i class="bi bi-pinterest"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../JS/productDetails.js"></script>
+        
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+</body>
 </html>
