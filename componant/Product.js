@@ -11,7 +11,8 @@ export class Product{
 
     set ID(_id)
     {
-        this.id = _id;
+        if(_id>0)
+        this._id = _id;
     }
     get ID()
     {
@@ -20,6 +21,7 @@ export class Product{
     
     set Name(_name)
     {
+
         this.name = _name;
     }
     get Name()
@@ -29,8 +31,10 @@ export class Product{
 
     set Price(_price)
     {
+        if(_price < 0) throw new Error("Rice cannot be negative");
         this.price = _price;
     }
+
     get Price()
     {
         return this.price;
@@ -47,6 +51,7 @@ export class Product{
 
     set Stock(_stock)
     {
+        if(_stock < 0) throw new Error("Stock cannot be negative");
         this.stock = _stock;
     }
     get Stock()
