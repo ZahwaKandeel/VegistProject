@@ -49,10 +49,9 @@ $(document).ready(function() {
         window.location.href = "../../cart/Template/cart.html";
     });
 
-    // --- Eye Icon: Product Details ---
+    // --- Eye Icon: Product Details PopUp ---
     $('.fa-eye').closest('.icon').on('click', function() {
         console.log("jQuery: Redirecting to Product Details...");
-        // This usually points to the current page or a specific product detail page
         window.location.href = "../../productDetials/Template/ProductPopUp.html";
     });
 

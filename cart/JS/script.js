@@ -40,7 +40,7 @@ $(document).ready(function () {
         let zipCode = $('#zip-code').val();
         if (selectedCountry && selectedCity && zipCode) {
             $('.shipping-rate').empty()
-            .append(`<p>There is one shipping rate available for ${zipCode}, ${selectedCity}, ${selectedCity}.</p> <p>Standard at €13,96 EUR</p>`);
+            .append(`<p>There is one shipping rate available for ${zipCode}, ${selectedCity}, ${selectedCity}.</p> <p>Standard at €14,00 EUR</p>`);
             $('.shipping-rate p:first').addClass('text-success');
             $('.shipping-rate p:last').addClass('text-secondary');
         } else {
@@ -52,13 +52,11 @@ $(document).ready(function () {
 });
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-$(document).ready(function() {
-
- // addToCart({ id: 3, productName: 'Organic coconet', productPrice: '40.00', discountPrice: '35.00', productImage: '../images/39.webp', productSize: '1Kg', productMaterial: 'Vegetables' });
-
 function displayCart() {
 
+  let products = JSON.parse(localStorage.getItem('products'))  
+  $('.cart-items').empty()
+  
   if (cart.length === 0) {
     
     $('main .container-fluide').empty().append(`<div class="text-center h3 my-5"><span>Your cart is empty</span> <a
@@ -66,40 +64,43 @@ function displayCart() {
                   class="text-secondary"
                   >Return to store</a
                 ></div>`);
+     return;
   }
-    cart.forEach(item => {
-    $('.cart-items').append(`<div class="row align-items-center border-bottom p-2 mb-3">
+  cart.map(item => {
+        const product = products.find(p => p.id === item.product_id);
+        
+        $('.cart-items').append(`<div class="row align-items-center border-bottom p-2 mb-3">
                   <!-- Product -->
                   <div class="col-12 col-md-6">
                     <div class="card mb-3 bg-transparent border-0">
                       <div class="row g-0 ">
                         <div class="col-4">
                           <img
-                            src="${item.productImage}"
+                            src="${product.images[0]}"
                             class="img-fluid"
-                            alt="${item.productName}"
+                            alt="${product.title}"
                           />
                         </div>
                         <div class="col-8">
                           <div class="card-body p-2">
                             <h5 class="card-title mb-1">Card title</h5>
                             <p class="card-text price fw-bold m-1">
-                              $${item.discountPrice}
+                              $${product.discountvalue}
                               <span
                                 class="fw-normal text-decoration-line-through"
-                                > $${item.productPrice}
+                                > $${product.price}
                                 </span
                               >
                             </p>
                             <p class="card-text fw-bold m-1">
                               Size: <span class="size fw-normal">
-                              ${item.productSize}
+                              ${product.size[0]}
                               </span>
                             </p>
                             <p class="card-text fw-bold m-1">
                               Material:
                               <span class="material fw-normal">
-                              ${item.productMaterial}
+                              ${product.matiral[0]}
                               </span>
                             </p>
                           </div>
@@ -116,6 +117,7 @@ function displayCart() {
                       <div class="quantity border d-flex" style="width: 160px">
                         <button
                           class="btn btn-outline-secondary w-25 border-0 rounded-0 decrease-btn"
+                          data-id=${product.id}
                           type="button"
                         >
                           -
@@ -128,12 +130,13 @@ function displayCart() {
                         />
                         <button
                           class="btn btn-outline-secondary w-25 border-0 rounded-0 increase-btn"
+                          data-id=${product.id}
                           type="button"
                         >
                           +
                         </button>
                       </div>
-                      <button class="bg-transparent border-0 remove-btn">
+                      <button class="bg-transparent border-0 remove-btn" data-id=${product.id}>
                         <i class="fa-regular fa-trash-can"></i>
                       </button>
                     </div>
@@ -141,10 +144,117 @@ function displayCart() {
 
                   <!-- Total -->
                   <div class="col-6 col-md-3 fw-bold text-center item-total">
-                    $${(item.discountPrice * item.quantity).toFixed(2)}
+                    $${(product.discountvalue * item.quantity).toFixed(2)}
                   </div>
                 </div>`);
-});
+    });
+
+    calculateSubtotal()
+
 }
+
+$(document).ready(function() {
+
+// addToCart(3);
+
 displayCart();
+ });
+
+ function removeFromCart(product_id){
+  cart = cart.filter(item=>item.product_id !== product_id);
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+$(document).on("click", ".remove-btn", function() {
+  const id = Number($(this).data("id"));
+  removeFromCart(id);
+  displayCart();
 });
+
+function increaseQuantity(product_id){
+
+  const item = cart.find(item => item.product_id === product_id);
+console.log(item);
+
+  if (item) {
+    item.quantity += 1;
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+$(document).on("click", ".increase-btn", function() {
+  const id = Number($(this).data("id"));
+  increaseQuantity(id);
+  displayCart();
+});
+
+function decreaseQuantity(product_id){
+
+  const item = cart.find(item => item.product_id === product_id);
+
+  if (item) {
+    item.quantity -= 1;
+    if (item.quantity < 1) {
+      removeFromCart(item.product_id)
+    }
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+$(document).on("click", ".decrease-btn", function() {
+  const id = Number($(this).data("id"));
+  decreaseQuantity(id);
+  displayCart();
+});
+
+
+function checkFreeShipping(subtotal){
+  $('.progress-truck').css("left", `${subtotal}%`)
+  $(".progress-bar").css("width", `${subtotal}%`)
+  if (subtotal >=100) {
+    $('.progress-truck').css("left", `100%`)
+  $(".progress-bar").css("width", `100%`)
+  $(".shipping-text").empty().text("Congratulations , you've got free shipping!")
+  } else{
+    $(".shipping-text").empty().text(`Spend €${100-subtotal} more and get free shipping!`)
+  }
+}
+
+
+function calculateSubtotal() {
+
+  let products = JSON.parse(localStorage.getItem('products')) || [];
+
+  let subtotal = 0;
+
+  cart.forEach(item => {
+
+    const product = products.find(p => p.id === item.product_id);
+    if (!product) return;
+
+    const price = product.discountvalue || product.price;
+
+    subtotal += price * item.quantity;
+
+  });
+
+  $('.subtotal').empty().text(`$ ${subtotal.toFixed(2)} dollar`)
+
+  checkFreeShipping(subtotal)
+
+}
+
+function checkFreeShipping(subtotal){
+  $('.progress-truck').css("left", `${subtotal}%`)
+  $(".progress-bar").css("width", `${subtotal}%`)
+  if (subtotal >=100) {
+    $('.progress-truck').css("left", `100%`)
+  $(".progress-bar").css("width", `100%`)
+  $(".shipping-text").empty().text("Congratulations , you've got free shipping!")
+  return true
+  } else{
+    $(".shipping-text").empty().text(`Spend €${100-subtotal} more and get free shipping!`)
+    return false
+  }
+}

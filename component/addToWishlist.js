@@ -4,7 +4,7 @@
 function addToWishlist(product_id) {
     
     // check if the product already exists or not
-    const existing = wishlist.find(item => item.id == product_id);
+    const existing = wishlist.find(item => item.product_id == product_id);
     if (existing) {
         alert('Product has already added to your wishlist')
         return
