@@ -51,7 +51,7 @@
                 });
             })
         </script>
-        <script src="/auth/JS/register.js"></script>
+        <script type="module" src="/auth/JS/register.js"></script>
     </head>
     <body>
         <main class="container-fluid p-0">
@@ -66,29 +66,29 @@
             </div>
             <div class="d-lg-flex justify-content-center align-items-center">
                 <section class="col-lg-4 col-xxl-3 my-xxl-4">
-                    <form action="" class="border border-1 p-2 mx-3 my-5 p-lg-4 needs-validation" novalidate>
+                    <form action="" class="border border-1 p-2 mx-3 my-5 p-lg-4" novalidate>
                         <h2>Create Account</h2>
-                        <div class="mb-3 mb-lg-4">
+                        <div class="mb-3 mb-lg-3">
                             <small class="d-block pb-4">Please register below account detail</small>
-                            <input type="text" id="firstName" class="form-control rounded-pill" placeholder="First Name" required>
+                            <input type="text" id="firstName" class="form-control rounded-pill" placeholder="First Name">
                             <div class="invalid-feedback">
                                 <p class="py-0 my-0 invalid-warning"><small>First Name Must be only letters , not less than 4</small></p>
                             </div>
                         </div>
-                        <div class="mb-3 my-lg-4">
-                            <input type="text" id="lastName" class="form-control rounded-pill" placeholder="Last Name" required>
+                        <div class="mb-3 mb-lg-3">
+                            <input type="text" id="lastName" class="form-control rounded-pill" placeholder="Last Name">
                             <div class="invalid-feedback">
                                 <p class="py-0 my-0 invalid-warning"><small>Last Name Must be only letters , not less than 4</small></p>
                             </div>
                         </div>
-                        <div class="mb-3 mb-lg-4">
-                            <input type="email" id="email" class="form-control rounded-pill" placeholder="Email" required>
+                        <div class="mb-3 mb-lg-3">
+                            <input type="email" id="email" class="form-control rounded-pill" placeholder="Email">
                             <div class="invalid-feedback">
                                 <p class="py-0 my-0 invalid-warning"><small>Please insert valid email.</small></p>
                             </div>
                         </div>
-                        <div class="mb-3 my-lg-4">
-                            <input type="password" id="password" class="form-control rounded-pill" placeholder="Password" required>
+                        <div class="mb-3 mb-lg-3">
+                            <input type="password" id="password" class="form-control rounded-pill" placeholder="Password">
                             <div class="invalid-feedback">
                                 <p class="py-0 my-0 invalid-warning"><small>Passwrod must contain Uppercase lettters</small></p>
                                 <p class="py-0 my-0 invalid-warning"><small>lowercase letters</small></p>
@@ -118,25 +118,8 @@
                 </section>
             </div>
         </main>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-        ></script>
         <script>
-            (() => {
-                'use strict'
-                const forms = document.querySelectorAll('.needs-validation')
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                    }, false)
-                })
-            })()
+            
         </script>
     </body>
 </html>

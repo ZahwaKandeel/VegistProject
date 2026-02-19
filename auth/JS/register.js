@@ -1,12 +1,11 @@
 
-import { createUser, saveUser } from "../../models/user";
+import { createUser, saveUser, emailExists, hashPassword } from "/models/user.js";
 
 $(function(){
     const firstName = $("#firstName");
     const lastName = $("#lastName");
     const email = $("#email");
     const password = $("#password");
-    const createBtn = $("#create");
 
     function isNameValid($input) {
         const name = $input.val().trim();
@@ -22,42 +21,53 @@ $(function(){
         return regex.test(password.val());
     }
 
-    createBtn.click(function (e) {
-        if (!isNameValid(firstName)) {
-            firstName.addClass("is-invalid").removeClass("is-valid");
-            e.preventDefault();
+    function setValidation($input, isValid) {
+        // validation UI
+        if (isValid) {
+            $input.removeClass("is-invalid").addClass("is-valid");
         } else {
-            firstName.removeClass("is-invalid").addClass("is-valid");
+            $input.removeClass("is-valid").addClass("is-invalid");
         }
-        if (!isNameValid(lastName)) {
-            lastName.addClass("is-invalid").removeClass("is-valid");
-            e.preventDefault();
-        } else {
-            lastName.removeClass("is-invalid").addClass("is-valid");
+    }
+
+    $("form").submit(async function (e) {
+        e.preventDefault();
+        let isValid = true;
+
+        const firstValid = isNameValid(firstName);
+        const lastValid  = isNameValid(lastName);
+        const emailValid = isEmailValid();
+        const passValid  = isStrongPassword();
+
+        setValidation(firstName, firstValid);
+        setValidation(lastName, lastValid);
+        setValidation(email, emailValid);
+        setValidation(password, passValid);
+
+        if (!firstValid || !lastValid || !emailValid || !passValid) {
+            alert("Please fix invalid fields");
+            return;
         }
-        if (!isEmailValid()){
-            email.addClass("is-invalid").removeClass("is-valid");
-            e.preventDefault();
-        } else {
-            email.removeClass("is-invalid").addClass("is-valid");
+
+        if (emailExists(email.val().trim())) {
+            alert("This email is already registered.");
+            return;
         }
-        if (!isStrongPassword()){
-            password.addClass("is-invalid").removeClass("is-valid");
-            e.preventDefault();
-        } else {
-            password.removeClass("is-invalid").addClass("is-valid");
-        }
+        
+        const hashedPassword = await hashPassword(password.val());
 
         const userData = {
             firstName: firstName.val().trim(),
             lastName: lastName.val().trim(),
             email: email.val().trim(),
-            password: password.val()
+            password: hashedPassword
         };
+
 
         const newUser = createUser(userData);
         saveUser(newUser);
 
-        alert("User registered successfully!");
+        window.location.href = "/auth/Template/login.html";
+
     });
 })
