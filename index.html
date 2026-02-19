@@ -27,6 +27,15 @@
     <script src="/component/footer.js"></script>
     <script src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
+    <script>
+        $(document).ready(function() {
+            const $header = $("header");
+            const $footer = $("footer");
+
+            if ($header.length) $header.replaceWith(header());
+            if ($footer.length) $footer.replaceWith(footer());
+        });
+    </script>
     </head>
     <body>
         <header></header>
