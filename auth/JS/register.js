@@ -6,6 +6,9 @@ $(function(){
     const lastName = $("#lastName");
     const email = $("#email");
     const password = $("#password");
+    const loginBtn = $("#login")
+
+    loginBtn.click(() =>{window.location.href = "/auth/Template/login.html"});
 
     function isNameValid($input) {
         const name = $input.val().trim();
@@ -32,7 +35,6 @@ $(function(){
 
     $("form").submit(async function (e) {
         e.preventDefault();
-        let isValid = true;
 
         const firstValid = isNameValid(firstName);
         const lastValid  = isNameValid(lastName);
@@ -54,7 +56,7 @@ $(function(){
             return;
         }
         
-        const hashedPassword = await hashPassword(password.val());
+        const hashedPassword = await hashPassword(password.val().trim());
 
         const userData = {
             firstName: firstName.val().trim(),
