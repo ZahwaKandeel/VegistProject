@@ -1,7 +1,7 @@
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
  $(document).ready(function(){
-// addToWishlist(3)
-displayWishlist()
+ //addToWishlist(2)
+ displayWishlist()
  })
 
  function displayWishlist() {
