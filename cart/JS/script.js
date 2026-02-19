@@ -155,7 +155,7 @@ function displayCart() {
 
 $(document).ready(function() {
 
-//addToCart(4,5);
+// addToCart(3);
 
 displayCart();
  });
@@ -258,5 +258,3 @@ function checkFreeShipping(subtotal){
     return false
   }
 }
-
-
