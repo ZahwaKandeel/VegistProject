@@ -56,6 +56,6 @@ $(function() {
         }
 
         localStorage.setItem("currentUser",JSON.stringify(user));
-        window.location.replace = "/seller/Template/sellerdash.html";
+        window.location.replace("/seller/Template/sellerdash.html");
     });
 })
