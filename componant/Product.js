@@ -76,4 +76,25 @@ export class Product{
     {
         return this.imageUrl;
     }
+
+   
+}
+function saveProducts(products){
+        localStorage.setItem("products", JSON.stringify(products));
+    }
+
+function loadProducts(){
+    let data = localStorage.getItem("products");
+    if(!data) return;
+    
+    let parsed = JSON.parse(data);
+    return parsed.map(p => new Product(
+        p._id,
+        p._name,
+        p._price,
+        p._description,
+        p._stock,
+        p._category,
+        p._imageUrl
+    ));
 }
