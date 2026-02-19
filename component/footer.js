@@ -1,4 +1,4 @@
-export function footer(basepath) {
+function footer(basepath) {
     return `
         <footer class="container-fluid p-0 mainFooterTheme">
             <div class="d-flex flex-column align-items-center mx-lg-auto">

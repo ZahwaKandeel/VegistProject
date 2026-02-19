@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
-        <link rel="icon" type="image/png" href="./Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
+        <link rel="icon" type="image/png" href="/Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -17,33 +17,13 @@
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous">
-        </script>
-        <script type="module">
-            import {header} from "/componant/header.js"
-            import {footer} from "/componant/footer.js"
-            import {getBasePath} from "/componant/basepath.js"
-            $("body").prepend(header(getBasePath()))
-            $("body").append(footer(getBasePath()))
-        </script>
-        <script>
-            $(function(){
-                document.addEventListener("click", function (e) {
-                if (e.target.id === "themeToggle") {
-                    let html = document.documentElement;
-                    let current = html.getAttribute("data-bs-theme");
-    
-                    if (current === "dark") {
-                    html.setAttribute("data-bs-theme", "light");
-                    e.target.textContent = "🌙";
-                    } else {
-                    html.setAttribute("data-bs-theme", "dark");
-                    e.target.textContent = "☀️";
-                    }
-                }
-                });
-            })
-        </script>
+            crossorigin="anonymous"
+        ></script>
+        <script src="../../component/basepath.js"></script>
+        <script src="../../component/header.js"></script>
+        <script src="../../component/footer.js"></script>
+        <script src="../../component/layout.js"></script>
+        <script src="../../component/moodToggle.js"></script>
         <script type="module" src="/auth/JS/login.js"></script>
     </head>
     <body>

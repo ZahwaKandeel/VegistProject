@@ -1,5 +1,5 @@
 // Detect base path dynamically
-export function getBasePath() {
+function getBasePath() {
     const { origin, pathname } = window.location;
 
     // If running on GitHub Pages project repo
