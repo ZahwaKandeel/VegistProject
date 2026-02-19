@@ -8,9 +8,9 @@ export function createUser(data) {
         email: data.email,
         password: data.password,
         role: "customer",
-        wishlist: ["productId"],
-        cart: ["productId"],
-        phone: "01234567891",
+        wishlist: [""],    // products ids
+        cart: [""],     // products ids
+        phone: "",
         address: {
             country: "",
             fullAddress: "",
@@ -23,16 +23,16 @@ export function createUser(data) {
 
 export function saveUser(user) {
     // Get existing users or empty array
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
+    const Users = JSON.parse(localStorage.getItem("Users")) || [];
+    Users.push(user);
+    localStorage.setItem("Users", JSON.stringify(Users));
 }
 
 
 export function emailExists(email) {
     // check for exsisting emails
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    return users.some(u => u.email === email);
+    const Users = JSON.parse(localStorage.getItem("Users")) || [];
+    return Users.some(u => u.email === email);
 }
 
 export async function hashPassword(password) {

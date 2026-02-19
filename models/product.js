@@ -23,7 +23,7 @@ const resetDB = () => {
             discountPercentage: 0, // %
         },
     ];
-    localStorage.setItem("Product", JSON.stringify(Product));
+    localStorage.setItem("Products", JSON.stringify(Product));
 };
 // const product = {
 //     form.title,
