@@ -1,10 +1,7 @@
-// component/layout.js => runs the layout in every page (lacal - live - github.io)
+$(document).ready(function() {
+    const $header = $("header");
+    const $footer = $("footer");
 
-$(function () {
-    const base = window.location.origin.includes("github.io")
-        ? "/" + window.location.pathname.split("/")[1]
-        : "";
-
-    $("body").prepend(header(base));
-    $("body").append(footer(base));
+    if ($header.length) $header.replaceWith(header());
+    if ($footer.length) $footer.replaceWith(footer());
 });

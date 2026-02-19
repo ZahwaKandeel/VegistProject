@@ -1,12 +1,15 @@
 // Detect base path dynamically
-function getBasePath() {
-    const { origin, pathname } = window.location;
 
-    // If running on GitHub Pages project repo
-    if (origin.includes("github.io")) {
-        const repo = pathname.split("/")[1];
-        return `/${repo}`;
+function getBasePath() {
+    const path = window.location.pathname;
+
+    // Remove file name => get folder path
+    const depth = path.split("/").length - 2;
+
+    let base = "";
+    for (let i = 0; i < depth; i++) {
+        base += "../";
     }
-    // Localhost or custom domain
-    return "";
+
+    return base;
 }
