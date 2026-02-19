@@ -27,30 +27,11 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-        <script type="module">
-            import {header} from "/componant/header.js"
-            import {footer} from "/componant/footer.js"
-            import {getBasePath} from "/componant/basepath.js"
-            $("body").prepend(header(getBasePath()))
-            $("body").append(footer(getBasePath()))
-
-            $(function(){
-                document.addEventListener("click", function (e) {
-                if (e.target.id === "themeToggle") {
-                    let html = document.documentElement;
-                    let current = html.getAttribute("data-bs-theme");
-    
-                    if (current === "dark") {
-                    html.setAttribute("data-bs-theme", "light");
-                    e.target.textContent = "🌙";
-                    } else {
-                    html.setAttribute("data-bs-theme", "dark");
-                    e.target.textContent = "☀️";
-                    }
-                }
-                });
-            })
-        </script>
+        <script src="/component/basepath.js"></script>
+        <script src="/component/header.js"></script>
+        <script src="/component/footer.js"></script>
+        <script src="/component/layout.js"></script>
+        <script src="/component/moodToggle.js"></script>
         <script type="module" src="/auth/JS/register.js"></script>
     </head>
     <body>
