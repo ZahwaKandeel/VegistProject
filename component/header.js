@@ -1,10 +1,11 @@
-export function header(basepath){
+function header(){
+    const basepath = getBasePath();
     return`
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
-                    <a href="${basepath}/home/Template/home.html">
-                        <img src="${basepath}/Static/Images/logo-1.svg" alt="logo" class="w-50 h-100"/>
+                    <a href="${basepath}home/Template/home.html">
+                        <img src="${basepath}Static/Images/logo-1.svg" alt="logo" class="w-50 h-100"/>
                     </a>
                 </section>
                 <form class="d-none d-lg-flex input-group w-50" role="search">
@@ -51,11 +52,11 @@ export function header(basepath){
                                 </div>
                                 <div class="offcanvas-body">
                                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                        <li class="nav-item"><a class="nav-link text-body active"href="${basepath}/home/Template/home.html">Home</a></li>
+                                        <li class="nav-item"><a class="nav-link text-body active"href="${basepath}home/Template/home.html">Home</a></li>
                                         <li class="nav-item"><a class="nav-link text-body" href="#">Collection</a></li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link text-body dropdown-toggle"
-                                                href="${basepath}/productList/Template/product_list.html"
+                                                href="${basepath}productList/Template/product_list.html"
                                                 data-bs-toggle="dropdown">
                                                 Shop
                                             </a>
@@ -128,16 +129,16 @@ export function header(basepath){
                     <div class=" d-flex align-items-center">
                     <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0">🌙</button>
                         <!-- Account icon -->
-                        <a href="${basepath}/account/Template/profile.html" class="icon">
+                        <a href="${basepath}account/Template/profile.html" class="icon">
                             <i class="fa-regular fa-user text-body px-1"></i>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
-                            <a href="${basepath}/account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>Account</b></a>
+                            <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>Account</b></a>
                             <div class="d-flex">
-                                <a href="${basepath}/auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
+                                <a href="${basepath}auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
                                     >Register</a
                                 >
-                                <a href="${basepath}/auth/Template/login.html" class="fw-light secondryTextTheme  ms-1 text-decoration-none">Login</a>
+                                <a href="${basepath}auth/Template/login.html" class="fw-light secondryTextTheme  ms-1 text-decoration-none">Login</a>
                             </div>
                         </div>
                         <!-- Heart icon -->
@@ -145,7 +146,7 @@ export function header(basepath){
                             <i class="fa-regular fa-heart text-body px-1"></i>
                         </a>
                         <!-- Bag icon -->
-                        <a href="${basepath}/cart/Template/cart.html" class="icon">
+                        <a href="${basepath}cart/Template/cart.html" class="icon">
                             <i class="fa-solid fa-bag-shopping text-body px-1"></i>
                         </a>
                     </div>
@@ -155,7 +156,7 @@ export function header(basepath){
             <section class="d-none d-xxl-flex justify-content-between px-4">
                 <nav>
                     <ul class="nav nav-tabs justify-content-around col-12 gap-5">
-                        <li class="nav-item"><a class="nav-link text-body active" href="${basepath}/home/Template/home.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-body active" href="${basepath}home/Template/home.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link text-body" href="#">Collection</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-body dropdown-toggle"
