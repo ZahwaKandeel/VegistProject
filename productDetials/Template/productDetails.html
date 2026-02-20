@@ -24,32 +24,21 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-        <script type="module">
-            import {header} from "/componant/header.js"
-            import {footer} from "/componant/footer.js"
-            import {getBasePath} from "/componant/basepath.js"
-            $("body").prepend(header(getBasePath()))
-            $("body").append(footer(getBasePath()))
-        </script>
-        <script>
-            $(function(){
-                document.addEventListener("click", function (e) {
-                if (e.target.id === "themeToggle") {
-                    let html = document.documentElement;
-                    let current = html.getAttribute("data-bs-theme");
-    
-                    if (current === "dark") {
-                    html.setAttribute("data-bs-theme", "light");
-                    e.target.textContent = "🌙";
-                    } else {
-                    html.setAttribute("data-bs-theme", "dark");
-                    e.target.textContent = "☀️";
-                    }
-                }
-                });
-            })
-        </script>
-<style>
+    <script src="/component/basepath.js"></script>
+    <script src="/component/header.js"></script>
+    <script src="/component/footer.js"></script>
+    <script src="/component/layout.js"></script>
+    <script src="/component/moodToggle.js"></script>
+    <script>
+        $(document).ready(function() {
+            const $header = $("header");
+            const $footer = $("footer");
+
+            if ($header.length) $header.replaceWith(header());
+            if ($footer.length) $footer.replaceWith(footer());
+        });
+    </script>
+    <style>
     .card-img-wrapper {
         height: 250px; 
         display: flex;
@@ -173,13 +162,11 @@
     .timer{
         font-size: 12px;
     }
-</style>
-        
+    </style>
     </head>
     <body>
+        <header></header>
         <main>
-
-
             <div class="position-relative">
                 <nav class="bg-image d-flex justify-content-center align-items-center">
                     <div class="bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
@@ -284,11 +271,6 @@
 
                         <p class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
 
-                        <div class="alert alert-danger d-flex flex-column flex-xl-row justify-content-between justify-content-xl-evenly align-items-center py-2 px-0">
-                            <p class="fw-bold timer p-0 mb-0">Hurry up! Sale ends in:</p>
-                            <p class="font-monospace fw-bold text-danger timer p-0 mb-0">8809 : 22 : 37 : 54</p>
-                        </div>
-
                         <div class="mb-4">
                             <label class="d-block fw-bold mb-2">Size:</label>
                             <div class="d-flex gap-2">
@@ -327,13 +309,17 @@
                         </div>
 
                         <div class="d-flex align-items-center mb-4">
-                            <span class="me-3 fw-bold text-dark">Quantity:</span>
-                            
-                            <div class="input-group btn-variant-pill d-flex align-items-center bg-light border" style="width: 140px; padding: 2px 5px;">
-                                <button class="btn btn-sm border-0 bg-transparent fw-bold" type="button" id="button-minus" style="box-shadow: none;">−</button>
-                                <input type="text" class="form-control form-control-sm text-center border-0 bg-transparent fw-bold" value="1" id="quantity-input" readonly style="box-shadow: none;">
-                                <button class="btn btn-sm border-0 bg-transparent fw-bold" type="button" id="button-plus" style="box-shadow: none;">+</button>
-                            </div>
+                                        <div class="mb-3">
+                                            <span class="me-3 fw-bold text-dark">Quantity:</span>
+                                                <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+                                                    <button class="btn btn-light border-0 qty-minus" type="button">-</button>
+                                                    <input type="text" 
+                                                        class="form-control border-0 text-center bg-transparent fw-bold qty-input" 
+                                                        value="1" 
+                                                        readonly>
+                                                    <button class="btn btn-light border-0 qty-plus" type="button">+</button>
+                                                </div>
+                                        </div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-3 gap-2">
@@ -413,9 +399,9 @@
                     </div>
                 </div>  <!-- End Row1 Col 3 big screens -->
 
-            </div>  <!-- End Row 1 -->
+        </div>  <!-- End Row 1 -->
 
-            <div class="col-12 d-xxl-none">
+        <div class="col-12 d-xxl-none">
     
                 <div class="p-4 mb-3 text-center border-0" style="background-color: #f8f9fa;">
                     <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
@@ -439,9 +425,7 @@
                     <h6 class="fw-bold">10 YEAR WARRANTY</h6>
                     <p class="text-muted small">Quality comes first and our products are designed to last.</p>
                 </div>
-            </div>  <!-- End Row1 Col 3 small screens -->
-            
-
+        </div>  <!-- End Row1 Col 3 small screens -->
 
         <div class="container mt-5">
             <ul class="nav nav-tabs justify-content-center border-0" id="productTab" role="tablist">
@@ -455,12 +439,9 @@
                 <button class="nav-link rounded-pill px-4 m-2" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">REVIEWS</button>
                 </li>
             </ul>
-
-
             <div class="tab-content border-top pt-4" id="productTabContent">
 
                 <!-- Section 1 -->
-
                 <div class="tab-pane fade show active" id="description" role="tabpanel">
                 <h3>More Detail</h3>
                 <ul>
@@ -484,7 +465,6 @@
                 </div>
                 
                 <!-- Section 2 -->
-
                 <div class="tab-pane fade" id="info" role="tabpanel">
                     <div class="container mt-4">
                         <div class="table-responsive">
@@ -517,7 +497,6 @@
                 </div>
 
                 <!-- Section 3 -->
-
                 <div class="tab-pane fade show" id="reviews" role="tabpanel">
                     <div class="text-center">
                         <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#reviewForm" aria-expanded="false">
@@ -608,9 +587,12 @@
                     <i class="fa fa-shopping-bag"></i>
                 </span>
 
-                <span class="icon  p-2   ">
-                        <i class="fa fa-eye"></i>
-                    </span> 
+                <span class="icon p-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#quickViewModal"
+                    style="cursor: pointer;">
+                    <i class="fa fa-eye"></i>
+                </span> 
                 </div>
                     
                 <div>
@@ -632,7 +614,7 @@
                     
                     </div>  <!--end  of card 1 -->
 
-                    <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 2 -->
+                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 2 -->
 
 
                             <div class="position-relative">
@@ -649,9 +631,12 @@
                         <i class="fa fa-shopping-bag"></i>
                     </span>
 
-                    <span class="icon  p-2   ">
-                            <i class="fa fa-eye"></i>
-                        </span> 
+                    <span class="icon p-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#quickViewModal"
+                        style="cursor: pointer;">
+                        <i class="fa fa-eye"></i>
+                    </span> 
                     </div>
                         
                         <div>
@@ -670,9 +655,9 @@
                     </div>
                     </div>
 
-                        </div>   <!--end  of card 2 -->
+                    </div>   <!--end  of card 2 -->
 
-<div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 3 -->
+                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 3 -->
 
 
                             <div class="position-relative">
@@ -689,9 +674,12 @@
                         <i class="fa fa-shopping-bag"></i>
                     </span>
 
-                    <span class="icon  p-2   ">
-                            <i class="fa fa-eye"></i>
-                        </span> 
+                    <span class="icon p-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#quickViewModal"
+                        style="cursor: pointer;">
+                        <i class="fa fa-eye"></i>
+                    </span>  
                     </div>
                         
                         <div>
@@ -710,9 +698,9 @@
                     </div>
                     </div>
 
-                        </div>   <!--end  of card 3 -->
+                    </div>   <!--end  of card 3 -->
 
-<div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 4 -->
+                <div class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 4 -->
 
 
                             <div class="position-relative">
@@ -729,9 +717,12 @@
                         <i class="fa fa-shopping-bag"></i>
                     </span>
 
-                    <span class="icon  p-2   ">
-                            <i class="fa fa-eye"></i>
-                        </span> 
+                    <span class="icon p-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#quickViewModal"
+                        style="cursor: pointer;">
+                        <i class="fa fa-eye"></i>
+                    </span> 
                     </div>
                         
                         <div>
@@ -750,24 +741,17 @@
                     </div>
                     </div>
 
-                        </div>   <!--end  of card 4 -->
+                    </div>   <!--end  of card 4 -->
 
             </div>
         </div>  <!-- End Row 3 -->
-
-        <br><br>
   
     </div> <!-- End Container -->
 
         </main>
-
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="../JS/productDetails.js"></script>
-        
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-        ></script>
+        <div id="modalContainer"></div>
+        <script src="../JS/IconsFunctions.js"></script>
+        <script src="../JS/ProductDetails.js"></script>
+        <footer></footer>
     </body>
 </html>

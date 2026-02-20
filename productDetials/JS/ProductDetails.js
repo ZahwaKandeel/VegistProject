@@ -1,28 +1,35 @@
-$(document).ready(function() {
-    // --- 1. Quantity Plus/Minus Logic ---
-    $('#button-plus').on('click', function() {
-        let qty = parseInt($('#quantity-input').val());
-        $('#quantity-input').val(qty + 1);
+$(document).ready(function () {
+
+    // PLUS BUTTON
+    $(document).on('click', '.qty-plus', function () {
+        
+        let input = $(this).siblings('.qty-input');
+        let value = parseInt(input.val());
+
+        input.val(value + 1);
     });
 
-    $('#button-minus').on('click', function() {
-        let qty = parseInt($('#quantity-input').val());
-        if (qty > 1) {
-            $('#quantity-input').val(qty - 1);
+
+    // MINUS BUTTON
+    $(document).on('click', '.qty-minus', function () {
+
+        let input = $(this).siblings('.qty-input');
+        let value = parseInt(input.val());
+
+        if (value > 1) {
+            input.val(value - 1);
         }
     });
 
-    // --- 2. Button Redirects ---
-    
-    // Add to Cart button
-    $('.btn-warning').on('click', function() {
+    // Add to Cart
+    $(document).on('click', '.btn-warning', function () {
         if ($(this).text().trim() === "Add to cart") {
             window.location.href = "../../cart/Template/cart.html";
         }
     });
 
-    // Buy it Now button
-    $('.btn-dark').on('click', function() {
+    // Buy Now
+    $(document).on('click', '.btn-dark', function () {
         if ($(this).text().trim() === "Buy it now") {
             window.location.href = "../../checkOut/Template/checkOut.html";
         }
@@ -33,26 +40,4 @@ $(document).ready(function() {
         e.preventDefault();
         window.location.href = "../../wishlist/Template/wishlist.html";
     });
-});
-
-$(document).ready(function() {
-
-    // --- Heart Icon: Wishlist ---
-    $('.fa-heart').closest('.icon').on('click', function() {
-        console.log("jQuery: Redirecting to Wishlist...");
-        window.location.href = "../../wishlist/Template/wishlist.html";
-    });
-
-    // --- Shopping Bag Icon: Cart ---
-    $('.fa-shopping-bag').closest('.icon').on('click', function() {
-        console.log("jQuery: Redirecting to Cart...");
-        window.location.href = "../../cart/Template/cart.html";
-    });
-
-    // --- Eye Icon: Product Details PopUp ---
-    $('.fa-eye').closest('.icon').on('click', function() {
-        console.log("jQuery: Redirecting to Product Details...");
-        window.location.href = "../../productDetials/Template/ProductPopUp.html";
-    });
-
 });
