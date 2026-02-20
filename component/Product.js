@@ -1,12 +1,12 @@
 export class Product{
     constructor(id, name, price, description, stock, category, imageUrl){
-        this._id =id;
-        this._name = name;
-        this._price = price;
-        this._description = description;
-        this._stock = stock;
-        this._category = category;
-        this._imageUrl = imageUrl;
+        this.ID =id;
+        this.Name = name;
+        this.Price = price;
+        this.Description = description;
+        this.Stock = stock;
+        this.Category = category;
+        this.ImageUrl = imageUrl;
     }
 
     set ID(id)
@@ -65,7 +65,7 @@ export class Product{
     {
         const allowed = ["bagel", "candy", "beans", "bestseller", "bread",
             "biscuite", "breakfast", "cake", "cookie",
-            "cupcake", "Diary&cheese", "Dinner"];
+            "cupcake", "Diary&Cheese", "Dinner"];
         if(!allowed.includes(category))
             throw new Error("Invalid Category");
         this._category = category;
@@ -78,7 +78,7 @@ export class Product{
     set ImageUrl(imageUrl)
     {
         const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
-        if(!urlPattern.test(url))
+        if(!urlPattern.test(imageUrl))
             throw new Error("Invalid image URL")
         this._imageUrl = imageUrl;
     }
@@ -123,7 +123,7 @@ export function editProduct(productID, updatedData){
         p._imageUrl,
     ));
 
-    let product = products.find(p => p.ID === productId);
+    let product = products.find(p => p.ID === productID);
 
     if (!product){
         console.log("Product not found");

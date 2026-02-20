@@ -407,7 +407,7 @@
                             <img src="../images/editIcon.png" width="30" alt="edit">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill">
+                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="editProduct(5)">
                             Edit Product
                         </button>
                     </div>
@@ -796,5 +796,11 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
+        <script>
+            function editProduct(id){
+                window.location.href = `editProductPopup.html?id=${id}`;
+
+            }
+        </script>
     </body>
 </html>

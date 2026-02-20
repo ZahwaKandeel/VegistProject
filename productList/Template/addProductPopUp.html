@@ -57,12 +57,14 @@
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
-    <script>
+    <script type = "module">
+        import{Product, loadProducts, saveProducts} from "../../component/Product.js"
+
         $(document).ready(function(){
             const allowedCategories = [
                 "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
             ];
-            $(form).on("submit"), function(e){
+            $("form").on("submit", function(e){
                 e.preventDefault();
                 let isValid = true;
 
@@ -71,33 +73,59 @@
 
                 let name = $("#name").val().trim();
                 let price = parseFloat($("#price").val());
-                let description = $("description").val().trim();
-                let category = $("category").val().trim();
-                let image = $("image").val().trim();
+                let description = $("#description").val().trim();
+                let stock = parseInt($("#stock").val());
+                let category = $("#category").val().trim();
+                let image = $("#image").val().trim();
 
-                if(name.length<3){
+                if (name.length<3){
                     showError("#name", "Name must be at least 3 characters");
                     isValid = false;
                 }
-                if(200<description.length<100){
+                if (isNaN(price) || price<=0){
+                    showError("#price", "Price must be a number greater than 0");
+                    isValid = false;
+                }
+                if (description.length < 100 || description.length > 200){
                     showError("#description", "Description must be at least 100 characters and less than 200");
                     isValid = false;
                 }
-                if(!allowedCategories.includes(category)){
+                if (isNaN(stock) || stock<=0){
+                    showError("#stock", "Stock must be a number greater than 0");
+                    isValid = false;
+                }
+                if (!allowedCategories.includes(category)){
                     showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
                 }
                 if (!isValidURL(image)) {
                     showError("#image", "Enter a valid image URL.");
                     isValid = false;
                 }
-                if (isValid) {
-                    alert("Product added successfully!");
-                    this.submit();
+                if (!isValid) return;
+
+                try{
+                    let products = loadProducts() || [];
+
+                    const newProduct = new Product(
+                        Date.now(),
+                        name,
+                        price,
+                        description,
+                        stock,
+                        category,
+                        image
+                    );
+                    products.push(newProduct);
+
+                    saveProducts(products);
+                    alert("Product added Successfully!");
+                    window.location.href = "product_list.html"
+                }catch(error){
+                    alert(error.message)
                 }
 
 
-
-            };
+            });
 
             function showError(selector, message){
                 $(selector).addClass("is-invalid");
