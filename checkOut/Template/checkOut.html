@@ -28,6 +28,7 @@
     <script src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
     <script src="/component/countries.js"></script>
+    <script src="../JS/checkOut.js"></script>
     <script>
         $(document).ready(function() {
             const $header = $("header");
@@ -105,15 +106,36 @@
             <section class="d-flex flex-column justify-content-start flex-lg-row ms-lg-5 px-0 me-0 ps-xl-5">
                 <div class="d-flex flex-column col-lg-6 pt-lg-4 pe-lg-3 px-sm-5">
                     <section class="mb-3 p-2">
-                        <div class="d-flex justify-content-between">
-                            <h5>Content</h5>
-                            <a href="/auth/Template/login.html" class="mainTextTheme">Sing in</a>
+                        <div id="content" class="d-flex flex-column justify-content-between">
+                            <section class="d-flex justify-content-between">
+                                <h5>Content</h5>
+                                <a id="singinLink" href="/auth/Template/login.html" class="mainTextTheme">Sing in</a>
+                            </section>
+                            <section>
+                                <input id="guestContact" type="text" placeholder="Email or mobile phone number" 
+                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-2">
+                            </section>
+                            <section id="userContact" class="d-none">
+                                <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center gap-2">
+                                    <!-- Avatar circle -->
+                                    <div class="rounded-circle bg-secondary text-white
+                                                d-flex align-items-center justify-content-center"
+                                        style="width:36px;height:36px;">
+                                    <span id="userInitial"></span>
+                                    </div>
+                                    <!-- Email -->
+                                    <span id="userEmail"></span>
+                                </div>
+                                <!-- 3 dots icon -->
+                                <i class="fa-solid fa-ellipsis-vertical text-secondary"></i>
+                                </div>
+                                <hr>
+                            </section>
                         </div>
                         <div>
-                            <input type="text" placeholder="Email or mobile phone number" 
-                                class="w-100 p-2 border border-secondary-subtle rounded-3 mb-2">
-                                <input type="checkbox" id="newDetails" class="form-check-input me-1">
-                                <label for="newDetails"><small>Email me with new offers</small></label>
+                            <input type="checkbox" id="newDetails" class="form-check-input me-1">
+                            <label for="newDetails"><small>Email me with new offers</small></label>
                         </div>
                     </section>
                     <section class="p-2 mb-3 ">
