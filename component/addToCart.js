@@ -2,6 +2,7 @@
 // Send the product id and quantity as parameters
 
 function addToCart(product_id, p_quantity=1) {
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     // check if the product already exists or not
     const existing = cart.find(item => item.product_id === product_id);
