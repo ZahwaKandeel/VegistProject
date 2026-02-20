@@ -11,10 +11,7 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" type="text/css" href="/Static/CSS/main.css"/>
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
         <script
@@ -143,11 +140,12 @@
 
             <!-- Discount code + Return button -->
             <div
-              class="d-sm-flex justify-content-between align-items-center mb-4"
+              class="d-sm-flex justify-content-between align-items-center mb-2"
             >
               <div class="input-group">
                 <input
                   type="text"
+                  id="coupon-code"
                   class="form-control rounded-start-pill"
                   placeholder="Discount code"
                   aria-label="Discount code"
@@ -157,17 +155,18 @@
                   id="discount-code-btn"
                 >
                   <i class="fa fa-arrow-right text-white"></i>
-                </span>
-              </div>
-              <div class="return-btn mt-3 mt-sm-0">
-                <a
-                  href="../../productList/Template/product_list.html"
-                  class="mainBackgroundTheme text-decoration-none rounded-5 fw-bold px-5 py-2"
-                  style="color: white;"
-                  >Return to store</a
-                >
-              </div>
+              </span>
             </div>
+            <div class="return-btn mt-3 mt-sm-0">
+              <a
+              href="../../productList/Template/product_list.html"
+              class="mainBackgroundTheme text-decoration-none rounded-5 fw-bold px-5 py-2"
+              style="color: white;"
+              >Return to store</a
+              >
+            </div>
+          </div>
+          <p class="coupon-message fw-bold mb-4"></p>
 
             <!-- Order special instructions -->
             <h5 class="mb-4">Order special instructions</h5>
@@ -234,7 +233,7 @@
                   class="d-flex justify-content-between align-items-center fw-bold"
                 >
                   <span class="h4">Subtotal</span>
-                  <span>$65.00 dollar</span>
+                  <span class="subtotal">$65.00 dollar</span>
                 </div>
                 <p class="text-secondary my-4">
                   Taxes and shipping calculated at checkout
@@ -260,7 +259,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../component/addToCart.js"></script>
-    <script src="../JS/script.js"></script>
+    <script type="module" src="../JS/script.js"></script>
   </body>
 </html>
 
