@@ -22,6 +22,7 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src="/component/basepath.js"></script>
     <script src="/component/header.js"></script>
     <script src="/component/footer.js"></script>
@@ -94,6 +95,33 @@ canvas {
   width: 100% !important;
 }
 
+<!--                            -->
+
+.card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .stat-change {
+      font-weight: 500;
+    }
+    .chart-placeholder {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(90deg, #7b61ff, #9356ff);
+      border-radius: 0.5rem;
+      opacity: 0.6;
+    }
+
 </style>
 
 </head>
@@ -134,14 +162,14 @@ canvas {
     <span class="  rounded-circle  p-3 clrspan1"> 
         <i class="fa-regular fa-user"></i>
     </span>
-    <span class="mx-3 ">12,560</span>
+    <span id="totalUsers" class="mx-3 "></span>
  </p> 
 
     </div>
     
     <div class="d-flex align-items-center justify-content-between">
-        <span class="btn  p-1 btnclr1">+2.57% </span>
-        <span class="text-secondary fspan">Vs last month: 10,195</span>
+        <span id="totalPrecent" class="btn  p-1 btnclr1"> </span>
+        <span class="text-secondary fspan">Vs last month: <span id="lastusers"></span></span>
     </div>
  
   </div><!--end of body  card -->
@@ -177,14 +205,14 @@ canvas {
     <span class="border rounded-circle clrspan2 p-3 text-center">
         <i class="fa-regular fa-circle-check"></i>
     </span>
-    <span class="mx-3">8,940</span>
+    <span id="activeUsers" class="mx-3"> </span>
  </p> 
 
     </div>
     
     <div class="d-flex align-items-center justify-content-between">
-        <span class="btn btnclr1 p-1">+4.10% </span>
-        <span class="text-secondary  fspan">Vs last month: 7,650</span>
+        <span id="activePercent" class="btn btnclr1 p-1"> </span>
+        <span class="text-secondary  fspan">Vs last month: <span id="lastactiveusers"></span></span>
     </div>
  
   </div><!--end of body  card -->
@@ -221,14 +249,14 @@ canvas {
     <span class="border rounded-circle clrspan3 p-3 text-center">
       <i class="fa-solid fa-user-plus"></i>
     </span>
-    <span class="mx-3">1,240</span>
+    <span id="newRegistrations" class="mx-3"></span>
  </p> 
 
     </div>
     
     <div class="d-flex align-items-center justify-content-between">
-        <span class="btn btnclr1 p-1">+6.22% </span>
-        <span class="text-secondary  fspan">Vs last month: 1,168</span>
+        <span id="Registrationspercent" class="btn btnclr1 p-1"> </span>
+        <span class="text-secondary  fspan">Vs last month: <span id="lastRegistrations"></span></span>
     </div>
  
   </div><!--end of body  card -->
@@ -265,14 +293,14 @@ canvas {
     <span class="border rounded-circle clrspan4 p-3 text-center">
     <i class="fa-solid fa-ban"></i>
     </span>
-    <span class="mx-3">360</span>
+    <span id="blockusres" class="mx-3">360</span>
  </p> 
 
     </div>
     
     <div class="d-flex align-items-center justify-content-between">
-        <span class="btn btnclr2 p-1">-1.1% </span>
-        <span class="text-secondary  fspan">Vs last month: 400</span>
+        <span id="blockusrespercent" class="btn btnclr2 p-1">-1.1% </span>
+        <span class="text-secondary  fspan">Vs last month: <span id="blocklastmonth" ></span> </span>
     </div>
  
   </div><!--end of body  card -->
@@ -299,14 +327,14 @@ canvas {
 
 
           <div class="btn-toggle btn-group">
-            <button class="btn btn-sm btn-light">Today</button>
-            <button class="btn btn-sm btn-light">Week</button>
-            <button class="btn btn-sm btn-primary">Month</button>
+            <button id="todayBtn" class="btn btn-sm btn-light">Today</button>
+            <button  id="weekBtn" class="btn btn-sm btn-light">Week</button>
+            <button id="monthBtn" class="btn btn-sm btn-primary">Month</button>
           </div>
         </div>
 
 
-      <div style="height:250px;">
+      <div style="height:300px;">
     <canvas id="revenueChart"></canvas>
   </div>
 
@@ -320,12 +348,14 @@ canvas {
         <h5>Retention Rate</h5>
 
         <div class="mb-3">
-          <span class="metric-value">92%</span>
-          <span class="metric-growth ms-2">+15% vs last month</span>
+          <span >92%</span>
+          <span class=" ms-2">+15% vs last month</span>
         </div>
 
        
-
+  <div style="height:280px;">
+    <canvas id="retentionChart"></canvas>
+  </div>
    
 
       </div>
@@ -384,20 +414,23 @@ canvas {
           <div class="col-6">
             <div class="p-3 bg-light rounded text-center">
               <h6>Closed Deals</h6>
-              <h4>27</h4>
+              <h4 id="closeDeals"></h4>
             </div>
           </div>
           <div class="col-6">
             <div class="p-3 bg-light rounded text-center">
               <h6>Pipeline Value</h6>
-              <h4>$5.2M</h4>
+              <h4 id="pipelineValue"></h4>
             </div>
           </div>
         </div>
 
         <div class="bg-soft-purple p-4 rounded text-center">
-          <strong>Conversion Rate 16%</strong>
+          <strong>Conversion Rate <span id="conversionRate"></span> </strong>
         </div>
+
+<canvas id="myChart" width="400" height="200"></canvas>
+
       </div>
     </div><!--end of the card  -->
 <!--------------------------------------------------------------------------->
@@ -405,28 +438,88 @@ canvas {
 <div class="col-12 col-md-12 col-xl-4 my-2">
       <div class="card-custom">
         <h5 class="mb-4">Sales Pipeline Overview</h5>
-        <h3>$2,56,054.50</h3>
+        <h3 id="salesTotal"></h3>
 
         <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
-          Leads <span class="ms-auto">120</span>
+          Leads <span id="leads" class="ms-auto"></span>
         </div>
 
         <div class="pipeline-bar bg-soft-green d-flex align-items-center px-3">
-          Prospects <span class="ms-auto">85</span>
+          Prospects <span id="prospects" class="ms-auto"></span>
         </div>
 
         <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
-          Opportunities <span class="ms-auto">40</span>
+          Opportunities <span id="opportunities" class="ms-auto"></span>
         </div>
 
         <div class="pipeline-bar bg-soft-pink d-flex align-items-center px-3">
-          Closed Deals <span class="ms-auto">20</span>
+          Closed Deals <span id="closed" class="ms-auto"></span>
         </div>
       </div>
     </div>
 
 
 </div><!--end of the row 3 -->
+
+<!--------------------------------------------------------------------------->
+
+<div class="row g-3 my-2  "> <!--start of the row 4 -->
+    <!-- Total Contacts -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+
+        <h6 class="text-muted">Total Contacts</h6>
+        <div class="stat-number">5,758 <span class="text-success fs-6 stat-change">+2.57%</span></div>
+        <small class="text-muted">Vs last month: 1,195</small>
+        <div class="chart-placeholder mt-3"></div>
+
+      </div>
+    </div>
+    <!-- Lead Analytics -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <h6 class="text-muted">Lead Analytics</h6>
+        <div class="stat-number">70 <span class="text-danger fs-6 stat-change">-2.57%</span></div>
+        <small class="text-muted">Compared to Last Month</small>
+        <div class="chart-placeholder mt-3"></div>
+      </div>
+    </div>
+
+    <!-- Tasks Overview -->
+    <!-- <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <h6 class="text-muted">Tasks Overview</h6>
+        <p class="mb-1">Tasks Done: <strong>25</strong></p>
+        <div class="progress mb-2" style="height: 5px;">
+          <div class="progress-bar bg-purple" style="width: 60%; background: #7b61ff;"></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center flex-column">
+          <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:80px; height:80px; border:6px solid #d9caff; border-left-color:#7b61ff;">
+            <span class="fs-4 fw-bold">15</span>
+          </div>
+          <small class="text-muted mt-2">Active Tasks</small>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Active Deals -->
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <h6 class="text-muted">Active Deals</h6>
+        <div class="stat-number">1,249 <span class="text-success fs-6 stat-change">+2.57%</span></div>
+        <small class="text-muted">Vs last month: 1,195</small>
+        <div>
+      <canvas id="myChartx" width="400" height="200"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>  <!--end of the row 4 -->
+
+
+
+
+
 
 </div><!--end of the container-->
         </main><!--end of the main-->
