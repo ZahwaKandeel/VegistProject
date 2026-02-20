@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
     <head>
         <meta charset="UTF-8" />
@@ -27,7 +27,8 @@
     <script src="/component/footer.js"></script>
     <script src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
-    <script src="/component//countries.js"></script>
+    <script src="/component/countries.js"></script>
+    <script src="../JS/checkOut.js"></script>
     <script>
         $(document).ready(function() {
             const $header = $("header");
@@ -39,228 +40,203 @@
     </script>
     </head>
     <body>
+        <header></header>
         <hr class="my-0"/>
         <main>
-            <section class="container-fluid d-flex flex-column flex-lg-row justify-content-between px-0">
-                <div class="accordion accordion-flush mb-3 d-lg-none">
-                    <div class="accordion-item border-0">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button border-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Order summary
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
-                            <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
-                                <form action="" class="checkout">
-                                    <main class="d-flex flex-column">
-                                        <section class="d-flex justify-content-between align-items-center mb-3">
-                                            <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
-                                                <img src="/cart/images/39.webp" alt="" class="productImage w-100">
-                                            </div>
-                                            <div class="col-7 productContect">
-                                                <p class="m-0 productName">Organic conconet</p>
-                                                <small class="text-secondary productDetails">1kg/ Canada</small>
-                                            </div>
-                                            <div class="col-2 productPrice">
-                                                <p>35.55</p>
-                                            </div>
-                                        </section>
-                                        <section class="d-flex justify-content-between align-items-center mb-3">
-                                            <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
-                                                <img src="/cart/images/39.webp" alt="" class="productImage w-100">
-                                            </div>
-                                            <div class="col-7 productContect">
-                                                <p class="m-0 productName">Fresh organic fruit(50gm)</p>
-                                                <small class="text-secondary productDetails">5kg</small>
-                                            </div>
-                                            <div class="col-2 productPrice">
-                                                <p>35.55</p>
-                                            </div>
-                                        </section>
-                                        <section class="d-flex mb-3">
-                                            <input type="text" id="discount" class="border border-1 border-secondary-subtle rounded-2 p-2 w-75" placeholder="Discount code"/>
-                                            <label for="disount" class="border border-1 bg-secondary bg-opacity-10 text-secondary rounded-2 py-2 px-3 ms-4 me-2">Apply</label>
-                                        </section>
-                                        <section class="mb-3">
-                                            <div class="d-flex justify-content-between">
-                                                <small class="mb-2">Subtotal . <span>2 items</span></small>
-                                                <small>68.00</small>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <small>Shipping</small>
-                                                <small>13.95</small>
-                                            </div>
-                                        </section>
-                                        <section class="d-flex justify-content-between">
-                                            <p><b>Total</b></p>
-                                            <p><b>81.95</b></p>
-                                        </section>
-                                    </main>
-                                </form>
-                            </div>
+            <div class="accordion accordion-flush mb-3 d-lg-none">
+                <div class="accordion-item border-0">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button border-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Order summary
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                        <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
+                            <form action="" class="checkout">
+                                <main class="d-flex flex-column">
+                                    <section class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
+                                            <img src="/cart/images/39.webp" alt="" class="productImage w-100">
+                                        </div>
+                                        <div class="col-7 productContect">
+                                            <p class="m-0 productName">Organic conconet</p>
+                                            <small class="text-secondary productDetails">1kg/ Canada</small>
+                                        </div>
+                                        <div class="col-2 productPrice">
+                                            <p>35.55</p>
+                                        </div>
+                                    </section>
+                                    <section class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
+                                            <img src="/cart/images/39.webp" alt="" class="productImage w-100">
+                                        </div>
+                                        <div class="col-7 productContect">
+                                            <p class="m-0 productName">Fresh organic fruit(50gm)</p>
+                                            <small class="text-secondary productDetails">5kg</small>
+                                        </div>
+                                        <div class="col-2 productPrice">
+                                            <p>35.55</p>
+                                        </div>
+                                    </section>
+                                    <section class="d-flex mb-3">
+                                        <input type="text" id="discount" class="border border-1 border-secondary-subtle rounded-2 p-2 w-75" placeholder="Discount code"/>
+                                        <label for="disount" class="border border-1 bg-secondary bg-opacity-10 text-secondary rounded-2 py-2 px-3 ms-4 me-2">Apply</label>
+                                    </section>
+                                    <section class="mb-3">
+                                        <div class="d-flex justify-content-between">
+                                            <small class="mb-2">Subtotal . <span>2 items</span></small>
+                                            <small>68.00</small>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <small>Shipping</small>
+                                            <small>13.95</small>
+                                        </div>
+                                    </section>
+                                    <section class="d-flex justify-content-between">
+                                        <p><b>Total</b></p>
+                                        <p><b>81.95</b></p>
+                                    </section>
+                                </main>
+                            </form>
                         </div>
                     </div>
-                    <hr class="m-0"/>
                 </div>
-                <div class="d-flex flex-column col-lg-6 pt-lg-4 ps-lg-5 pe-lg-3">
-                    <form action="" class="p-2 ps-xl-5">
-                        <section class="mb-3 ps-xxl-5">
-                            <div class="d-flex justify-content-between">
+                <hr class="m-0"/>
+            </div>
+            <section class="d-flex flex-column justify-content-start flex-lg-row ms-lg-5 px-0 me-0 ps-xl-5">
+                <div class="d-flex flex-column col-lg-6 pt-lg-4 pe-lg-3 px-sm-5">
+                    <section class="mb-3 p-2">
+                        <div id="content" class="d-flex flex-column justify-content-between">
+                            <section class="d-flex justify-content-between">
                                 <h5>Content</h5>
-                                <a href="/auth/Template/login.html" class="mainTextTheme">Sing in</a>
-                            </div>
-                            <div>
-                                <input type="text" placeholder="Email or mobile phone number" 
+                                <a id="singinLink" href="/auth/Template/login.html" class="mainTextTheme">Sing in</a>
+                            </section>
+                            <section>
+                                <input id="guestContact" type="text" placeholder="Email or mobile phone number" 
                                     class="w-100 p-2 border border-secondary-subtle rounded-3 mb-2">
-                                    <input type="checkbox" id="newDetails" class="form-check-input me-1">
-                                    <label for="newDetails"><small>Email me with new offers</small></label>
-                            </div>
-                        </section>
-                        <section class="mb-3 ps-xxl-5">
-                            <h5>Delivery</h5>
-                            <div class="mb-3">
-                                <select name="country" id="country" class="form-select py-2 mb-3">
-                                    <option id="firstSelectOption">Egypt</option>
-                                </select>
-                                <input type="text" placeholder="First name (optional)" 
-                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                <input type="text" placeholder="Last name" 
-                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                <input type="text" placeholder="Address" 
-                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                <input type="text" placeholder="Apartment, suite, etc. (optional)" 
-                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                <input type="text" placeholder="Postal code" 
-                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                <input type="text" placeholder="City" 
-                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                <input type="checkbox" id="newDetails" class="form-check-input me-1">
-                                <label for="newDetails"><small>Save this information for next time</small></label>
-                            </div>
-                            <div>
-                                <p><b>Shipping mehtod</b></p>
-                                <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
-                                    <p><small>Standard</small></p>
-                                    <p><small><b>13.95</b></small></p>
-                                </section>
-                            </div>
-                        </section>
-                        <section class="ps-xxl-5">
-                            <div>
-                                <h5>Payment</h5>
-                                <div class="accordion">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                        <button class="accordion-button border border-bottom bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                                            <input type="radio" name="payment" value="card" class="me-2">
-                                            <small>Credit Card</small>
-                                        </button>
-                                    </h2>
-                                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                            <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
-                                                <form action="">
-                                                    <input type="text" placeholder="Card number" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Exporation date (MM/YY)" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Security code" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Name on card" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="checkbox" id="newDetails" class="form-check-input me-1">
-                                                    <label for="newDetails"><small>Save this information for next time</small></label>
-                                                </form>
-                                            </div>
-                                        </div>
+                            </section>
+                            <section id="userContact" class="d-none">
+                                <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center gap-2">
+                                    <!-- Avatar circle -->
+                                    <div class="rounded-circle bg-secondary text-white
+                                                d-flex align-items-center justify-content-center"
+                                        style="width:36px;height:36px;">
+                                    <span id="userInitial"></span>
                                     </div>
+                                    <!-- Email -->
+                                    <span id="userEmail"></span>
                                 </div>
-                                <div class="accordion mb-3">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button rounded-top-0 rounded-bottom bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-                                                <input type="radio" name="payment" value="card" class="me-2">
-                                                <small>Cash on Delivery</small>
-                                            </button>
-                                        </h2>
-                                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                                            <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom rounded-bottom py-0">
-                                                <p class="text-center pt-2">Cash on Delivery(COD)</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <!-- 3 dots icon -->
+                                <i class="fa-solid fa-ellipsis-vertical text-secondary"></i>
                                 </div>
-                            </div>
-                        </section>
-                    </form>
-                    <form action="" class="p-2 ps-xl-5">
-                        <section class="ps-xxl-5">
-                            <h5 class="">Billing address</h5>
-                            <div class="d-flex border-0 bg-secondary bg-opacity-10 px-3 py-2 rounded-top">
-                                <input type="radio" name="payment" value="card" class="me-2 d-block">
-                                <label><small>Use a different billing address</small></label>
-                            </div>
-                            <div class="accordion mb-3">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                        <button class="accordion-button border border-bottom rounded-bottom rounded-top-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
-                                            <input type="radio" name="payment" value="card" class="me-2">
-                                            <small>Use a different billing address</small>
-                                        </button>
-                                        </h2>
-                                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
-                                            <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom rounded-bottom">
-                                                <form action="">
-                                                    <select name="country" id="country" class="form-select py-2 mb-3">
-                                                        <option id="firstSelectOption" disabled selected hidden>Country/Region</option>
-                                                        <option>Egypt</option>
-                                                        <option>United States</option>
-                                                        <option>United Kingdom</option>
-                                                        <option>Saudi Arabia</option>
-                                                        <option>United Arab Emirates</option>
-                                                        <option>India</option>
-                                                        <option>China</option>
-                                                        <option>France</option>
-                                                        <option>Germany</option>
-                                                        <option>Italy</option>
-                                                    </select>
-                                                    <input type="text" placeholder="First name (optional)" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Last name" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Address" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Apartment, suite, etc. (optional)" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="Postal code" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                    <input type="text" placeholder="City" 
-                                                        class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </section>
-                        <section class="d-flex flex-column ps-xl-5  me-2 ps-xxl-5">
-                            <div class="d-flex justify-content-between ps-xxl-5">
-                                <p class="d-flex flex-column ms-5">
-                                    <b>Total</b>
-                                    <small>items</small>
-                                </p>
-                                <p class="me-4">
-                                    81.96
-                                </p>
-                            </div>
-                            <div class="text-center ps-xxl-5">
-                                <button type="submit" class="mainBackgroundTheme border-0 rounded w-100 text-body my-lg-2 py-2">
-                                    <b>Complete order</b>
-                                </button>
                                 <hr>
+                            </section>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="newDetails" class="form-check-input me-1">
+                            <label for="newDetails"><small>Email me with new offers</small></label>
+                        </div>
+                    </section>
+                    <section class="p-2 mb-3 ">
+                        <h5>Delivery</h5>
+                        <div class="mb-3">
+                            <select name="country" id="country" class="form-select py-2 mb-3">
+                                <option>Egypt</option>
+                            </select>
+                            <div class="d-sm-flex gap-3">
+                                <input type="text" placeholder="First name (optional)" 
+                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="Last name" 
+                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3">
                             </div>
-                        </section>
-                    </form>
+                            <input type="text" placeholder="Address" 
+                                class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3">
+                            <input type="text" placeholder="Apartment, suite, etc. (optional)" 
+                                class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3">
+                            <div class="d-sm-flex gap-3">
+                                <input type="text" placeholder="Postal code" 
+                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3">
+                                <input type="text" placeholder="City" 
+                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3">
+                            </div>
+                            <input type="checkbox" id="newDetails" class="form-check-input me-1">
+                            <label for="newDetails"><small>Save this information for next time</small></label>
+                        </div>
+                        <div>
+                            <p><b>Shipping mehtod</b></p>
+                            <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
+                                <p class="m-2"><small>Standard</small></p>
+                                <p class="m-2"><small><b>13.95</b></small></p>
+                            </section>
+                        </div>
+                    </section>
+                    <section class="p-2">
+                        <div>
+                            <h5>Payment</h5>
+                            <div class="bg-secondary bg-opacity-10 rounded px-3 py-3">
+                                <input type="radio" id="payment" class="me-2" checked>
+                                <label for="payment"><small>Cash on Delivery(COD)</small></label>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="p-2">
+                        <h5 class="">Billing address</h5>
+                        <div class="d-flex border-0 bg-secondary bg-opacity-10 px-3 pt-3 pb-2 rounded-top">
+                            <input type="radio" name="payment" value="card" class="me-2 d-block">
+                            <label><small>Use a different billing address</small></label>
+                        </div>
+                        <div class="accordion mb-3">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                    <button class="accordion-button border border-bottom rounded-bottom rounded-top-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+                                        <input type="radio" name="payment" value="card" class="me-2">
+                                        <small>Use a different billing address</small>
+                                    </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                                        <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom rounded-bottom">
+                                            <form action="">
+                                                <select name="country" id="country" class="form-select py-2 mb-3">
+                                                    <option>Egypt</option>
+                                                </select>
+                                                <input type="text" placeholder="First name (optional)" 
+                                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                                <input type="text" placeholder="Last name" 
+                                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                                <input type="text" placeholder="Address" 
+                                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                                <input type="text" placeholder="Apartment, suite, etc. (optional)" 
+                                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                                <input type="text" placeholder="Postal code" 
+                                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                                <input type="text" placeholder="City" 
+                                                    class="w-100 p-2 border border-secondary-subtle rounded-3 mb-3">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </section>
+                    <section class="d-flex flex-column me-2 p-2">
+                        <div class="d-flex justify-content-between ps-xxl-5">
+                            <p class="d-flex flex-column ms-5">
+                                <b>Total</b>
+                                <small>items</small>
+                            </p>
+                            <p class="me-4">
+                                81.96
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="mainBackgroundTheme border-0 rounded w-100 text-body my-lg-2 py-2">
+                                <b>Complete order</b>
+                            </button>
+                            <hr>
+                        </div>
+                    </section>
                 </div>
-                <div class="bg-secondary bg-opacity-10 pt-5 col-lg-6 pe-lg-5">
+                <div class="d-none d-lg-block bg-secondary bg-opacity-10 pt-5 col-lg-6 pe-lg-5">
                     <div class="px-5">
                         <form action="" class="checkout pe-xxl-5">
                             <main class="d-flex flex-column pe-xl-5">
@@ -313,10 +289,6 @@
                 <hr class="m-0"/>
             </section>
         </main>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-        ></script>
+        <footer></footer>
     </body>
 </html>
