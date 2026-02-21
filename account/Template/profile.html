@@ -36,6 +36,7 @@
     <script src="/component/footer.js"></script>
     <script src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
+    <script type="module" src="../JS/profile.js"></script>
     <script>
         $(document).ready(function() {
             const $header = $("header");
@@ -60,19 +61,17 @@
             </div>
             <div class="container-md my-3">
                 <section class="text-center mt-4 mb-3 mb-lg-4 my-xl-5">
-                    <h2>Mohamed</h2>
+                    <h2 id="headingName"></h2>
                 </section>
-                <section class="d-flex flex-column flex-md-row justify-content-md-between box-shadow p-2 mb-lg-4">
+                <section class="d-flex flex-column flex-md-row justify-content-md-between box-shadow p-2 pb-3 mb-lg-4">
                     <div class="w-50">
                         <h5>My Account</h5>
                         <a class="text-decoration-none mainTextTheme" href="./profileAddress.html">View Adresses <span>(0)</span></a>
                         <a class="d-block text-decoration-none mainTextTheme" href="">Logout</a>
                     </div>
                     <hr class=" d-md-none">
-                    <div class="w-50">
+                    <div id="accountDetails" class="w-50">
                         <h5>Account Details</h5>
-                        <p class="text-secondary mb-0">Mohamed Mahdy</p>
-                        <p class="text-secondary ">mohamedmahdy648@gmail.com</p>
                     </div>
                 </section>
                 <section class="my-3">

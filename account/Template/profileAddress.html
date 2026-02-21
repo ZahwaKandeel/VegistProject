@@ -28,6 +28,7 @@
     <script src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
     <script src="/component/countries.js"></script>
+    <script type="module" src="../JS/profileAddress.js"></script>
     <script>
         $(document).ready(function() {
             const $header = $("header");
@@ -74,68 +75,54 @@
                     <form action="">
                         <section class="d-md-flex gap-md-4">
                             <div class="d-flex flex-column mb-3 d-md-none">
-                                <label for="firstname" class="text-secondary mb-2">First Name</label>
-                                <input type="text" id="" placeholder="First Name" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="firstName" class="text-secondary mb-2">First Name</label>
+                                <input type="text" id="firstName" placeholder="First Name" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-flex flex-column mb-3 d-md-none">
-                                <label for="lastname" class="text-secondary mb-2">Last Name</label>
-                                <input type="text" id="lastname" placeholder="Last Name" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="lastName" class="text-secondary mb-2">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Last Name" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="firstname" class="text-secondary mb-2">First Name</label>
-                                <input type="text" id="" placeholder="First Name" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="firstName" class="text-secondary mb-2">First Name</label>
+                                <input type="text" id="firstName" placeholder="First Name" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="lastname" class="text-secondary mb-2">Last Name</label>
-                                <input type="text" id="lastname" placeholder="Last Name" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="lastName" class="text-secondary mb-2">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Last Name" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                         </section>
                         <section class="d-md-flex gap-md-4">
                             <div class="d-flex flex-column mb-3 d-md-none">
-                                <label for="company" class="text-secondary mb-2">Company</label>
-                                <input type="text" id="company" placeholder="Company" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="address" class="text-secondary mb-2">Address</label>
+                                <input type="text" id="address" placeholder="Address" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-flex flex-column mb-3 d-md-none">
-                                <label for="address1" class="text-secondary mb-2">Address1</label>
-                                <input type="text" id="address1" placeholder="Address1" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="apartment" class="text-secondary mb-2">Apartment</label>
+                                <input type="text" id="apartment" placeholder="Apartment" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="company" class="text-secondary mb-2">Company</label>
-                                <input type="text" id="company" placeholder="Company" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="address" class="text-secondary mb-2">Address</label>
+                                <input type="text" id="address" placeholder="Address" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="address1" class="text-secondary mb-2">Address1</label>
-                                <input type="text" id="address1" placeholder="Address1" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="apartment" class="text-secondary mb-2">Apartment</label>
+                                <input type="text" id="apartment" placeholder="Apartment" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                         </section>
                         <section class="d-md-flex gap-md-4">
-                            <div class="d-flex flex-column mb-3 d-md-none">
-                                <label for="address2" class="text-secondary mb-2">Address2</label>
-                                <input type="text" id="address2" placeholder="Address2" class="p-2 px-3 border border-1 rounded-pill">
-                            </div>
                             <div class="d-flex flex-column mb-3 d-md-none">
                                 <label for="city" class="text-secondary mb-2">City</label>
                                 <input type="text" id="city" placeholder="City" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
-                            <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="address2" class="text-secondary mb-2">Address2</label>
-                                <input type="text" id="address2" placeholder="Address2" class="p-2 px-3 border border-1 rounded-pill">
-                            </div>
-                            <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="city" class="text-secondary mb-2">City</label>
-                                <input type="text" id="city" placeholder="City" class="p-2 px-3 border border-1 rounded-pill">
-                            </div>
-                        </section>
-                        <section class="d-md-flex gap-md-4">
                             <div class="d-flex flex-column mb-3 d-md-none">
                                 <label for="country" class="text-secondary mb-2">Country</label>
                                 <select name="country" id="country" class="form-select p-2 px-3 border border-1 rounded-pill">
                                         <option id="firstSelectOption">Egypt</option>
                                 </select>
                             </div>
-                            <div class="d-flex flex-column mb-3 d-md-none">
-                                <label for="postal" class="text-secondary mb-2">Postal/Zip Code</label>
-                                <input type="text" id="postal" placeholder="Postal/Zip Code" class="p-2 px-3 border border-1 rounded-pill">
+                            <div class="d-none d-md-flex flex-column mb-3 w-50">
+                                <label for="city" class="text-secondary mb-2">City</label>
+                                <input type="text" id="city" placeholder="City" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                             <div class="d-none d-md-flex flex-column mb-3 w-50">
                                 <label for="country" class="text-secondary mb-2">Country</label>
@@ -143,21 +130,31 @@
                                         <option id="firstSelectOption">Egypt</option>
                                 </select>
                             </div>
+                        </section>
+                        <section class="d-md-flex gap-md-4">
+                            <div class="d-flex flex-column mb-3 d-md-none">
+                                <label for="postalCode" class="text-secondary mb-2">Postal/Zip Code</label>
+                                <input type="text" id="postalCode" placeholder="Postal/Zip Code" class="p-2 px-3 border border-1 rounded-pill">
+                            </div>
+                            <div class="d-flex flex-column mb-3 d-md-none">
+                                <label for="phone" class="text-secondary mb-2">Phone</label>
+                                <input type="text" id="phone" placeholder="Phone" class="p-2 px-3 border border-1 rounded-pill">
+                            </div>
                             <div class="d-none d-md-flex flex-column mb-3 w-50">
-                                <label for="postal" class="text-secondary mb-2">Postal/Zip Code</label>
-                                <input type="text" id="postal" placeholder="Postal/Zip Code" class="p-2 px-3 border border-1 rounded-pill">
+                                <label for="postalCode" class="text-secondary mb-2">Postal/Zip Code</label>
+                                <input type="text" id="postalCode" placeholder="Postal/Zip Code" class="p-2 px-3 border border-1 rounded-pill">
+                            </div>
+                            <div class="d-none d-md-flex flex-column w-50">
+                                <label for="phone" class="text-secondary mb-2">Phone</label>
+                                <input type="text" id="phone" placeholder="Phone" class="p-2 px-3 border border-1 rounded-pill">
                             </div>
                         </section>
-                        <div class="d-flex flex-column mb-3 w-50 pe-3">
-                            <label for="phone" class="text-secondary mb-2">Phone</label>
-                            <input type="text" id="phone" placeholder="Phone" class="p-2 px-3 border border-1 rounded-pill">
-                        </div>
                         <div class="d-flex gap-2 mb-3">
                             <input type="checkbox" id="default" class="form-check-input p-2 rounded-0">
                             <label for="default" class="text-secondary mb-2">Set as default address</label>
                         </div>
                         <div class="d-flex mb-3">
-                            <input type="submit" value="Add Address" class="mainBackgroundTheme px-3 py-2 rounded-pill border-0 me-2">
+                            <input id="addAddress" type="submit" value="Add Address" class="mainBackgroundTheme px-3 py-2 rounded-pill border-0 me-2">
                             <input type="submit" value="Cancel" class="bg-secondary bg-opacity-50 px-3 py-2 rounded-pill border-0 ">
                         </div>
                     </form>
