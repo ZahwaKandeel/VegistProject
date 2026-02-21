@@ -51,6 +51,14 @@
                 <label for="image" class="form-label fw-bold">Image:</label>
                 <input type="text" class="form-control" id="image" name="image" placeholder="images.google.com">
             </div>
+            <div class="mb-3">
+                <label for="size" class="form-label fw-bold">Size (g):</label>
+                <input type="text" class="form-control" id="size" name="size" placeholder="50">
+            </div>
+            <div class="mb-3">
+                <label for="discount" class="form-label fw-bold">Discount (%):</label>
+                <input type="text" class="form-control" id="discountPercentage" name="discountPercentage" placeholder="20%">
+            </div>
             <div class="d-grid">
                 <button type="submit" class="productSubmit btn btn-light fw-bold mt-2 px-4 py-2">Submit</button>
             </div>
@@ -77,6 +85,8 @@
                 let stock = parseInt($("#stock").val());
                 let category = $("#category").val().trim();
                 let image = $("#image").val().trim();
+                let size = parseInt($("#size")).val();
+                let discountPercentage = parseInt($("#discountPercentage")).val();
 
                 if (name.length<3){
                     showError("#name", "Name must be at least 3 characters");
@@ -96,9 +106,18 @@
                 }
                 if (!allowedCategories.includes(category)){
                     showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
+                    isValid = false;
                 }
                 if (!isValidURL(image)) {
                     showError("#image", "Enter a valid image URL.");
+                    isValid = false;
+                }
+                if(isNan(size) || size<=0){
+                    showError("#size","Size value must be more than 0");
+                    isValid = false;
+                }
+                if(isNaN(discountPercentage) || discountPercentage<0 || discountPercentage>100){
+                    showError("#discountPercentage","Discount Percentage must be a number between 0 and 100");
                     isValid = false;
                 }
                 if (!isValid) return;
@@ -113,7 +132,9 @@
                         description,
                         stock,
                         category,
-                        image
+                        image,
+                        size,
+                        discountPercentage
                     );
                     products.push(newProduct);
 
