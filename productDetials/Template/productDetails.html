@@ -187,22 +187,22 @@
                         <div class="carousel-inner w-100">
                             <div class="carousel-item active">
                                 <div class="ratio ratio-1x1">
-                                    <img src="../images/tomato1.jpg" class="w-100" style="object-fit: cover;" alt="veg1">
+                                    <img id="productImage" src="" class="w-100" style="object-fit: cover;" alt="veg1">
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="ratio ratio-1x1">
-                                    <img src="../images/product1.jpeg" class="w-100" style="object-fit: cover;" alt="veg2">
+                                    <img id="productImage" src="" class="w-100" style="object-fit: cover;" alt="veg2">
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="ratio ratio-1x1">
-                                    <img src="../images/tomato3.jpeg" class="w-100" style="object-fit: cover;" alt="veg3">
+                                    <img id="productImage" src="" class="w-100" style="object-fit: cover;" alt="veg3">
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="ratio ratio-1x1">
-                                    <img src="../images/tomato4.webp" class="w-100" style="object-fit: cover;" alt="veg4">
+                                    <img id="productImage" src="" class="w-100" style="object-fit: cover;" alt="veg4">
                                 </div>
                             </div>
                         </div>
@@ -231,22 +231,22 @@
                     <div class="d-flex justify-content-evenly align-items-center gap-2 mt-3">
                         <div class="">
                             <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="0" class="">
-                                <img src="../images/tomato1.jpg" class="w-100">
+                                <img id="productImage" src="" class="w-100">
                             </a>
                         </div>
                         <div class="">
                             <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="1" class="">
-                                <img src="../images/product1.jpeg" class="w-100">
+                                <img id="productImage" src="" class="w-100">
                             </a>
                         </div>
                         <div class="">
                             <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="2" class="">
-                                <img src="../images/tomato3.jpeg" class="w-100">
+                                <img id="productImage" src="" class="w-100">
                             </a>
                         </div>
                         <div class="">
                             <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="3" class="">
-                                <img src="../images/tomato4.webp" class="w-100">
+                                <img id="productImage" src="" class="w-100">
                             </a>
                         </div>
                     </div>
@@ -255,21 +255,21 @@
 
                 <div class="col-6 col-xxl-5">
                     <div class="px-2" >
-                        <h2 class="fw-bold">Product Name (Weight)</h2>
+                        <h2 id="name" class="fw-bold">Product Name</h2>
                         <div class="text-warning mb-2">
                             <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
                             <span class="text-muted ms-2">No reviews</span>
                         </div>
 
-                        <p class="mb-2"><strong>Availability:</strong> <span class="text-success">● 18 in stock</span></p>
+                        <p id="productStock" class="mb-2"><strong>Availability:</strong> <span class="text-success">● 18 in stock</span></p>
 
                         <div class="d-flex align-items-center mb-3">
-                            <span class="fs-4 fw-bold me-2">€14,00</span>
+                            <span id="productPrice" class="fs-4 fw-bold me-2">€14,00</span>
                             <span class="text-decoration-line-through text-muted me-2">€20,00</span>
                             <span class="badge bg-danger">30%</span>
                         </div>
 
-                        <p class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        <p id="productDescription" class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
 
                         <div class="mb-4">
                             <label class="d-block fw-bold mb-2">Size:</label>
@@ -338,7 +338,7 @@
 
                             <div class="mb-2 small">
                                 <span class="fw-bold">SKU:</span> 
-                                <span class="text-muted">123456</span>
+                                <span id="productSKU" class="text-muted">123456</span>
                             </div>
 
                             <div class="d-flex align-items-center gap-3">
@@ -752,8 +752,9 @@
         </main>
 
         <div id="modalContainer"></div>
-        <script src="../JS/PopUpFunctions.js"></script>
-        <script src="../JS/ProductDetails.js"></script>
+        <script src="/component/PopUpFunctions.js"></script>
+        <script type="module" src="../JS/dummyProducts.js"></script>
+        <script type="module" src="../JS/ProductDetails.js"></script>
         <footer></footer>
     </body>
 </html>
