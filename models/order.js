@@ -3,7 +3,7 @@ export class Order {
   constructor({
     id = 0,
     sellerId = 0,
-    products = [],
+    cart = [],
     createdAt = "",
     shipping = {},
     subtotal = 0,
@@ -12,7 +12,7 @@ export class Order {
 
     this.id = id;
     this.sellerId = sellerId;
-    this.products = products;
+    this.cart = cart;
     this.createdAt = createdAt;
 
     this.shipping = {
