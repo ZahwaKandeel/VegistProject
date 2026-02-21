@@ -67,7 +67,7 @@ $(document).ready(function () {
         }
     });
 
-    addToCart(3)
+    // addToCart(3)
     // Display cart items on page load
     displayCart();
 });
@@ -91,7 +91,7 @@ function displayCart() {
 
     // Loop through cart items and display each
     cart.map(item => {
-        const product = products.find(p => p.id === item.product_id);
+        const product = products.find(p => p._id === item.product_id);
         
         $('.cart-items').append(`
             <div class="row align-items-center border-bottom p-2 mb-3">
@@ -100,20 +100,22 @@ function displayCart() {
                     <div class="card mb-3 bg-transparent border-0">
                         <div class="row g-0 ">
                             <div class="col-4">
-                            <img src="${product.images[0]}" class="img-fluid" alt="${product.title}" />
+                            <img src="${product._imageUrl}" class="img-fluid" alt="${product._name}" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body p-2">
                                     <h5 class="card-title mb-1">Card title</h5>
-                                    <p class="card-text price fw-bold m-1">
-                                      $${product.discountvalue}
-                                      <span class="fw-normal text-decoration-line-through">$${product.price}</span>
+                                     ${product._discountValue?` <p class="card-text price fw-bold m-1">
+                            $${product._discountValue}
+                            <span class="fw-normal text-decoration-line-through"> $${product._price}</span>
+                        </p>`:` <p class="card-text price fw-bold m-1">
+                        $${product._price}
+                        </p>`}
+                                    <p class="card-text fw-bold m-1">
+                                      Size: <span class="size fw-normal">${product._size}</span>
                                     </p>
                                     <p class="card-text fw-bold m-1">
-                                      Size: <span class="size fw-normal">${product.size[0]}</span>
-                                    </p>
-                                    <p class="card-text fw-bold m-1">
-                                      Material: <span class="material fw-normal">${product.matiral[0]}</span>
+                                      Category: <span class="material fw-normal">${product._category}</span>
                                     </p>
                                 </div>
                             </div>
@@ -125,11 +127,11 @@ function displayCart() {
                 <div class="col-6 col-md-3 text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2">
                         <div class="quantity border d-flex" style="width: 160px">
-                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 decrease-btn" data-id=${product.id} type="button">-</button>
+                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 decrease-btn" data-id=${product._id} type="button">-</button>
                             <input type="number" class="w-50 text-center ps-2 border-0" value="${item.quantity}" readonly />
-                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 increase-btn" data-id=${product.id} type="button">+</button>
+                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 increase-btn" data-id=${product._id} type="button">+</button>
                         </div>
-                        <button class="bg-transparent border-0 remove-btn" data-id=${product.id}>
+                        <button class="bg-transparent border-0 remove-btn" data-id=${product._id}>
                             <i class="fa-regular fa-trash-can"></i>
                         </button>
                     </div>
@@ -137,7 +139,7 @@ function displayCart() {
 
                 <!-- Item Total -->
                 <div class="col-6 col-md-3 fw-bold text-center item-total">
-                    $${(product.discountvalue * item.quantity).toFixed(2)}
+                    $${((product._discountValue||product._price) * item.quantity).toFixed(2)}
                 </div>
             </div>`);
     });
@@ -184,9 +186,10 @@ function decreaseQuantity(product_id){
     const item = cart.find(item => item.product_id === product_id);
 
     if (item) {
-        item.quantity -= 1;
-        if (item.quantity < 1) {
-            removeFromCart(item.product_id);
+        if (item.quantity > 1) {
+            item.quantity -= 1;
+        } else {
+            cart = cart.filter(item => item.product_id !== product_id);
         }
     }
 
@@ -239,10 +242,10 @@ function calculateSubtotal() {
     let subtotal = 0;
 
     cart.forEach(item => {
-        const product = products.find(p => p.id === item.product_id);
+        const product = products.find(p => p._id === item.product_id);
         if (!product) return;
 
-        const price = product.discountvalue || product.price;
+        const price = product._discountValue || product._price;
         subtotal += price * item.quantity;
     });
     
@@ -269,7 +272,7 @@ function buildOrderData(){
     let newOrder = new Order({
         id: Date.now(),
         sellerId: 1,
-        products: cart,
+        cart: cart,
         createdAt: new Date(),
         shipping: {
             fristName: "",
@@ -306,4 +309,5 @@ $('#checkout-btn').on('click', function() {
     displayCart();
 
     alert("Order placed successfully!");
+    window.location.href = '../../checkOut/Template/checkOut.html'
 });

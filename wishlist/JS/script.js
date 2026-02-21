@@ -4,7 +4,7 @@ let products = JSON.parse(localStorage.getItem('products'))
 
 // When the document is ready, display the wishlist
 $(document).ready(function () {
-     addToWishlist(3)  // Uncomment for testing adding a product
+    // addToWishlist(1)  // Uncomment for testing adding a product
     displayWishlist()
 })
 
@@ -26,45 +26,60 @@ function displayWishlist() {
 
     // Loop through each wishlist item
     wishlist.map(item => {
-        let product = products.find(p => p.id === item.product_id);  // Find the corresponding product
+        let product = products.find(p => p._id === item.product_id);  // Find the corresponding product
 
         // Append the product card to the wishlist container
         $('.wishlist-items').append(`
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="card border-0 mb-4">
                     <div class="image position-relative">
-                        <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
-                            32%
-                        </div>
-                        <img src="${product.images[0]}" class="card-img-top img-1" alt="${product.title}">
-                        <img src="../images/2.2.webp" class="card-img-top img-2" alt="${product.title}">
+                        ${product._discountPercentage? `<div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
+                            ${product._discountPercentage}%
+                        </div>`:``}
+                        <img src="${product._imageUrl}" class="card-img-top img-1" alt="${product._name}">
+                        <img src="../images/2.2.webp" class="card-img-top img-2" alt="${product._name}">
 
                         <div class="icons position-absolute bottom-0 start-50 translate-middle-x p-2 d-flex">
-                            <i class="fa-solid fa-heart remove" data-id=${product.id}></i>
-                            <i class="fa-solid fa-shopping-bag add-to-cart" data-id=${product.id}></i>
-                            <i class="fa-regular fa-eye" data-id=${product.id} data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                            <i class="fa-solid fa-heart remove" data-id=${product._id}></i>
+                            <i class="fa-solid fa-shopping-bag add-to-cart" data-id=${product._id}></i>
+                            <i class="fa-regular fa-eye" data-id=${product._id} data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
                         </div>
                     </div>
                     <div class="card-body ps-0 fw-bold">
-                        <p class="card-title fw-bold">${product.title}</p>
-                        <p class="card-text price fw-bold m-1">
-                            $${product.discountvalue}
-                            <span class="fw-normal text-decoration-line-through"> $${product.price}</span>
-                        </p>
+                        <p class="card-title fw-bold">${product._name}</p>
+                       ${product._discountValue?` <p class="card-text price fw-bold m-1">
+                            $${product._discountValue}
+                            <span class="fw-normal text-decoration-line-through"> $${product._price}</span>
+                        </p>`:` <p class="card-text price fw-bold m-1">
+                        $${product._price}
+                        </p>`}
                         <div class="d-block d-md-flex align-items-center">
-                            <div class="text-warning me-1 rating">
-                                <i class=" fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                            <span class="text-secondary fw-semibold">${product.rating.count} reviews</span>
+                            <div>${renderStars(Math.round(product._rating))}</div>
+${product._reviews 
+    ? `<span class="text-secondary fw-semibold">1 review</span>` 
+    : `<span class="text-secondary fw-semibold">no reviews</span>`
+}                            
                         </div>
                     </div>
                 </div>
             </div>`);
     });
+}
+
+function renderStars(rating) {
+    let starsHTML = '';
+
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            starsHTML += `<i class="fa-solid fa-star text-warning"></i>`;
+        } else if (i - rating < 1) {
+            starsHTML += `<i class="fa-solid fa-star-half-stroke text-warning"></i>`;
+        } else {
+            starsHTML += `<i class="fa-regular fa-star text-warning"></i>`;
+        }
+    }
+
+    return starsHTML;
 }
 
 // Function to remove a product from the wishlist
@@ -95,16 +110,19 @@ $(document).on("click", ".add-to-cart", function () {
 $(document).on("click", ".fa-eye", function () {
 
     const product_id = Number($(this).data("id"));
-    const product = products.find(p => p.id === product_id);
+    const product = products.find(p => p._id === product_id);
 
     // Populate modal content with the product details
-    $(".modal img").attr("src", product.images[0]);
-    $(".modal .title").text(product.title);
-    $(".modal .reviews").text(`${product.rating.count} review`);
-    $(".modal .stock").text(`${product.stock} in stock`);
-    $(".modal .disc-value").text(`$${product.discountvalue}`);
-    $(".modal .price").text(`$${product.price}`);
-    $(".modal .disc-per").text(`${product.discountPercentage}%`);
+    $(".modal img").attr("src", product._imageUrl);
+    $(".modal .title").text(product._name);
+    $(".modal .reviews").text(`${product._reviews 
+    ? `<span class="text-secondary fw-semibold">1 review</span>` 
+    : `<span class="text-secondary fw-semibold">no reviews</span>`
+}`);
+    $(".modal .stock").text(`${product._stock} in stock`);
+    $(".modal .disc-value").text(`$${product._discountvalue}`);
+    $(".modal .price").text(`$${product._price}`);
+    $(".modal .disc-per").text(`${product._discountPercentage}%`);
 
     // Clear previous size options and add new ones
     $(".size").empty();
@@ -122,7 +140,7 @@ $(document).on("click", ".fa-eye", function () {
     });
 
     // Set the product ID on the modal's "Add to Cart" button
-    $(".modal .add-to-cart-modal").attr("data-id", `${product.id}`)
+    $(".modal .add-to-cart-modal").attr("data-id", `${product._id}`)
 })
 
 // Event listener for adding the product from modal to cart
