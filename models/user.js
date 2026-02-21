@@ -11,13 +11,18 @@ export function createUser(data) {
         wishlist: [""],    // products ids
         cart: [""],     // products ids
         phone: "",
-        address: {
-            country: "",
-            fullAddress: "",
-            appartment: "",
-            postalCode: "",
-            city: ""
-        },
+        address: [
+            {
+                address: "",
+                apartment: "",
+                city: "" ,
+                country: "",
+                firstName: "",
+                lastName: "",
+                phone: "",
+                postalCode: "",
+            }
+        ]
     }}
 
 
@@ -48,4 +53,70 @@ export async function hashPassword(password) {
         .join("");
 
     return hashHex;
+}
+
+
+export class User {
+    constructor({ firstName, lastName, email, password }) {
+        this.id = Date.now();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role = "customer";
+        this.wishlist = [""];
+        this.cart = [""];
+        this.phone = "";
+        this.address = [
+            {
+                firstName: "",
+                lastName: "",
+                address: "",
+                apartment: "",
+                city: "",
+                postalCode: "",
+                country: "",
+                phone: ""
+            }
+        ];
+    }
+
+    // Add a new address
+    addAddress(newAddress) {
+        this.address = this.address || [];
+        this.address.push(newAddress);
+        this.saveCurrentUser();
+        this.updateUsersArray();
+    }
+
+    // Save current user session
+    saveCurrentUser() {
+        localStorage.setItem("currentUser", JSON.stringify(this));
+    }
+
+    // Update Users array
+    updateUsersArray() {
+        const allUsers = JSON.parse(localStorage.getItem("Users")) || [];
+        const userIndex = allUsers.findIndex(u => u.id === this.id);
+
+        if (userIndex !== -1) {
+            allUsers[userIndex] = this;
+        } else {
+            allUsers.push(this);
+        }
+
+        localStorage.setItem("Users", JSON.stringify(allUsers));
+    }
+
+    // Optional: Get all addresses
+    getAddresses() {
+        return this.address || [];
+    }
+
+    // Optional: Save user to Users array only
+    saveUser() {
+        const allUsers = JSON.parse(localStorage.getItem("Users")) || [];
+        allUsers.push(this);
+        localStorage.setItem("Users", JSON.stringify(allUsers));
+    }
 }

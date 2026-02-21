@@ -1,5 +1,5 @@
 
-import { createUser, saveUser, emailExists, hashPassword } from "/models/user.js";
+import { User, emailExists, hashPassword } from "/models/user.js";
 
 $(function(){
     const firstName = $("#firstName");
@@ -66,9 +66,9 @@ $(function(){
         };
 
 
-        const newUser = createUser(userData);
-        saveUser(newUser);
-
+        const newUser = new User(userData);
+        newUser.saveUser();
+        // newUser.saveCurrentUser();
         window.location.href = "/auth/Template/login.html";
 
     });
