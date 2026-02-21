@@ -1,5 +1,5 @@
 export class Product{
-    constructor(id, name, price, description, stock, category, imageUrl){
+    constructor(id, name, price, description, stock, category, imageUrl, size, rating, reviews, discountValue, discountPercentage){
         this.ID =id;
         this.Name = name;
         this.Price = price;
@@ -7,6 +7,11 @@ export class Product{
         this.Stock = stock;
         this.Category = category;
         this.ImageUrl = imageUrl;
+        this.Size = size;
+        this.Rating = rating;
+        this.Reviews = reviews;
+        this.DiscountValue = discountValue;
+        this.DiscountPercentage = discountPercentage;
     }
 
     set ID(id)
@@ -34,7 +39,6 @@ export class Product{
         if(price <= 0) throw new Error("Price cannot be 0 or negative");
         this._price = price;
     }
-
     get Price()
     {
         return this._price;
@@ -87,7 +91,55 @@ export class Product{
         return this._imageUrl;
     }
 
-   
+    set Size(size)
+    {
+        if(size <= 0) throw new Error("Size cannot be 0 or negative");
+        this._size = size;
+    }
+    get Size()
+    {
+        return this._size;
+    }
+
+    set Rating(rating)
+    {
+        if(rating <= 0 || rating >5) throw new Error("Rating must be a number between 1 and 5");
+        this._rating = rating;
+    }
+    get Rating()
+    {
+        return this._rating;
+    }
+  
+    set Reviews(reviews)
+    {
+        if(reviews.length<50) throw new Error("Reviews must be atleast 50 characters long");
+        this._reviews = reviews;
+    }
+    get Reviews()
+    {
+        return this._reviews;
+    }
+
+    set DiscountValue(discountValue)
+    {
+        if(discountValue<0) throw new Error("Discounts values cannot be negative");
+        this._discountValue = discountValue;
+    }
+    get DiscountValue()
+    {
+        return this._discountValue;
+    }
+
+    set DiscountPercentage(discountPercentage)
+    {
+        if(discountPercentage<0) throw new Error("Discounts must be positive");
+        this._discountPercentage = discountPercentage;
+    }
+    get DiscountPercentage()
+    {
+        return this._discountPercentage;
+    }
 }
 export function saveProducts(products){
         localStorage.setItem("products", JSON.stringify(products));
@@ -105,7 +157,12 @@ export function loadProducts(){
         p._description,
         p._stock,
         p._category,
-        p._imageUrl
+        p._imageUrl,
+        p._size,
+        p._rating,
+        p._reviews,
+        p._discountValue,
+        p._discountPercentage
     ));
 }
 
@@ -121,6 +178,11 @@ export function editProduct(productID, updatedData){
         p._stock,
         p._category,
         p._imageUrl,
+        p._size,
+        p._rating,
+        p._reviews,
+        p._discountValue,
+        p._discountPercentage
     ));
 
     let product = products.find(p => p.ID === productID);
@@ -148,6 +210,21 @@ export function editProduct(productID, updatedData){
     if(updatedData.imageUrl !== undefined)
         product.ImageUrl = updatedData.imageUrl;
 
+    if(updatedData.size !== undefined)
+        product.Size = updatedData.size;
+
+    if(updatedData.rating !== undefined)
+        product.Rating = updatedData.rating;
+
+    if(updatedData.reviews !== undefined)
+        product.Reviews = updatedData.reviews;
+
+    if(updatedData.discountValue !== undefined)
+        product.DiscountValue = updatedData.discountValue;
+
+    if(updatedData.discountPercentage !== undefined)
+        product.DiscountPercentage = updatedData.discountPercentage;
+    
     localStorage.setItem("products", JSON.stringify(products));
 
     return true;
