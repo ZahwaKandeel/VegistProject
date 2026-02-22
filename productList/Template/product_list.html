@@ -3,7 +3,7 @@
     <head>
          <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> </title>
+        <title> Product List  </title>
         <link rel="icon" type="image/png" href="/Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -184,8 +184,7 @@
         background-color: #e5a622 !important;
     }
 
-
-         
+ 
 
 </style>  
  
@@ -224,7 +223,7 @@
       <div class="leftsideadd  p-4 mb-3 text-center border-0  border-bottom" style="background-color: #f8f9fa; ">
                         <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 60px; height: 60px;">
-                            <img src="../images/deliveryIcon.jpg" width="30" alt="add">
+                            <img src="../../productDetials/images/addIcon.png" width="30" alt="add">
                         </div>
 
                         <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="location.href='addProductPopUp.html'">
@@ -235,22 +234,22 @@
 
 
 <!--------------------------------------------------->
- <p> Categories </p>
+ <p > Categories </p>
 <div class="border h-75 overflow-auto  ">
 
 <ul class="myul ">
-<li class="bagel" > <input type="checkbox" id="check1">  <label for="check1"> Bagel </label>  </li>
-<li class="candy"><input type="checkbox" id="check2"> <label for="check2">candy </label>  </li>
-<li class="Beans"><input type="checkbox" id="check3"> <label for="check3"> Beans </label>  </li>
-<li class="Bestseller"><input type="checkbox" id="check4"> <label for="check4"> Bestseller </label>  </li>
-<li class="Bread"><input type="checkbox" id="check5"> <label for="check5">Bread </label>  </li>
-<li class="Biscuite"><input type="checkbox" id="check6"> <label for="check6"> Biscuite</label>  </li>
-<li class="Breakfast"><input type="checkbox" id="check7"> <label for="check7"> Breakfast</label>  </li>
-<li class="Cake"><input type="checkbox" id="check8"> <label for="check8"> Cake</label>  </li>
-<li class="Cookie"><input type="checkbox" id="check9"> <label for="check9"> Cookie</label>  </li>
-<li class="cupcake"><input type="checkbox" id="check10"> <label for="check10"> cupcake</label>  </li>
-<li class="Diary&chesse"><input type="checkbox" id="check11"> <label for="check11"> Diary&chesse</label>  </li>
-<li class="Dinner"><input type="checkbox" id="check11"> <label for="check11"> Dinner</label>  </li>
+<li class="bagel " > <input type="radio" id="check1"  name="categories" >  <label for="check1"> Bagel </label>  </li>
+<li class="candy"><input type="radio" id="check2" name="categories"> <label for="check2">candy </label>  </li>
+<li class="beans"><input type="radio" id="check3" name="categories"> <label for="check3"> Beans </label>  </li>
+<li class="bestseller"><input type="radio" id="check4" name="categories"> <label for="check4"> Bestseller </label>  </li>
+<li class="bread"><input type="radio" id="check5" name="categories">  <label for="check5">Bread </label>  </li>
+<li class="biscuite"><input type="radio" id="check6 " name="categories"> <label for="check6"> Biscuite</label>  </li>
+<li class="breakfast"><input type="radio" id="check7" name="categories"> <label for="check7"> Breakfast</label>  </li>
+<li class="cake"><input type="radio" id="check8" name="categories"> <label for="check8"> Cake</label>  </li>
+<li class="cookie"><input type="radio" id="check9" name="categories"> <label for="check9"> Cookie</label>  </li>
+<li class="cupcake"><input type="radio" id="check10" name="categories"> <label for="check10"> cupcake</label>  </li>
+<li class="Diaryhesse"><input type="radio" id="check11" name="categories"> <label for="check11"> Diary&chesse</label>  </li>
+<li class="Dinner"><input type="radio" id="check12" name="categories"> <label for="check12"> Dinner</label>  </li>
 </ul>
 </div>
 </div >
@@ -263,7 +262,7 @@
 <section class="col-12  col-lg-9 "> <!--start  of section 2 --> 
 
 
-<h3 class=" my-1" >Bestseller (20)</h3>
+<h3 class=" my-1 categName " > All Products </h3>  <span class="filternum">  </span> 
 
 
 
@@ -314,12 +313,12 @@
 
 
 
-<div class="row  g-4  mt-2"  > <!--start  of row  2 --> 
+<div class="row  g-4  mt-2 "  > <!--start  of row  2 --> 
 
-<section class="d-none  d-lg-block  col-3  " > <!--start  of section 1 --> 
- <div class="border-bottom p-1 "> <!-- second left side div-->
+<section class="d-none  d-lg-block  col-3   " > <!--start  of section 1 --> 
+ <div class="border-bottom p-1 my-5 "> <!-- second left side div-->
 <p>Filter</p>
-<p class="text-secondary " > 22 products</p>
+<p class="text-secondary " >  <span class="filternum"> </span> products</p>
 </div>
  
     
@@ -327,14 +326,16 @@
        <p> Price </p>
 <div class="" >
 <!-- <p class="text-secondary">The highest price is €67,00</p> -->
+
 <label for="range1" class="form-label text-secondary">The highest price is €67,00</label>
 <input type="range" class="form-range" id="range1">
-<div class="d-flex">
-<div ><label for="">from</label>
-<input class="w-25" type="text"></div>
 
-<div ><label for="">to</label>
-<input class="w-25" type="text"></div>
+<div class="d-flex">
+<div ><label for="minPrice">from</label>
+<input id="minPrice" class="w-50 " type="number"></div>
+
+<div ><label for="maxPrice">to</label>
+<input id="maxPrice" class="w-50 " type="number"></div>
 </div>
 
 
@@ -410,8 +411,8 @@
 <div class=" overflow-auto my-3 border-bottom"> <!-- seven left side-->
     <p>Product type </p>
     <p class="text-secondary">0 selected</p>
-    <input type="checkbox" name="" id="Vegetable"> 
-    <label for="Vegetable">Vegetable </label>
+    <input type="checkbox" name="" id="catmemb"> 
+    <label for="catmemb" class="catmemb" >  </label>
 </div>
 
 
@@ -423,12 +424,12 @@
 </div>
        </section>  <!--end  of section 1 --> 
 
-<div id="divlayout1"  class="  col-12   col-lg-9  row g-4 px-0 mx-0 d-flex  flex-column   align-items-center  " > <!--div of all cards  -->  <!--start  of section 2 --> 
+<div   class="  col-12   col-lg-9  row g-4  px-0 mx-0  d-flex    align-items-baseline  " > <!--div of all cards  -->  <!--start  of section 2 --> 
  
-<div class="     row    px-0 mx-0 my-1  ">     <!--row of product 1  --> 
-<div class="col-6  col-lg-3">
+<div id="divlayout1"  class="     row   px-0 mx-0 my-1   g-4 ">     <!--row of products  --> 
+<div class="col-6  col-lg-3  cards ">
 
-  <div class="cards   position-relative "> <!--div of card 1 -->
+  <div class="   position-relative "> <!--div of card 1 -->
 
 <div class=" position-relative  ">
     <img src="../images//1.jpg" class=" w-100 main-img ">
@@ -471,9 +472,9 @@
 
 </div>
 
-<div class="col-6  col-lg-3 ">
+<div class="col-6  col-lg-3 cards ">
 
- <div class="cards   position-relative "> <!--div of card 1 -->
+ <div class="   position-relative "> <!--div of card 1 -->
 
 
 <div class=" position-relative  ">
@@ -517,9 +518,9 @@
 
 </div>
 
-<div class="col-6  col-lg-3 ">
+<div class="col-6  col-lg-3 cards ">
   
-  <div class="cards     position-relative "> <!--div of card 1 -->
+  <div class="     position-relative "> <!--div of card 1 -->
 
 
 <div class=" position-relative  ">
@@ -562,9 +563,9 @@
 </div>
 
   
-<div class="col-6  col-lg-3       "   >  
+<div class="col-6  col-lg-3   cards    "   >  
 
- <div class=" cards    position-relative "> <!--div of card 2 -->
+ <div class="     position-relative "> <!--div of card 2 -->
 
 
         <div class="position-relative">
@@ -608,18 +609,9 @@
    
 
 
+<div class="col-6  col-lg-3 cards">
 
-
-
-</div> <!--  end  row of product 1 --> 
-
-
-
-<div class="row    px-0 mx-0 my-1">     <!--  row of product 2   --> 
-
-<div class="col-6  col-lg-3">
-
-<div class=" cards    position-relative "> <!--div of card 3 -->
+<div class="     position-relative "> <!--div of card 3 -->
 
       
 
@@ -661,9 +653,9 @@
     </div>   <!--end  of card 3 -->
 </div>
 
-<div class="col-6  col-lg-3">
+<div class="col-6  col-lg-3 cards">
 
-<div class=" cards   position-relative "> <!--div of card 4 -->
+<div class="    position-relative "> <!--div of card 4 -->
 
       
 
@@ -706,9 +698,9 @@
 
 </div>
 
-<div class="col-6  col-lg-3">
+<div class="col-6  col-lg-3 cards">
 
-<div class=" cards   position-relative "> <!--div of card 5 -->
+<div class="    position-relative "> <!--div of card 5 -->
 
         <div class="position-relative">
     <img src="../images//5.jpg" class="img-fluid w-100 main-img">
@@ -751,8 +743,8 @@
 </div>
 
 
-<div class="col-6  col-lg-3">
-<div class=" cards    position-relative "> <!--div of card 6 -->
+<div class="col-6  col-lg-3 cards">
+<div class="     position-relative "> <!--div of card 6 -->
 
 
         <div class="position-relative">
@@ -794,15 +786,8 @@
 </div>
 
 
-
-</div>  <!--  end  row of product 2 --> 
-
-
-
-
-<div class="row    px-0 mx-0 my-1">     <!--  row of product 3   --> 
-<div class="col-6  col-lg-3">
- <div class=" cards     position-relative "> <!--div of card 7 -->
+<div class="col-6  col-lg-3 cards">
+ <div class="      position-relative "> <!--div of card 7 -->
         <div class="position-relative">
     <img src="../images//7.jpg" class="img-fluid w-100 main-img">
     <img src="../images//6.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
@@ -842,8 +827,8 @@
 </div>
 
 
-<div class="col-6  col-lg-3">
-  <div class=" cards    position-relative "> <!--div of card 8 -->
+<div class="col-6  col-lg-3 cards">
+  <div class="     position-relative "> <!--div of card 8 -->
 
         <div class="position-relative">
     <img src="../images//8.webp" class="img-fluid w-100 main-img">
@@ -887,8 +872,8 @@
 </div>
 
 
-  <div class="col-6  col-lg-3">
-     <div class=" cards    position-relative "> <!--div of card 9 -->
+  <div class="col-6  col-lg-3 cards">
+     <div class="     position-relative "> <!--div of card 9 -->
 
         <div class="position-relative">
     <img src="../images//9.jpg" class="img-fluid w-100 main-img">
@@ -930,9 +915,9 @@
 
 
 
- <div class="col-6  col-lg-3">
+ <div class="col-6  col-lg-3 cards">
 
-  <div class=" cards     position-relative "> <!--div of card 10 -->
+  <div class="      position-relative "> <!--div of card 10 -->
 
         <div class="position-relative">
     <img src="../images//10.2.jpg" class="img-fluid w-100 main-img">
@@ -974,14 +959,10 @@
 
     
    
-</div>  <!--  end  row of product 3 --> 
 
+   <div class="col-6  col-lg-3 cards">
 
-<div class="row    px-0 mx-0 my-1">     <!--  row of product 4   --> 
-
-   <div class="col-6  col-lg-3">
-
- <div class=" cards    position-relative "> <!--div of card 11  -->
+ <div class="     position-relative "> <!--div of card 11  -->
 
         <div class="position-relative">
     <img src="../images//11.jpg" class="img-fluid w-100 main-img">
@@ -1021,8 +1002,8 @@
     </div>   <!--end  of card 11 -->
    </div>
 
-  <div class="col-6  col-lg-3">
-    <div class=" cards     position-relative "> <!--div of card 12  -->
+  <div class="col-6  col-lg-3 cards">
+    <div class="      position-relative "> <!--div of card 12  -->
 
         <div class="position-relative">
     <img src="../images//12.1.webp" class="img-fluid w-100 main-img">
@@ -1064,8 +1045,8 @@
   </div>
 
    
- <div class="col-6  col-lg-3">
- <div class=" cards    position-relative "> <!--div of card 13  -->
+ <div class="col-6  col-lg-3 cards">
+ <div class="     position-relative "> <!--div of card 13  -->
 
         <div class="position-relative">
     <img src="../images//13.1.webp" class="img-fluid w-100 main-img">
@@ -1106,8 +1087,8 @@
 
  </div>
 
- <div class="col-6  col-lg-3">
-      <div class=" cards    position-relative "> <!--div of card 14  -->
+ <div class="col-6  col-lg-3 cards">
+      <div class="     position-relative "> <!--div of card 14  -->
 
         <div class="position-relative">
     <img src="../images//14.1.jpg" class="img-fluid w-100 main-img">
@@ -1148,15 +1129,15 @@
  </div>         
 
 
-         
-</div>  <!--  end  row of product 4 --> 
+        
+
    
 
 
-<div class="row    px-0 mx-0 my-1">     <!--  row of product 5   --> 
 
- <div class="col-6  col-lg-3">
-  <div class=" cards     position-relative "> <!--div of card 15  -->
+
+ <div class="col-6  col-lg-3 cards">
+  <div class="      position-relative "> <!--div of card 15  -->
 
         <div class="position-relative">
     <img src="../images//15.jpg" class="img-fluid w-100 main-img">
@@ -1199,8 +1180,8 @@
 
 
               
- <div class="col-6  col-lg-3">
-  <div class=" cards    position-relative "> <!--div of card 16  -->
+ <div class="col-6  col-lg-3 cards">
+  <div class="     position-relative "> <!--div of card 16  -->
 
         <div class="position-relative">
     <img src="../images//16.1.webp" class="img-fluid w-100 main-img">
@@ -1242,8 +1223,8 @@
  </div>
 
                   
- <div class="col-6  col-lg-3">
-    <div class=" cards    position-relative "> <!--div of card 17  -->
+ <div class="col-6  col-lg-3 cards">
+    <div class="     position-relative "> <!--div of card 17  -->
 
         <div class="position-relative">
     <img src="../images//17.1.webp" class="img-fluid w-100 main-img">
@@ -1285,8 +1266,8 @@
  </div>
                     
 
-  <div class="col-6  col-lg-3">
-                            <div class=" cards    position-relative "> <!--div of card 18  -->
+  <div class="col-6  col-lg-3 cards">
+                            <div class="     position-relative "> <!--div of card 18  -->
 
         <div class="position-relative">
     <img src="../images//18.1.webp" class="img-fluid w-100 main-img">
@@ -1326,12 +1307,51 @@
     </div>   <!--end  of card 18 -->
   </div>
 
-</div>  <!--  end  row of product 5 --> 
-    
-  <div class="row    px-0 mx-0 my-1">     <!--  row of product6   --> 
 
-     <div class="col-6  col-lg-3">
-<div class=" cards    position-relative "> <!--div of card 19  -->
+
+     <div class="col-6  col-lg-3 cards">
+<div class="      position-relative "> <!--div of card 19  -->
+
+        <div class="position-relative">
+    <img src="../images//19.1.jpg " class="img-fluid w-100 main-img">
+    <img src="../images//19.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
+
+
+        <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+
+  <span class="icon  p-2   "  >
+<i class="fa-regular fa-heart "></i>
+   </span>
+<span class="icon  p-2   ">
+    <i class="fa fa-shopping-bag"></i>
+</span>
+
+  <span class="icon  p-2   ">
+        <i class="fa fa-eye"></i>
+    </span> 
+</div>
+     </div>  
+        <div>
+<p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>
+        <p class="fw-bold">€55,00</p>
+             <div class="d-flex align-items-center"> <!-- review by stars -->
+    <div class="text-warning me-2 rating">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+  </div>
+</div>
+
+    </div>   <!--end  of card 19 -->
+
+     </div>
+     <div class="col-6  col-lg-3 cards">
+<div class="      position-relative "> <!--div of card 19  -->
 
         <div class="position-relative">
     <img src="../images//19.1.jpg " class="img-fluid w-100 main-img">
@@ -1372,8 +1392,8 @@
 
      </div>
 
-    </div>  <!--  end  row of product 6 --> 
 
+    </div> 
                                 
 
 </div> <!--end  of all cards  --> <!--end  of section 1 --> 
@@ -1385,7 +1405,7 @@
 <div id="divlayout2" class="  col-12   col-lg-9    g-4  px-0 mx-0 d-none  "> <!--div of all cards  with icons -->  <!--start  of section 2 with icons --> 
 
 
-  <div class="cards  col-12  my-5   " "> <!--div of card 1  with icons   -->
+  <div class="cards2  col-12  my-5   " "> <!--div of card 1  with icons   -->
 
 <div     class="     row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1445,7 +1465,7 @@
 
 </div>    <!--div of card 1 with icons -->
 
-  <div class="cards  col-12  my-5   " "> <!--div of card 2  with icons   -->
+  <div class="cards2  col-12  my-5   " "> <!--div of card 2  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1505,7 +1525,7 @@
 
 </div>    <!--div of card 2 with icons -->
 
-  <div class="cards  col-12  my-5   " "> <!--div of card 3  with icons   -->
+  <div class="cards2  col-12  my-5   " "> <!--div of card 3  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1568,7 +1588,7 @@
 
 
 
-  <div class="cards  col-12  my-5   " "> <!--div of card 4  with icons   -->
+  <div class="cards2  col-12  my-5   " "> <!--div of card 4  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1629,7 +1649,7 @@
 </div>    <!--div of card 4 with icons -->
 
 
-  <div class="cards  col-12  my-5   " "> <!--div of card 5  with icons   -->
+  <div class="cards2  col-12  my-5   " "> <!--div of card 5  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1690,7 +1710,7 @@
 </div>    <!--div of card 5 with icons -->
 
 
- <div class="cards  col-12  my-5   " "> <!--div of card 6  with icons   -->
+ <div class="cards2  col-12  my-5   " "> <!--div of card 6  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1752,7 +1772,7 @@
 
 
 
- <div class="cards  col-12  my-5   " "> <!--div of card 7  with icons   -->
+ <div class="cards2  col-12  my-5   " "> <!--div of card 7  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1815,7 +1835,7 @@
 
 
 
- <div class="cards  col-12  my-5   " "> <!--div of card 8  with icons   -->
+ <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1875,68 +1895,7 @@
 
 </div>    <!--div of card 8 with icons -->
 
- <div class="cards  col-12  my-5   " "> <!--div of card 8  with icons   -->
-
-<div     class=" row  "  > <!--container card with icons     -->
-<div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
-    <img src="../images//1.jpg" class=" w-100 main-img   object-fit-cover h-100"> 
-    <img src="../images//1.2.jpg" class=" w-100  hover-img position-absolute top-0 start-0 h-100  ">
-</div>
-
-<div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
-
-
-<p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>  <!--   name and price   -->
-        <p class="fw-bold">€55,00</p>   
-
-        <div class="d-flex align-items-center  "> <!-- review by stars -->
-    <div class="text-warning me-2 rating ">
-      <i class=" fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-     <i class="fa-regular fa-star"></i>
-      
-    </div>
-    <span class="text-muted ratingspa">No reviews</span>
-
-  </div>    <!--   name and price   -->
-
-
-
-  <div> <!--   paragraph   -->
-
-            <p class="text-muted mt-3 ">
-              More Detail Lorem Ipsum is simply dummy text of the printing and 
-              typesetting industry. Lorem Ipsum has been the standard dummy text. 
-              Type here your detail one by one...
-            </p>
-
-            <div class="icons  d-flex gap-2 ">
-
-  <span class="icon  p-2   "  >
-<i class="fa-regular fa-heart "></i>
-   </span>
-<span class="icon  p-2   ">
-    <i class="fa fa-shopping-bag"></i>
-</span>
-
-  <span class="icon  p-2   ">
-        <i class="fa fa-eye"></i>
-    </span> 
-</div>
-
-</div> <!--   paragraph   -->
-  
-
-</div> 
-
-     </div>   <!--container card with icons     -->
-
-</div>    <!--div of card 8 with icons -->
-
-
- <div class="cards  col-12  my-5   " "> <!--div of card 8  with icons   -->
+ <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1997,7 +1956,68 @@
 </div>    <!--div of card 8 with icons -->
 
 
- <div class="cards  col-12  my-5   " "> <!--div of card 8  with icons   -->
+ <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
+
+<div     class=" row  "  > <!--container card with icons     -->
+<div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
+    <img src="../images//1.jpg" class=" w-100 main-img   object-fit-cover h-100"> 
+    <img src="../images//1.2.jpg" class=" w-100  hover-img position-absolute top-0 start-0 h-100  ">
+</div>
+
+<div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
+
+
+<p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>  <!--   name and price   -->
+        <p class="fw-bold">€55,00</p>   
+
+        <div class="d-flex align-items-center  "> <!-- review by stars -->
+    <div class="text-warning me-2 rating ">
+      <i class=" fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+
+  </div>    <!--   name and price   -->
+
+
+
+  <div> <!--   paragraph   -->
+
+            <p class="text-muted mt-3 ">
+              More Detail Lorem Ipsum is simply dummy text of the printing and 
+              typesetting industry. Lorem Ipsum has been the standard dummy text. 
+              Type here your detail one by one...
+            </p>
+
+            <div class="icons  d-flex gap-2 ">
+
+  <span class="icon  p-2   "  >
+<i class="fa-regular fa-heart "></i>
+   </span>
+<span class="icon  p-2   ">
+    <i class="fa fa-shopping-bag"></i>
+</span>
+
+  <span class="icon  p-2   ">
+        <i class="fa fa-eye"></i>
+    </span> 
+</div>
+
+</div> <!--   paragraph   -->
+  
+
+</div> 
+
+     </div>   <!--container card with icons     -->
+
+</div>    <!--div of card 8 with icons -->
+
+
+ <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -2101,6 +2121,11 @@
         <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
         <script src="../JS/productlist.js"></script>
         <script type="module">import "../../seller/JS/dummyproducts.js";</script>
+
+
+<!-- 
+          <div id="modalContainer"></div>
+        <script src="../../component/PopUpFunctions.js"></script> -->
 
 <!-- <script src="../../componant/addToCart.js"></script> -->
 
