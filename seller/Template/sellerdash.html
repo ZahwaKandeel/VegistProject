@@ -27,7 +27,7 @@
     <script src="/component/footer.js"></script>
     <script src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
         
     <script>
         $(document).ready(function() {
@@ -74,6 +74,17 @@
                 max-height: 400px;
                 overflow-y: auto;
               }
+              .card{
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                background-color: white;
+                transition: transform 0.2s ease;
+              }
+              .card:hover {
+                transform: translateY(-3px);
+                }
+                #monthlyTargetChart {
+                    max-height: 220px;
+                }
             </style>
             <div class="container my-5">
                 <div class="row g-4">
@@ -127,28 +138,23 @@
                 <!--row 2-->
                 <div class="row g-4 my-5">
 
-                    <div class="col-12 col-md-12 col-lg-6">
+                    <div class="col-12 col-md-12 col-lg-9">
                         <div class="card p-4 h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h5 class="mb-0 fw-bold">Sales Report</h5>
-
                                 <div class="btn-toggle btn-group mt-2">
-                                    <button class="btn btn-sm btn-light">Today</button>
-                                    <button class="btn btn-sm btn-light">Week</button>
-                                    <button class="btn btn-sm btn-primary">Month</button>
+                                    <button id="btnToday" class="btn btn-sm btn-light">Today</button>
+                                    <button id="btnWeek" class="btn btn-sm btn-light">Week</button>
+                                    <button id="btnMonth" class="btn btn-sm btn-primary">Month</button>
                                 </div>
                             </div>
+                            <canvas id="SalesReportChart"></canvas>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 col-lg-6">
-                        <div class="card h-100">
-                            <div class="card-body border-bottom">
-                                <h5>Monthly Target</h5>
-                            </div>
-
-                            <div class="card-body">
-                                <h5>Sales Status</h5>
-                            </div>
+                    <div class="col-12 col-md-12 col-lg-3">
+                        <div class="card p-4 h-100">
+                            <h5 class="fw-bold">Monthly Target</h5>
+                            <canvas id="monthlyTargetChart"></canvas>
                         </div>
                     </div>
 
@@ -189,19 +195,19 @@
                 <div class="row g-4 my-5">
                     <div class="col-12 table-responsive">
                         <h3>Recent Sales</h3>
-                        <table id="Recent Sales" class="table">
+                        <table id="RecentSales" class="table">
                             <thead class="table-light">
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Payment</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -209,19 +215,19 @@
                 <div class="row g-4 my-5">
                     <div class="col-12 table-responsive">
                         <h3>Top Selling Items</h3>
-                        <table id="Top Selling Items" class="table">
+                        <table id="TopSellingItems" class="table">
                             <thead class="table-light">
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Total Sale</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Total Sale</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
