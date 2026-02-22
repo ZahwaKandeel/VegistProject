@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("quickViewModal.html")
+    fetch("/component/quickViewModal.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("modalContainer").innerHTML = data;
+            document.getElementById("#quickViewModal").innerHTML = data;
 
             const carouselElement = document.getElementById("carouselPopup");
 

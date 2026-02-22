@@ -1,59 +1,75 @@
 import { loadProducts } from "../../component/Product.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+//Load products from localStorage
+let products = loadProducts() || [];
 
-    // 1️⃣ Get product ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get("id"));
+//Get the product ID from the URL
+const params = new URLSearchParams(window.location.search);
+const productId = parseInt(params.get("id")); // assumes URL is like ?id=1
 
-    if (!id) {
-        console.log("No product ID found in URL");
-        return;
-    }
+let product = null;
 
-    // 2️⃣ Load products from localStorage
-    const products = loadProducts();
-
-    if (!products || products.length === 0) {
-        console.log("No products found in storage");
-        return;
-    }
-
-    // 3️⃣ Find selected product
-    const product = products.find(p => p.ID === id);
-
-    if (!product) {
-        console.log("Product not found");
-        return;
-    }
-
-    // 4️⃣ Inject data into page
-    renderProduct(product);
-});
-
-function renderProduct(product) {
-    document.querySelector("h2").textContent = product.Name;
-    document.querySelector(".fs-4").textContent = `€${product.Price}`;
-    document.querySelector(".text-muted.small").textContent = product.Description;
-    document.querySelector(".text-success").textContent = `● ${product.Stock} in stock`;
-    const skuElements = document.querySelectorAll("span.text-muted");
-    skuElements[skuElements.length - 1].textContent = product.ID;
-    document.querySelector(".carousel-item.active img").src = product.ImageUrl;
-
-    // Render Sizes
-    const sizeContainer = document.querySelector("#sizeContainer"); // add id in HTML
-    sizeContainer.innerHTML = product.Sizes.map(s => `<button class="btn btn-outline-warning me-2">${s}</button>`).join("");
-
-    // Render Materials
-    const materialContainer = document.querySelector("#materialContainer"); // add id in HTML
-    materialContainer.innerHTML = product.Materials.map(m => `<button class="btn btn-outline-warning me-2">${m}</button>`).join("");
+if (productId && products.length > 0) {
+    product = products.find(p => p.ID === productId);
 }
 
+if (!productId) {
+    console.log("No product ID found in URL");
+} else if (products.length === 0) {
+    console.log("No products found in localStorage");
+} else {
+    
+    if (!product) {
+        console.log("Product not found");
+    } else {
+        //Fill in the main info
+        document.getElementById("name").textContent = product.Name;
+        document.getElementById("productPrice").textContent = `€${product.Price.toFixed(2)}`;
+        document.getElementById("productStock").innerHTML = `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
+        document.getElementById("productDescription").textContent = product.Description;
+        document.getElementById("productSKU").textContent = product.ID;
 
+        //Fill in the carousel images
+        const carouselImages = document.querySelectorAll("#carouselVeg img");
+        carouselImages.forEach((img) => {
+            img.src = product.ImageUrl; // All slides show the same image
+        });
+
+        //Fill in the thumbnail images
+        const thumbImages = document.querySelectorAll(".d-flex.justify-content-evenly img");
+        thumbImages.forEach((img) => {
+            img.src = product.ImageUrl;
+        });
+
+        //Fill in rating stars
+        const starsContainer = document.querySelector(".text-warning");
+        if (starsContainer) {
+            let fullStars = Math.floor(product.Rating);
+            let starsHtml = "";
+            for (let i = 0; i < 5; i++) {
+                starsHtml += i < fullStars ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star"></i>';
+            }
+            starsContainer.innerHTML = starsHtml + ` <span class="text-muted ms-2">${product.Reviews.length} reviews</span>`;
+        }
+
+        //Fill in discount info
+        const priceContainer = document.getElementById("productPrice");
+        if (product.DiscountPercentage > 0) {
+            priceContainer.nextElementSibling.textContent = `€${(product.Price + product.DiscountValue).toFixed(2)}`;
+            const badge = priceContainer.nextElementSibling.nextElementSibling;
+            badge.textContent = `${product.DiscountPercentage}%`;
+        }
+    }
+}
+
+// Wishlist link
 $(document).ready(function () {
-    // Wishlist Link
     $('.bi-heart').closest('a').on('click', function(e) {
         e.preventDefault();
-        window.location.href = "../../wishlist/Template/wishlist.html";
+
+        if (product) {
+            //addToWishlist(product.ID);
+            window.location.href = "../../wishlist/Template/wishlist.html";
+        }
     });
 });
