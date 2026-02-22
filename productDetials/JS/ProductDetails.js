@@ -64,12 +64,37 @@ if (!productId) {
 
 // Wishlist link
 $(document).ready(function () {
-    $('.bi-heart').closest('a').on('click', function(e) {
+    $('.bi-heart').on('click', function(e) {
         e.preventDefault();
 
         if (product) {
-            //addToWishlist(product.ID);
+            addToWishlist(product.ID);
             window.location.href = "../../wishlist/Template/wishlist.html";
+        }
+    });
+});
+
+
+// Add to cart link
+$(document).ready(function () {
+    $('#addToCart').on('click', function(e) {
+        e.preventDefault();
+
+        if (product) {
+            addToCart(product.ID);
+            window.location.href = "../../cart/Template/cart.html";
+        }
+    });
+});
+
+// Buy it now link
+$(document).ready(function () {
+    $('#addToCart').on('click', function(e) {
+        e.preventDefault();
+
+        if (product) {
+            addToCart(product.ID);
+            window.location.href = "../../cart/Template/cart.html";
         }
     });
 });
