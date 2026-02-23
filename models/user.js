@@ -1,13 +1,13 @@
 // User Class
 
 export class User {
-    constructor({ firstName, lastName, email, password }) {
+    constructor({ firstName, lastName, email, password, role }) {
         this.id = Date.now();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = "customer";
+        this.role = role;
         this.wishlist = [];
         this.cart = [];
         this.phone = "";
@@ -19,7 +19,7 @@ export class User {
         const encoder = new TextEncoder();
         const data = encoder.encode(password);
 
-        const hashBuffer = crypto.subtle.digest("SHA-256", data);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
 
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         const hashHex = hashArray

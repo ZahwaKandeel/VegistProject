@@ -6,7 +6,8 @@ $(function(){
     const lastName = $("#lastName");
     const email = $("#email");
     const password = $("#password");
-    const loginBtn = $("#login")
+    const loginBtn = $("#login");
+
 
     loginBtn.click(() =>{window.location.href = "/auth/Template/login.html"});
 
@@ -55,6 +56,19 @@ $(function(){
             alert("This email is already registered.");
             return;
         }
+
+        if (!$("input[name='usertype']:checked").length) {
+            alert("You must select a user type!");
+            return;
+        }
+
+        const userType = $("input[name='usertype']:checked").val();
+        console.log(userType)
+        let role = "";
+
+        if (userType === "customer") {
+            role = "customer";
+        } else { role = "seller";}
         
         const hashedPassword = await User.hashPassword(password.val().trim());
 
@@ -62,7 +76,8 @@ $(function(){
             firstName: firstName.val().trim(),
             lastName: lastName.val().trim(),
             email: email.val().trim(),
-            password: hashedPassword
+            password: hashedPassword,
+            role: role,
         };
 
 
