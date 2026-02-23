@@ -1,4 +1,5 @@
 import { loadProducts } from "../../component/Product.js";
+import { Order } from "/models/order.js"
 
 //Load products from localStorage
 let products = loadProducts() || [];
@@ -28,11 +29,12 @@ if (!productId) {
         document.getElementById("productStock").innerHTML = `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
         document.getElementById("productDescription").textContent = product.Description;
         document.getElementById("productSKU").textContent = product.ID;
+        document.getElementById("category").textContent = product.Category;
 
         //Fill in the carousel images
         const carouselImages = document.querySelectorAll("#carouselVeg img");
         carouselImages.forEach((img) => {
-            img.src = product.ImageUrl; // All slides show the same image
+            img.src = product.ImageUrl; // All slides show the same image as its one img 
         });
 
         //Fill in the thumbnail images
@@ -74,13 +76,13 @@ $(document).ready(function () {
     });
 });
 
+let value = parseInt($('#quantityValue').val());
 // PLUS BUTTON
 $(document).on('click', '.qty-plus', function () {
         
     let input = $(this).siblings('.qty-input');
-    let value = parseInt(input.val());
-
-    input.val(value + 1);
+    
+    value++;
     calculateSubTotal(input)
 });
 
@@ -88,10 +90,9 @@ $(document).on('click', '.qty-plus', function () {
 $(document).on('click', '.qty-minus', function () {
 
     let input = $(this).siblings('.qty-input');
-    let value = parseInt(input.val());
 
     if (value > 1) {
-        input.val(value - 1);
+        value--
     }
      calculateSubTotal(input)
 });
@@ -122,13 +123,114 @@ $(document).ready(function () {
 });
 
 //Calculate subTotal
-// function calculateSubTotal(input){
-//     let total = 0;
-//     let value = parseInt(input.val());
-//     total = product.Price * value;
-//     return total;
-// }
+let total;
 
-// let currentOrder = new Order({
+function calculateSubTotal(){
+    total = product.Price * value;
+    return total;
+}
 
-// });
+//send product id and cart needed data for checkout
+function buyItNow(){
+    let currentOrder = new Order({
+            id: Date.now(),
+            sellerId: 1,
+            cart: [{product_id:productId,
+                quantity:value
+            }],
+            createdAt: new Date(),
+            shipping: {
+                fristName: "",
+                lastName: "",
+                phone: "",
+                country:  "",
+                fullAddress: "",
+                appartment: "",
+                postalCode: "",
+                City: "",
+                shipping_fees: null
+            },
+            subtotal: total,
+            discount_code:  "",
+            special_instructions: ""
+        });
+
+    localStorage.setItem("currentOrder",JSON.stringify(currentOrder));
+    console.log(currentOrder);
+    
+}
+
+$(document).ready(function () {
+    $('#buyItNow').on('click', function() {
+
+            buyItNow();
+            window.location.href = "../../checkOut/Template/checkOut.html";
+    });
+});
+
+//RELATED PRODUCTS
+function loadRelatedProducts() {
+
+    if (!product || products.length === 0) return;
+
+    //Exclude the current product
+    let related = products.filter(p =>
+        p.ID !== product.ID 
+    );
+
+    let cards = $(".cards");
+
+    cards.each(function (index) {
+
+        if (index < related.length) {
+
+            let p = related[index];
+
+            // Update main image
+            $(this).find(".main-img").attr("src", p.ImageUrl);
+
+            // Update product name and link
+            $(this).find(".para")
+                .text(p.Name)
+                .attr("href", `productDetails.html?id=${p.ID}`);
+
+            // Update price
+            $(this).find(".fw-bold")
+                .text(`€${p.Price.toFixed(2)}`);
+
+            // Update rating stars
+            let starsHtml = generateStars(p.Rating);
+            $(this).find(".rating").html(starsHtml);
+
+            // Update reviews count
+            $(this).find(".ratingspa")
+                .text(`${p.Reviews?.length || 0} reviews`);
+
+        } else {
+            // Hide extra cards if there are fewer products than cards
+            $(this).hide();
+        }
+    });
+}
+
+
+// Function to generate star icons based on rating
+function generateStars(rating = 0) {
+
+    let fullStars = Math.floor(rating);
+    let starsHtml = "";
+
+    for (let i = 0; i < 5; i++) {
+        starsHtml += i < fullStars
+            ? '<i class="fa-solid fa-star"></i>'
+            : '<i class="fa-regular fa-star"></i>';
+    }
+
+    return starsHtml;
+}
+
+
+// Execute after DOM is fully loaded
+$(document).ready(function () {
+    loadRelatedProducts();
+});
