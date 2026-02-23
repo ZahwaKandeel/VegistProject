@@ -173,7 +173,6 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item z-3"><a href="/home/Template/home.html" class="text-decoration-none text-white">Home</a></li>
                         <li class="breadcrumb-item z-3"><a href="/productList/Template/product_list.html" class="text-decoration-none text-white">Product List</a></li>
-                        <li class="breadcrumb-item active text-white z-3">Product Name (Weight)</li>
                     </ul>
                 </nav>
             </div> <!-- End Nav -->
@@ -272,66 +271,46 @@
                         <p id="productDescription" class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
 
                         <div class="mb-4">
-                            <label class="d-block fw-bold mb-2">Size:</label>
+                            <label id="size" class="d-block fw-bold mb-2">Size:</label>
                             <div class="d-flex gap-2">
-                                <input type="radio" class="btn-check" name="size_choice" id="size1" autocomplete="off" checked>
-                                <label class="btn btn-variant-pill" for="size1">2KG</label>
+                                <input type="radio" class="btn-check" name="size_choice" id="2kg" autocomplete="off" checked>
+                                <label class="btn btn-variant-pill" for="2kg">2KG</label>
 
-                                <input type="radio" class="btn-check" name="size_choice" id="size2" autocomplete="off">
-                                <label class="btn btn-variant-pill" for="size2">3KG</label>
+                                <input type="radio" class="btn-check" name="size_choice" id="3kg" autocomplete="off">
+                                <label class="btn btn-variant-pill" for="3kg">3KG</label>
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="d-block fw-bold mb-2">Material:</label>
-                            <div class="d-flex gap-2">
-                                <input type="radio" class="btn-check" name="material_choice" id="country1" autocomplete="off" checked>
-                                <label class="btn btn-variant-pill" for="country1">INDIA</label>
-
-                                <input type="radio" class="btn-check" name="material_choice" id="country2" autocomplete="off">
-                                <label class="btn btn-variant-pill" for="country2">CANADA</label>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column flex-md-row mb-4">
-                            <p class="fw-bold mb-2">Food product form:</p>
-                            <div class="d-flex">
-                                <input type="radio" class="btn-check" name="form_choice" id="mat1" >
-                                <label class="btn btn-variant-pill" for="mat1">Fresh</label>
-
-                                <input type="radio" class="btn-check" name="form_choice" id="mat2">
-                                <label class="btn btn-variant-pill" for="mat2">Frozen</label>
-                            </div>
-                            <div>
-                                <input type="radio" class="btn-check d-block" name="form_choice" id="mat3" checked>
-                                <label class="btn btn-variant-pill" for="mat3">Ground</label>
-                            </div>
+                        <div class="d-flex align-items-center flex-md-row mb-4">
+                            <p id="food-product-form" class="fw-bold mb-2">Category:</p>
+                            <label id="category" class="btn btn-variant-pill"></label>
+                            
                         </div>
 
                         <div class="d-flex align-items-center mb-4">
-                                        <div class="mb-3">
-                                            <span class="me-3 fw-bold text-dark">Quantity:</span>
-                                                <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
-                                                    <button class="btn btn-light border-0 qty-minus" type="button">-</button>
-                                                    <input type="text" 
-                                                        class="form-control border-0 text-center bg-transparent fw-bold qty-input" 
-                                                        value="1" 
-                                                        readonly>
-                                                    <button class="btn btn-light border-0 qty-plus" type="button">+</button>
-                                                </div>
-                                        </div>
+                            <div class="mb-3">
+                                <span class="me-3 fw-bold text-dark">Quantity:</span>
+                                    <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+                                        <button class="btn btn-light border-0 qty-minus" type="button">-</button>
+                                            <input type="text" id="quantityValue"
+                                                class="form-control border-0 text-center bg-transparent fw-bold qty-input" 
+                                                value="1" 
+                                                readonly>
+                                            <button class="btn btn-light border-0 qty-plus" type="button">+</button>
+                                    </div>
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-3 gap-2">
-                            <button class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
-                            <button class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
+                            <button id="addToCart" class=" btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
+                            <button id="buyItNow" class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
                         </div>
 
                         <div class="mt-4">
                             <div class="mb-2">
-                                <a href="/wishlist/Template/wishlist.html" class="text-decoration-none text-muted small">
+                                <p class="text-decoration-none text-muted small">
                                     <i class="bi bi-heart me-2"></i>Wishlist
-                                </a>
+                                </p>
                             </div>
 
                             <hr>
@@ -565,17 +544,15 @@
 
         </div> <!-- End Row 2 -->
 
-        <div class="container mt-5">
+        <div class="container mt-5 mb-5">
             <h2 class="fw-bold mb-4 text-center">Related product</h2>
-            
             <div class="row g-4 px-0 mx-0"> 
-                
                 <div class="cards  col-6  col-md-4  col-lg-3   position-relative "> <!--div of card 1 -->
 
 
                 <div class=" position-relative  ">
-                    <img src="../images/3.jpg" class="img-fluid w-100 main-img">
-                    <img src="../images/3.2.jpg" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
+                    <img src="" class="img-fluid w-100 main-img">
+                    <img src="" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
                 </div>
 
                 <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 ">
@@ -587,7 +564,7 @@
                     <i class="fa fa-shopping-bag"></i>
                 </span>
 
-                <!-- add that part -->
+                <!-- add that part to work the popup -->
                 <span class="icon p-2"
                     data-bs-toggle="modal"
                     data-bs-target="#quickViewModal"
@@ -619,8 +596,8 @@
 
 
                             <div class="position-relative">
-                        <img src="../images/4.webp" class="img-fluid w-100 main-img">
-                        <img src="../images/4.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
+                        <img src="" class="img-fluid w-100 main-img">
+                        <img src="" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
                     </div>
 
                             <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
@@ -662,8 +639,8 @@
 
 
                             <div class="position-relative">
-                        <img src="../images/10.jpg" class="img-fluid w-100 main-img">
-                        <img src="../images/10.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
+                        <img src="" class="img-fluid w-100 main-img">
+                        <img src="" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
                     </div>
 
                             <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
@@ -705,8 +682,8 @@
 
 
                             <div class="position-relative">
-                        <img src="../images/12.1.webp" class="img-fluid w-100 main-img">
-                        <img src="../images/12.2.jpg" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
+                        <img src="" class="img-fluid w-100 main-img">
+                        <img src="" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
                     </div>
 
                             <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
@@ -751,9 +728,10 @@
 
         </main>
 
-        <div id="modalContainer"></div>
-        <script src="/component/PopUpFunctions.js"></script>
-        <script type="module" src="../JS/dummyProducts.js"></script>
+        <div id="#quickViewModal"></div>
+        <!-- <script src="/component/PopUpFunctions.js"></script> -->
+        <script src="../../component/addToWishlist.js"></script>
+        <script src="../../component/addToCart.js"></script>
         <script type="module" src="../JS/ProductDetails.js"></script>
         <footer></footer>
     </body>
