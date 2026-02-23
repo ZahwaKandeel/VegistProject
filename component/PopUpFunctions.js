@@ -20,40 +20,8 @@ $(document).on('click', '.fa-heart', function () {
 });
 
 $(document).on('click', '.fa-shopping-bag', function () {
-
-});
-
-// PLUS BUTTON
-$(document).on('click', '.qty-plus', function () {
-        
-    let input = $(this).siblings('.qty-input');
-    let value = parseInt(input.val());
-
-    input.val(value + 1);
-    calculateSubTotal(input)
-});
-
-// MINUS BUTTON
-$(document).on('click', '.qty-minus', function () {
-
-    let input = $(this).siblings('.qty-input');
-    let value = parseInt(input.val());
-
-    if (value > 1) {
-        input.val(value - 1);
-    }
-     calculateSubTotal(input)
-});
-
-// Add to cart (send product id to the cart)
-$(document).ready(function () {
-    $('#addToCart').on('click', function(e) {
-        e.preventDefault();
-
-        if (product) {
             let quantity = parseInt($('#quantityValue').val());
             addToCart(product.ID, quantity);
             window.location.href = "../../cart/Template/cart.html";
-        }
-    });
 });
+

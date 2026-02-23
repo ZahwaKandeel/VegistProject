@@ -30,6 +30,9 @@ if (!productId) {
         document.getElementById("productDescription").textContent = product.Description;
         document.getElementById("productSKU").textContent = product.ID;
         document.getElementById("category").textContent = product.Category;
+        //document.getElementById("sizes").textContent = product.Sizes[];
+        //document.getElementById("reviews").textContent = product.Reviews;
+        document.getElementById("discount").textContent = product.DiscountPercentage;
 
         //Fill in the carousel images
         const carouselImages = document.querySelectorAll("#carouselVeg img");
@@ -100,7 +103,7 @@ $(document).ready(function () {
 
         if (product) {
             let quantity = parseInt($('#quantityValue').val());
-            addToCart(product.ID, quantity);
+            //addToCart(product.ID, quantity, product.Sizes[]);
             window.location.href = "../../cart/Template/cart.html";
         }
     });
@@ -194,13 +197,13 @@ function loadRelatedProducts() {
             $(this).find(".fw-bold")
                 .text(`€${p.Price.toFixed(2)}`);
 
-            // Update rating stars
-            let starsHtml = generateStars(p.Rating);
-            $(this).find(".rating").html(starsHtml);
+            // // Update rating stars
+            // let starsHtml = generateStars(p.Rating);
+            // $(this).find(".rating").html(starsHtml);
 
-            // Update reviews count
-            $(this).find(".ratingspa")
-                .text(`${p.Reviews?.length || 0} reviews`);
+            // // Update reviews count
+            // $(this).find(".ratingspa")
+            //     .text(`${p.Reviews?.length || 0} reviews`);
 
         } else {
             // Hide extra cards if there are fewer products than cards
@@ -211,19 +214,19 @@ function loadRelatedProducts() {
 
 
 // Function to generate star icons based on rating
-function generateStars(rating = 0) {
+// function generateStars(rating = 0) {
 
-    let fullStars = Math.floor(rating);
-    let starsHtml = "";
+//     let fullStars = Math.floor(rating);
+//     let starsHtml = "";
 
-    for (let i = 0; i < 5; i++) {
-        starsHtml += i < fullStars
-            ? '<i class="fa-solid fa-star"></i>'
-            : '<i class="fa-regular fa-star"></i>';
-    }
+//     for (let i = 0; i < 5; i++) {
+//         starsHtml += i < fullStars
+//             ? '<i class="fa-solid fa-star"></i>'
+//             : '<i class="fa-regular fa-star"></i>';
+//     }
 
-    return starsHtml;
-}
+//     return starsHtml;
+// }
 
 
 //Execute after DOM is fully loaded
@@ -242,11 +245,28 @@ $(document).ready(function () {
 
 
 //Fetch size of product
-// product.sizes.map(item=>{
-//     $('.sizediv').append(`
-//         <input type="radio" `${}` class="btn-check" name="size_choice" autocomplete="off" checked>
-//                 <label class="btn btn-variant-pill">${item}</label>
-        
-        
-//         `)
-// })
+// Clear old sizes first
+$('.sizediv').empty();
+
+// // Generate sizes dynamically
+product.Sizes.map((item, index) => {
+
+    let sizeId = `size_${index}`; // unique id for each size
+
+    $('.sizediv').append(`
+        <input 
+            type="radio" 
+            class="btn-check" 
+            name="size_choice" 
+            id="${sizeId}" 
+            value="${item}"
+            ${index === 0 ? "checked" : ""}
+            autocomplete="off">
+
+        <label 
+            class="btn btn-outline-warning rounded-pill px-4 me-2"
+            for="${sizeId}">
+            ${item}KG
+        </label>
+    `);
+});

@@ -15,22 +15,22 @@
                                         <div class="carousel-inner w-100">
                                             <div class="carousel-item active">
                                                 <div class="ratio ratio-1x1">
-                                                    <img src="/productDetials/images/tomato1.jpg" class="w-100" style="object-fit: cover;" alt="img1">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img1">
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
                                                 <div class="ratio ratio-1x1">
-                                                    <img src="/productDetials/images/product1.jpeg" class="w-100" style="object-fit: cover;" alt="img2">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img2">
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
                                                 <div class="ratio ratio-1x1">
-                                                    <img src="/productDetials/images/tomato3.jpeg" class="w-100" style="object-fit: cover;" alt="img3">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img3">
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
                                                 <div class="ratio ratio-1x1">
-                                                    <img src="/productDetials/images/tomato4.webp" class="w-100" style="object-fit: cover;" alt="img4">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img4">
                                                 </div>
                                             </div>
                                         </div>
@@ -55,38 +55,38 @@
 
                                     <div class="d-flex justify-content-evenly align-items-center gap-2 mt-3">
                                         <a href="javascript:void(0)" data-bs-target="#carouselPopup" data-bs-slide-to="0" class="col-3">
-                                            <img src="/productDetials/images/tomato1.jpg" class="img-fluid border">
+                                            <img id="modal-productImage" src="" class="img-fluid border">
                                         </a>
                                         <a href="javascript:void(0)" data-bs-target="#carouselPopup" data-bs-slide-to="1" class="col-3">
-                                            <img src="/productDetials/images/product1.jpeg" class="img-fluid border">
+                                            <img id="modal-productImage" src="" class="img-fluid border">
                                         </a>
                                         <a href="javascript:void(0)" data-bs-target="#carouselPopup" data-bs-slide-to="2" class="col-3">
-                                            <img src="/productDetials/images/tomato3.jpeg" class="img-fluid border">
+                                            <img id="modal-productImage" src="" class="img-fluid border">
                                         </a>
                                         <a href="javascript:void(0)" data-bs-target="#carouselPopup" data-bs-slide-to="3" class="col-3">
-                                            <img src="/productDetials/images/tomato4.webp" class="img-fluid border">
+                                            <img id="modal-productImage" src="" class="img-fluid border">
                                         </a>
                                     </div>
                                 </div> <!--  Col 1 -->
 
                                 <div class="col-12 col-md-6 col-xxl-8">
                                     <div class="px-2">
-                                        <h2 class="fw-bold">Product Name (Weight)</h2>
+                                        <h2  id="modal-name" class="fw-bold"></h2>
                                         <hr>
                                         <div class="text-warning mb-2">
                                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-                                            <span class="text-muted ms-2 small">No reviews</span>
+                                            <span class="text-muted ms-2 small"></span>
                                         </div>
 
-                                        <p class="mb-2"><strong>Availability:</strong> <span class="text-success">● 18 in stock</span></p>
+                                        <p id="modal-productStock" class="mb-2"><strong>Availability:</strong> <span class="text-success"></span></p>
 
                                         <div class="d-flex align-items-center mb-3">
-                                            <span class="fs-4 fw-bold me-2">€14,00</span>
-                                            <span class="text-decoration-line-through text-muted me-2">€20,00</span>
-                                            <span class="badge bg-danger">30%</span>
+                                            <span  id="modal-productPrice" class="fs-4 fw-bold me-2"></span>
+                                            <span class="text-decoration-line-through text-muted me-2"></span>
+                                            <span id="modal-discount" class="badge bg-danger"></span>
                                         </div>
 
-                                        <p class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                        <p id="modal-productDescription" class="text-muted small"></p>
 
                                         <div class="mb-3">
                                             <label class="d-block fw-bold mb-2 small">Size:</label>
@@ -98,16 +98,24 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <span class="me-3 fw-bold text-dark">Quantity:</span>
-                                                <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
-                                                    <button class="btn btn-light border-0 qty-minus" type="button">-</button>
-                                                    <input type="text" 
-                                                        class="form-control border-0 text-center bg-transparent fw-bold qty-input" 
-                                                        value="1" 
-                                                        readonly>
-                                                    <button class="btn btn-light border-0 qty-plus" type="button">+</button>
-                                                </div>
+                                        <div class="d-flex align-items-center flex-md-row mb-4">
+                                            <p class="fw-bold mb-2">Category:</p>
+                                            <label id="modal-category" class="btn btn-variant-pill"></label>
+                                        </div>
+
+                                        <div class="d-flex align-items-center mb-4">
+                                            <div class="mb-3">
+                                                <span class="me-3 fw-bold text-dark">Quantity:</span>
+                                                    <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+<div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+    <button class="btn btn-light border-0 modal-qty-minus" type="button">-</button>
+    
+    <input type="text" id="modal-quantityValue" class="form-control border-0 text-center bg-transparent fw-bold" value="1" readonly>
+    
+    <button class="btn btn-light border-0 modal-qty-plus" type="button">+</button>
+</div>
+                                                    </div>
+                                            </div>
                                         </div>
 
                                         <div class="d-flex gap-2 mb-3">
