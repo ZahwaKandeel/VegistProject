@@ -1,5 +1,5 @@
 
-import {User, hashPassword} from "/models/user.js";
+import {User} from "/models/user.js";
 
 $(function() {
     const email = $("#email");
@@ -48,7 +48,7 @@ $(function() {
         }
         
         const user = Object.assign(new User({}), plainUser);
-        const hashedPassword = await hashPassword(passValue);
+        const hashedPassword = await User.hashPassword(passValue);
 
         if (hashedPassword !== plainUser.password) {
             alert("Wrong password");

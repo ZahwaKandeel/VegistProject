@@ -10,10 +10,10 @@ $(function() {
             $("#accountDetails")
             .append(`<p class="text-secondary mb-0">${`${user.firstName} ${user.lastName}`}</p>`)
             .append(`<p class="text-secondary mb-0">${user.email}</p>`)
-            .append(`<p class="text-secondary mb-0">${user.address[1]["address"]}</p>`)
-            .append(`<p class="text-secondary mb-0">${user.address[1]["apartment"]}</p>`)
-            .append(`<p class="text-secondary mb-0">${user.address[1]["city"]}</p>`)
-            .append(`<p class="text-secondary mb-0">${user.address[1]["postalCode"]}</p>`)
-            .append(`<p class="text-secondary mb-0">${user.address[1]["country"]}</p>`);
+            .append(`<p class="text-secondary mb-0">${user.address[0]["address"]}</p>`)
+            .append(`<p class="text-secondary mb-0">${user.address[0]["apartment"]}</p>`)
+            .append(`<p class="text-secondary mb-0">${user.address[0]["city"]}</p>`)
+            .append(`<p class="text-secondary mb-0">${user.address[0]["postalCode"]}</p>`)
+            .append(`<p class="text-secondary mb-0">${user.address[0]["country"]}</p>`);
     }
 });

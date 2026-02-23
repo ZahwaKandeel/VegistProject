@@ -1,5 +1,5 @@
 
-import { User, emailExists, hashPassword } from "/models/user.js";
+import { User } from "/models/user.js";
 
 $(function(){
     const firstName = $("#firstName");
@@ -51,12 +51,12 @@ $(function(){
             return;
         }
 
-        if (emailExists(email.val().trim())) {
+        if (User.emailExists(email.val().trim())) {
             alert("This email is already registered.");
             return;
         }
         
-        const hashedPassword = await hashPassword(password.val().trim());
+        const hashedPassword = await User.hashPassword(password.val().trim());
 
         const userData = {
             firstName: firstName.val().trim(),
