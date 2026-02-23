@@ -153,7 +153,7 @@ function displayCart() {
 // Remove item from cart
 function removeFromCart(product_id){
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart = cart.filter(item => item.product_id !== product_id);
+    cart = cart.filter(item => item.product_id != product_id);
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
@@ -167,7 +167,7 @@ $(document).on("click", ".remove-btn", function() {
 // Increase quantity of an item
 function increaseQuantity(product_id){
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const item = cart.find(item => item.product_id === product_id);
+    const item = cart.find(item => item.product_id == product_id);
 
     if (item) {
         item.quantity += 1;
@@ -186,13 +186,13 @@ $(document).on("click", ".increase-btn", function() {
 // Decrease quantity of an item
 function decreaseQuantity(product_id){
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const item = cart.find(item => item.product_id === product_id);
+    const item = cart.find(item => item.product_id == product_id);
 
     if (item) {
         if (item.quantity > 1) {
             item.quantity -= 1;
         } else {
-            cart = cart.filter(item => item.product_id !== product_id);
+            cart = cart.filter(item => item.product_id != product_id);
         }
     }
 
@@ -245,7 +245,7 @@ function calculateSubtotal() {
     let subtotal = 0;
 
     cart.forEach(item => {
-        const product = products.find(p => p._id === item.product_id);
+        const product = products.find(p => p._id == item.product_id);
         if (!product) return;
 
         const price = product._discountValue || product._price;
