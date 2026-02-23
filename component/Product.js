@@ -9,7 +9,7 @@ export class Product{
         this.ImageUrl = imageUrl;
         this.Size = size;
         this.Rating = rating;
-        this.Reviews = reviews;
+        this.Reviews = reviews || [];
         this.DiscountValue = discountValue;
         this.DiscountPercentage = discountPercentage;
     }
@@ -113,8 +113,15 @@ export class Product{
   
     set Reviews(reviews)
     {
-        if(reviews.length<50) throw new Error("Reviews must be atleast 50 characters long");
-        this._reviews = reviews;
+        if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
+        reviews.forEach(review =>{
+            if(review.length !==2) throw new Error("Review must contains [name , comment]")
+            const [name, comment] = review;
+            if(typeof name !== "string" || name.trim().length<3) throw new Error("Reviewer name must be at least 3 characters");
+            if(typeof comment !== "string" || comment.length<50) throw new Error("Comment length must be at least 50 characters");
+
+        });
+        this._reviews = reviews
     }
     get Reviews()
     {

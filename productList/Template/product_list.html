@@ -11,10 +11,8 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     
         <link rel="stylesheet" type="text/css" href="/Static/CSS/main.css"/>
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
         <script
@@ -41,12 +39,14 @@
 
        <style>
    
+      
 .icon{
     background-color: rgb(255, 255, 255);
     display: inline-block;
-     border-radius: 50%;
+     border-radius: 45%;
               margin: 0 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: .6rem;
    
 }
 .icon:hover{
@@ -125,7 +125,7 @@
        
     }
 
-    .cards:hover .icons {
+    .cards2:hover .icons {
         opacity: 1;
         
     }
@@ -296,10 +296,12 @@
            <span class="fw-bold">Sort by:</span> <span class="text-secondary">Alphabetically, Z-A</span> 
           </a>
           <ul class="dropdown-menu ">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class=" dropdown-item " href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
              </li>
+             
        </ul>
       
       </span>
@@ -424,7 +426,7 @@
 </div>
        </section>  <!--end  of section 1 --> 
 
-<div   class="  col-12   col-lg-9  row g-4  px-0 mx-0  d-flex    align-items-baseline  " > <!--div of all cards  -->  <!--start  of section 2 --> 
+<div id="divlayoutdefult"  class="   col-12   col-lg-9  row g-4  px-0 mx-0  d-flex    align-items-baseline  " > <!--div of all cards  -->  <!--start  of section 2 --> 
  
 <div id="divlayout1"  class="     row   px-0 mx-0 my-1   g-4 ">     <!--row of products  --> 
 <div class="col-6  col-lg-3  cards ">
@@ -1402,12 +1404,14 @@
 
 
 
-<div id="divlayout2" class="  col-12   col-lg-9    g-4  px-0 mx-0 d-none  "> <!--div of all cards  with icons -->  <!--start  of section 2 with icons --> 
+<div id="divlayout2" class="  col-12   col-lg-9  row   g-4  px-0 mx-0 d-none  d-flex  align-items-baseline " style="height: 75%;"> <!--div of all cards  with icons -->  <!--start  of section 2 with icons --> 
 
 
-  <div class="cards2  col-12  my-5   " "> <!--div of card 1  with icons   -->
+  <div class="cards2  col-12  my-5   "> <!--div of card 1  with icons   -->
 
-<div     class="     row  "  > <!--container card with icons     -->
+<div     class="    row  "  > <!--container card with icons     -->
+
+  
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
     <img src="../images//1.jpg" class=" w-100 main-img   object-fit-cover h-100"> 
     <img src="../images//1.2.jpg" class=" w-100  hover-img position-absolute top-0 start-0 h-100  ">
@@ -1465,7 +1469,7 @@
 
 </div>    <!--div of card 1 with icons -->
 
-  <div class="cards2  col-12  my-5   " "> <!--div of card 2  with icons   -->
+  <div class="cards2  col-12  my-5    "> <!--div of card 2  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1525,7 +1529,7 @@
 
 </div>    <!--div of card 2 with icons -->
 
-  <div class="cards2  col-12  my-5   " "> <!--div of card 3  with icons   -->
+  <div class="cards2  col-12  my-5    "> <!--div of card 3  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1588,7 +1592,7 @@
 
 
 
-  <div class="cards2  col-12  my-5   " "> <!--div of card 4  with icons   -->
+  <div class="cards2  col-12  my-5    "> <!--div of card 4  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1649,7 +1653,7 @@
 </div>    <!--div of card 4 with icons -->
 
 
-  <div class="cards2  col-12  my-5   " "> <!--div of card 5  with icons   -->
+  <div class="cards2  col-12  my-5    "> <!--div of card 5  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1710,7 +1714,7 @@
 </div>    <!--div of card 5 with icons -->
 
 
- <div class="cards2  col-12  my-5   " "> <!--div of card 6  with icons   -->
+ <div class="cards2  col-12  my-5   "> <!--div of card 6  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1772,7 +1776,7 @@
 
 
 
- <div class="cards2  col-12  my-5   " "> <!--div of card 7  with icons   -->
+ <div class="cards2  col-12  my-5    "> <!--div of card 7  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1834,68 +1838,7 @@
 
 
 
-
- <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
-
-<div     class=" row  "  > <!--container card with icons     -->
-<div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
-    <img src="../images//1.jpg" class=" w-100 main-img   object-fit-cover h-100"> 
-    <img src="../images//1.2.jpg" class=" w-100  hover-img position-absolute top-0 start-0 h-100  ">
-</div>
-
-<div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
-
-
-<p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>  <!--   name and price   -->
-        <p class="fw-bold">€55,00</p>   
-
-        <div class="d-flex align-items-center  "> <!-- review by stars -->
-    <div class="text-warning me-2 rating ">
-      <i class=" fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-     <i class="fa-regular fa-star"></i>
-      
-    </div>
-    <span class="text-muted ratingspa">No reviews</span>
-
-  </div>    <!--   name and price   -->
-
-
-
-  <div> <!--   paragraph   -->
-
-            <p class="text-muted mt-3 ">
-              More Detail Lorem Ipsum is simply dummy text of the printing and 
-              typesetting industry. Lorem Ipsum has been the standard dummy text. 
-              Type here your detail one by one...
-            </p>
-
-            <div class="icons  d-flex gap-2 ">
-
-  <span class="icon  p-2   "  >
-<i class="fa-regular fa-heart "></i>
-   </span>
-<span class="icon  p-2   ">
-    <i class="fa fa-shopping-bag"></i>
-</span>
-
-  <span class="icon  p-2   ">
-        <i class="fa fa-eye"></i>
-    </span> 
-</div>
-
-</div> <!--   paragraph   -->
-  
-
-</div> 
-
-     </div>   <!--container card with icons     -->
-
-</div>    <!--div of card 8 with icons -->
-
- <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
+ <div class="cards2  col-12  my-5    "> <!--div of card 8  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -1955,8 +1898,7 @@
 
 </div>    <!--div of card 8 with icons -->
 
-
- <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
+ <div class="cards2  col-12  my-5    "> <!--div of card 8  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -2017,7 +1959,67 @@
 </div>    <!--div of card 8 with icons -->
 
 
- <div class="cards2  col-12  my-5   " "> <!--div of card 8  with icons   -->
+ <div class="cards2  col-12  my-5    "> <!--div of card 8  with icons   -->
+
+<div     class=" row  "  > <!--container card with icons     -->
+<div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
+    <img src="../images//1.jpg" class=" w-100 main-img   object-fit-cover h-100"> 
+    <img src="../images//1.2.jpg" class=" w-100  hover-img position-absolute top-0 start-0 h-100  ">
+</div>
+
+<div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
+
+
+<p class=""> <a href=""  class="para text-decoration-none  " > Vegetable tomato</a></p>  <!--   name and price   -->
+        <p class="fw-bold">€55,00</p>   
+
+        <div class="d-flex align-items-center  "> <!-- review by stars -->
+    <div class="text-warning me-2 rating ">
+      <i class=" fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+      
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+
+  </div>    <!--   name and price   -->
+
+
+
+  <div> <!--   paragraph   -->
+
+            <p class="text-muted mt-3 ">
+              More Detail Lorem Ipsum is simply dummy text of the printing and 
+              typesetting industry. Lorem Ipsum has been the standard dummy text. 
+              Type here your detail one by one...
+            </p>
+
+            <div class="icons  d-flex gap-2 ">
+
+  <span class="icon  p-2   "  >
+<i class="fa-regular fa-heart "></i>
+   </span>
+<span class="icon  p-2   ">
+    <i class="fa fa-shopping-bag"></i>
+</span>
+
+  <span class="icon  p-2   ">
+        <i class="fa fa-eye"></i>
+    </span> 
+</div>
+
+</div> <!--   paragraph   -->
+  
+
+</div> 
+
+     </div>   <!--container card with icons     -->
+
+</div>    <!--div of card 8 with icons -->
+
+ <div class="cards2  col-12  my-5    "> <!--div of card 8  with icons   -->
 
 <div     class=" row  "  > <!--container card with icons     -->
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
@@ -2096,8 +2098,20 @@
  <div class="row "> <!--end  of row  3 --> 
 
 <div class=" d-none d-lg-block  col-lg-3">  </div>   <!--empty div --> 
-<nav class="mt-4">
-  <ul class="pagination justify-content-center" id="pagination"></ul>
+
+<nav id="paginationnav" class= "mt-4">
+  <ul id="pagination1" class="pagination justify-content-center"></ul>
+
+  <!-- <ul class="pagination justify-content-center" id="pagination"></ul>
+
+<ul id="pagination2" class="pagination justify-content-center"></ul> -->
+</nav>
+<nav id="paginationnav2" class= "mt-4 d-none">
+ 
+<ul id="pagination2" class="pagination justify-content-center"></ul>
+  <!-- <ul class="pagination justify-content-center" id="pagination"></ul>
+
+<ul id="pagination2" class="pagination justify-content-center"></ul> -->
 </nav>
 
 </div> 
@@ -2122,13 +2136,15 @@
         <script src="../JS/productlist.js"></script>
         <script type="module">import "../../seller/JS/dummyproducts.js";</script>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <!-- 
           <div id="modalContainer"></div>
         <script src="../../component/PopUpFunctions.js"></script> -->
 
-<!-- <script src="../../componant/addToCart.js"></script> -->
 
+<script src="../../component/addToCart.js"></script>
+
+<!-- <script src="../../component/addToWishlist.js"></script> -->
 
     </body>
 </html>

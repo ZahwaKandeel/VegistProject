@@ -1,11 +1,11 @@
 export class DashboardStats{
-    constructor(totalEarnings, earningsChange, totalOrders, ordersChange, revenueGrowth, convertionRate){
+    constructor(totalEarnings, earningsChange, totalOrders, ordersChange, revenueGrowth, conversionRate){
         this.totalEarnings = totalEarnings;
         this.earningsChange = earningsChange;
         this.totalOrders = totalOrders;
         this.ordersChange = ordersChange;
         this.revenueGrowth = revenueGrowth;
-        this.convertionRate = convertionRate;
+        this.conversionRate = conversionRate;
     }
 
     static getDummyData(){
@@ -67,7 +67,7 @@ export class MonthlyTarget{
 export class RevenueGrowth{
     constructor(labels, growthPercent){
         this.labels = labels;
-        this.growthPercent = grow
+        this.growthPercent = growthPercent;
     }
     static getDummy(){
         return new RevenueGrowth(
@@ -85,7 +85,7 @@ export class ConversionData{
         this.purchases = purchases;
     }
 
-    get convertionRate(){
+    get conversionRate(){
         return ((this.purchases/this.visitors)*100).toFixed(2);
     }
 
