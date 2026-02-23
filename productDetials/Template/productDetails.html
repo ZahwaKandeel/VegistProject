@@ -271,7 +271,7 @@
                         <p id="productDescription" class="text-muted small"></p>
 
                         <div class="mb-4">
-                            <label id="size" class="d-block fw-bold mb-2">Size:</label>
+                            <label id="productsize" class="d-block fw-bold mb-2">Size:</label>
                             <div class="sizediv d-flex gap-2">
                                 <input type="radio" class="btn-check" name="size_choice" autocomplete="off" checked>
                                 <label class="btn btn-variant-pill" for="2kg">2KG</label>
@@ -476,7 +476,7 @@
                 </div>
 
                 <!-- Section 3 -->
-                <div class="tab-pane fade show" id="reviews" role="tabpanel">
+                <div class="tab-pane fade show" id="productReviews" role="tabpanel">
                     <div class="text-center">
                         <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#reviewForm" aria-expanded="false">
                             Write a review
@@ -569,7 +569,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#quickViewModal"
                     style="cursor: pointer;">
-                    <i class="fa fa-eye"></i>
+                <i class="fa fa-eye"></i> <!--  opens the popup -->
                 </span> 
                 </div>
                     
@@ -729,7 +729,7 @@
         </main>
 
         <div id="#quickViewModal"></div>
-        <!-- <script src="/component/PopUpFunctions.js"></script> -->
+        <script src="/component/PopUpFunctions.js"></script>
         <script src="../../component/addToWishlist.js"></script>
         <script src="../../component/addToCart.js"></script>
         <script type="module" src="../JS/ProductDetails.js"></script>
