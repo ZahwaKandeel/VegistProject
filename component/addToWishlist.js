@@ -2,6 +2,7 @@
 // Send product id object as parameter
 
 function addToWishlist(product_id) {
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     
     // check if the product already exists or not
     const existing = wishlist.find(item => item.product_id == product_id);
