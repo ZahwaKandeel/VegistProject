@@ -226,7 +226,27 @@ function generateStars(rating = 0) {
 }
 
 
-// Execute after DOM is fully loaded
+//Execute after DOM is fully loaded
 $(document).ready(function () {
     loadRelatedProducts();
 });
+
+
+//Add to wishlist
+$(document).ready(function () {
+    $('bi-heart').on('click', function() {
+        if (product)
+            addToWishlist(product.ID);
+    });
+});
+
+
+//Fetch size of product
+// product.sizes.map(item=>{
+//     $('.sizediv').append(`
+//         <input type="radio" `${}` class="btn-check" name="size_choice" autocomplete="off" checked>
+//                 <label class="btn btn-variant-pill">${item}</label>
+        
+        
+//         `)
+// })
