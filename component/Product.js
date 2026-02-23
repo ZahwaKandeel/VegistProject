@@ -1,5 +1,5 @@
 export class Product{
-    constructor(id, name, price, description, stock, category, imageUrl, size, rating, reviews, discountValue, discountPercentage){
+    constructor(id, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountValue, discountPercentage){
         this.ID =id;
         this.Name = name;
         this.Price = price;
@@ -7,7 +7,7 @@ export class Product{
         this.Stock = stock;
         this.Category = category;
         this.ImageUrl = imageUrl;
-        this.Size = size;
+        this.Sizes = sizes;
         this.Rating = rating;
         this.Reviews = reviews || [];
         this.DiscountValue = discountValue;
@@ -91,14 +91,18 @@ export class Product{
         return this._imageUrl;
     }
 
-    set Size(size)
+    set Sizes(sizes)
     {
-        if(size <= 0) throw new Error("Size cannot be 0 or negative");
-        this._size = size;
+        if(!Array.isArray(sizes)) throw new Error("Sizes must be an array of sizess")
+        sizes.forEach(size =>{
+            if(size <= 0) throw new Error("Sizes cannot be 0 or negative");
+        });
+        this._sizes = sizes;
+        
     }
-    get Size()
+    get Sizes()
     {
-        return this._size;
+        return this._sizes;
     }
 
     set Rating(rating)
@@ -115,13 +119,16 @@ export class Product{
     {
         if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
         reviews.forEach(review =>{
-            if(review.length !==2) throw new Error("Review must contains [name , comment]")
-            const [name, comment] = review;
-            if(typeof name !== "string" || name.trim().length<3) throw new Error("Reviewer name must be at least 3 characters");
-            if(typeof comment !== "string" || comment.length<50) throw new Error("Comment length must be at least 50 characters");
-
+            if(typeof review !== "object" || review === null)
+                throw new Error("Each review must be an object");
+            if(!("name" in review) || !("comment" in review))
+                throw new Error("Review must contain name and comment properties");
+            if(typeof review.name !== "string" || review.name.trim().length<3)
+                throw new Error("Reviewers name must be at least 3 characters");
+            if(typeof review.comment !== "string" || review.comment.trim().length.length<50)
+                throw new Error("Comment length must be at least 50 characters");
         });
-        this._reviews = reviews
+        this._reviews = reviews;
     }
     get Reviews()
     {
@@ -165,7 +172,7 @@ export function loadProducts(){
         p._stock,
         p._category,
         p._imageUrl,
-        p._size,
+        p._sizes,
         p._rating,
         p._reviews,
         p._discountValue,
@@ -185,7 +192,7 @@ export function editProduct(productID, updatedData){
         p._stock,
         p._category,
         p._imageUrl,
-        p._size,
+        p._sizes,
         p._rating,
         p._reviews,
         p._discountValue,
@@ -217,8 +224,8 @@ export function editProduct(productID, updatedData){
     if(updatedData.imageUrl !== undefined)
         product.ImageUrl = updatedData.imageUrl;
 
-    if(updatedData.size !== undefined)
-        product.Size = updatedData.size;
+    if(updatedData.sizes !== undefined)
+        product.Sizes = updatedData.sizes;
 
     if(updatedData.rating !== undefined)
         product.Rating = updatedData.rating;

@@ -52,13 +52,13 @@ function createProductCard(product){
                     class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>    
             </div>
             <div class="icons position-absolute start-50 translate-middle-x d-flex gap-2">
-                <span class="icon p-2 bg-transparent">
+                <span class="icon p-2">
                     <i class="fa-regular fa-heart wishlist-icon" data-id="${product._id}"></i>
                 </span>
-                <span class="icon p-2 bg-transparent">
+                <span class="icon p-2">
                     <i class="fa fa-shopping-bag cart-icon" data-id="${product._id}"></i>
                 </span>
-                <span class="icon p-2 bg-transparent">
+                <span class="icon p-2">
                     <i class="fa fa-eye view-icon" data-id="${product._id}"></i>
                 </span>
             </div>
