@@ -21,14 +21,14 @@ userData.forEach(product => {
 
 <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 p-2 ">
     
-  <span class=" icon  p-2   btnheart "  >
+  <span class=" icon     btnheart "  >
 <i class="fa-regular fa-heart "></i>
    </span>
-<span class=" icon  p-2  btnbag ">
+<span class=" icon    btnbag ">
     <i class="fa fa-shopping-bag "></i>
 </span>
 
-  <span class=" icon  p-2  btneye ">
+  <span class=" icon    btneye ">
         <i class="fa fa-eye"></i>
     </span> 
 
@@ -148,7 +148,12 @@ function filterByCategory2(category) {
     $(`.cards2[data-category="${category}"]`).show();
 }
 
+// --------------------------------filter by stock  --------------------------------
 
+function filterByStock(){
+ console.log(userData)
+    
+}
 
 
 
