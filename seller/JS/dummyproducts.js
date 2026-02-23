@@ -1,6 +1,6 @@
 import { Product, saveProducts } from "../../component/Product.js";
 
-const dummyProducts = [
+export const dummyProducts = [
          new Product(1, "Classic Bagel", 25,
         "A delicious freshly baked bagel made from high quality wheat flour and natural ingredients. Perfect for breakfast with cream cheese and jam for a delightful start to your day.",
         50, "bagel", "https://picsum.photos/200/300?1.jpg",
