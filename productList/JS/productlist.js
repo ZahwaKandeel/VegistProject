@@ -6,7 +6,7 @@ $(function(){
 
 const userData = JSON.parse(localStorage.getItem("products"));
 console.log(userData); 
-
+  //-------------------------------- get data to layout onee--------------------------------
 let cards = "";
 
 userData.forEach(product => {
@@ -21,14 +21,14 @@ userData.forEach(product => {
 
 <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 p-2 ">
     
-  <span class="icon  p-2   btnheart "  >
+  <span class=" icon  p-2   btnheart "  >
 <i class="fa-regular fa-heart "></i>
    </span>
-<span class="icon  p-2  btnbag ">
+<span class=" icon  p-2  btnbag ">
     <i class="fa fa-shopping-bag "></i>
 </span>
 
-  <span class="icon  p-2  btneye ">
+  <span class=" icon  p-2  btneye ">
         <i class="fa fa-eye"></i>
     </span> 
 
@@ -66,35 +66,95 @@ userData.forEach(product => {
 document.getElementById("divlayout1").innerHTML = cards;
 
 
+    // breakkkkk--------------------------------------------------------
+    //-------------------------------- get data to layout twoo--------------------------------
+let cards2 = "";
+
+userData.forEach(product => {
+  cards2 += `
+<div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}"> <!--div of card 1  with icons   -->
+
+<div     class="    row  "  > <!--container card with icons     -->
+
+  
+<div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
+    <img src=" ${ product._imageUrl}" class=" w-100 main-img   object-fit-cover h-100"> 
+    
+</div>
+
+<div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
+
+
+<p class=""> <a href=""  class="para text-decoration-none  " > ${ product._name}</a></p>  <!--   name and price   -->
+        <p class="fw-bold">€${ product._price}</p>   
+
+        <div class="d-flex align-items-center  "> <!-- review by stars -->
+    <div class="text-warning me-2 rating ">
+      <i class=" fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+     <i class="fa-regular fa-star"></i>
+    </div>
+    <span class="text-muted ratingspa">No reviews</span>
+
+  </div>    <!--   name and price   -->
+  <div> <!--   paragraph   -->
+            <p class="text-muted mt-3 ">
+             ${ product._description}
+            </p>
+
+            <div class="icons  d-flex gap-2 ">
+
+  <span class=" icon  p-2   "  >
+<i class="fa-regular fa-heart "></i>
+   </span>
+<span class="icon p-2 btnbag2 ">
+    <i class="fa-solid fa-shopping-bag"></i>
+</span>
+
+  <span class="icon  p-2   ">
+        <i class="fa fa-eye"></i>
+    </span> 
+</div>
+
+</div> <!--   paragraph   -->
+</div> 
+     </div>   <!--container card with icons     -->
+</div>    <!--div of card 1 with icons -->
+
+ `;
+
+
+
+ 
+});
+
+document.getElementById("divlayout2").innerHTML = cards2;
+
+
+
 
     // breakkkkk--------------------------------------------------------
 
-    // filter by category
+    //-------------------------------- filter by category--------------------------------
 function filterByCategory(category) {
     $(".cards").hide();
     $(`.cards[data-category="${category}"]`).show();
 }
+// --------------------------------filter by category layout 2 --------------------------------
+function filterByCategory2(category) {
+    $(".cards2").hide();
+    $(`.cards2[data-category="${category}"]`).show();
+}
 
-// filter by Price and category
-// function filterProducts(category, minPrice, maxPrice) {
 
-//     $(".cards").each(function () {
 
-//         let itemCategory = $(this).data("category");
-//         let itemPrice = parseFloat($(this).data("price"));
 
-//         let matchCategory = category === "all" || itemCategory === category;
-//         let matchPrice = itemPrice >= minPrice && itemPrice <= maxPrice;
 
-//         if (matchCategory && matchPrice) {
-//             $(this).show();
-//         } else {
-//             $(this).hide();
-//         }
 
-//     });
-// }
-// filter by Price 
+
+// --------------------------------filter by Price --------------------------------
 function filterByPrice(minPrice, maxPrice) {
 
     $(".cards").each(function () {
@@ -109,7 +169,7 @@ function filterByPrice(minPrice, maxPrice) {
 
     });
 }
-// filter by Price rangeee
+//-------------------------------- filter by Price rangeee--------------------------------
 $("#range1").on("input", function () {
 
     let maxPrice = parseFloat($(this).val());
@@ -120,7 +180,7 @@ $("#range1").on("input", function () {
 
 });
 
-// filter by Price stockk
+// --------------------------------filter by Price stockk--------------------------------
 
 function filterInStock() {
 
@@ -140,7 +200,7 @@ function filterInStock() {
 
 
 
-
+// --------------------------------filter category layout oneee--------------------------------
 
 
 $(".filternum").text(`(${userData.length})`)
@@ -154,6 +214,11 @@ $(".categName").text('Bagel')
     $(".filternum").text(`(${num})`)
 
 $(".catmemb").text(`Bagel`)
+
+     $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+setupPagination("divlayout1", `cards[data-category="bagel"]`, "pagination1", 16);
     
 });
 
@@ -166,6 +231,11 @@ $(".categName").text('BestSeller')
     $(".filternum").text(`(${num})`)
     
 $(".catmemb").text(`BestSeller`)
+
+     $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+setupPagination("divlayout1", `cards[data-category="bestseller"]`, "pagination1", 16);
 });
 
 
@@ -176,6 +246,12 @@ $(".categName").text('Beans')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Beans`)
+
+
+      $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+    
+setupPagination("divlayout1", `cards[data-category="beans"]`, "pagination1", 16);
 });
 
 
@@ -186,6 +262,11 @@ $(".categName").text('Candy')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Candy`)
+
+      $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="candy"]`, "pagination1", 16);
 });
 
 $(".bread").click(function () {
@@ -195,6 +276,12 @@ $(".categName").text('Bread')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Bread`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="bread"]`, "pagination1", 16);
+
 });
 
 $(".biscuite").click(function () {
@@ -204,6 +291,11 @@ $(".categName").text('Biscuite')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Biscuite`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="biscuite"]`, "pagination1", 16);
 });
 
 $(".breakfast").click(function () {
@@ -213,6 +305,11 @@ $(".categName").text('Breakfast')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Breakfast`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="breakfast"]`, "pagination1", 16);
 });
 
 $(".cake").click(function () {
@@ -222,6 +319,11 @@ $(".categName").text('Cake')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Cake`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="cake"]`, "pagination1", 16);
 });
 
 $(".cookie").click(function () {
@@ -231,6 +333,11 @@ $(".categName").text('Cookie')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Cookie`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="cookie"]`, "pagination1", 16);
 });
 
 
@@ -241,6 +348,11 @@ $(".categName").text('Cupcake')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Cupcake`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="cupcake"]`, "pagination1", 16);
 });
 
 $(".Diaryhesse").click(function () {
@@ -250,6 +362,11 @@ $(".categName").text('Diary & chesse')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Diary & chesse`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="Diary&Cheese"]`, "pagination1", 16);
 });
 
 $(".Dinner").click(function () {
@@ -259,43 +376,263 @@ $(".categName").text('Dinner')
 
     $(".filternum").text(`(${num})`)
     $(".catmemb").text(`Dinner`)
+
+          $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+    setupPagination("divlayout1", `cards[data-category="Dinner"]`, "pagination1", 16);
+});
+
+//-------------------------------- filter category layout twoooo--------------------------------------------- 
+
+$(".bagel").click(function () {
+    filterByCategory2('bagel');
+$(".categName").text('Bagel')
+  let   num = $('.cards2[data-category="bagel"]:visible').length; 
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`Bagel`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="bagel"]`, "pagination2", 8);
+    
+});
+
+$(".bestseller").click(function () {
+    filterByCategory2('bestseller');
+$(".categName").text('Bestseller')
+  let   num = $('.cards2[data-category="bestseller"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`bestseller`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="bestseller"]`, "pagination2", 8);
+    
+});
+
+$(".beans").click(function () {
+    filterByCategory2('beans');
+$(".categName").text('Beans')
+  let   num = $('.cards2[data-category="beans"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`beans`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="beans"]`, "pagination2", 8);
+    
+});
+
+$(".candy").click(function () {
+    filterByCategory2('candy');
+$(".categName").text('Candy')
+  let   num = $('.cards2[data-category="candy"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`candy`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="candy"]`, "pagination2", 8);
+    
+});
+
+$(".bread").click(function () {
+    filterByCategory2('bread');
+$(".categName").text('Bread')
+  let   num = $('.cards2[data-category="bread"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`bread`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="bread"]`, "pagination2", 8);
+    
 });
 
 
+$(".biscuite").click(function () {
+    filterByCategory2('biscuite');
+$(".categName").text('Biscuite')
+  let   num = $('.cards2[data-category="biscuite"]:visible').length;
 
+    $(".filternum").text(`(${num})`)
 
+$(".catmemb").text(`biscuite`)
 
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="biscuite"]`, "pagination2", 8);
+    
+});
 
+$(".breakfast").click(function () {
+    filterByCategory2('breakfast');
+$(".categName").text('Breakfast')
+  let   num = $('.cards2[data-category="breakfast"]:visible').length;
 
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`breakfast`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="breakfast"]`, "pagination2", 8);
+    
+});
+
+$(".cake").click(function () {
+    filterByCategory2('cake');
+$(".categName").text('Cake')
+  let   num = $('.cards2[data-category="cake"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`cake`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="cake"]`, "pagination2", 8);
+    
+});
+
+$(".cookie").click(function () {
+    filterByCategory2('cookie');
+$(".categName").text('Cookie')
+  let   num = $('.cards2[data-category="cookie"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`cookie`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="cookie"]`, "pagination2", 8);
+    
+});
+
+$(".cupcake").click(function () {
+    filterByCategory2('cupcake');
+$(".categName").text('Cupcake')
+  let   num = $('.cards2[data-category="cupcake"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`cupcake`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="cupcake"]`, "pagination2", 8);
+    
+});
+
+$(".Diaryhesse").click(function () {
+    filterByCategory2('Diary&Cheese');
+$(".categName").text('Diary & chesse')
+  let   num = $('.cards2[data-category="Diary & chesse"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`Diary & chesse`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="Diary&Cheese"]`, "pagination2", 8);
+    
+});
+
+$(".Dinner").click(function () {
+    filterByCategory2('Dinner');
+$(".categName").text('Dinner')
+  let   num = $('.cards2[data-category="Dinner"]:visible').length;
+
+    $(".filternum").text(`(${num})`)
+
+$(".catmemb").text(`Dinner`)
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", `cards2[data-category="Dinner"]`, "pagination2", 8);
+    
+});
 // breakkkkk--------------------------------------------------------
 
   // that btn to change layout of divs to make it single  
 $(".btnlay2").click(function(){
 
-    $("#divlayout1").addClass("d-none");
 
+$(".filternum").text(`(${userData.length})`)
+$(".catmemb").text(`All products`)
+$(".categName").text('All products')
+
+    $("#divlayoutdefult").addClass("d-none");
     $("#divlayout2").removeClass("d-none");
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+setupPagination("divlayout2", "cards2", "pagination2", 8);
+
+
+
 })
 // that btn to back to defult layout of divs 
 $(".btnlay1").click(function(){
 
-    $("#divlayout1").removeClass("d-none");
+
+$(".filternum").text(`(${userData.length})`)
+$(".catmemb").text(`All products`)
+$(".categName").text('All products')
+
+    $("#divlayoutdefult").removeClass("d-none");
     $("#divlayout2").addClass("d-none");
+
+     $("#paginationnav2").addClass("d-none")
+      $("#paginationnav").removeClass("d-none");
+
+setupPagination("divlayout1", "cards", "pagination1", 16);
 })
 
+setupPagination("divlayout1", "cards", "pagination1", 16);
 
 
 
 // $(".btnheart").click(function(){
-//   open("../../wishlist/Template/wishlist.html" ,' width=800, height=600')
+ 
+    
+//  const parentIdd = $(this).parent().parent().parent().parent().attr("id");
+
+//   addToWishlist(parentIdd)
 
 
   
 // })
 
-// $(".btnbag").click(function(){
-//    open("../../productDetials/Template/ProductPopUp.html" ,' width=800px, height=600px')
-// })
+
+//----------------------------------- add to cart layout one -----------------------------------
+
+$(".btnbag").click(function(){
+    const parentId = $(this).parent().parent().parent().parent().attr("id");
+    addToCart(parentId, 1);
+//    addToCart(this.userData._id, p_quantity=1)
+ })
+
+ // -----------------------------------add to cart layout two -----------------------------------
+
+$(".btnbag2").click(function(){
+    const parentId = $(this).parent().parent().parent().parent().parent().attr("id");
+    addToCart(parentId, 1);
+//    addToCart(this.userData._id, p_quantity=1)
+ })
 
 // $(".btneye").click(function(){
 //    open("../../productDetials/Template/ProductPopUp.html" )
@@ -309,50 +646,78 @@ $(".btnlay1").click(function(){
 // })
 
 
-
-
 //----------------break---------------
+    // let itemsPerPage = 16; // number of products in page
+    // let items = $("#divlayout1 .cards");
+    // let totalItems = items.length ;
+    // let totalPages = Math.ceil(totalItems / itemsPerPage);
+    // console.log(items.length)
+    // function showPage(page) {
+    //     items.hide(); 
+    //     const start = (page - 1) * itemsPerPage;
+    //     const end = start + itemsPerPage;
+    //     items.slice(start, end).show();  
+    // }
+    // //button for slide
+    // function createPagination() {  
+    //     $("#pagination").html("");
+    //     for (let i = 1; i <= totalPages; i++) {
+    //         $("#pagination").append(`
+    //             <li class="page-item">
+    //                 <a class="page-link" href="#">${i}</a>
+    //             </li>
+    //         `);
+    //     }
+    //     $("#pagination li:first").addClass("active");
+    //     $(".page-link").click(function (e) {
+    //         e.preventDefault();
+    //         const page = parseInt($(this).text());
+    //         $(".page-item").removeClass("active");
+    //         $(this).parent().addClass("active");
+    //         showPage(page);
+    //     });
+    // }
+
+    // showPage(1);
+    // createPagination();
+    // breakkkkk--------------------------------------------------------
 
 
 
-    let itemsPerPage = 16; // number of products in page
-    let items = $("#divlayout1 .cards");
-    let totalItems = items.length ;
+
+//----------------------------------- function of pagination -----------------------------------
+function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
+
+    let items = $(`#${containerId} .${cardClass}`);
+    let totalItems = items.length;
     let totalPages = Math.ceil(totalItems / itemsPerPage);
 
-
-    console.log(items.length)
     function showPage(page) {
-
-        items.hide(); 
-
+        items.hide();
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-
-        items.slice(start, end).show();  
+        items.slice(start, end).show();
     }
 
-    //button for slide
-    function createPagination() {  
-
-        $("#pagination").html("");
+    function createPagination() {
+        $(`#${paginationId}`).html("");
 
         for (let i = 1; i <= totalPages; i++) {
-            $("#pagination").append(`
+            $(`#${paginationId}`).append(`
                 <li class="page-item">
                     <a class="page-link" href="#">${i}</a>
                 </li>
             `);
         }
 
-        $("#pagination li:first").addClass("active");
+        $(`#${paginationId} li:first`).addClass("active");
 
-        $(".page-link").click(function (e) {
+        $(`#${paginationId} .page-link`).click(function (e) {
             e.preventDefault();
 
             const page = parseInt($(this).text());
 
-            $(".page-item").removeClass("active");
+            $(`#${paginationId} .page-item`).removeClass("active");
             $(this).parent().addClass("active");
 
             showPage(page);
@@ -361,197 +726,52 @@ $(".btnlay1").click(function(){
 
     showPage(1);
     createPagination();
+}
 
-        //--------------------------------------------------
-    //      let itemsPerPage2 = 8; // number of products in page
-    // let items2 = $("#divlayout2 .cards");
-    // let totalItems2 = items2.length ;
-    // let totalPages2 = Math.ceil(totalItems2 / itemsPerPage2);
 
 
-    // console.log(items2.length)
-    // function showPage2(page) {
 
-    //     items2.hide(); 
 
-    //     const start = (page - 1) * itemsPerPage2;
-    //     const end = start + itemsPerPage2;
 
-    //     items2.slice(start, end).show();  
-    // }
 
-    // //button for slide
-    // function createPagination2() {  
 
-    //     $("#pagination").html("");
 
-    //     for (let i = 1; i <= totalPages2; i++) {
-    //         $("#pagination").append(`
-    //             <li class="page-item">
-    //                 <a class="page-link" href="#">${i}</a>
-    //             </li>
-    //         `);
-    //     }
 
-    //     $("#pagination li:first").addClass("active");
 
-    //     $(".page-link").click(function (e) {
-    //         e.preventDefault();
 
-    //         const page = parseInt($(this).text());
 
-    //         $(".page-item").removeClass("active");
-    //         $(this).parent().addClass("active");
 
-    //         showPage(page);
-    //     });
-    // }
+// --------------------------------filter by Price --------------------------------
+function filterByPrice2(minPrice, maxPrice) {
 
-    // showPage2(1);
-    // createPagination2();
+    $(".cards2").each(function () {
 
+        let price = parseFloat($(this).data("price"));
 
+        if (price >= minPrice && price <= maxPrice) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
 
-//------------------------------------
+    });
+   
+}
+//-------------------------------- filter by Price rangeee--------------------------------
+$("#range1").on("input", function () {
 
+    let maxPrice = parseFloat($(this).val());
 
-// console.log(userData.age); 
+    filterByPrice2(0, maxPrice);
 
+    $(".form-label").text(`The highest price is €${maxPrice}`);
 
-// $.ajax({
-//         url: "https://dummyjson.com/products/category/groceries",
-//         method: "GET",
-//         success: function (response) {
+    //      $("#paginationnav2").removeClass("d-none");
+    // $("#paginationnav").addClass("d-none");
+    // setupPagination("divlayout2", "cards2", "pagination2", 8);
 
-// console.log(response.products[1].thumbnail)
 
-//             // Loop through the products array
-//             response.products.forEach(function (product) {
-
-//                 let html = `
-//                     <div class="cards  col-6  col-md-4  col-lg-3   position-relative ">
-//                         <div class=" h-100">
-//                             <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}">
-                          
-//                             <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 ">
-
-//   <span class="icon  p-2   "  >
-// <i class="fa-regular fa-heart "></i>
-//    </span>
-// <span class="icon  p-2   ">
-//     <i class="fa fa-shopping-bag"></i>
-// </span>
-
-//   <span class="icon  p-2   ">
-//         <i class="fa fa-eye"></i>
-//     </span> 
-// </div>
-//                                 <h5 class=" para">${product.title}</h5>
-//                                 <p class=" fw-bold">€${product.price}</p>
-//                             </div>
-//                              <div class="d-flex align-items-center  "> <!-- review by stars -->
-//     <div class="text-warning me-2 rating ">
-//       <i class=" fa-regular fa-star"></i>
-//       <i class="fa-regular fa-star"></i>
-//       <i class="fa-regular fa-star"></i>
-//       <i class="fa-regular fa-star"></i>
-//      <i class="fa-regular fa-star"></i>
-      
-//     </div>
-//     <span class="text-muted ratingspa">No reviews</span>
-//   </div>
-// </div>
-//                         </div>
-//                     </div>
-//                 `;
-//                 let html2 = `
-//                   <div class="cards  col-12  my-5    "> <!--div of card 1  with icons   -->
-
-// <div     class="     row  "  >
-//                     <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
-//     <img src="${product.thumbnail}" class=" w-100 main-img   object-fit-cover h-100"> 
-//     <img src="../images//1.2.jpg" class=" w-100  hover-img position-absolute top-0 start-0 h-100  ">
-// </div>
-
-// <div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
-
-
-// <p class=""> <a href=""  class="para text-decoration-none  " >${product.title}</a></p>  <!--   name and price   -->
-//         <p class="fw-bold">${product.price}</p>   
-
-//         <div class="d-flex align-items-center  "> <!-- review by stars -->
-//     <div class="text-warning me-2 rating ">
-//       <i class=" fa-regular fa-star"></i>
-//       <i class="fa-regular fa-star"></i>
-//       <i class="fa-regular fa-star"></i>
-//       <i class="fa-regular fa-star"></i>
-//      <i class="fa-regular fa-star"></i>
-      
-//     </div>
-//     <span class="text-muted ratingspa">No reviews</span>
-
-//   </div>    <!--   name and price   -->
-
-
-
-//   <div> <!--   paragraph   -->
-
-//             <p class="text-muted mt-3 ">
-//              ${product.description}
-//             </p>
-
-//             <div class="icons  d-flex gap-2 ">
-
-//   <span class="icon  p-2   "  >
-// <i class="fa-regular fa-heart "></i>
-//    </span>
-// <span class="icon  p-2   ">
-//     <i class="fa fa-shopping-bag"></i>
-// </span>
-
-//   <span class="icon  p-2   ">
-//         <i class="fa fa-eye"></i>
-//     </span> 
-// </div>
-
-// </div> <!--   paragraph   -->
-  
-
-// </div> 
-// </div>
-// </div>
-//                 `;
-
-//                 $("#divlayout1 ").append(html);
-//                 $("#divlayout2 ").append(html2);
-//             });
-
-//         },
-//         error: function (error) {
-//             console.error("Error fetching products:", error);
-//         }
-//     });
-
-    // breakkkkk--------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
