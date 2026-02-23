@@ -62,7 +62,7 @@ if (!productId) {
     }
 }
 
-// Wishlist link
+// Wishlist link (send product id to the wishlist)
 $(document).ready(function () {
     $('.bi-heart').on('click', function(e) {
         e.preventDefault();
@@ -74,27 +74,61 @@ $(document).ready(function () {
     });
 });
 
+// PLUS BUTTON
+$(document).on('click', '.qty-plus', function () {
+        
+    let input = $(this).siblings('.qty-input');
+    let value = parseInt(input.val());
 
-// Add to cart link
+    input.val(value + 1);
+    calculateSubTotal(input)
+});
+
+// MINUS BUTTON
+$(document).on('click', '.qty-minus', function () {
+
+    let input = $(this).siblings('.qty-input');
+    let value = parseInt(input.val());
+
+    if (value > 1) {
+        input.val(value - 1);
+    }
+     calculateSubTotal(input)
+});
+
+// Add to cart (send product id to the cart)
 $(document).ready(function () {
     $('#addToCart').on('click', function(e) {
         e.preventDefault();
 
         if (product) {
-            addToCart(product.ID);
+            let quantity = parseInt($('#quantityValue').val());
+            addToCart(product.ID, quantity);
             window.location.href = "../../cart/Template/cart.html";
         }
     });
 });
 
-// Buy it now link
+//In seller page ( remove function)
 $(document).ready(function () {
-    $('#addToCart').on('click', function(e) {
+    $('#removeProduct1').on('click', function(e) {
         e.preventDefault();
 
         if (product) {
-            addToCart(product.ID);
-            window.location.href = "../../cart/Template/cart.html";
+            deleteProductById(product.ID);
+            window.location.href = "../../seller/Template/sellerdash.html";
         }
     });
 });
+
+//Calculate subTotal
+// function calculateSubTotal(input){
+//     let total = 0;
+//     let value = parseInt(input.val());
+//     total = product.Price * value;
+//     return total;
+// }
+
+// let currentOrder = new Order({
+
+// });

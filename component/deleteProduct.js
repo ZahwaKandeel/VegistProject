@@ -4,10 +4,10 @@
 //filter it from other products
 //update to set the remained products
 function deleteProductById(id) {
-    
+
   let products = JSON.parse(localStorage.getItem("products")) || [];
-  const updatedProducts = products.filter(product => product.id != id);
-    
+  const updatedProducts = products.filter(product => product._id !== Number(id));
+  
   localStorage.setItem("products", JSON.stringify(updatedProducts));
-  console.log("Product deleted successfully ✅");
+  console.log("Updated:", JSON.parse(localStorage.getItem("products")));
 }
