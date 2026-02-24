@@ -1,5 +1,8 @@
 // Addresses Logic
 import { User } from "/models/user.js";
+import {isAuth } from "/component/isAuth.js"
+
+isAuth();
 
 window.onload = () => window.scrollTo(0, 0);
 const userData = localStorage.getItem("currentUser");
