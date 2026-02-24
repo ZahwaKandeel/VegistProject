@@ -119,7 +119,7 @@ new Chart(ctx2, {
       {
         label: 'SMEs',
         data: [20, 35, 30, 10, 8, 12],
-        backgroundColor: '#5B4DD8',
+        backgroundColor: '#f5ab1e',
         borderRadius: 8,
         borderSkipped: false,
         stack: 'stack1'
@@ -127,7 +127,7 @@ new Chart(ctx2, {
       {
         label: 'Startups',
         data: [15, 25, 20, 25, 12, 15],
-        backgroundColor: '#A29BFE',
+        backgroundColor: '#f2c36d',
         borderRadius: 8,
         borderSkipped: false,
         stack: 'stack1'
@@ -135,7 +135,7 @@ new Chart(ctx2, {
       {
         label: 'Enterprises',
         data: [25, 40, 35, 30, 18, 20],
-        backgroundColor: '#E5E5F7',
+        backgroundColor: '#efd7aa',
         borderRadius: 8,
         borderSkipped: false,
         stack: 'stack1'
@@ -195,8 +195,8 @@ const dataSets = {
 
 // ===== Gradient =====
 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-gradient.addColorStop(0, '#6C5DD3');
-gradient.addColorStop(1, '#A066FF');
+gradient.addColorStop(0, '#f5ab1e');
+gradient.addColorStop(1, '#f2c36d');
 
 // ===== Create Chart =====
 const revenueChart = new Chart(ctx, {

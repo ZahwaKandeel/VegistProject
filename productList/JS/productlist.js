@@ -237,7 +237,7 @@ function filterByPrice(minPrice, maxPrice) {
         } else {
             $(this).hide();
         }
-         setupPagination("divlayout1", ".cards:visible", "pagination1", 16);
+        //  setupPagination("divlayout1", ".cards:visible", "pagination1", 16);
 
     });
     
@@ -708,42 +708,6 @@ $(".btnbag2").click(function(){
 //    open("../../productDetials/Template/ProductPopUp.html" )
 // })
 
-
-
-//----------------break---------------
-    // let itemsPerPage = 16; // number of products in page
-    // let items = $("#divlayout1 .cards");
-    // let totalItems = items.length ;
-    // let totalPages = Math.ceil(totalItems / itemsPerPage);
-    // console.log(items.length)
-    // function showPage(page) {
-    //     items.hide(); 
-    //     const start = (page - 1) * itemsPerPage;
-    //     const end = start + itemsPerPage;
-    //     items.slice(start, end).show();  
-    // }
-    // //button for slide
-    // function createPagination() {  
-    //     $("#pagination").html("");
-    //     for (let i = 1; i <= totalPages; i++) {
-    //         $("#pagination").append(`
-    //             <li class="page-item">
-    //                 <a class="page-link" href="#">${i}</a>
-    //             </li>
-    //         `);
-    //     }
-    //     $("#pagination li:first").addClass("active");
-    //     $(".page-link").click(function (e) {
-    //         e.preventDefault();
-    //         const page = parseInt($(this).text());
-    //         $(".page-item").removeClass("active");
-    //         $(this).parent().addClass("active");
-    //         showPage(page);
-    //     });
-    // }
-
-    // showPage(1);
-    // createPagination();
     // breakkkkk--------------------------------------------------------
 
 
@@ -753,7 +717,9 @@ $(".btnbag2").click(function(){
 function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
 
     let items = $(`#${containerId} .${cardClass}`);
+
     let totalItems = items.length;
+
     let totalPages = Math.ceil(totalItems / itemsPerPage);
 
     function showPage(page) {
@@ -805,7 +771,7 @@ function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
 
 
 
-// --------------------------------filter by Price --------------------------------
+//--------------------------------filter by Price --------------------------------
 function filterByPrice2(minPrice, maxPrice) {
 
     $(".cards2").each(function () {
@@ -822,7 +788,7 @@ function filterByPrice2(minPrice, maxPrice) {
    
 }
 //-------------------------------- filter by Price rangeee--------------------------------
-$("#range1").on("input", function () {
+$('input[type="range"]').on("input", function () {
 
     let maxPrice = parseFloat($(this).val());
 
@@ -836,11 +802,6 @@ $("#range1").on("input", function () {
 
 
 });
-
-
-
-
-
 
 
 })//end of load
