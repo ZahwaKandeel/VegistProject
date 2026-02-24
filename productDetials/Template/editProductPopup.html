@@ -43,16 +43,65 @@
                 <input type="text" class="form-control" id="updateStock" name="updateStock" placeholder="200">
             </div>
             <div class="mb-3">
-                <label for="updateCategory" class="form-label fw-bold">Category:</label>
-                <input type="text" class="form-control" id="updateCategory" name="updateCategory" placeholder="bagel">
+                <label for="category" class="form-label fw-bold">Category:</label>
+                <select class="form-select" id="category" aria-label="Categories">
+                    <option value="bagel">Bagel</option>
+                    <option value="candy">Candy</option>
+                    <option value="beans">Beans</option>
+                    <option value="bestseller">Bestseller</option>
+                    <option value="bread">Bread</option>
+                    <option value="biscuite">Biscuite</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="cake">Cake</option>
+                    <option value="cookie">Cookie</option>
+                    <option value="cupcake">Cupcake</option>
+                    <option value="Dairy&Cheese">Dairy & Cheese</option>
+                    <option value="Dinner">Dinner</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="updateImage" class="form-label fw-bold">Image:</label>
                 <input type="text" class="form-control" id="updateImage" name="updateImage" placeholder="images.google.com">
             </div>
              <div class="mb-3">
-                <label for="size" class="form-label fw-bold">Size (g):</label>
-                <input type="text" class="form-control" id="size" name="size" placeholder="50">
+                <label for="sizes" class="form-label fw-bold">Size (KG):</label>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="sizesDropdown" data-bs-toggle="dropdown">Select Sizes</button>
+                    <ul class="dropdown-menu w-100 p-3" style="max-height: 200px" >
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input size-option" type="checkbox" value="1" id="size1">
+                                <label for="size1">1 KG</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input size-option" type="checkbox" value="2" id="size2">
+                                <label for="size2">2 KG</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input size-option" type="checkbox" value="3" id="size3">
+                                <label for="size3">3 KG</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input size-option" type="checkbox" value="4" id="size4">
+                                <label  for="size4">4 KG</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input size-option" type="checkbox" value="5" id="size5">
+                                <label for="size5">5 KG</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="sizesError"></div>
+
             </div>
             <div class="mb-3">
                 <label for="discount" class="form-label fw-bold">Discount (%):</label>
@@ -87,7 +136,7 @@
                 $("#updateStock").val(product.Stock);
                 $("#updateCategory").val(product.Category);
                 $("#updateImage").val(product.ImageUrl);
-                $("#updateSize").val(product.Size);
+                $("#updateSize").val(product.Sizes);
                 $("#updateDiscountPercentage").val(product.DiscountPercentage);
                 
                 const allowedCategories = [
