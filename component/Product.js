@@ -93,7 +93,7 @@ export class Product{
 
     set Sizes(sizes)
     {
-        if(!Array.isArray(sizes)) throw new Error("Sizes must be an array of sizess")
+        if(!Array.isArray(sizes)) throw new Error("Sizes must be an array of sizes")
         sizes.forEach(size =>{
             if(size <= 0) throw new Error("Sizes cannot be 0 or negative");
         });
