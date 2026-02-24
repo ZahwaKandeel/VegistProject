@@ -118,7 +118,7 @@ function displayCart() {
                                     <p class="card-text fw-bold m-1">
                                     Size:
                                     <div class="sizes d-flex flex-wrap gap-1">
-                                       ${checkSize()}
+                                       ${checkSize(product?._id)}
                                         </div>
                                     </p>
                                     <p class="card-text fw-bold m-1">
@@ -153,25 +153,54 @@ function displayCart() {
 
     calculateSubtotal();
 }
+function checkSize(productId) {
 
-function checkSize(){
-    let cart =  JSON.parse(localStorage.getItem('cart')) || [];
-    let products =  JSON.parse(localStorage.getItem('products')) || [];
-    const product = products.find(p => p._id == item.product_id);
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let products = JSON.parse(localStorage.getItem('products')) || [];
 
-    cart.map((item)=>{
-        if (item.size == null) {
-            product.size.map((item, index)=>{
-                return `
-      <input type="radio" name="size" id="size${index}" value=${item}>
-      <label for="size${index}"></label>
-    `
-            })
-        } else{
-            return `<span class="size fw-normal">${item?.size}</span>`
-        }
-    })
+    const cartItem = cart.find(item => item.product_id == productId);
+    if (!cartItem) return '';
+
+    const product = products.find(p => p._id == productId);
+    if (!product) return '';
+
+    if (cartItem.size) {
+        return `<span class="btn btn-outline-warning rounded-pill py-1 me-2">${cartItem.size} kg</span>`;
+    }
+
+    return product._sizes.map((size, index) => `
+        <input 
+            type="radio"
+            class="choose-size d-none"
+            name="size-${index}"
+            id="size-${index}"
+            data-id="${productId}"
+            value="${size}"
+        >
+        <label for="size-${index}" class="btn btn-outline-warning rounded-pill py-1 me-2">
+            ${size} kg
+        </label>
+    `).join('');
 }
+
+$(document).on('change', '.choose-size', function () {
+
+    let productId = $(this).data('id');
+    let selectedSize = $(this).val();
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let item = cart.find(i => i.product_id == productId);
+    if (item) {
+        item.size = selectedSize;
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    displayCart();
+});
+
+
 // Remove item from cart
 function removeFromCart(product_id){
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
