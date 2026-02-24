@@ -14,6 +14,7 @@ let appliedCoupon = null;
 let special_instructions;
 
 $(document).ready(function () {
+    // localStorage.setItem('products', JSON.stringify(dummyProducts))
   
     // Fetch the list of countries and populate the country dropdown
     $.ajax({
@@ -115,7 +116,10 @@ function displayCart() {
                         $${product?._price}
                         </p>`}
                                     <p class="card-text fw-bold m-1">
-                                      Size: <span class="size fw-normal">${product?._size}</span>
+                                    Size:
+                                    <div class="sizes d-flex flex-wrap gap-1">
+                                       ${checkSize()}
+                                        </div>
                                     </p>
                                     <p class="card-text fw-bold m-1">
                                       Category: <span class="material fw-normal">${product?._category}</span>
@@ -150,6 +154,24 @@ function displayCart() {
     calculateSubtotal();
 }
 
+function checkSize(){
+    let cart =  JSON.parse(localStorage.getItem('cart')) || [];
+    let products =  JSON.parse(localStorage.getItem('products')) || [];
+    const product = products.find(p => p._id == item.product_id);
+
+    cart.map((item)=>{
+        if (item.size == null) {
+            product.size.map((item, index)=>{
+                return `
+      <input type="radio" name="size" id="size${index}" value=${item}>
+      <label for="size${index}"></label>
+    `
+            })
+        } else{
+            return `<span class="size fw-normal">${item?.size}</span>`
+        }
+    })
+}
 // Remove item from cart
 function removeFromCart(product_id){
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
