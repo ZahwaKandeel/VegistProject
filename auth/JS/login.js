@@ -62,15 +62,21 @@ $(function() {
         const params = new URLSearchParams(window.location.search);
         const returnUrl = params.get("returnUrl");
 
-        if (returnUrl) {
-            // Optional: prevent redirect to external site
-            if (returnUrl.startsWith("/")) {
-                window.location.replace(returnUrl);
-            } else {
-                window.location.replace("/seller/Template/sellerdash.html");
-            }
+        if (returnUrl && returnUrl.startsWith("/")) {
+            // Safe internal redirect
+            window.location.replace(returnUrl);
         } else {
-            window.location.replace("/seller/Template/sellerdash.html");
+            // Role-based fallback
+            if (user.role === "seller") {
+                window.location.replace("/seller/Template/sellerdash.html");
+
+            } else if (user.role === "admin") {
+                window.location.replace("/admin/Template/adminPanal.html");
+
+            } else {
+                // customer or unknown role
+                window.location.replace("/home/Template/home.html");
+            }
         }
     });
 })

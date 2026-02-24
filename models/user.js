@@ -14,6 +14,27 @@ export class User {
         this.address = [];
     }
 
+    static async ensureAdminExists() {
+        let users = JSON.parse(localStorage.getItem("Users")) || [];
+
+        const adminExists = users.some(u => u.role === "admin");
+
+        if (!adminExists) {
+            const adminPassword = await User.hashPassword("Admin@123");
+
+            const admin = new User({
+                firstName: "Super",
+                lastName: "Admin",
+                email: "admin@system.com",
+                password: "201bce2458f00a54130c695ca8d1658319b32206d495adf175847b57bd4a4151",
+                role: "admin"
+            });
+
+            users.push(admin);
+            localStorage.setItem("Users", JSON.stringify(users));
+        }
+    }
+
     static async hashPassword(password) {
         // hashing passwords
         const encoder = new TextEncoder();
