@@ -67,45 +67,37 @@
             </div>
             <div class="mb-3">
                 <label for="sizes" class="form-label fw-bold">Size (KG):</label>
-                <!-- <input type="text" class="form-control" id="size" name="size" placeholder="50"> -->
-                <!-- <select class="form-select" id="size" multiple aria-label = "Sizes">
-                    <option value="1">1 KG</option>
-                    <option value="2">2 KG</option>
-                    <option value="3">3 KG</option>
-                    <option value="4">4 KG</option>
-                    <option value="5">5 KG</option>
-                </select> -->
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="sizesDropdown" data-bs-toggle="dropdown">Select Sizes</button>
                     <ul class="dropdown-menu w-100 p-3" style="max-height: 200px" >
                         <li>
                             <div class="form-check">
-                                <input type="form-check-input size-option" type="checkbox" value="1" id="size1">
-                                <label for="form-check-lable" for="size1">1 KG</label>
+                                <input class="form-check-input size-option" type="checkbox" value="1" id="size1">
+                                <label for="size1">1 KG</label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input type="form-check-input size-option" type="checkbox" value="2" id="size2">
-                                <label for="form-check-lable" for="size2">2 KG</label>
+                                <input class="form-check-input size-option" type="checkbox" value="2" id="size2">
+                                <label for="size2">2 KG</label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input type="form-check-input size-option" type="checkbox" value="3" id="size3">
-                                <label for="form-check-lable" for="size3">3 KG</label>
+                                <input class="form-check-input size-option" type="checkbox" value="3" id="size3">
+                                <label for="size3">3 KG</label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input type="form-check-input size-option" type="checkbox" value="4" id="size4">
-                                <label for="form-check-lable" for="size4">4 KG</label>
+                                <input class="form-check-input size-option" type="checkbox" value="4" id="size4">
+                                <label  for="size4">4 KG</label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input type="form-check-input size-option" type="checkbox" value="5" id="size5">
-                                <label for="form-check-lable" for="size5">5 KG</label>
+                                <input class="form-check-input size-option" type="checkbox" value="5" id="size5">
+                                <label for="size5">5 KG</label>
                             </div>
                         </li>
                     </ul>
@@ -144,14 +136,13 @@
                 let stock = parseInt($("#stock").val());
                 let category = $("#category").val().trim();
                 let image = $("#image").val().trim();
-                let sizes = $(".size-option:checked").map(function(){
-                    return $(this).val();
-                }).get();
-                let discountPercentage = parseInt($("#discountPercentage")).val();
 
-                
-                
-                
+                let sizes = $(".size-option:checked").map(function(){
+                    return parseInt($(this).val(),10);
+                }).get();
+
+                let discountPercentage = parseInt($("#discountPercentage").val());
+
                 
                 if (name.length<3){
                     showError("#name", "Name must be at least 3 characters");
@@ -217,7 +208,7 @@
             $(".dropdown-menu").on("click", function(e){
                     e.stopPropagation();
                 });
-                $("size-option").on("change", function(){
+                $(".size-option").on("change", function(){
                     let selected = $(".size-option:checked").map(function(){
                         return $(this).next("label").text();
                     }).get();
