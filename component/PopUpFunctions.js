@@ -15,45 +15,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 
+let value = parseInt($('#modal-quantityValue').val());
+// PLUS BUTTON
+$(document).on('click', '.modal-qty-plus', function () {
+    value++;
+    $('.modal-qty-input').val(value);  
+    //calculateSubTotal()
+});
+
+// MINUS BUTTON
+$(document).on('click', '.modal-qty-minus', function () {
+    if (value > 1) {
+        value --;
+    }
+    $('.modal-qty-input').val(value);
+    //calculateSubTotal()
+});
+
 $(document).on('click', '.fa-heart', function () {
     window.location.href = "../../wishlist/Template/wishlist.html";
 });
 
 $(document).on('click', '.fa-shopping-bag', function () {
 
-});
-
-// PLUS BUTTON
-$(document).on('click', '.qty-plus', function () {
-        
-    let input = $(this).siblings('.qty-input');
-    let value = parseInt(input.val());
-
-    input.val(value + 1);
-    calculateSubTotal(input)
-});
-
-// MINUS BUTTON
-$(document).on('click', '.qty-minus', function () {
-
-    let input = $(this).siblings('.qty-input');
-    let value = parseInt(input.val());
-
-    if (value > 1) {
-        input.val(value - 1);
-    }
-     calculateSubTotal(input)
-});
-
-// Add to cart (send product id to the cart)
-$(document).ready(function () {
-    $('#addToCart').on('click', function(e) {
-        e.preventDefault();
-
-        if (product) {
-            let quantity = parseInt($('#quantityValue').val());
-            addToCart(product.ID, quantity);
-            window.location.href = "../../cart/Template/cart.html";
-        }
-    });
 });

@@ -93,7 +93,7 @@ export class Product{
 
     set Sizes(sizes)
     {
-        if(!Array.isArray(sizes)) throw new Error("Sizes must be an array of sizess")
+        if(!Array.isArray(sizes)) throw new Error("Sizes must be an array of sizes")
         sizes.forEach(size =>{
             if(size <= 0) throw new Error("Sizes cannot be 0 or negative");
         });
@@ -115,25 +115,25 @@ export class Product{
         return this._rating;
     }
   
-    set Reviews(reviews)
-    {
-        if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
-        reviews.forEach(review =>{
-            if(typeof review !== "object" || review === null)
-                throw new Error("Each review must be an object");
-            if(!("name" in review) || !("comment" in review))
-                throw new Error("Review must contain name and comment properties");
-            if(typeof review.name !== "string" || review.name.trim().length<3)
-                throw new Error("Reviewers name must be at least 3 characters");
-            if(typeof review.comment !== "string" || review.comment.trim().length.length<50)
-                throw new Error("Comment length must be at least 50 characters");
-        });
-        this._reviews = reviews;
-    }
-    get Reviews()
-    {
-        return this._reviews;
-    }
+    // set Reviews(reviews)
+    // {
+    //     if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
+    //     reviews.forEach(review =>{
+    //         if(typeof review !== "object" || review === null)
+    //             throw new Error("Each review must be an object");
+    //         if(!("name" in review) || !("comment" in review))
+    //             throw new Error("Review must contain name and comment properties");
+    //         if(typeof review.name !== "string" || review.name.trim().length<3)
+    //             throw new Error("Reviewers name must be at least 3 characters");
+    //         if(typeof review.comment !== "string" || review.comment.trim().length.length<50)
+    //             throw new Error("Comment length must be at least 50 characters");
+    //     });
+    //     this._reviews = reviews;
+    // }
+    // get Reviews()
+    // {
+    //     return this._reviews;
+    // }
 
     set DiscountValue(discountValue)
     {

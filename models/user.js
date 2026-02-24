@@ -1,17 +1,38 @@
 // User Class
 
 export class User {
-    constructor({ firstName, lastName, email, password }) {
+    constructor({ firstName, lastName, email, password, role }) {
         this.id = Date.now();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = "customer";
+        this.role = role;
         this.wishlist = [];
         this.cart = [];
         this.phone = "";
         this.address = [];
+    }
+
+    static async ensureAdminExists() {
+        let users = JSON.parse(localStorage.getItem("Users")) || [];
+
+        const adminExists = users.some(u => u.role === "admin");
+
+        if (!adminExists) {
+            const adminPassword = await User.hashPassword("Admin@123");
+
+            const admin = new User({
+                firstName: "Super",
+                lastName: "Admin",
+                email: "admin@system.com",
+                password: "201bce2458f00a54130c695ca8d1658319b32206d495adf175847b57bd4a4151",
+                role: "admin"
+            });
+
+            users.push(admin);
+            localStorage.setItem("Users", JSON.stringify(users));
+        }
     }
 
     static async hashPassword(password) {
@@ -19,7 +40,7 @@ export class User {
         const encoder = new TextEncoder();
         const data = encoder.encode(password);
 
-        const hashBuffer = crypto.subtle.digest("SHA-256", data);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
 
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         const hashHex = hashArray
