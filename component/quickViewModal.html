@@ -15,12 +15,12 @@
                                         <div class="carousel-inner w-100">
                                             <div class="carousel-item active">
                                                 <div class="ratio ratio-1x1">
-                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img1">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;">
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
                                                 <div class="ratio ratio-1x1">
-                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img2">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;">
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
@@ -77,10 +77,14 @@
                                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
                                             <span class="text-muted ms-2 small"></span>
                                         </div>
+                                       
+                                        <p class="mb-2">
+                                            <strong>Availability:</strong> 
+                                            <span id="modal-productStock" class="text-success"></span> 
+                                        </p>
 
-                                        <p id="modal-productStock" class="mb-2"><strong>Availability:</strong> <span class="text-success"></span></p>
-
-                                        <div class="d-flex align-items-center mb-3">
+                                        <div class="d-flex align-items-center mb-3"> 
+                                            <label class="d-block fw-bold mb-2 small">Price:</label>
                                             <span  id="modal-productPrice" class="fs-4 fw-bold me-2"></span>
                                             <span class="text-decoration-line-through text-muted me-2"></span>
                                             <span id="modal-discount" class="badge bg-danger"></span>
@@ -99,7 +103,7 @@
                                         </div>
 
                                         <div class="d-flex align-items-center flex-md-row mb-4">
-                                            <p class="fw-bold mb-2">Category:</p>
+                                            <p id="modal-categoy" class="fw-bold mb-2">Category:</p>
                                             <label id="modal-category" class="btn btn-variant-pill"></label>
                                         </div>
 
@@ -107,13 +111,15 @@
                                             <div class="mb-3">
                                                 <span class="me-3 fw-bold text-dark">Quantity:</span>
                                                     <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
-<div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
-    <button class="btn btn-light border-0 modal-qty-minus" type="button">-</button>
+                                                        <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+                                                        <button class="btn btn-light border-0 modal-qty-minus" type="button">-</button>
     
-    <input type="text" id="modal-quantityValue" class="form-control border-0 text-center bg-transparent fw-bold" value="1" readonly>
+                                                        <input type="text" id="modal-quantityValue" 
+                                                        class="form-control border-0 text-center bg-transparent fw-bold modal-qty-input" 
+                                                        value="1" readonly>
     
-    <button class="btn btn-light border-0 modal-qty-plus" type="button">+</button>
-</div>
+                                                        <button class="btn btn-light border-0 modal-qty-plus" type="button">+</button>
+                                                        </div>
                                                     </div>
                                             </div>
                                         </div>

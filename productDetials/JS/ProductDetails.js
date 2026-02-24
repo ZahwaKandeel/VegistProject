@@ -1,4 +1,5 @@
 import { loadProducts } from "../../component/Product.js";
+import { dummyProducts } from "../../seller/JS/dummyproducts.js";
 import { Order } from "/models/order.js"
 
 //Load products from localStorage
@@ -30,9 +31,8 @@ if (!productId) {
         document.getElementById("productDescription").textContent = product.Description;
         document.getElementById("productSKU").textContent = product.ID;
         document.getElementById("category").textContent = product.Category;
-        //document.getElementById("sizes").textContent = product.Sizes[];
-        //document.getElementById("reviews").textContent = product.Reviews;
-        document.getElementById("discount").textContent = product.DiscountPercentage;
+        //document.getElementById("productReviews").textContent = product.Reviews;
+        //document.getElementById("discount").textContent = product.DiscountPercentage;
 
         //Fill in the carousel images
         const carouselImages = document.querySelectorAll("#carouselVeg img");
@@ -65,6 +65,7 @@ if (!productId) {
             badge.textContent = `${product.DiscountPercentage}%`;
         }
     }
+
 }
 
 // Wishlist link (send product id to the wishlist)
@@ -99,13 +100,15 @@ $(document).on('click', '.qty-minus', function () {
 // Add to cart (send product id to the cart)
 $(document).ready(function () {
     $('#addToCart').on('click', function(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        if (product) {
-            let quantity = parseInt($('#quantityValue').val());
-            //addToCart(product.ID, quantity, product.Sizes[]);
-            window.location.href = "../../cart/Template/cart.html";
-        }
+    if (product) {
+        let quantity = parseInt($('#quantityValue').val());
+        let selectedSize = $('input[name="size_choice"]:checked').val();
+
+        addToCart(product.ID,quantity,Sizes);
+        window.location.href = "../../cart/Template/cart.html";
+    }
     });
 });
 
@@ -158,97 +161,18 @@ function buyItNow(){
     console.log(currentOrder);
     
 }
-
 $(document).ready(function () {
     $('#buyItNow').on('click', function() {
-
-            buyItNow();
-            window.location.href = "../../checkOut/Template/checkOut.html";
+        buyItNow();
+        window.location.href = "../../checkOut/Template/checkOut.html";
     });
 });
-
-//RELATED PRODUCTS
-function loadRelatedProducts() {
-
-    if (!product || products.length === 0) return;
-
-    //Exclude the current product
-    let related = products.filter(p =>
-        p.ID !== product.ID 
-    );
-
-    let cards = $(".cards");
-
-    cards.each(function (index) {
-
-        if (index < related.length) {
-
-            let p = related[index];
-
-            // Update main image
-            $(this).find(".main-img").attr("src", p.ImageUrl);
-
-            // Update product name and link
-            $(this).find(".para")
-                .text(p.Name)
-                .attr("href", `productDetails.html?id=${p.ID}`);
-
-            // Update price
-            $(this).find(".fw-bold")
-                .text(`€${p.Price.toFixed(2)}`);
-
-            // // Update rating stars
-            // let starsHtml = generateStars(p.Rating);
-            // $(this).find(".rating").html(starsHtml);
-
-            // // Update reviews count
-            // $(this).find(".ratingspa")
-            //     .text(`${p.Reviews?.length || 0} reviews`);
-
-        } else {
-            // Hide extra cards if there are fewer products than cards
-            $(this).hide();
-        }
-    });
-}
-
-
-// Function to generate star icons based on rating
-// function generateStars(rating = 0) {
-
-//     let fullStars = Math.floor(rating);
-//     let starsHtml = "";
-
-//     for (let i = 0; i < 5; i++) {
-//         starsHtml += i < fullStars
-//             ? '<i class="fa-solid fa-star"></i>'
-//             : '<i class="fa-regular fa-star"></i>';
-//     }
-
-//     return starsHtml;
-// }
-
-
-//Execute after DOM is fully loaded
-$(document).ready(function () {
-    loadRelatedProducts();
-});
-
-
-//Add to wishlist
-$(document).ready(function () {
-    $('bi-heart').on('click', function() {
-        if (product)
-            addToWishlist(product.ID);
-    });
-});
-
 
 //Fetch size of product
 // Clear old sizes first
 $('.sizediv').empty();
 
-// // Generate sizes dynamically
+//Generate sizes dynamically
 product.Sizes.map((item, index) => {
 
     let sizeId = `size_${index}`; // unique id for each size
@@ -269,4 +193,50 @@ product.Sizes.map((item, index) => {
             ${item}KG
         </label>
     `);
+});
+
+function loadRelatedProducts() {
+    if (!product || products.length === 0) return;
+
+    let related = products.filter(p => p.ID !== product.ID);
+    let cards = $(".cards");
+
+    cards.each(function (index) {
+        if (index < related.length) {
+            let p = related[index];
+
+            // Assign the unique ID to the card
+            $(this).attr("data-id", p.ID).show(); 
+            $(this).find(".main-img").attr("src", p.ImageUrl);
+            $(this).find(".para").text(p.Name).attr("href", `productDetails.html?id=${p.ID}`);
+            $(this).find(".fw-bold").text(`€${p.Price.toFixed(2)}`);
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+
+$(document).on("click", ".fa-eye", function() {
+    // 1. Get the ID from the card that was clicked
+    let productId = $(this).closest(".cards").attr("data-id");
+
+    // 2. Find the product object in your 'products' array
+    let item = products.find(p => p.ID == productId);
+
+    if (item) {
+        // 3. Inject data into your QuickViewModal IDs
+        $("#modal-productImage").attr("src", item.ImageUrl);
+        $("#modal-name").text(item.Name);
+        $("#modal-productPrice").text(`€${item.Price}`);
+        $("#modal-productStock").text(item.Stock);
+        $("#modal-discount").text(item.DiscountPercentage);
+        $("#modal-category").text(item.Category);
+
+        // If you have a description or category in your data:
+        $("#modal-productDescription").text(item.Description || "No description available.");
+        
+        // Update the 'View Details' button link
+        $(".view-details-btn").attr("href", `productDetails.html?id=${item.ID}`);
+    }
 });
