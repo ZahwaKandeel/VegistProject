@@ -9,7 +9,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (existing) {
         existing.quantity += p_quantity;
     } else {
-        cart.push({product_id, quantity: p_quantity });
+        cart.push({product_id, quantity: p_quantity, size });
     } 
 
     // save the cart to localStorage

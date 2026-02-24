@@ -1,4 +1,5 @@
 import { loadProducts } from "../../component/Product.js";
+import { dummyProducts } from "../../seller/JS/dummyproducts.js";
 import { Order } from "/models/order.js"
 
 //Load products from localStorage
@@ -30,7 +31,6 @@ if (!productId) {
         document.getElementById("productDescription").textContent = product.Description;
         document.getElementById("productSKU").textContent = product.ID;
         document.getElementById("category").textContent = product.Category;
-        //document.getElementById("productsize").textContent = product.Sizes;
         //document.getElementById("productReviews").textContent = product.Reviews;
         //document.getElementById("discount").textContent = product.DiscountPercentage;
 
@@ -65,6 +65,7 @@ if (!productId) {
             badge.textContent = `${product.DiscountPercentage}%`;
         }
     }
+
 }
 
 // Wishlist link (send product id to the wishlist)
@@ -97,26 +98,19 @@ $(document).on('click', '.qty-minus', function () {
 });
 
 // Add to cart (send product id to the cart)
-// $(document).ready(function () {
-//     $('#addToCart').on('click', function(e) {
-//     e.preventDefault();
+$(document).ready(function () {
+    $('#addToCart').on('click', function(e) {
+    e.preventDefault();
 
-//     if (product) {
-//         let quantity = parseInt($('#quantityValue').val());
+    if (product) {
+        let quantity = parseInt($('#quantityValue').val());
+        let selectedSize = $('input[name="size_choice"]:checked').val();
 
-//         let selectedSize = $('input[name="size_choice"]:checked').val();
-
-//         let sizesArray = [{
-//             size: selectedSize,
-//             quantity: quantity
-//         }];
-
-//         addToCart(product.ID,sizesArray);
-
-//         window.location.href = "../../cart/Template/cart.html";
-//     }
-//     });
-// });
+        addToCart(product.ID,quantity,Sizes);
+        window.location.href = "../../cart/Template/cart.html";
+    }
+    });
+});
 
 //In seller page ( remove function)
 $(document).ready(function () {
@@ -167,95 +161,39 @@ function buyItNow(){
     console.log(currentOrder);
     
 }
-
 $(document).ready(function () {
     $('#buyItNow').on('click', function() {
-
-            buyItNow();
-            window.location.href = "../../checkOut/Template/checkOut.html";
+        buyItNow();
+        window.location.href = "../../checkOut/Template/checkOut.html";
     });
 });
-
-//RELATED PRODUCTS
-// function loadRelatedProducts() {
-
-//     if (!product || products.length === 0) return;
-
-//     //Exclude the current product
-//     let related = products.filter(p =>
-//         p.ID !== product.ID 
-//     );
-
-//     let cards = $(".cards");
-
-//     cards.each(function (index) {
-
-//         if (index < related.length) {
-
-//             let p = related[index];
-
-//             // Update main image
-//             $(this).find(".main-img").attr("src", p.ImageUrl);
-
-//             // Update product name and link
-//             $(this).find(".para")
-//                 .text(p.Name)
-//                 .attr("href", `productDetails.html?id=${p.ID}`);
-
-//             // Update price
-//             $(this).find(".fw-bold")
-//                 .text(`€${p.Price.toFixed(2)}`);
-
-//         } else {
-//             // Hide extra cards if there are fewer products than cards
-//             $(this).hide();
-//         }
-//     });
-// }
-
-//Execute after DOM is fully loaded
-$(document).ready(function () {
-    loadRelatedProducts();
-});
-
-
-//Add to wishlist
-$(document).ready(function () {
-    $('bi-heart').on('click', function() {
-        if (product)
-            addToWishlist(product.ID);
-    });
-});
-
 
 //Fetch size of product
 // Clear old sizes first
-//$('.sizediv').empty();
+$('.sizediv').empty();
 
-// Generate sizes dynamically
-// product.Sizes.map((item, index) => {
+//Generate sizes dynamically
+product.Sizes.map((item, index) => {
 
-//     let sizeId = `size_${index}`; // unique id for each size
+    let sizeId = `size_${index}`; // unique id for each size
 
-//     $('.sizediv').append(`
-//         <input 
-//             type="radio" 
-//             class="btn-check" 
-//             name="size_choice" 
-//             id="${sizeId}" 
-//             value="${item}"
-//             ${index === 0 ? "checked" : ""}
-//             autocomplete="off">
+    $('.sizediv').append(`
+        <input 
+            type="radio" 
+            class="btn-check" 
+            name="size_choice" 
+            id="${sizeId}" 
+            value="${item}"
+            ${index === 0 ? "checked" : ""}
+            autocomplete="off">
 
-//         <label 
-//             class="btn btn-outline-warning rounded-pill px-4 me-2"
-//             for="${sizeId}">
-//             ${item}KG
-//         </label>
-//     `);
-// });
-
-
+        <label 
+            class="btn btn-outline-warning rounded-pill px-4 me-2"
+            for="${sizeId}">
+            ${item}KG
+        </label>
+    `);
+});
 
 function loadRelatedProducts() {
     if (!product || products.length === 0) return;

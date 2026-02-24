@@ -17,19 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 let value = parseInt($('#modal-quantityValue').val());
 // PLUS BUTTON
-$(document).on('click', '.qty-plus', function () {
-    value++
-    $('.qty-input').val(value);  
-    calculateSubTotal()
+$(document).on('click', '.modal-qty-plus', function () {
+    value++;
+    $('.modal-qty-input').val(value);  
+    //calculateSubTotal()
 });
 
 // MINUS BUTTON
-$(document).on('click', '.qty-minus', function () {
+$(document).on('click', '.modal-qty-minus', function () {
     if (value > 1) {
         value --;
     }
-    $('.qty-input').val(value);
-    calculateSubTotal()
+    $('.modal-qty-input').val(value);
+    //calculateSubTotal()
 });
 
 $(document).on('click', '.fa-heart', function () {
@@ -38,17 +38,4 @@ $(document).on('click', '.fa-heart', function () {
 
 $(document).on('click', '.fa-shopping-bag', function () {
 
-});
-
-// Add to cart (send product id to the cart)
-$(document).ready(function () {
-    $('#addToCart').on('click', function(e) {
-        e.preventDefault();
-
-        if (product) {
-            let quantity = parseInt($('#quantityValue').val());
-            addToCart(product.ID, quantity);
-            window.location.href = "../../cart/Template/cart.html";
-        }
-    });
 });

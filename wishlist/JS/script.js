@@ -5,7 +5,7 @@ let products = JSON.parse(localStorage.getItem('products'))
 let subtotal;
 // When the document is ready, display the wishlist
 $(document).ready(function () {
-   addToWishlist(3)  // Uncomment for testing adding a product
+   // addToWishlist(3)  // Uncomment for testing adding a product
     displayWishlist()
 })
 
