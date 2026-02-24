@@ -3,7 +3,7 @@ import { Product, saveProducts } from "../../component/Product.js";
 export const dummyProducts = [
     new Product(1, "Classic Bagel", 25,
         "A delicious freshly baked bagel made from high quality wheat flour and natural ingredients. Perfect for breakfast with cream cheese and jam for a delightful start to your day.",
-        50, "bagel", "https://picsum.photos/200/300?1.jpg",
+        0, "bagel", "https://picsum.photos/200/300?1.jpg",
         [1,2], 4.5,
         [{ name: "Yamen Aly", comment: "This bagel is consistently fresh and soft with an amazing texture that makes breakfast much more enjoyable every single time." }],
         5, 10),
