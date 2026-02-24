@@ -155,7 +155,12 @@
                     let stock = parseInt($("#updateStock").val());
                     let category = $("#updateCategory").val().trim();
                     let image = $("#updateImage").val().trim();
-                    let size = parseInt($("#size")).val();
+                    // let size = parseInt($("#size")).val();
+
+                    let sizes = $(".size-option:checked").map(function(){
+                        return parseInt($(this).val(),10);
+                    }).get();
+
                     let discountPercentage = parseInt($("#discountPercentage")).val();
 
                     if (name.length<3){
@@ -182,9 +187,11 @@
                         showError("#updateImage", "Enter a valid image URL.");
                         isValid = false;
                     }
-                    if(isNan(size) || size<=0){
-                    showError("#size","Size value must be more than 0");
-                    isValid = false;
+                    if (sizes.length === 0) {
+                        $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
+                        isValid = false;
+                    } else {
+                        $("#sizesError").html("");
                     }
                     if(isNaN(discountPercentage) || discountPercentage<0 || discountPercentage>100){
                         showError("#discountPercentage","Discount Percentage must be a number between 0 and 100");
@@ -210,8 +217,20 @@
                     }catch(error){
                         alert(error.message)
                     }
+                });
+                $(".dropdown-menu").on("click", function(e){
+                    e.stopPropagation();
+                });
+                $(".size-option").on("change", function(){
+                    let selected = $(".size-option:checked").map(function(){
+                        return $(this).next("label").text();
+                    }).get();
 
-
+                    if(selected.length === 0){
+                        $("#sizesDropdown").text("Select Sizes");
+                    } else{
+                        $("#sizesDropdown").text(selected.join(", "));
+                    }
                 });
 
                 function showError(selector, message){
