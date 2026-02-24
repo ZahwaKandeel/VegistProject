@@ -1,6 +1,10 @@
 // profile Logic
 
 import { User } from "/models/user.js"
+import {isAuth } from "/component/isAuth.js"
+
+isAuth();
+
 $(function() {
     const userData = localStorage.getItem("currentUser");
     if (userData) {
