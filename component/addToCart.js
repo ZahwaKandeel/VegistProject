@@ -1,7 +1,7 @@
 // This function adds a product to the shopping cart
 // Send the product id and quantity as parameters
 
-function addToCart(product_id, p_quantity=1, size) {
+function addToCart(product_id, p_quantity=1, size = null) {
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     // check if the product already exists or not
