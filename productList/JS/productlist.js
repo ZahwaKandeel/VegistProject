@@ -150,10 +150,75 @@ function filterByCategory2(category) {
 
 // --------------------------------filter by stock  --------------------------------
 
-function filterByStock(){
- console.log(userData)
+// function filterByStock(){
+//   if (userData._stock == 0) {
+//     $("#out").val( "out")
+//   }else {
+
+//   } }
+
+
     
+
+// function filterByStock() {
+//      $(".cards").hide();
+//     $(`.cards[data-stock="${stock}"]`).show();
+//   if (userData._stock == 0) {
+//     $("#outs").text("outs");
+//   } else {
+//     $("#outs").text(userData._stock);
+//   }
+// }
+
+
+
+function  filterByStock(type) {
+   
+$(".cards").hide();
+$(".cards").each(function(){
+    let stock = $(this).data("stock");
+    if (type == "in" && stock > 0){
+          
+        $(this).show();
+    }
+     if (type == "out" && stock == 0){
+   
+        $(this).show();
+
+    }
+});
+setupPagination("divlayout1",$(this).data("stock") , "pagination1", 16);
 }
+
+function  filterByStock2(typee) {
+$(".cards2").hide();
+$(".cards2").each(function(){
+    let stock = $(this).data("stock");
+    if (typee == "in" && stock > 0){
+        $(this).show();
+    }
+     if (typee == "out" && stock == 0){
+        $(this).show();
+    }
+
+
+});
+
+}
+
+$("#outs").click(function(){
+    filterByStock("out");
+    filterByStock2("out");
+
+
+});
+$("#Ins").click(function(){
+    
+    filterByStock("in");
+     filterByStock2("in");
+
+
+});
 
 
 
@@ -168,14 +233,17 @@ function filterByPrice(minPrice, maxPrice) {
 
         if (price >= minPrice && price <= maxPrice) {
             $(this).show();
+           
         } else {
             $(this).hide();
         }
+         setupPagination("divlayout1", ".cards:visible", "pagination1", 16);
 
     });
+    
 }
 //-------------------------------- filter by Price rangeee--------------------------------
-$("#range1").on("input", function () {
+$('input[type="range"]').on("input", function () {
 
     let maxPrice = parseFloat($(this).val());
 
@@ -187,20 +255,6 @@ $("#range1").on("input", function () {
 
 // --------------------------------filter by Price stockk--------------------------------
 
-function filterInStock() {
-
-    $(".cards").each(function () {
-
-        let stock = parseInt($(this).data("stock"));
-
-        if (stock > 0) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
-
-    });
-}
 
 
 
@@ -544,7 +598,7 @@ setupPagination("divlayout2", `cards2[data-category="cupcake"]`, "pagination2", 
 $(".Diaryhesse").click(function () {
     filterByCategory2('Diary&Cheese');
 $(".categName").text('Diary & chesse')
-  let   num = $('.cards2[data-category="Diary & chesse"]:visible').length;
+  let   num = $('.cards2[data-category="Diary&Cheese"]:visible').length;
 
     $(".filternum").text(`(${num})`)
 
@@ -639,16 +693,21 @@ $(".btnbag2").click(function(){
 //    addToCart(this.userData._id, p_quantity=1)
  })
 
-// $(".btneye").click(function(){
+
+
+ $(".btnheart").click(function(){
+       const parentId = $(this).parent().parent().parent().parent().attr("id");
+   addToWishlist(parentId)
+
+ })
+
+
+
+
+ // $(".btneye").click(function(){
 //    open("../../productDetials/Template/ProductPopUp.html" )
 // })
 
-
-
-// $(".bagel").click(function(){
-//     open("../Template/Bagel.html" , "_self" )
-   
-// })
 
 
 //----------------break---------------
