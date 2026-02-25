@@ -4,6 +4,7 @@ import { User } from "/models/user.js";
 $(async function () {
 
     await User.ensureAdminExists(); // Seed admin
+    await User.defaultSeller(); // Seed seller
 
     $(function(){
         const firstName = $("#firstName");

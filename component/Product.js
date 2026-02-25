@@ -14,6 +14,8 @@ export class Product{
         this.DiscountPercentage = discountPercentage;
     }
 
+
+
     set ID(id)
     {
         if(id>0)
@@ -244,3 +246,35 @@ export function editProduct(productID, updatedData){
     return true;
     
 }
+
+    const review =[
+         {
+        id:"",
+        userId:"",
+        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+        rating:4
+    },
+       {
+        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+        rating:2
+    },   {
+        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+        rating:4
+    },   {
+        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+        rating:1
+    },   {
+        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+        rating:4
+    },   {
+        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+        rating:5
+    },
+    ]
+
+let totalRating = 0
+review.forEach(i=>{
+    totalRating+= i.rating
+})
+
+const finalRating = totalRating / review.length

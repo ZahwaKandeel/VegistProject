@@ -53,6 +53,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//Quantity Plus/Minus
+// Quantity Plus
+$(document).on('click', '.modal-qty-plus', function () {
+    let value = parseInt($('#modal-quantityValue').val()) || 1;
+    value++;
+    $('#modal-quantityValue').val(value);
+});
+
+// Quantity Minus
+$(document).on('click', '.modal-qty-minus', function () {
+    let value = parseInt($('#modal-quantityValue').val()) || 1;
+    if (value > 1) value--;
+    $('#modal-quantityValue').val(value);
+});
+
+//AddToCart
+$(document).on('click', '#modal-addToCart', function(e) {
+    e.preventDefault(); // VERY IMPORTANT
+
+    if (!selectedProduct) return;
+
+    let quantity = parseInt($('#modal-quantityValue').val()) || 1;
+    let selectedSize = $('input[name="size_choice"]:checked').val();
+
+    addToCart(selectedProduct.ID, quantity, selectedSize);
+
+    window.location.href = "../../cart/Template/cart.html";
+});
+
 // Buy It Now function
 function buyItNow() {
     if (!selectedProduct) return;
@@ -86,21 +115,21 @@ function buyItNow() {
 }
 
 // Wishlist from popup
-$(document).on('click', '.fa-heart', function () {
-    const cardId = parseInt($(this).closest(".cards").attr("id"));
-    const product = products.find(p => p.ID === cardId);
-    if (!product) return;
-    addToWishlist(product.ID);
-});
+// $(document).on('click', '.fa-heart', function () {
+//     const cardId = parseInt($(this).closest(".cards").attr("id"));
+//     const product = products.find(p => p.ID === cardId);
+//     if (!product) return;
+//     addToWishlist(product.ID);
+// });
 
-// Shopping bag icon from popup
-$(document).on('click', '.fa-shopping-bag', function () {
-    const cardId = parseInt($(this).closest(".cards").attr("id"));
-    const product = products.find(p => p.ID === cardId);
-    if (!product) return;
-    // Replace quantity & size with defaults if needed
-    addToCart(product.ID, 1, product.Sizes[0]);
-});
+// // Shopping bag icon from popup
+// $(document).on('click', '.fa-shopping-bag', function () {
+//     const cardId = parseInt($(this).closest(".cards").attr("id"));
+//     const product = products.find(p => p.ID === cardId);
+//     if (!product) return;
+//     // Replace quantity & size with defaults if needed
+//     addToCart(product.ID, 1, product.Sizes[0]);
+// });
 
 // Change size button style when clicked
 $(document).on('click', '.sizediv label', function () {

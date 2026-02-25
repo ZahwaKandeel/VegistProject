@@ -2,6 +2,12 @@
 
 import { User } from "/models/user.js"
 
+const userData = localStorage.getItem("currentUser");
+console.log(`userData: ${userData}`)
+const plainUser  = JSON.parse(userData);
+console.log(`Plan User:` ,plainUser)
+let user = Object.assign(new User({}), plainUser );
+
 $(function() {
     // LOGOUT
     // Use this function once per page to avoid double-handlers
@@ -44,15 +50,11 @@ $(function() {
 $(function() {
 
     // Load Current User
-    let user;
-    const userData = localStorage.getItem("currentUser");
+
     $("#userContact").hide();
 
     if (userData) {
-        const plainUser  = JSON.parse(userData);
-        user = Object.assign(new User({}), plainUser );
         
-
         // Email & icon
         $("#userEmail").text(user.email);
         $("#userInitial").text(user.firstName.charAt(0).toUpperCase());
@@ -61,8 +63,46 @@ $(function() {
         $("#guestContact").hide();
         $("#userContact").show();
     }
+});
 
+let newAddress;
+const currentAddress = plainUser.address || [];
+const order = localStorage.getItem("currentOrder");
+const plainOrder = order ? JSON.parse(order) : {};
+const orderAddress = plainOrder.shipping || {};
 
+$(function() {
+    // fetch address data
+    console.log("order Address: ", orderAddress)
+    console.log(`planUser: `, plainUser);
+    console.log(currentAddress);
+
+    if (orderAddress) {
+        const defaultAddress = currentAddress.filter(addr => addr.isDefault === true)[0] || {};
+        console.log("plan order: ", plainOrder);
+        
+        $(".firstname").val(orderAddress.firstName || defaultAddress.firstName || '');
+        $(".lastname").val(orderAddress.lastName || defaultAddress.lastName || '');
+        $(".address").val(orderAddress.fullAddress || defaultAddress.address || '');
+        $(".apartment").val(orderAddress.appartment || defaultAddress.apartment || '');
+        $(".city").val(orderAddress.city || defaultAddress.city || '');
+        $(".postal").val(orderAddress.postalCode || defaultAddress.postalCode || '');
+        $("#country").val(orderAddress.country || defaultAddress.country || '');
+    
+        if (orderAddress.country) {
+            $("#countryFirstOption").text(orderAddress.country);
+        }
+        console.log(orderAddress.country)
+        
+    }
+})
+
+$(function() {
+
+    $("#shipping").text(orderAddress.shipping_fees)
+})
+
+$(function() {
     // Complete Order
     $("#orderBtn").click(function() {
 
@@ -70,23 +110,21 @@ $(function() {
             alert("Please login first");
             return;
         }
-
-        const userDetails = JSON.parse(userData);
-        const userAddress = userDetails.address;
-        console.log(userAddress);
+            
+        const isDefaultChecked = $("#saveInfo").prop("checked");
 
         const newAddress = {
-            firstName: document.querySelector(".firstname").value,
-            lastName: document.querySelector(".lastname").value,
-            address: document.querySelector(".address").value,
-            apartment: document.querySelector(".apartment").value,
-            city: document.querySelector(".city").value,
-            postalCode: document.querySelector(".postal").value,
-            country: document.querySelector("#country").value,
+            firstName: $(".firstname").val(),
+            lastName: $(".lastname").val(),
+            address: $(".address").val(),
+            apartment: $(".apartment").val(),
+            city: $(".city").val(),
+            postalCode: $(".postal").val(),
+            country: $("#country").val(),
+            isDefault: isDefaultChecked
         };
-    
         user.addAddress(newAddress);
         user.saveCurrentUser();
         user.updateUsersArray();
     })
-});
+})
