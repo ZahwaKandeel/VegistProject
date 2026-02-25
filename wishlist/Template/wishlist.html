@@ -60,64 +60,17 @@
             color: #f5ab1e;
             cursor: pointer;
         }
-        .icons {
-            margin-bottom: 0;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        .image{
+        .card{
+            position: relative;
             cursor: pointer;
         }
-        .image img{
+        .card img{
             height: 260px;
             object-fit: cover;
         }
-        .image:hover .icons {
-            opacity: 1;
-            margin-bottom: 15px;
-        }
-        .icons i {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 50%;
-            margin: 0 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-        }
-        .icons i:hover {
-            background-color: #f5ab1e;
-            color: #fff;
-            cursor: pointer;
-        }
+        
 
-.image img:nth-child(2) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.4s ease;
-}
-
-.img-2 {
-  opacity: 0;
-}
-
-.image:hover .img-1 {
-  opacity: 0;
-}
-
-.image:hover .img-2 {
-  opacity: 1;
-}
 .discount-per {
-  z-index: 2;
-}
-
-.icons {
   z-index: 2;
 }
 
@@ -172,174 +125,17 @@
         </div>
 
 
-
         <div class="container my-5">
             <h1 class="text-center mb-4">Wishlist Products</h1>
             <div class="wishlist-items row g-4">
 
             </div>
-
-            <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container d-flex flex-column">
-                    <div class="d-flex align-items-start mt-5">
-                            <div class="col-5 pb-5">
-                                <div id="carouselVeg" class="carousel slide border overflow-hidden position-relative">
-                                    
-                                    <div class="carousel-inner w-100">
-                                        <div class="carousel-item active">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/1.jpg" class="w-100" style="object-fit: cover;" alt="veg1">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/1.2.jpg" class="w-100" style="object-fit: cover;" alt="veg2">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/3.2.jpg" class="w-100" style="object-fit: cover;" alt="veg3">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ratio ratio-1x1">
-                                                <img src="../images/5.2.jpg" class="w-100" style="object-fit: cover;" alt="veg4">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button class="carousel-control-prev opacity-0" type="button" data-bs-target="#carouselVeg" data-bs-slide="prev" 
-                                            style="transition: opacity 0.3s;"
-                                            onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
-                                            onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
-                                        <span class="carousel-control-prev-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
-                                            style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
-                                        </span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next opacity-0" type="button" data-bs-target="#carouselVeg" data-bs-slide="next" 
-                                            style="transition: opacity 0.3s;"
-                                            onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
-                                            onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
-                                        <span class="carousel-control-next-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
-                                            style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
-                                        </span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="d-flex justify-content-evenly align-items-center gap-2 mt-3">
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="0" class="">
-                                            <img src="../images/1.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="1" class="">
-                                            <img src="../images/1.2.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="2" class="">
-                                            <img src="../images/3.2.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <a href="" data-bs-target=#carouselVeg  data-bs-slide-to="3" class="">
-                                            <img src="../images/5.2.jpg" class="w-100">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div> <!-- End Row1 Col 1 -->
-
-                            <div class="col-7 pb-5">
-                                <div class="px-2" >
-                                    <h2 class="title fw-bold">Product Name (Weight)</h2>
-                                    <hr>
-                                    <div class="text-warning mb-3 d-flex gap-1">
-                                        <div class="d-flex align-items-center rating">
-
-                                        </div>
-                                        <span class="text-muted ms-2 reviews">No reviews</span>
-                                    </div>
-
-                                    <p class="mb-2"><strong>Availability:</strong> <span class="text-success stock">● 18 in stock</span></p>
-
-                                    <div class="d-flex align-items-center mb-3 price">
-                                        
-                                    </div>
-
-                                    <p class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-
-                                    <div class="mb-4">
-                                        <label class="d-block fw-bold mb-2">Size:</label>
-                                        <div class="d-flex gap-2 size">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex align-items-center mb-4">
-                                        <span class="me-3 fw-bold text-dark">Quantity:</span>
-                                        
-                                        <div class="input-group btn-variant-pill d-flex align-items-center bg-light border" style="width: 140px; padding: 2px 5px;">
-                                            <button class="btn btn-sm border-0 bg-transparent fw-bold" type="button" id="button-minus" style="box-shadow: none;">−</button>
-                                            <input type="text" class="form-control form-control-sm text-center border-0 bg-transparent fw-bold" value="1" id="quantity-input" readonly style="box-shadow: none;">
-                                            <button class="btn btn-sm border-0 bg-transparent fw-bold" type="button" id="button-plus" style="box-shadow: none;">+</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between mb-3 gap-1">
-                                        <button class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill add-to-cart-modal">Add to cart</button>
-                                        <button class="btn btn-dark w-100 py-2 fw-bold rounded-pill checkout-modal">Buy it now</button>
-                                    </div>
-
-                                    <div class="mt-4">
-                                        <div class="mb-2">
-                                            <a href="#" class="text-decoration-none text-muted small">
-                                                <i class="bi bi-heart me-2"></i>Wishlist
-                                            </a>
-                                        </div>
-
-                                        <hr>
-
-                                        <div class="mb-2 small">
-                                            <span class="fw-bold">SKU:</span> 
-                                            <span class="text-muted">123456</span>
-                                        </div>
-
-                                        <div class="d-flex align-items-center gap-3">
-                                            <span class="fw-bold">Share:</span>
-                                            <div class="d-flex gap-3">
-                                                <a href="https://facebook.com" class="text-dark"><i class="bi bi-facebook"></i></a>
-                                                <a href="https://x.com" class="text-dark"><i class="bi bi-twitter-x"></i></a>
-                                                <a href="https://pinterest.com" class="text-dark"><i class="bi bi-pinterest"></i></a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>  <!-- End Row1 Col 2 -->
-
-                    </div>  <!-- End Row 1 -->
-            </div>
-      </div>
-    </div>
-  </div>
-</div>
     </main>
+    <div id="quickViewModal"></div>
     <footer></footer>
 
     <script type="module" src="../../seller/JS/dummyproducts.js"></script>
+    <script type="module" src="../../component/PopUpFunctions.js"></script>
     <script src="../../component/addToWishlist.js"></script>
     <script src="../../component/addToCart.js"></script>
     <script type="module" src="../JS/script.js"></script>

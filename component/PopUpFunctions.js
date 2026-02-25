@@ -53,6 +53,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//Quantity Plus/Minus
+// Quantity Plus
+$(document).on('click', '.modal-qty-plus', function () {
+    let value = parseInt($('#modal-quantityValue').val()) || 1;
+    value++;
+    $('#modal-quantityValue').val(value);
+});
+
+// Quantity Minus
+$(document).on('click', '.modal-qty-minus', function () {
+    let value = parseInt($('#modal-quantityValue').val()) || 1;
+    if (value > 1) value--;
+    $('#modal-quantityValue').val(value);
+});
+
+//AddToCart
+$(document).on('click', '#modal-addToCart', function(e) {
+    e.preventDefault(); // VERY IMPORTANT
+
+    if (!selectedProduct) return;
+
+    let quantity = parseInt($('#modal-quantityValue').val()) || 1;
+    let selectedSize = $('input[name="size_choice"]:checked').val();
+
+    addToCart(selectedProduct.ID, quantity, selectedSize);
+
+    window.location.href = "../../cart/Template/cart.html";
+});
+
 // Buy It Now function
 function buyItNow() {
     if (!selectedProduct) return;

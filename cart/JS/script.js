@@ -16,22 +16,31 @@ let special_instructions;
 $(document).ready(function () {
     // localStorage.setItem('products', JSON.stringify(dummyProducts))
   
-    // Fetch the list of countries and populate the country dropdown
+    $(document).ready(function () {
+
     $.ajax({
         url: "https://countriesnow.space/api/v0.1/countries",
         method: "GET",
         success: function (response) {
+            console.log(response);
             let countries = response.data;
             let countrySelect = $('#countries');
+            countrySelect.append('<option value="">Select Country</option>');
+            
             countries.forEach(function (country) {
-                countrySelect.append($('<option></option>').text(country.country).val(country.country));
+                countrySelect.append(
+                    $('<option></option>')
+                        .text(country.country)
+                        .val(country.country)
+                );
             });
         }
     });
 
-    // When a country is selected, fetch its cities and populate the city dropdown
     $('#countries').change(function () {
-        let selectedCountry = $(this).val(); 
+        let selectedCountry = $(this).val();
+        if (!selectedCountry) return;
+
         $.ajax({
             url: "https://countriesnow.space/api/v0.1/countries/cities",
             method: "POST",
@@ -39,16 +48,24 @@ $(document).ready(function () {
             contentType: "application/json",
             success: function (response) {
                 let cities = response.data;
-                $('#cities').empty();
-                cities.forEach(function (city) {
-                    $('#cities').append($('<option></option>').text(city).val(city));
-                });
+                let citySelect = $('#cities');
+                citySelect.empty();
+            citySelect.append('<option value="">Select City</option>');
                 
-                // Show the city dropdown after populating it
-                $('#cities').parent().removeClass('d-none');
+                cities.forEach(function (city) {
+                    citySelect.append(
+                        $('<option></option>')
+                            .text(city)
+                            .val(city)
+                    );
+                });
+
+                citySelect.parent().removeClass('d-none');
             }
         });
     });
+
+});
 
     // Calculate shipping when the button is clicked
     $('#calc-shipping-btn').click(function () {
@@ -177,7 +194,7 @@ function checkSize(productId) {
             data-id="${productId}"
             value="${size}"
         >
-        <label for="size-${index}" class="btn btn-outline-warning rounded-pill py-1 me-2">
+        <label for="size-${index}" class="btn btn-outline-warning rounded-pill py-1 me-2 size-label">
             ${size} kg
         </label>
     `).join('');
@@ -194,10 +211,11 @@ $(document).on('change', '.choose-size', function () {
     if (item) {
         item.size = selectedSize;
     }
+    $(".size-label").removeClass("selected")
+    $(this).next().addClass('selected')
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    displayCart();
 });
 
 
@@ -336,7 +354,7 @@ function buildOrderData(){
             fullAddress: "",
             appartment: "",
             postalCode: $('#zip-code').val() || "",
-            City: $('#cities').val() || "",
+            city: $('#cities').val() || "",
             shipping_fees: subtotal >= 100 ? 0 : 14.00
         },
         subtotal: subtotal,
