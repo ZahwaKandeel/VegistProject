@@ -28,7 +28,7 @@ let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
     // Loop through each wishlist item
     wishlist.map(item => {
-        let product = products.find(p => p._id === item.product_id);  // Find the corresponding product
+        let product = products.find(p => p._id == item.product_id);  // Find the corresponding product
 
         // Append the product card to the wishlist container
         $('.wishlist-items').append(`
@@ -114,7 +114,7 @@ $(document).on("click", ".add-to-cart", function () {
 $(document).on("click", ".fa-eye", function () {
 
     const product_id = Number($(this).data("id"));
-    const product = products.find(p => p._id === product_id);    
+    const product = products.find(p => p._id == product_id);    
 
     // Populate modal content with the product details
     $(".modal img").attr("src", product._imageUrl);
@@ -182,7 +182,7 @@ $(document).on("click", "#button-plus", function() {
 
 function calculateSubtotal(id) {
     let products = JSON.parse(localStorage.getItem('products')) || [];
-        const product = products.find(p => p._id === id);
+        const product = products.find(p => p._id == id);
         if (!product) return;
         let value = Number($("#quantity-input").val());
         const price = product._discountValue || product._price;
