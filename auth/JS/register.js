@@ -3,7 +3,7 @@ import { User } from "/models/user.js";
 
 $(async function () {
 
-    await User.ensureAdminExists(); // 🔥 Seed admin
+    await User.ensureAdminExists(); // Seed admin
 
     $(function(){
         const firstName = $("#firstName");
