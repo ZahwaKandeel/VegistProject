@@ -115,21 +115,21 @@ function buyItNow() {
 }
 
 // Wishlist from popup
-$(document).on('click', '.fa-heart', function () {
-    const cardId = parseInt($(this).closest(".cards").attr("id"));
-    const product = products.find(p => p.ID === cardId);
-    if (!product) return;
-    addToWishlist(product.ID);
-});
+// $(document).on('click', '.fa-heart', function () {
+//     const cardId = parseInt($(this).closest(".cards").attr("id"));
+//     const product = products.find(p => p.ID === cardId);
+//     if (!product) return;
+//     addToWishlist(product.ID);
+// });
 
-// Shopping bag icon from popup
-$(document).on('click', '.fa-shopping-bag', function () {
-    const cardId = parseInt($(this).closest(".cards").attr("id"));
-    const product = products.find(p => p.ID === cardId);
-    if (!product) return;
-    // Replace quantity & size with defaults if needed
-    addToCart(product.ID, 1, product.Sizes[0]);
-});
+// // Shopping bag icon from popup
+// $(document).on('click', '.fa-shopping-bag', function () {
+//     const cardId = parseInt($(this).closest(".cards").attr("id"));
+//     const product = products.find(p => p.ID === cardId);
+//     if (!product) return;
+//     // Replace quantity & size with defaults if needed
+//     addToCart(product.ID, 1, product.Sizes[0]);
+// });
 
 // Change size button style when clicked
 $(document).on('click', '.sizediv label', function () {

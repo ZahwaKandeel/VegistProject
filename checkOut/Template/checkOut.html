@@ -159,7 +159,7 @@
                         <h5>Delivery</h5>
                         <div class="mb-3">
                             <select name="country" id="country" class="form-select py-3 mb-3">
-                                <option>Egypt</option>
+                                <option id="countryFirstOption">Egypt</option>
                             </select>
                             <div class="d-sm-flex gap-3">
                                 <input type="text" placeholder="First name (optional)"
@@ -177,14 +177,14 @@
                                 <input type="text" placeholder="City" 
                                     class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 city">
                             </div>
-                            <input type="checkbox" id="newDetails" class="form-check-input me-1">
-                            <label for="newDetails"><small>Save this information for next time</small></label>
+                            <input type="checkbox" id="saveInfo" class="form-check-input me-1">
+                            <label for="saveInfo"><small>Save this information for next time</small></label>
                         </div>
                         <div>
                             <p><b>Shipping mehtod</b></p>
                             <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
                                 <p class="m-2"><small>Standard</small></p>
-                                <p class="m-2"><small><b>13.95</b></small></p>
+                                <p class="m-2"><small><b id="shipping"></b></small></p>
                             </section>
                         </div>
                     </section>
