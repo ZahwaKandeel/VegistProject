@@ -29,27 +29,27 @@ let cards = "";
 
 userData.forEach(product => {
   cards += `
+  
 <div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}">
+<!--div of card 1 -->
+  <div class="   position-relative "> 
 
-  <div class="   position-relative "> <!--div of card 1 -->
-
-<div class=" position-relative  ">
-
-   <a  href="${detailsPage}?id=${product._id}">
-        <img src="${product._imageUrl}" class="w-100 main-img">
+<div class=" card position-relative ">
+   <a class="position-relative" href="${detailsPage}?id=${product._id}">
+        <img src="${product._imageUrl}" class="w-100 main-img ">
       </a>
   
 
-<div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 p-2 ">
+<div class="icons">
     
-  <span class=" icon     btnheart "  >
+  <span class="  btnheart "  >
 <i class="fa-regular fa-heart "></i>
    </span>
-<span class=" icon    btnbag ">
+<span class="     btnbag ">
     <i class="fa fa-shopping-bag "></i>
 </span>
 
-  <span class=" icon    btneye ">
+  <span class="     btneye ">
         <i class="fa fa-eye"></i>
     </span> 
 
