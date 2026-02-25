@@ -113,31 +113,40 @@
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3fp9Zp5VYQbZp3K3V0CqKxO8D+N5Q5m9h6v9E+4yXr0=" crossorigin="anonymous"> </script>-->
     <script type = "module">
             import{Product, loadProducts, saveProducts} from "../../component/Product.js"
 
-            const params = new URLSearchParams(window.location.search);
-            const productId = parseInt(params.get("id"));
+            
 
             let products = loadProducts() || [];
 
-            let product = products.find(p => p.ID === productId);
+            //let product = products.find(p => p.ID == productId);
+            let product = products.find(p => Number(p.ID) === Number(productId));
             if(!product){
                 alert("Product not found");
                 window.location.href = "../../productList/Template/product_list.html"
             }
+            console.log("URL ID:", productId);
+                console.log("All IDs:", products.map(p => p.ID));
 
            
 
             $(document).ready(function(){
+                const params = new URLSearchParams(window.location.search);
+                const productId = parseInt(params.get("id"));
+                
                 $("#updateName").val(product.Name);
                 $("#updatePrice").val(product.Price);
                 $("#updateDescription").val(product.Description);
                 $("#updateStock").val(product.Stock);
-                $("#updateCategory").val(product.Category);
+                $("#category").val(product.Category);
                 $("#updateImage").val(product.ImageUrl);
-                $("#updateSize").val(product.Sizes);
-                $("#updateDiscountPercentage").val(product.DiscountPercentage);
+                //$("#updateSize").val(product.Sizes);
+                product.Sizes.forEach(size =>{
+                        $(`.size-option[value="${size}"]`.prop("checked", true));
+                })
+                $("#discountPercentage").val(product.DiscountPercentage);
                 
                 const allowedCategories = [
                     "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
@@ -153,7 +162,7 @@
                     let price = parseFloat($("#updatePrice").val());
                     let description = $("#updateDescription").val().trim();
                     let stock = parseInt($("#updateStock").val());
-                    let category = $("#updateCategory").val().trim();
+                    let category = $("#category").val().trim();
                     let image = $("#updateImage").val().trim();
                     // let size = parseInt($("#size")).val();
 
@@ -161,7 +170,7 @@
                         return parseInt($(this).val(),10);
                     }).get();
 
-                    let discountPercentage = parseInt($("#discountPercentage")).val();
+                    let discountPercentage = parseInt($("#discountPercentage").val());
 
                     if (name.length<3){
                         showError("#updateName", "Name must be at least 3 characters");
@@ -180,7 +189,7 @@
                         isValid = false;
                     }
                     if (!allowedCategories.includes(category)){
-                        showError("#updateCategory", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
+                        showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
                         isValid = false;
                     }
                     if (!isValidURL(image)) {
@@ -206,7 +215,7 @@
                         product.Stock = parseInt($("#updateStock").val());
                         product.Category = category;
                         product.ImageUrl = image;
-                        product.Size = size;
+                        product.Sizes = sizes;
                         product.DiscountPercentage = discountPercentage;
 
                         saveProducts(products);
@@ -218,6 +227,7 @@
                         alert(error.message)
                     }
                 });
+                
                 $(".dropdown-menu").on("click", function(e){
                     e.stopPropagation();
                 });

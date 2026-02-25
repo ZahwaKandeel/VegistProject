@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function(){
 function createProductCard(product){
     const ratingStars = generateStars(product._rating);
     return`
-        <div class="cards col-6 col-md-4 col-lg-3 position-relative">
+        <div id="${product._id}" class="cards col-6 col-md-4 col-lg-3 position-relative">
             <div class="position-relative">
                 <img src="${product._imageUrl}"
                     class="img-fluid w-100 main-img"/>
@@ -58,7 +58,10 @@ function createProductCard(product){
                 <span class="icon p-2">
                     <i class="fa fa-shopping-bag cart-icon" data-id="${product._id}"></i>
                 </span>
-                <span class="icon p-2">
+                <span class="icon p-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#quickViewModal"
+                    style="cursor: pointer;">
                     <i class="fa fa-eye view-icon" data-id="${product._id}"></i>
                 </span>
             </div>
@@ -97,7 +100,7 @@ function generateStars(rating){
 $(document).ready(function(){
     $(document).on("click", ".wishlist-icon", function(){
         const productId = parseInt($(this).data("id"));
-        addToWishList(productId);
+        addToWishlist(productId);
         alert("Added to wishlist");
     });
     $(document).on("click", ".cart-icon", function(){
