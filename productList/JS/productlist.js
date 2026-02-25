@@ -5,12 +5,16 @@ $(function(){
 
 const user = isAuth();
 
-if (user && user.role == "seller") {
+if (  user.role == "seller") {
     document.getElementById("sellerBtn").style.display = "block";
 } else {
     document.getElementById("sellerBtn").style.display = "none";
 }
 
+
+const detailsPage = user?.role == "seller"
+    ? "../../productDetials/Template/SellerProductDetaill.html"
+    : "../../productDetials/Template/productDetails.html";
 
  localStorage.getItem("products")
 
@@ -27,7 +31,10 @@ userData.forEach(product => {
   <div class="   position-relative "> <!--div of card 1 -->
 
 <div class=" position-relative  ">
-    <img src=" ${ product._imageUrl}" class=" w-100 main-img ">
+
+   <a  href="${detailsPage}?id=${product._id}">
+        <img src="${product._imageUrl}" class="w-100 main-img">
+      </a>
   
 
 <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 p-2 ">
@@ -89,7 +96,10 @@ userData.forEach(product => {
 
   
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
-    <img src=" ${ product._imageUrl}" class=" w-100 main-img   object-fit-cover h-100"> 
+  <a href="${detailsPage}?id=${product._id}">
+        <img src="${product._imageUrl}" class="w-100 main-img object-fit-cover h-100">
+      </a>
+    
     
 </div>
 
