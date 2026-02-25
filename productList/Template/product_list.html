@@ -42,7 +42,7 @@
        <style>
    
       
-.icon{
+/*.icon{
     background-color: rgb(255, 255, 255);
     display: inline-block;
      border-radius: 45%;
@@ -50,17 +50,18 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: .6rem;
    
-}
-.icon:hover{
+}*/
+/*.icon:hover{
     background-color: rgb(245, 171, 30);
     color: white;
-}
+}*/
+   
 
-.icons{
+/*.icons{
      bottom:5%;
 }
 
-.icons i{
+ .icons i{
     cursor: pointer;
        display: flex;
     opacity: 1;
@@ -70,14 +71,14 @@
   align-items: center;
             justify-content: center;
        
-}
+}*/
    
 
-.cards:hover .icons{
+/*.cards:hover .icons{
  opacity: 1;
 
 
-}
+}*/
 
 
 .para{
@@ -122,10 +123,10 @@
 }
 
 @media (min-width: 960px) {
-   .icons {
+ /*  .icons {
         opacity: 0;
        
-    }
+    }*/
 
     .cards2:hover .icons {
         opacity: 1;
@@ -467,13 +468,13 @@
 <label for="range1" class="form-label text-secondary">The highest price is €67,00</label>
 <input type="range" class="form-range" id="range1">
 
-<div class="d-flex">
+<!-- <div class="d-flex">
 <div ><label for="minPrice">from</label>
 <input id="minPrice" class="w-50 " type="number"></div>
 
 <div ><label for="maxPrice">to</label>
 <input id="maxPrice" class="w-50 " type="number"></div>
-</div>
+</div> -->
 
 
 </div> 
@@ -485,15 +486,13 @@
 <div class="  " >
 <p class="text-secondary">selected</p>
 <ul class="myul p-1">
-<li><input type="checkbox"  id="1kg"> <label for="1kg">1kg</label> </li>
-<li><input type="checkbox" id="2kg"> <label for="2kg">2kg</label> </li>
-<li><input type="checkbox" id="3kg"> <label for="3kg">3kg</label> </li>
-<li><input type="checkbox" id="5kg"> <label for="5kg">5kg</label> </li>
-<li><input type="checkbox" id="7kg"> <label for="7kg">7kg</label> </li>
-<li><input type="checkbox" id="10kg"> <label for="10kg">10kg</label> </li>
-<li><input type="checkbox" id="1ltr"> <label for="1ltr">1ltr</label> </li>
-<li><input type="checkbox" id="5ltr"> <label for="5ltr">5ltr</label> </li>
-<li><input type="checkbox" id="10ltr"> <label for="">10ltr</label> </li>
+<li><input type="checkbox"  id="kg1" name="size" value="1"> <label for="kg1">1kg</label> </li>
+<li><input type="checkbox" id="kg2" name="size"  value="2"> <label for="kg2">2kg</label> </li>
+<li><input type="checkbox" id="kg3" name="size"  value="3"> <label for="kg3">3kg</label> </li>
+<li><input type="checkbox" id="kg5" name="size"  value="5"> <label for="kg5">5kg</label> </li>
+<li><input type="checkbox" id="kg7" name="size"  value="7"> <label for="kg7">7kg</label> </li>
+<li><input type="checkbox" id="kg10" name="size"  value="10"> <label for="kg10">10kg</label> </li>
+
 
 </ul>
 
@@ -511,20 +510,14 @@
 <p class="text-secondary"> 0 selected</p> 
 <ul class="myul p-1">
 
-<li><input type="radio"  id="Ins" name="stock"> <label for="Ins">In stock</label> </li>
-<li><input type="radio" id="outs" name="stock"> <label for="outs">out of  stock</label> </li>
+<li> <input type="radio"  id="ins" name="stock"> <label for="ins">In stock</label> </li>
+<li> <input type="radio" id="out" name="stock"> <label for="out">out of  stock</label> </li>
 
 </ul>
 
 </div> 
 </div>
-  <!---------------------------->
-<div class=" overflow-auto my-2 border-bottom"> <!-- seven left side-->
-    <p>Brand</p>
-    <p class="text-secondary">0 selected</p>
-    <input type="checkbox" name="" id="vegist"> 
-    <label for="vegist">vegist </label>
-</div>
+
    <!---------------------------->  
 
 <div class=" overflow-auto my-3 border-bottom"> <!-- seven left side-->

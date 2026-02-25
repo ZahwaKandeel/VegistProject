@@ -21,12 +21,15 @@ const detailsPage = user?.role == "seller"
 
 const userData = JSON.parse(localStorage.getItem("products"));
 console.log(userData); 
+
+
+
   //-------------------------------- get data to layout onee--------------------------------
 let cards = "";
 
 userData.forEach(product => {
   cards += `
-<div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}">
+<div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}">
 
   <div class="   position-relative "> <!--div of card 1 -->
 
@@ -90,7 +93,7 @@ let cards2 = "";
 
 userData.forEach(product => {
   cards2 += `
-<div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}"> <!--div of card 1  with icons   -->
+<div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" > <!--div of card 1  with icons   -->
 
 <div     class="    row  "  > <!--container card with icons     -->
 
@@ -169,29 +172,77 @@ function filterByCategory2(category) {
     $(`.cards2[data-category="${category}"]`).show();
 }
 
-// --------------------------------filter by stock  --------------------------------
+// --------------------------------filter by sizes  --------------------------------
 
-// function filterByStock(){
-//   if (userData._stock == 0) {
-//     $("#out").val( "out")
-//   }else {
 
-//   } }
 
+function filterBysize() {
+     
 
     
+userData.forEach(product => {
 
-// function filterByStock() {
-//      $(".cards").hide();
-//     $(`.cards[data-stock="${stock}"]`).show();
-//   if (userData._stock == 0) {
-//     $("#outs").text("outs");
-//   } else {
-//     $("#outs").text(userData._stock);
-//   }
+console.log(product._sizes)
+// if (product._sizes != []){
+//      $(`.cards`).hide()
+
 // }
 
+})
 
+}
+// filterBysize()
+
+
+
+
+
+
+
+
+
+$('input[name="size"]').on('change',function(){
+    
+let selectorSizes =[]; 
+
+$('input[name="size"]:checked').each(function(){
+selectorSizes.push(parseInt($(this).val()));
+    
+});
+ console.log("Selected:", selectorSizes);
+
+
+$(".cards").each(function () {
+
+        const cardSizes = JSON.parse($(this).attr("data-size"));
+
+        // If no checkbox selected → show all
+        if (selectorSizes.length == 0) {
+            $(this).show();
+            return;
+        }
+
+        // Check if card has ANY matching size
+        const hasMatch = cardSizes.some(size =>
+            selectorSizes.includes(size)
+        );
+
+        if (hasMatch) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+
+    });
+
+
+})
+
+
+
+
+
+// -------------filter by stock-------------------
 
 function  filterByStock(type) {
    
@@ -227,13 +278,13 @@ $(".cards2").each(function(){
 
 }
 
-$("#outs").click(function(){
+$("#out").click(function(){
     filterByStock("out");
     filterByStock2("out");
 
 
 });
-$("#Ins").click(function(){
+$("#ins").click(function(){
     
     filterByStock("in");
      filterByStock2("in");
@@ -273,8 +324,6 @@ $('input[type="range"]').on("input", function () {
     $(".form-label").text(`The highest price is €${maxPrice}`);
 
 });
-
-// --------------------------------filter by Price stockk--------------------------------
 
 
 
@@ -715,7 +764,7 @@ $(".btnbag2").click(function(){
  })
 
 
-
+ // -----------------------------------add to wishlist layout two -----------------------------------
  $(".btnheart").click(function(){
        const parentId = $(this).parent().parent().parent().parent().attr("id");
    addToWishlist(parentId)
@@ -778,13 +827,6 @@ function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
     showPage(1);
     createPagination();
 }
-
-
-
-
-
-
-
 
 
 
