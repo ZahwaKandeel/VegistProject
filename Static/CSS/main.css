@@ -1,116 +1,154 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
 /* main theme */
 
 :root {
-    --main-footer-bg: #fbe2cb;
-    --main-text-color: #e29911;
-    --secondry-text-color: #b87700;
-    --main-main-color: #f5ab1e;
-    --main-accordion-button-bg: #fbe2cb;
-    --main-accordion-body-bg: #e6cbb3;
+  --main-footer-bg: #fbe2cb;
+  --main-text-color: #e29911;
+  --secondry-text-color: #b87700;
+  --main-main-color: #f5ab1e;
+  --main-accordion-button-bg: #fbe2cb;
+  --main-accordion-body-bg: #e6cbb3;
 }
 
 /* dark theme */
 
 [data-bs-theme="dark"] {
-    --main-footer-bg: #393939;
-    --main-text-color: #e29911;
-    --secondry-text-color: #b87700;
-    --main-main-color: #f5ab1e;
-    --main-accordion-button-bg: #393939;
-    --main-accordion-body-bg: #464545;
+  --main-footer-bg: #393939;
+  --main-text-color: #e29911;
+  --secondry-text-color: #b87700;
+  --main-main-color: #f5ab1e;
+  --main-accordion-button-bg: #393939;
+  --main-accordion-body-bg: #464545;
 }
 
 .mainFooterTheme {
-    background-color: var(--main-footer-bg);
+  background-color: var(--main-footer-bg);
 }
 
 .mainTextTheme {
-    color: var(--main-text-color);
+  color: var(--main-text-color);
 }
 .secondryTextTheme {
-    color: var(--secondry-text-color);
+  color: var(--secondry-text-color);
 }
 
 .secondryTextTheme:hover {
-    color: var(--main-text-color);
+  color: var(--main-text-color);
 }
 
 .mainBackgroundTheme {
-    background-color: var(--main-main-color);
+  background-color: var(--main-main-color);
 }
-.mainAccourdionButtonBgColor{
-    background-color: var(--main-accordion-button-bg);
+.mainAccourdionButtonBgColor {
+  background-color: var(--main-accordion-button-bg);
 }
-.mainAccourdionBodyBgColor{
-    background-color: var(--main-accordion-body-bg);
+.mainAccourdionBodyBgColor {
+  background-color: var(--main-accordion-body-bg);
 }
 
 /* header tag */
 
 header i {
-    font-size: 20px;
+  font-size: 20px;
 }
 header .cart-icon path {
-    fill: white;
-    stroke: black;
-    stroke-width: 35;
+  fill: white;
+  stroke: black;
+  stroke-width: 35;
 }
 header .search-btn > svg {
-    fill: white;
+  fill: white;
 }
 header rform > #search {
-    position: relative;
-    right: 45px;
+  position: relative;
+  right: 45px;
 }
 header .nav {
-    --bs-nav-link-color: black;
+  --bs-nav-link-color: black;
 }
 
-svg{
-    fill: black;
+svg {
+  fill: black;
 }
-html[data-bs-theme="dark"]  svg{
-    fill: white;
+html[data-bs-theme="dark"] svg {
+  fill: white;
 }
-html[data-bs-theme="dark"] .iconLink{
-    fill: #000000;
+html[data-bs-theme="dark"] .iconLink {
+  fill: #000000;
 }
 .icon i {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 @media (min-width: 1200px) {
-    .icon i {
-        font-size: 2.5rem; /* bigger on xl screens */
-    }
+  .icon i {
+    font-size: 2.5rem; /* bigger on xl screens */
+  }
 }
 
 /* main nav img */
 .bg-image {
-    background-image: url("/Static/Images/breadcrumb.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 80px; 
+  background-image: url("/Static/Images/breadcrumb.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80px;
 }
 
 /* footer tag */
 
 footer .li-dashed {
-    border-bottom: 1px dashed #000;
+  border-bottom: 1px dashed #000;
 }
 
-
 .accordion-button:focus {
-    box-shadow: none !important;         /* remove focus shadow */
+  box-shadow: none !important; /* remove focus shadow */
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: var(--main-footer-bg) ;  /* override expanded color */
+  background-color: var(--main-footer-bg); /* override expanded color */
+}
+
+.icons {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  z-index: 2;
+  margin-bottom: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.card-image:hover .icons {
+  opacity: 1;
+  margin-bottom: 15px;
+}
+.icons i {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 50%;
+  margin: 0 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.icons i:hover {
+  background-color: #f5ab1e;
+  color: #fff;
+  cursor: pointer;
 }
