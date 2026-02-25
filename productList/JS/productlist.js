@@ -1,5 +1,16 @@
+import { isAuth } from '../../component/isAuth.js';
 
 $(function(){
+
+
+const user = isAuth();
+
+if (user && user.role == "seller") {
+    document.getElementById("sellerBtn").style.display = "block";
+} else {
+    document.getElementById("sellerBtn").style.display = "none";
+}
+
 
  localStorage.getItem("products")
 
@@ -802,6 +813,10 @@ $('input[type="range"]').on("input", function () {
 
 
 });
+
+
+
+
 
 
 })//end of load
