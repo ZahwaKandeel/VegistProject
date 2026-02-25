@@ -114,6 +114,9 @@ footer .li-dashed {
   background-color: var(--main-footer-bg); /* override expanded color */
 }
 
+
+/* the three icons should be in a div with class "icons", 
+the image and this div wrapped in a div with class "card-image" */
 .icons {
   display: flex;
   position: absolute;

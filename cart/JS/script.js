@@ -85,7 +85,6 @@ $(document).ready(function () {
         }
     });
 
-    // addToCart(3)
     // Display cart items on page load
     displayCart();
 });

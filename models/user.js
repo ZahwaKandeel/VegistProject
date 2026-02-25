@@ -35,6 +35,27 @@ export class User {
         }
     }
 
+    static async defaultSeller() {
+        let users = JSON.parse(localStorage.getItem("Users")) || [];
+
+        const sellerExists = users.some(u => u.role === "seller");
+
+        if (!sellerExists) {
+            const sellerPassword = await User.hashPassword("Seller@123");
+
+            const seller = new User({
+                firstName: "Seller",
+                lastName: "Seller",
+                email: "seller@system.com",
+                password: "bd28c94800c2be055b3329f8dd63a3d5a4137c0def2517bf4fce85eb11e62853",
+                role: "seller"
+            });
+            seller.id = 1;
+            users.push(seller);
+            localStorage.setItem("Users", JSON.stringify(users));
+        }
+    }
+
     static async hashPassword(password) {
         // hashing passwords
         const encoder = new TextEncoder();
