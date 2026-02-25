@@ -1,4 +1,4 @@
-<div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
                     
@@ -25,12 +25,12 @@
                                             </div>
                                             <div class="carousel-item">
                                                 <div class="ratio ratio-1x1">
-                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img3">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;">
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
                                                 <div class="ratio ratio-1x1">
-                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;" alt="img4">
+                                                    <img id="modal-productImage" src="" class="w-100" style="object-fit: cover;">
                                                 </div>
                                             </div>
                                         </div>
@@ -95,10 +95,7 @@
                                         <div class="mb-3">
                                             <label class="d-block fw-bold mb-2 small">Size:</label>
                                             <div class="d-flex gap-2">
-                                                <input type="radio" class="btn-check" name="modal_size" id="m_size1" checked>
-                                                <label class="btn btn-outline-secondary rounded-pill px-3 py-1 small" for="m_size1">2KG</label>
-                                                <input type="radio" class="btn-check" name="modal_size" id="m_size2">
-                                                <label class="btn btn-outline-secondary rounded-pill px-3 py-1 small" for="m_size2">3KG</label>
+                                                <div class="d-flex gap-2 sizediv"></div>
                                             </div>
                                         </div>
 
@@ -125,8 +122,8 @@
                                         </div>
 
                                         <div class="d-flex gap-2 mb-3">
-                                            <button class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
-                                            <button class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
+                                            <button id="modal-addToCart" class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
+                                            <button id="modal-BuyItNow" class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
                                         </div>
                                     </div>
                                 </div>  <!--  Col 2 -->
