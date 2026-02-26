@@ -49,7 +49,7 @@ userData.forEach(product => {
     <i class="fa fa-shopping-bag "></i>
 </span>
 
-  <span class="     btneye ">
+  <span class="  btneye "  data-bs-toggle="modal" data-bs-target="#quickViewModal">
         <i class="fa fa-eye"></i>
     </span> 
 
@@ -106,7 +106,7 @@ userData.forEach(product => {
     
 </div>
 
-<div class="  col-12 col-lg-8 ">     <!--   name and price and rationg  -->
+<div class="  col-12 col-lg-8 card ">     <!--   name and price and raitng  -->
 
 
 <p class=""> <a href=""  class="para text-decoration-none  " > ${ product._name}</a></p>  <!--   name and price   -->
@@ -123,25 +123,26 @@ userData.forEach(product => {
     <span class="text-muted ratingspa">No reviews</span>
 
   </div>    <!--   name and price   -->
-  <div> <!--   paragraph   -->
-            <p class="text-muted mt-3 ">
+  <div class=" "> <!--   paragraph   -->
+            <p class="text-muted mt-3  ">
              ${ product._description}
             </p>
 
-            <div class="icons  d-flex gap-2 ">
 
-  <span class=" icon  p-2   "  >
+            <div class="icons   d-flex gap-2 ">
+
+  <span class="   p-2  btnheart2 "  >
 <i class="fa-regular fa-heart "></i>
    </span>
-<span class="icon p-2 btnbag2 ">
+<span class=" p-2 btnbag2 ">
     <i class="fa-solid fa-shopping-bag"></i>
 </span>
 
-  <span class="icon  p-2   ">
+  <span class="  p-2  btneye " data-bs-toggle="modal" data-bs-target="#quickViewModal" >
         <i class="fa fa-eye"></i>
     </span> 
-</div>
 
+</div>
 </div> <!--   paragraph   -->
 </div> 
      </div>   <!--container card with icons     -->
@@ -159,541 +160,219 @@ document.getElementById("divlayout2").innerHTML = cards2;
 
 
 
-    // breakkkkk--------------------------------------------------------
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
 
-    //-------------------------------- filter by category--------------------------------
-function filterByCategory(category) {
-    $(".cards").hide();
-    $(`.cards[data-category="${category}"]`).show();
-}
-// --------------------------------filter by category layout 2 --------------------------------
-function filterByCategory2(category) {
-    $(".cards2").hide();
-    $(`.cards2[data-category="${category}"]`).show();
+    
+//----------------------------------- filters work with each other--------------------------------
+let activeFilters = {
+    category: null,
+    stock: null,
+    sizes: [],
+    maxPrice: null
+};
+
+function applyFilters(layoutClass) {
+
+    $(`.${layoutClass}`).each(function () {
+
+        const category = $(this).data("category");
+        const stock = $(this).data("stock");
+        const price = parseFloat($(this).data("price"));
+        const sizes = JSON.parse($(this).attr("data-size"));
+
+        let show = true;
+
+        // Category
+        if (activeFilters.category && category !== activeFilters.category) {
+            show = false;
+        }
+      
+
+        // Stock
+        if (activeFilters.stock == "in" && stock <= 0) {
+            show = false;
+        }
+
+        if (activeFilters.stock == "out" && stock > 0) {
+            show = false;
+        }
+
+        // Price
+        if (activeFilters.maxPrice != null && price > activeFilters.maxPrice) {
+            show = false;
+        }
+
+        // Sizes
+        if (activeFilters.sizes.length > 0) {
+            const hasMatch = sizes.some(size =>
+                activeFilters.sizes.includes(size)
+            );
+            if (!hasMatch) show = false;
+        }
+
+
+
+        if (show) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+
+    });
+
 }
 
+
+
+
+
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+// --------------------------------filter by Category  --------------------------------
+
+  
+$('input[name="categories"]').on('change', function () {
+
+    const selectedCategory = $(this).val();
+ activeFilters.category = selectedCategory || null;
+    // activeFilters.category = selectedCategory;
+
+
+    // Layout 1
+    applyFilters("cards");
+    setupPagination("divlayout1", "cards", "pagination1", 16);
+
+    // Layout 2
+    applyFilters("cards2");
+    setupPagination("divlayout2", "cards2", "pagination2", 8);
+
+    
+    let visibleCount = $('.cards:visible').length;
+
+    $(".filternum").text(`(${visibleCount})`);
+    $(".catmemb").text(selectedCategory);
+    $(".categName").text(selectedCategory);
+
+});
+
+// ------------------------------------------------breakkkkk--------------------------------------------------------
 // --------------------------------filter by sizes  --------------------------------
 
+//         ------------------------filterBysize layout one ---------------------------------- 
+$('input[name="size"]').on('change', function () {
 
+    let selectedSizes = [];
 
-function filterBysize() {
-     
-
-    
-userData.forEach(product => {
-
-console.log(product._sizes)
-// if (product._sizes != []){
-//      $(`.cards`).hide()
-
-// }
-
-})
-
-}
-// filterBysize()
-
-
-
-
-
-
-
-
-
-$('input[name="size"]').on('change',function(){
-    
-let selectorSizes =[]; 
-
-$('input[name="size"]:checked').each(function(){
-selectorSizes.push(parseInt($(this).val()));
-    
-});
- console.log("Selected:", selectorSizes);
-
-
-$(".cards").each(function () {
-
-        const cardSizes = JSON.parse($(this).attr("data-size"));
-
-        // If no checkbox selected → show all
-        if (selectorSizes.length == 0) {
-            $(this).show();
-            return;
-        }
-
-        // Check if card has ANY matching size
-        const hasMatch = cardSizes.some(size =>
-            selectorSizes.includes(size)
-        );
-
-        if (hasMatch) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
-
+    $('input[name="size"]:checked').each(function () {
+        selectedSizes.push(parseInt($(this).val()));
     });
 
+    activeFilters.sizes = selectedSizes;
 
-})
-
-
-
-
-
-// -------------filter by stock-------------------
-
-function  filterByStock(type) {
-   
-$(".cards").hide();
-$(".cards").each(function(){
-    let stock = $(this).data("stock");
-    if (type == "in" && stock > 0){
-          
-        $(this).show();
-    }
-     if (type == "out" && stock == 0){
-   
-        $(this).show();
-
-    }
-});
-setupPagination("divlayout1",$(this).data("stock") , "pagination1", 16);
-}
-
-function  filterByStock2(typee) {
-$(".cards2").hide();
-$(".cards2").each(function(){
-    let stock = $(this).data("stock");
-    if (typee == "in" && stock > 0){
-        $(this).show();
-    }
-     if (typee == "out" && stock == 0){
-        $(this).show();
-    }
-
-
+    applyFilters("cards");
+    setupPagination("divlayout1", "cards", "pagination1", 16);
 });
 
-}
+//         ------------------------filterBysize layout two ---------------------------------- 
 
-$("#out").click(function(){
-    filterByStock("out");
-    filterByStock2("out");
+$('input[name="size"]').on('change', function () {
 
+    let selectedSizes = [];
 
-});
-$("#ins").click(function(){
-    
-    filterByStock("in");
-     filterByStock2("in");
-
-
-});
-
-
-
-
-
-// --------------------------------filter by Price --------------------------------
-function filterByPrice(minPrice, maxPrice) {
-
-    $(".cards").each(function () {
-
-        let price = parseFloat($(this).data("price"));
-
-        if (price >= minPrice && price <= maxPrice) {
-            $(this).show();
-           
-        } else {
-            $(this).hide();
-        }
-        //  setupPagination("divlayout1", ".cards:visible", "pagination1", 16);
-
+    $('input[name="size"]:checked').each(function () {
+        selectedSizes.push(parseInt($(this).val()));
     });
-    
-}
-//-------------------------------- filter by Price rangeee--------------------------------
+
+    activeFilters.sizes = selectedSizes;
+
+    applyFilters("cards2");
+    setupPagination("divlayout2", "cards2", "pagination2", 8);
+});
+
+
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
+// --------------------------------filter by price  --------------------------------
+
 $('input[type="range"]').on("input", function () {
 
-    let maxPrice = parseFloat($(this).val());
+    activeFilters.maxPrice = parseFloat($(this).val());
 
-    filterByPrice(0, maxPrice);
+    applyFilters("cards");
+    setupPagination("divlayout1", "cards", "pagination1", 16);
 
-    $(".form-label").text(`The highest price is €${maxPrice}`);
+    applyFilters("cards2");
+    setupPagination("divlayout2", "cards2", "pagination2", 8);
 
+    $(".form-label").text(`The highest price is €${activeFilters.maxPrice}`);
 });
 
 
 
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+// --------------------------------filter by stock  --------------------------------------
 
 
-// --------------------------------filter category layout oneee--------------------------------
+$("#out").click(function () {
 
+    activeFilters.stock = "out";
+
+    applyFilters("cards");
+    setupPagination("divlayout1", "cards", "pagination1", 16);
+
+    applyFilters("cards2");
+    setupPagination("divlayout2", "cards2", "pagination2", 8);
+
+});
+
+
+$("#ins").click(function () {
+
+    activeFilters.stock = "in";
+
+    applyFilters("cards");
+    setupPagination("divlayout1", "cards", "pagination1", 16);
+
+    applyFilters("cards2");
+    setupPagination("divlayout2", "cards2", "pagination2", 8);
+
+});
+
+$("#allStock").click(function () {
+
+    activeFilters.stock = null;
+
+    applyFilters("cards");
+    setupPagination("divlayout1", "cards", "pagination1", 16);
+
+    applyFilters("cards2");
+    setupPagination("divlayout2", "cards2", "pagination2", 8);
+});
+
+
+
+ // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 
 $(".filternum").text(`(${userData.length})`)
 $(".catmemb").text(`All products`)
 
-$(".bagel").click(function () {
-    filterByCategory('bagel');
-$(".categName").text('Bagel')
-  let   num = $('.cards[data-category="bagel"]:visible').length;
 
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`Bagel`)
-
-     $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-setupPagination("divlayout1", `cards[data-category="bagel"]`, "pagination1", 16);
-    
-});
-
-
-$(".bestseller").click(function () {
-    filterByCategory('bestseller');
-$(".categName").text('BestSeller')
-      let   num = $('.cards[data-category="bestseller"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    
-$(".catmemb").text(`BestSeller`)
-
-     $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-setupPagination("divlayout1", `cards[data-category="bestseller"]`, "pagination1", 16);
-});
-
-
-$(".beans").click(function () {
-    filterByCategory('beans');
-$(".categName").text('Beans')
-    let   num = $('.cards[data-category="beans"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Beans`)
-
-
-      $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-    
-setupPagination("divlayout1", `cards[data-category="beans"]`, "pagination1", 16);
-});
-
-
-$(".candy").click(function () {
-    filterByCategory('candy');
-$(".categName").text('Candy')
-  let   num = $('.cards[data-category="candy"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Candy`)
-
-      $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="candy"]`, "pagination1", 16);
-});
-
-$(".bread").click(function () {
-    filterByCategory('bread');
-$(".categName").text('Bread')
-  let   num = $('.cards[data-category="bread"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Bread`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="bread"]`, "pagination1", 16);
-
-});
-
-$(".biscuite").click(function () {
-    filterByCategory('biscuite');
-$(".categName").text('Biscuite')
- let   num = $('.cards[data-category="biscuite"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Biscuite`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="biscuite"]`, "pagination1", 16);
-});
-
-$(".breakfast").click(function () {
-    filterByCategory('breakfast');
-$(".categName").text('Breakfast')
- let   num = $('.cards[data-category="breakfast"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Breakfast`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="breakfast"]`, "pagination1", 16);
-});
-
-$(".cake").click(function () {
-    filterByCategory('cake');
-$(".categName").text('Cake')
- let   num = $('.cards[data-category="cake"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Cake`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="cake"]`, "pagination1", 16);
-});
-
-$(".cookie").click(function () {
-    filterByCategory('cookie');
-$(".categName").text('Cookie')
- let   num = $('.cards[data-category="cookie"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Cookie`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="cookie"]`, "pagination1", 16);
-});
-
-
-$(".cupcake").click(function () {
-    filterByCategory('cupcake');
-$(".categName").text('Cupcake')
- let   num = $('.cards[data-category="cupcake"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Cupcake`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="cupcake"]`, "pagination1", 16);
-});
-
-$(".Diaryhesse").click(function () {
-    filterByCategory('Diary&Cheese');
-$(".categName").text('Diary & chesse')
- let   num = $('.cards[data-category="Diary&Cheese"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Diary & chesse`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="Diary&Cheese"]`, "pagination1", 16);
-});
-
-$(".Dinner").click(function () {
-    filterByCategory('Dinner');
-$(".categName").text('Dinner')
- let   num = $('.cards[data-category="Dinner"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-    $(".catmemb").text(`Dinner`)
-
-          $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-    setupPagination("divlayout1", `cards[data-category="Dinner"]`, "pagination1", 16);
-});
-
-//-------------------------------- filter category layout twoooo--------------------------------------------- 
-
-$(".bagel").click(function () {
-    filterByCategory2('bagel');
-$(".categName").text('Bagel')
-  let   num = $('.cards2[data-category="bagel"]:visible').length; 
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`Bagel`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="bagel"]`, "pagination2", 8);
-    
-});
-
-$(".bestseller").click(function () {
-    filterByCategory2('bestseller');
-$(".categName").text('Bestseller')
-  let   num = $('.cards2[data-category="bestseller"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`bestseller`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="bestseller"]`, "pagination2", 8);
-    
-});
-
-$(".beans").click(function () {
-    filterByCategory2('beans');
-$(".categName").text('Beans')
-  let   num = $('.cards2[data-category="beans"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`beans`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="beans"]`, "pagination2", 8);
-    
-});
-
-$(".candy").click(function () {
-    filterByCategory2('candy');
-$(".categName").text('Candy')
-  let   num = $('.cards2[data-category="candy"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`candy`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="candy"]`, "pagination2", 8);
-    
-});
-
-$(".bread").click(function () {
-    filterByCategory2('bread');
-$(".categName").text('Bread')
-  let   num = $('.cards2[data-category="bread"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`bread`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="bread"]`, "pagination2", 8);
-    
-});
-
-
-$(".biscuite").click(function () {
-    filterByCategory2('biscuite');
-$(".categName").text('Biscuite')
-  let   num = $('.cards2[data-category="biscuite"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`biscuite`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="biscuite"]`, "pagination2", 8);
-    
-});
-
-$(".breakfast").click(function () {
-    filterByCategory2('breakfast');
-$(".categName").text('Breakfast')
-  let   num = $('.cards2[data-category="breakfast"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`breakfast`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="breakfast"]`, "pagination2", 8);
-    
-});
-
-$(".cake").click(function () {
-    filterByCategory2('cake');
-$(".categName").text('Cake')
-  let   num = $('.cards2[data-category="cake"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`cake`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="cake"]`, "pagination2", 8);
-    
-});
-
-$(".cookie").click(function () {
-    filterByCategory2('cookie');
-$(".categName").text('Cookie')
-  let   num = $('.cards2[data-category="cookie"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`cookie`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="cookie"]`, "pagination2", 8);
-    
-});
-
-$(".cupcake").click(function () {
-    filterByCategory2('cupcake');
-$(".categName").text('Cupcake')
-  let   num = $('.cards2[data-category="cupcake"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`cupcake`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="cupcake"]`, "pagination2", 8);
-    
-});
-
-$(".Diaryhesse").click(function () {
-    filterByCategory2('Diary&Cheese');
-$(".categName").text('Diary & chesse')
-  let   num = $('.cards2[data-category="Diary&Cheese"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`Diary & chesse`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="Diary&Cheese"]`, "pagination2", 8);
-    
-});
-
-$(".Dinner").click(function () {
-    filterByCategory2('Dinner');
-$(".categName").text('Dinner')
-  let   num = $('.cards2[data-category="Dinner"]:visible').length;
-
-    $(".filternum").text(`(${num})`)
-
-$(".catmemb").text(`Dinner`)
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", `cards2[data-category="Dinner"]`, "pagination2", 8);
-    
-});
 // breakkkkk--------------------------------------------------------
 
   // that btn to change layout of divs to make it single  
@@ -746,7 +425,7 @@ setupPagination("divlayout1", "cards", "pagination1", 16);
   
 // })
 
-
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
 //----------------------------------- add to cart layout one -----------------------------------
 
 $(".btnbag").click(function(){
@@ -770,13 +449,31 @@ $(".btnbag2").click(function(){
    addToWishlist(parentId)
 
  })
+ $(".btnheart2").click(function(){
+       const parentId = $(this).parent().parent().parent().parent().parent().attr("id");
+   addToWishlist(parentId)
 
+ })
 
 
 
  // $(".btneye").click(function(){
 //    open("../../productDetials/Template/ProductPopUp.html" )
 // })
+
+
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
     // breakkkkk--------------------------------------------------------
 
@@ -786,8 +483,8 @@ $(".btnbag2").click(function(){
 //----------------------------------- function of pagination -----------------------------------
 function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
 
-    let items = $(`#${containerId} .${cardClass}`);
-
+  //  let items = $(`#${containerId} .${cardClass}`);
+let items = $(`#${containerId} .${cardClass}:visible`);
     let totalItems = items.length;
 
     let totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -828,47 +525,83 @@ function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
     createPagination();
 }
 
+  // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+
+
+//  ------------------- filter  by Price rangeee--------------------
+// function filterByPrice(minPrice, maxPrice) {
+
+//     $(".cards").each(function () {
+
+//         let price = parseFloat($(this).data("price"));
+
+//         if (price >= minPrice && price <= maxPrice) {
+//             $(this).show();
+           
+//         } else {
+//             $(this).hide();
+//         }
+//         setupPagination("divlayout1", "cards", "pagination1", 16);
+
+//     });
+    
+// }
+// //-------------------------------- filter by Price rangeee--------------------------------
+// $('input[type="range"]').on("input", function () {
+//     activeFilters.maxPrice = parseFloat($(this).val());
+
+//     applyFilters("cards");
+//     setupPagination("divlayout1", "cards", "pagination1", 16);
+
+//     // let maxPrice = parseFloat($(this).val());
+
+//     // filterByPrice(0, maxPrice);
+
+//     // $(".form-label").text(`The highest price is €${maxPrice}`);
+//  // setupPagination("divlayout1", ".cards", "pagination1", 16);
+// });
 
 
 
 
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
 
 
 //--------------------------------filter by Price --------------------------------
-function filterByPrice2(minPrice, maxPrice) {
+// function filterByPrice2(minPrice, maxPrice) {
 
-    $(".cards2").each(function () {
+//     $(".cards2").each(function () {
 
-        let price = parseFloat($(this).data("price"));
+//         let price = parseFloat($(this).data("price"));
 
-        if (price >= minPrice && price <= maxPrice) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
+//         if (price >= minPrice && price <= maxPrice) {
+//             $(this).show();
+//         } else {
+//             $(this).hide();
+//         }
 
-    });
+//     });
    
-}
-//-------------------------------- filter by Price rangeee--------------------------------
-$('input[type="range"]').on("input", function () {
+// }
+// //-------------------------------- filter by Price rangeee--------------------------------
+// $('input[type="range"]').on("input", function () {
 
-    let maxPrice = parseFloat($(this).val());
+//     let maxPrice = parseFloat($(this).val());
 
-    filterByPrice2(0, maxPrice);
+//     filterByPrice2(0, maxPrice);
 
-    $(".form-label").text(`The highest price is €${maxPrice}`);
+//     $(".form-label").text(`The highest price is €${maxPrice}`);
 
-    //      $("#paginationnav2").removeClass("d-none");
-    // $("#paginationnav").addClass("d-none");
-    // setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-
-});
+//     //      $("#paginationnav2").removeClass("d-none");
+//     // $("#paginationnav").addClass("d-none");
+//     // setupPagination("divlayout2", "cards2", "pagination2", 8);
 
 
+// });
 
 
+ // ------------------------------------------------breakkkkk--------------------------------------------------------
 
 
 })//end of load
