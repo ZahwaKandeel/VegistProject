@@ -1,6 +1,8 @@
+import { User } from "/models/user.js"
 export class Product{
-    constructor(id, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountValue, discountPercentage){
+    constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountValue, discountPercentage){
         this.ID =id;
+        this.SellerId = sellerId;
         this.Name = name;
         this.Price = price;
         this.Description = description;
@@ -25,7 +27,24 @@ export class Product{
     {
         return this._id
     }
-    
+    set SellerId(sellerId)
+    {
+        if(!Number.isInteger(sellerId)||sellerId<=0)
+            throw new Error("Seller ID must be positive integer")
+        
+        const users = JSON.parse(localStorage.getItem("Users")) || [];
+        const seller = users.find(u => u.id === sellerId)
+        if(!seller)
+            throw new Error("Seller does not exist");
+        if(seller.role!== "seller")
+            throw new Error("User is not a seller");
+
+        this._sellerId = sellerId;
+    }
+    get SellerId()
+    {
+        return this._sellerId
+    }
     set Name(name)
     {
         if(name.length<3) throw new Error("Name must be at least 3 characters");
@@ -117,25 +136,40 @@ export class Product{
         return this._rating;
     }
   
-    // set Reviews(reviews)
-    // {
-    //     if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
-    //     reviews.forEach(review =>{
-    //         if(typeof review !== "object" || review === null)
-    //             throw new Error("Each review must be an object");
-    //         if(!("name" in review) || !("comment" in review))
-    //             throw new Error("Review must contain name and comment properties");
-    //         if(typeof review.name !== "string" || review.name.trim().length<3)
-    //             throw new Error("Reviewers name must be at least 3 characters");
-    //         if(typeof review.comment !== "string" || review.comment.trim().length.length<50)
-    //             throw new Error("Comment length must be at least 50 characters");
-    //     });
-    //     this._reviews = reviews;
-    // }
-    // get Reviews()
-    // {
-    //     return this._reviews;
-    // }
+    set Reviews(reviews)
+    {
+        if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
+        reviews.forEach(review =>{
+            if(typeof review !== "object" || review === null)
+                throw new Error("Each review must be an object");
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            
+            const {uid = currentUser.id, rating, comment} = review;
+            if((uid == null ) || (rating == review) || (comment == review))
+                throw new Error("Review must contain userId, rating and comment properties");
+
+            if(typeof uid !== "number" || uid.length<0)
+                throw new Error("UserId invalid");
+            if(typeof rating !== "number" || rating.length<0)
+                throw new Error("Rating invalid")
+            if(typeof comment !== "string" || comment.trim().length<50)
+                throw new Error("Comment length must be at least 50 characters");
+        });
+        this._reviews = reviews;
+        if(reviews.length>0){
+            let total = 0;
+            reviews.forEach(review => {
+                total += review.rating                
+            });
+            this._rating = (total/reviews.length).toFixed(2);
+        }else{
+            this.rating = 0;
+        }
+    }
+    get Reviews()
+    {
+        return this._reviews;
+    }
 
     set DiscountValue(discountValue)
     {
@@ -168,6 +202,7 @@ export function loadProducts(){
     let parsed = JSON.parse(data);
     return parsed.map(p => new Product(
         p._id,
+        p._sellerId,
         p._name,
         p._price,
         p._description,
@@ -188,6 +223,7 @@ export function editProduct(productID, updatedData){
 
     products = products.map(p => new Product(
         p._id,
+        p.sellerId,
         p._name,
         p._price,
         p._description,
@@ -247,34 +283,34 @@ export function editProduct(productID, updatedData){
     
 }
 
-    const review =[
-         {
-        id:"",
-        userId:"",
-        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-        rating:4
-    },
-       {
-        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-        rating:2
-    },   {
-        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-        rating:4
-    },   {
-        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-        rating:1
-    },   {
-        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-        rating:4
-    },   {
-        review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-        rating:5
-    },
-    ]
+//     const review =[
+//          {
+//         id:"",
+//         userId:"",
+//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+//         rating:4
+//     },
+//        {
+//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+//         rating:2
+//     },   {
+//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+//         rating:4
+//     },   {
+//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+//         rating:1
+//     },   {
+//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+//         rating:4
+//     },   {
+//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
+//         rating:5
+//     },
+//     ]
 
-let totalRating = 0
-review.forEach(i=>{
-    totalRating+= i.rating
-})
+// let totalRating = 0
+// review.forEach(i=>{
+//     totalRating+= i.rating
+// })
 
-const finalRating = totalRating / review.length
+// const finalRating = totalRating / review.length

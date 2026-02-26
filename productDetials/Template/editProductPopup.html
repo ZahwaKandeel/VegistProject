@@ -39,7 +39,7 @@
                 <input type="text" class="form-control" id="updateDescription" name="updateDescription" placeholder="Lorem">
             </div>
             <div class="mb-3">
-                <label for="updateStock" class="form-label fw-bold">Stock:</label>
+                <label for="updateStock" class="form-label fw-bold">Stock(1 stock for every KG):</label>
                 <input type="text" class="form-control" id="updateStock" name="updateStock" placeholder="200">
             </div>
             <div class="mb-3">
@@ -118,14 +118,12 @@
     <script type = "module">
             import{Product, loadProducts, saveProducts} from "../../component/Product.js"
 
-            
-
-            
-            
-
-           
-
             $(document).ready(function(){
+                if(!currentUser || currentUser.role !== "seller"){
+                    throw new Error("Only Sellers can create products");
+                    window.location.href = "/productDetails.html";
+                }
+                const sellerId = currentUser.id;
                 const params = new URLSearchParams(window.location.search);
                 const productId = parseInt(params.get("id"));
 

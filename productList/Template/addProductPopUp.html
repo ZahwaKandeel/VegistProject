@@ -116,8 +116,14 @@
     <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
     <script type = "module">
         import{Product, loadProducts, saveProducts} from "../../component/Product.js"
-
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            
         $(document).ready(function(){
+            if(!currentUser || currentUser.role !== "seller"){
+                throw new Error("Only Sellers can create products");
+                window.location.href = "/product_list.html"
+            }
+            const sellerId = currentUser.id;
             const allowedCategories = [
                 "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
             ];
