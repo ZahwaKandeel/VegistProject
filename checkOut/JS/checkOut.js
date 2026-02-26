@@ -98,8 +98,16 @@ $(function() {
 })
 
 $(function() {
+    const products = JSON.parse(localStorage.getItem("products"));
+    console.log("Products",products);
+    const cart = plainOrder.cart;
+    console.log("cart", cart);
+    const orderProduct = cart.filter(item => products.some(p => p.id === Number(item.product_id)));
+    console.log("order Product: ", orderProduct)
+    
 
-    $("#shipping").text(orderAddress.shipping_fees)
+
+    $("#shipping").text(`$ ${orderAddress.shipping_fees}`)
 })
 
 $(function() {
@@ -110,9 +118,14 @@ $(function() {
             alert("Please login first");
             return;
         }
-            
-        const isDefaultChecked = $("#saveInfo").prop("checked");
+        
+        function clearDefaultAddress() {
+            plainUser.address.forEach(addr => addr.isDefault = false);
+        }
 
+        const isDefaultChecked = $("#saveInfo").prop("checked");
+        
+        
         const newAddress = {
             firstName: $(".firstname").val(),
             lastName: $(".lastname").val(),
@@ -123,6 +136,12 @@ $(function() {
             country: $("#country").val(),
             isDefault: isDefaultChecked
         };
+
+        if (isDefaultChecked) {
+            clearDefaultAddress();
+            newAddress.isDefault = true;
+        }
+
         user.addAddress(newAddress);
         user.saveCurrentUser();
         user.updateUsersArray();
