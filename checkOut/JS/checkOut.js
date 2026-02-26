@@ -102,8 +102,19 @@ $(function() {
     console.log("Products",products);
     const cart = plainOrder.cart;
     console.log("cart", cart);
-    const orderProduct = cart.filter(item => products.some(p => p.id === Number(item.product_id)));
-    console.log("order Product: ", orderProduct)
+    console.log("plain order", plainOrder)
+    const orderProducts = cart.map(item => {
+        const product = products.find(p => p._id === Number(item.product_id));
+        
+        return {
+            ...product,
+            name: item.name,
+            quantity: item.quantity,
+            size: item.size
+        };
+        });
+
+    console.log("order Product: ", orderProducts)
     
 
 
