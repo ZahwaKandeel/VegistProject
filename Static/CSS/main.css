@@ -81,7 +81,7 @@ html[data-bs-theme="dark"] svg {
 html[data-bs-theme="dark"] .iconLink {
   fill: #000000;
 }
-.icon i {
+ .icon i {
   font-size: 1.25rem;
 }
 
@@ -89,7 +89,7 @@ html[data-bs-theme="dark"] .iconLink {
   .icon i {
     font-size: 2.5rem; /* bigger on xl screens */
   }
-}
+} 
 
 /* main nav img */
 .bg-image {
@@ -130,7 +130,7 @@ the image and this div wrapped in a div with class "card-image" */
   transition: all 0.3s ease;
 }
 
-.card-image:hover .icons {
+.card:hover .icons {
   opacity: 1;
   margin-bottom: 15px;
 }
