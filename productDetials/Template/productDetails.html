@@ -417,27 +417,11 @@
 
                 <!-- Section 1 -->
                 <div class="tab-pane fade show active" id="description" role="tabpanel">
-                <h3>More Detail</h3>
-                <ul>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.</li>
-                    <li>type here your detail one by one li more add</li>
-                    <li>has been the industry’s standard dummy text ever since. Lorem Ips</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsum has been the industry’s standard dummy text ever since. Lorem Ipsum is simply dummy text.</li>
-                </ul>
-
-                <h3>Key Specification</h3>
-                <ul>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.</li>
-                    <li>type here your detail one by one li more add</li>
-                    <li>has been the industry’s standard dummy text ever since. Lorem Ips</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsum has been the industry’s standard dummy text ever since. Lorem Ipsum is simply dummy text.</li>
-                </ul>
+                    <h3>More Detail</h3>
+                    <ul>
+                        <li id="moreDetail"></li>
+                    </ul>
                 </div>
-                
                 <!-- Section 2 -->
                 <div class="tab-pane fade" id="info" role="tabpanel">
                     <div class="container mt-4">
@@ -445,24 +429,16 @@
                             <table class="table table-bordered custom-info-table">
                             <tbody>
                                 <tr>
-                                <td class="fw-bold text-dark py-3 ps-4" style="width: 50%;">Vendor:</td>
-                                <td class="text-muted py-3 ps-4">Vegist</td>
-                                </tr>
-                                <tr>
                                 <td class="fw-bold text-dark py-3 ps-4">Size:</td>
-                                <td class="text-muted py-3 ps-4">2kg, 3kg</td>
+                                <td id="table-productsize" class="text-muted py-3 ps-4">KG</td>
                                 </tr>
                                 <tr>
-                                <td class="fw-bold text-dark py-3 ps-4">Material:</td>
-                                <td class="text-muted py-3 ps-4">India, Canada</td>
-                                </tr>
-                                <tr>
-                                <td class="fw-bold text-dark py-3 ps-4">Food product form:</td>
-                                <td class="text-muted py-3 ps-4">Fresh, Frozen, Ground</td>
+                                <td class="fw-bold text-dark py-3 ps-4">Category:</td>
+                                <td id="table-productCategory" class="text-muted py-3 ps-4"></td>
                                 </tr>
                                 <tr>
                                 <td class="fw-bold text-dark py-3 ps-4">SKU:</td>
-                                <td class="text-muted py-3 ps-4">123456</td>
+                                <td id="table-productSKU" class="text-muted py-3 ps-4"></td>
                                 </tr>
                             </tbody>
                             </table>
@@ -519,15 +495,15 @@
                                 </p>
 
                                 <div class="d-flex justify-content-center gap-3 mt-4">
-                                    <button type="button" class="btn btn-warning btn-custom px-5 py-2" data-bs-toggle="collapse" data-bs-target="#reviewForm">Cancel review</button>
-                                    <button type="submit" class="btn btn-warning btn-custom px-5 py-2">Submit Review</button>
+                                    <button id="deleteReview" type="button" class="btn btn-warning btn-custom px-5 py-2" data-bs-toggle="collapse" data-bs-target="#reviewForm">Cancel review</button>
+                                    <button id="addReview" type="submit" class="btn btn-warning btn-custom px-5 py-2">Submit Review</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
 
-            </div> <!-- End Tab Panel -->
+             </div> <!-- End Tab Panel -->
 
         </div> <!-- End Row 2 -->
 

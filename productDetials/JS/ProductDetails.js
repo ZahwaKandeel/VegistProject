@@ -28,6 +28,12 @@ if (!productId) {
     document.getElementById("productSKU").textContent = product.ID;
     document.getElementById("category").textContent = product.Category;
 
+    document.getElementById("table-productsize").textContent = product.Sizes.join(" - ");
+
+    document.getElementById("moreDetail").textContent = product.Description;
+    document.getElementById("table-productCategory").textContent = product.Category;
+    document.getElementById("table-productSKU").textContent = product.ID;
+
     // Carousel images
     const carouselImages = document.querySelectorAll("#carouselVeg img");
     carouselImages.forEach(img => img.src = product.ImageUrl);
