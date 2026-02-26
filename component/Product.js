@@ -223,7 +223,7 @@ export function editProduct(productID, updatedData){
 
     products = products.map(p => new Product(
         p._id,
-        p.sellerId,
+        p._sellerId,
         p._name,
         p._price,
         p._description,
