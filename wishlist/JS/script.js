@@ -56,8 +56,8 @@ let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
                         <div class="d-block d-md-flex align-items-center">
                             <div>${renderStars(Math.round(product._rating))}</div>
 ${product._reviews 
-    ? `<span class="text-secondary fw-semibold">1 review</span>` 
-    : `<span class="text-secondary fw-semibold">no reviews</span>`
+    ? `<span class="text-secondary fw-semibold ms-0 ms-md-3">${product._reviews.length} review</span>` 
+    : `<span class="text-secondary fw-semibold ms-0 ms-md-3">no reviews</span>`
 }                            
                         </div>
                     </div>
@@ -85,7 +85,7 @@ function renderStars(rating) {
 // Function to remove a product from the wishlist
 function removeFromWishlist(product_id) {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    wishlist = wishlist.filter(item => item.product_id !== product_id);
+    wishlist = wishlist.filter(item => item.product_id != product_id);
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
