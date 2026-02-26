@@ -145,9 +145,10 @@ export class Product{
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
             const {uid = currentUser.id, rating, comment} = review;
-            if((uid == null ) || (rating == review) || (comment == review))
-                throw new Error("Review must contain userId, rating and comment properties");
-
+            if((uid == null ) || (title == review) || (rating == review) || (comment == review))
+                throw new Error("Review must contain userId, title, rating and comment properties");
+            if(typeof title !== "string" || title.trim().length<5)
+                throw new Error("Title length must be at least 5 characters");
             if(typeof uid !== "number" || uid.length<0)
                 throw new Error("UserId invalid");
             if(typeof rating !== "number" || rating.length<0)
@@ -283,34 +284,3 @@ export function editProduct(productID, updatedData){
     
 }
 
-//     const review =[
-//          {
-//         id:"",
-//         userId:"",
-//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-//         rating:4
-//     },
-//        {
-//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-//         rating:2
-//     },   {
-//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-//         rating:4
-//     },   {
-//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-//         rating:1
-//     },   {
-//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-//         rating:4
-//     },   {
-//         review:"lkadjfldskjfld;kfja kljdlfjslkdj ;lkjsdflkdsjfldskjk jslakdjff",
-//         rating:5
-//     },
-//     ]
-
-// let totalRating = 0
-// review.forEach(i=>{
-//     totalRating+= i.rating
-// })
-
-// const finalRating = totalRating / review.length
