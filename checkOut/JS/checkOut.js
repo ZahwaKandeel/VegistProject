@@ -112,13 +112,57 @@ $(function() {
             quantity: item.quantity,
             size: item.size
         };
-        });
+    });
+    orderProducts.forEach (product => {
+        $("#accordionForm").prepend(
+            `
+                <section class="d-flex justify-content-between align-items-center mb-3 p-2 px-5">
+                    <div class="col-1 border border-2 border-white rounded-3 text-center productImg">
+                        <img src="${product._imageUrl}" alt="" class="productImage">
+                    </div>
+                    <div class="col-8 productContect">
+                        <p class="m-0 productName">${product._name}</p>
+                        <small class="text-secondary productDetails">${product.size}</small>
+                    </div>
+                    <div class="col-2 text-end productPrice">
+                        <p>$${product._price}</p>
+                    </div>
+                </section>
+            `
+        )
+        $("#lgForm").prepend(
+            `
+                <section class="d-flex justify-content-between align-items-center mb-3 p-2">
+                    <div class="col-1 border border-2 border-white rounded-3 text-center productImg">
+                        <img src="${product._imageUrl}" alt="" class="productImage">
+                    </div>
+                    <div class="col-7 productContect">
+                        <p class="m-0 productName">${product._name}</p>
+                        <small class="text-secondary productDetails">${product.size}</small>
+                    </div>
+                    <div class="col-2 text-end productPrice">
+                        <p>$${product._price}</p>
+                    </div>
+                </section>
+            `
+        )
+    }) 
+    const subtotal = $(".subtotal");
+    const shipping = $(".shipping");
+    const total = $(".total")
 
+    const subtotalValue = Number(plainOrder.subtotal);
+    const shippingValue = Number(orderAddress.shipping_fees);
+
+    subtotal.text(`$${plainOrder.subtotal}`)
+    shipping.text(`$${orderAddress.shipping_fees}`)
+
+    const totalValue = subtotalValue + shippingValue;
+    total.text(`$${totalValue}`)
     console.log("order Product: ", orderProducts)
     
 
 
-    $("#shipping").text(`$ ${orderAddress.shipping_fees}`)
 })
 
 $(function() {
