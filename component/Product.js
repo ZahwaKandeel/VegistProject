@@ -1,6 +1,6 @@
 import { User } from "/models/user.js"
 export class Product{
-    constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountValue, discountPercentage){
+    constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountPercentage){
         this.ID =id;
         this.SellerId = sellerId;
         this.Name = name;
@@ -12,7 +12,6 @@ export class Product{
         this.Sizes = sizes;
         this.Rating = rating;
         this.Reviews = reviews || [];
-        this.DiscountValue = discountValue;
         this.DiscountPercentage = discountPercentage;
     }
 
@@ -144,7 +143,7 @@ export class Product{
                 throw new Error("Each review must be an object");
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
-            const {uid = currentUser.id, rating, comment} = review;
+            const {uid = currentUser, title, rating, comment} = review;
             if((uid == null ) || (title == review) || (rating == review) || (comment == review))
                 throw new Error("Review must contain userId, title, rating and comment properties");
             if(typeof title !== "string" || title.trim().length<5)
@@ -172,15 +171,6 @@ export class Product{
         return this._reviews;
     }
 
-    set DiscountValue(discountValue)
-    {
-        if(discountValue<0) throw new Error("Discounts values cannot be negative");
-        this._discountValue = discountValue;
-    }
-    get DiscountValue()
-    {
-        return this._discountValue;
-    }
 
     set DiscountPercentage(discountPercentage)
     {
@@ -213,7 +203,6 @@ export function loadProducts(){
         p._sizes,
         p._rating,
         p._reviews,
-        p._discountValue,
         p._discountPercentage
     ));
 }
@@ -234,7 +223,6 @@ export function editProduct(productID, updatedData){
         p._sizes,
         p._rating,
         p._reviews,
-        p._discountValue,
         p._discountPercentage
     ));
 
@@ -271,9 +259,6 @@ export function editProduct(productID, updatedData){
 
     if(updatedData.reviews !== undefined)
         product.Reviews = updatedData.reviews;
-
-    if(updatedData.discountValue !== undefined)
-        product.DiscountValue = updatedData.discountValue;
 
     if(updatedData.discountPercentage !== undefined)
         product.DiscountPercentage = updatedData.discountPercentage;

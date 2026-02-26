@@ -228,7 +228,7 @@
                             <img src="../../productDetials/images/addIcon.png" width="30" alt="add">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="location.href='addProductPopUp.html'">
+                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" id="openAddProduct" >
                             Add Product
                         </button>
                     </div>
@@ -297,7 +297,7 @@
                             <img src="../../productDetials/images/addIcon.png" width="30" alt="add">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="location.href='addProductPopUp.html'">
+                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" id="openAddProductMobile">
                             Add Product
                         </button>
                     </div>
@@ -2239,9 +2239,26 @@
 
 
 </div> <!--end of container -->
-
+            <div id="modalContainer"></div>
         </main>
 
+        <script>
+          $(document).ready(function(){
+              // Load external modal file
+              $("#modalContainer").load("addproductpopup.html", function(){
+                  function openModal(){
+                    const modal = new bootstrap.Modal(
+                      document.getElementById("addProductModal")
+                    );
+                    modal.show();
+                  }
+                  $("#openAddProduct").on("click", openModal);
+                  $("#openAddProductMobile").on("click", openModal);
+
+              });
+          });
+        
+        </script>
  
 
         <script
