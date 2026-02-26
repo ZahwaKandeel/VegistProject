@@ -5,12 +5,16 @@ $(function(){
 
 const user = isAuth();
 
-if (  user.role == "seller") {
-    document.getElementById("sellerBtn").style.display = "block";
+// if (  user.role == "seller") {
+//     document.getElementById("sellerBtn").style.display = "block";
+// } else {
+//     document.getElementById("sellerBtn").style.display = "none";
+// }
+if (user.role === "seller") {
+    $(".sellerBtn").show();
 } else {
-    document.getElementById("sellerBtn").style.display = "none";
+    $(".sellerBtn").hide();
 }
-
 
 const detailsPage = user?.role == "seller"
     ? "../../productDetials/Template/SellerProductDetaill.html"
@@ -183,7 +187,7 @@ function applyFilters(layoutClass) {
         let show = true;
 
         // Category
-        if (activeFilters.category && category !== activeFilters.category) {
+        if (activeFilters.category && category != activeFilters.category) {
             show = false;
         }
       
@@ -252,6 +256,7 @@ $('input[name="categories"]').on('change', function () {
     $(".filternum").text(`(${visibleCount})`);
     $(".catmemb").text(selectedCategory);
     $(".categName").text(selectedCategory);
+    $(".numcat").text(`(${visibleCount}) selected` );
 
 });
 
@@ -313,20 +318,26 @@ $('input[type="range"]').on("input", function () {
 // --------------------------------filter by stock  --------------------------------------
 
 
-$("#out").click(function () {
+$(".out").click(function () {
 
     activeFilters.stock = "out";
 
     applyFilters("cards");
     setupPagination("divlayout1", "cards", "pagination1", 16);
 
+
     applyFilters("cards2");
     setupPagination("divlayout2", "cards2", "pagination2", 8);
+let visibleCount =
+    $("#divlayout1 .cards:visible").length +
+    $("#divlayout2 .cards2:visible").length;
 
+    $(".numstock").text(`${visibleCount} selected` );
+   
 });
 
 
-$("#ins").click(function () {
+$(".ins").click(function () {
 
     activeFilters.stock = "in";
 
@@ -336,9 +347,14 @@ $("#ins").click(function () {
     applyFilters("cards2");
     setupPagination("divlayout2", "cards2", "pagination2", 8);
 
+    let visibleCount =
+    $("#divlayout1 .cards:visible").length +
+    $("#divlayout2 .cards2:visible").length;
+
+    $(".numstock").text(`${visibleCount} selected` );
 });
 
-$("#allStock").click(function () {
+$(".allStock").click(function () {
 
     activeFilters.stock = null;
 
@@ -347,6 +363,11 @@ $("#allStock").click(function () {
 
     applyFilters("cards2");
     setupPagination("divlayout2", "cards2", "pagination2", 8);
+    let visibleCount =
+    $("#divlayout1 .cards:visible").length +
+    $("#divlayout2 .cards2:visible").length;
+
+    $(".numstock").text(`${visibleCount} selected` );
 });
 
 
@@ -355,10 +376,55 @@ $("#allStock").click(function () {
 
 
 
+// $(".sort-option").click(function (e) {
+//     e.preventDefault();
 
+//     const sortType = $(this).data("sort");
 
+//     let container = $("#divlayout1");
+//     let items = container.children(".cards").get();
 
+//     items.sort(function (a, b) {
 
+//         let nameA = $(a).find(".para").text().toLowerCase();
+//         let nameB = $(b).find(".para").text().toLowerCase();
+
+//         if (sortType === "az") {
+//             return nameA.localeCompare(nameB);
+//         } else {
+//             return nameB.localeCompare(nameA);
+//         }
+//     });
+
+//     $.each(items, function (index, item) {
+//         container.append(item);
+//     });
+
+//     $(".dropdown-toggle .text-secondary").text($(this).text());
+
+//     setupPagination("divlayout1", "cards", "pagination1", 16);
+// });
+// ------------------------------------------------breakkkkk--------------------------------------------------------
+// let container2 = $("#divlayout2");
+// let items2 = container2.children(".cards2").get();
+
+// items2.sort(function (a, b) {
+
+//     let nameA = $(a).find(".para").text().toLowerCase();
+//     let nameB = $(b).find(".para").text().toLowerCase();
+
+//     if (sortType === "az") {
+//         return nameA.localeCompare(nameB);
+//     } else {
+//         return nameB.localeCompare(nameA);
+//     }
+// });
+
+// $.each(items2, function (index, item) {
+//     container2.append(item);
+// });
+
+// setupPagination("divlayout2", "cards2", "pagination2", 8);
 
 
 
@@ -393,6 +459,7 @@ setupPagination("divlayout2", "cards2", "pagination2", 8);
 
 
 })
+
 // that btn to back to defult layout of divs 
 $(".btnlay1").click(function(){
 

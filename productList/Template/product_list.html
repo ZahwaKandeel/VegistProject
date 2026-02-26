@@ -223,13 +223,13 @@
 
 
 
-      <div id="sellerBtn"  class="leftsideadd  p-4 mb-3 text-center border-0  border-bottom" style="background-color: #f8f9fa; ">
+      <div id=""  class="sellerBtn leftsideadd  p-4 mb-3 text-center border-0  border-bottom" style="background-color: #f8f9fa; ">
                         <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 60px; height: 60px;">
                             <img src="../../productDetials/images/addIcon.png" width="30" alt="add">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="location.href='addProductPopUp.html'">
+                       <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" id="openAddProduct" >
                             Add Product
                         </button>
                     </div>
@@ -242,21 +242,21 @@
 
 <ul class="myul ">
   <li>
-  <input type="radio" name="categories" value="" id="check0" checked>
-  <label for="check0">All Products</label>
+  <input type="radio" name="categories" value="" id="check02" checked>
+  <label for="check02">All Products</label>
 </li>
-<li class="bagel " > <input type="radio" id="check1"  name="categories" value="bagel" >  <label for="check1"> Bagel </label>  </li>
-<li class="candy"><input type="radio" id="check2" name="categories" value="candy"> <label for="check2">candy </label>  </li>
-<li class="beans"><input type="radio" id="check3" name="categories" value="beans"> <label for="check3"> Beans </label>  </li>
-<li class="bestseller"><input type="radio" id="check4" name="categories" value="bestseller"> <label for="check4"> Bestseller </label>  </li>
-<li class="bread"><input type="radio" id="check5" name="categories" value="bread">  <label for="check5">Bread </label>  </li>
-<li class="biscuite"><input type="radio" id="check6" name="categories" value="biscuite"> <label for="check6"> Biscuite</label>  </li>
-<li class="breakfast"><input type="radio" id="check7" name="categories" value="breakfast"> <label for="check7"> Breakfast</label>  </li>
-<li class="cake"><input type="radio" id="check8" name="categories" value="cake"> <label for="check8"> Cake</label>  </li>
-<li class="cookie"><input type="radio" id="check9" name="categories" value="cookie"> <label for="check9"> Cookie</label>  </li>
-<li class="cupcake"><input type="radio" id="check10" name="categories" value="cupcake"> <label for="check10"> cupcake</label>  </li>
-<li class="Diaryhesse"><input type="radio" id="check11" name="categories" value="Diary&Cheese"> <label for="check11"> Diary&chesse</label>  </li>
-<li class="Dinner"><input type="radio" id="check12" name="categories" value="Dinner"> <label for="check12"> Dinner</label>  </li>
+<li class="bagel " > <input type="radio" id="check12"  name="categories" value="bagel" >  <label for="check12"> Bagel </label>  </li>
+<li class="candy"><input type="radio" id="check22" name="categories" value="candy"> <label for="check22">candy </label>  </li>
+<li class="beans"><input type="radio" id="check32" name="categories" value="beans"> <label for="check32"> Beans </label>  </li>
+<li class="bestseller"><input type="radio" id="check42" name="categories" value="bestseller"> <label for="check42"> Bestseller </label>  </li>
+<li class="bread"><input type="radio" id="check52" name="categories" value="bread">  <label for="check52">Bread </label>  </li>
+<li class="biscuite"><input type="radio" id="check62" name="categories" value="biscuite"> <label for="check62"> Biscuite</label>  </li>
+<li class="breakfast"><input type="radio" id="check72" name="categories" value="breakfast"> <label for="check72"> Breakfast</label>  </li>
+<li class="cake"><input type="radio" id="check82" name="categories" value="cake"> <label for="check82"> Cake</label>  </li>
+<li class="cookie"><input type="radio" id="check92" name="categories" value="cookie"> <label for="check92"> Cookie</label>  </li>
+<li class="cupcake"><input type="radio" id="check102" name="categories" value="cupcake"> <label for="check102"> cupcake</label>  </li>
+<li class="Diaryhesse"><input type="radio" id="check112" name="categories" value="Diary&Cheese"> <label for="check112"> Diary&chesse</label>  </li>
+<li class="Dinner"><input type="radio" id="check122" name="categories" value="Dinner"> <label for="check122"> Dinner</label>  </li>
 </ul>
 </div>
 </div >
@@ -288,7 +288,7 @@
 <div class="offcanvas offcanvas-start d-lg-none" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" >
   <div class="offcanvas-header">
 
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filters</h5>
 
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
@@ -296,13 +296,13 @@
   <div class="offcanvas-body">   <!-- ----------------------- pop up body------------------------->
   <div class=" "> <!-- first left side div-->
 
-      <div id="sellerBtn" class="leftsideadd  p-4 mb-3 text-center border-0  border-bottom" style="background-color: #f8f9fa; ">
+      <div id="" class="sellerBtn leftsideadd  p-4 mb-3 text-center border-0  border-bottom" style="background-color: #f8f9fa; ">
                         <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 60px; height: 60px;">
                             <img src="../../productDetials/images/addIcon.png" width="30" alt="add">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="location.href='addProductPopUp.html'">
+                       <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" id="openAddProductMobile">
                             Add Product
                         </button>
                     </div>
@@ -374,30 +374,25 @@
 
      <!---------------------------->
  <div class="  overflow-auto my-2 border-bottom"> <!-- six left side-->
-       <p> Availability </p>
+       <p > Availability </p>
 <div class="" >
-<p class="text-secondary"> 0 selected</p> 
+<p class="text-secondary numstock"> 0 selected</p> 
 <ul class="myul p-1">
-<li> <input type="radio"  id="ins" name="stock"> <label for="ins">In stock</label> </li>
-<li> <input type="radio" id="out" name="stock"> <label for="out">out of  stock</label> </li>
-<li> <input type="radio" id="allStock" name="stock"> <label for="allStock">all </label> </li>
+<li> <input type="radio" class="ins"  id="ins2" name="stock"> <label for="ins2">In stock</label> </li>
+<li> <input type="radio" class="out" id="out2" name="stock"> <label for="out2">out of  stock</label> </li>
+<li> <input type="radio" class="allStock" id="allStock2" name="stock"> <label for="allStock2">all </label> </li>
 
 </ul>
 
 </div> 
 </div>
   <!---------------------------->
-<div class=" overflow-auto my-2 border-bottom"> <!-- seven left side-->
-    <p>Brand</p>
-    <p class="text-secondary">0 selected</p>
-    <input type="checkbox" name="" id="vegist"> 
-    <label for="vegist">vegist </label>
-</div>
+
    <!---------------------------->  
 
 <div class=" overflow-auto my-3 border-bottom"> <!-- seven left side-->
     <p>Product type </p>
-    <p class="text-secondary">0 selected</p>
+    <p class="text-secondary numcat">0 selected</p>
     <input type="checkbox" name="" id="catmemb"> 
     <label for="catmemb" class="catmemb" >  </label>
 </div>
@@ -433,9 +428,13 @@
            <span class="fw-bold">Sort by:</span> <span class="text-secondary">Alphabetically, Z-A</span> 
           </a>
           <ul class="dropdown-menu ">
-            <li><a class=" dropdown-item " href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li>
+              <a class=" dropdown-item sort-option" href="#" data-sort="az"> Alphabetically, A-Z</a>
+            </li>
+            <li>
+              <a class="dropdown-item sort-option" href="#" data-sort="za">  Alphabetically, Z-A</a>
+            </li>
+            
             </ul>
              </li>
              
@@ -508,12 +507,12 @@
  <div class="  overflow-auto my-2 border-bottom"> <!-- six left side-->
        <p> Availability </p>
 <div class="" >
-<p class="text-secondary"> 0 selected</p> 
+<p class="text-secondary numstock"> 0 selected</p> 
 <ul class="myul p-1">
 
-<li> <input type="radio"  id="ins" name="stock"> <label for="ins">In stock</label> </li>
-<li> <input type="radio" id="out" name="stock"> <label for="out">out of  stock</label> </li>
-<li> <input type="radio" id="allStock" name="stock"> <label for="allStock">all </label> </li>
+<li> <input type="radio" class="ins"  id="inss" name="stock"> <label for="inss">In stock</label> </li>
+<li> <input type="radio" class="out" id="outs" name="stock"> <label for="outs">out of  stock</label> </li>
+<li> <input type="radio" class="allStock" id="allStocks" name="stock"> <label for="allStocks">all </label> </li>
 </ul>
 
 </div> 
@@ -523,7 +522,7 @@
 
 <div class=" overflow-auto my-3 border-bottom"> <!-- seven left side-->
     <p>Product type </p>
-    <p class="text-secondary">0 selected</p>
+    <p class="text-secondary numcat">0 selected</p>
     <input type="checkbox" name="" id="catmemb"> 
     <label for="catmemb" class="catmemb" >  </label>
 </div>
@@ -2235,6 +2234,8 @@
 </div> <!--end of container -->
 
         </main>
+
+<div id="modalContainer"></div>
  <div id="quickViewModal"></div>
  
 
@@ -2260,6 +2261,24 @@
 
 <script type="module" src="../JS/productlist.js"></script>
 <script type="module" src="../../component/PopUpFunctions.js"></script>
+<script>
+          $(document).ready(function(){
+              // Load external modal file
+              $("#modalContainer").load("addproductpopup.html", function(){
+                  function openModal(){
+                    const modal = new bootstrap.Modal(
+                      document.getElementById("addProductModal")
+                    );
+                    modal.show();
+                  }
+                  $("#openAddProduct").on("click", openModal);
+                  $("#openAddProductMobile").on("click", openModal);
+
+              });
+          });
+        
+        </script>
+
 
     </body>
 </html>
