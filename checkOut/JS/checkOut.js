@@ -113,7 +113,23 @@ $(function() {
             size: item.size
         };
     });
+
+    function getFinalPrice(product) {
+        const price = Number(product._price);
+        const discount = Number(product._discountPercentage) || 0;
+
+        if (discount > 0) {
+            const discounted = price - (price * (discount / 100));
+            return Math.max(0, discounted);
+        }
+        return price;
+    }
+
     orderProducts.forEach (product => {
+
+        const originalPrice = Number(product._price);
+        const finalPrice = getFinalPrice(product);
+
         $("#accordionForm").prepend(
             `
                 <section class="d-flex justify-content-between align-items-center mb-3 p-2 px-5">
@@ -122,26 +138,48 @@ $(function() {
                     </div>
                     <div class="col-8 productContect">
                         <p class="m-0 productName">${product._name}</p>
-                        <small class="text-secondary productDetails">${product.size}</small>
+                        <small class="text-secondary productDetails">
+                        Size: ${product.size ?? "Default"} | Qty: ${product.quantity}
+                        </small>
                     </div>
                     <div class="col-2 text-end productPrice">
-                        <p>$${product._price}</p>
+                        ${
+                            finalPrice < originalPrice
+                            ? `
+                                <del><i class="text-warning">$${originalPrice.toFixed(2)}</i></del>
+                                <span>$${finalPrice.toFixed(2)}</span>
+                            `
+                            : `
+                            <span>$${finalPrice.toFixed(2)}</span>
+                            `
+                        }
                     </div>
                 </section>
             `
         )
         $("#lgForm").prepend(
             `
-                <section class="d-flex justify-content-between align-items-center mb-3 p-2">
+                <section class="d-flex justify-content-between align-items-center mb-3 p-2 px-5">
                     <div class="col-1 border border-2 border-white rounded-3 text-center productImg">
                         <img src="${product._imageUrl}" alt="" class="productImage">
                     </div>
                     <div class="col-7 productContect">
                         <p class="m-0 productName">${product._name}</p>
-                        <small class="text-secondary productDetails">${product.size}</small>
+                        <small class="text-secondary productDetails">
+                        Size: ${product.size ?? "Default"} | Qty: ${product.quantity}
+                        </small>
                     </div>
                     <div class="col-2 text-end productPrice">
-                        <p>$${product._price}</p>
+                        ${
+                            finalPrice < originalPrice
+                            ? `
+                                <del><i class="text-warning">$${originalPrice.toFixed(2)}</i></del>
+                                <span>$${finalPrice.toFixed(2)}</span>
+                            `
+                            : `
+                            <span>$${finalPrice.toFixed(2)}</span>
+                            `
+                        }
                     </div>
                 </section>
             `
@@ -149,13 +187,16 @@ $(function() {
     }) 
     const subtotal = $(".subtotal");
     const shipping = $(".shipping");
-    const total = $(".total")
+    const itemsCount = $(".itemNumber");
+    const total = $(".total");
 
     const subtotalValue = Number(plainOrder.subtotal);
     const shippingValue = Number(orderAddress.shipping_fees);
+    const itemsCountVal = orderProducts.length;
 
     subtotal.text(`$${plainOrder.subtotal}`)
     shipping.text(`$${orderAddress.shipping_fees}`)
+    itemsCount.text(`${itemsCountVal} items`)
 
     const totalValue = subtotalValue + shippingValue;
     total.text(`$${totalValue}`)
