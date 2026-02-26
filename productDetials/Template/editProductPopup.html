@@ -112,29 +112,31 @@
             </div>
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3fp9Zp5VYQbZp3K3V0CqKxO8D+N5Q5m9h6v9E+4yXr0=" crossorigin="anonymous"> </script>-->
+    <!-- <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type = "module">
             import{Product, loadProducts, saveProducts} from "../../component/Product.js"
 
             
 
-            let products = loadProducts() || [];
-
-            //let product = products.find(p => p.ID == productId);
-            let product = products.find(p => Number(p.ID) === Number(productId));
-            if(!product){
-                alert("Product not found");
-                window.location.href = "../../productList/Template/product_list.html"
-            }
-            console.log("URL ID:", productId);
-                console.log("All IDs:", products.map(p => p.ID));
+            
+            
 
            
 
             $(document).ready(function(){
                 const params = new URLSearchParams(window.location.search);
                 const productId = parseInt(params.get("id"));
+
+                let products = loadProducts() || [];
+
+                let product = products.find(p => p.ID == productId);
+                //let product = products.find(p => Number(p.ID) === Number(productId));
+                if(!product){
+                    alert("Product not found");
+                    window.location.href = "../../productList/Template/product_list.html"
+                }
                 
                 $("#updateName").val(product.Name);
                 $("#updatePrice").val(product.Price);
@@ -144,8 +146,8 @@
                 $("#updateImage").val(product.ImageUrl);
                 //$("#updateSize").val(product.Sizes);
                 product.Sizes.forEach(size =>{
-                        $(`.size-option[value="${size}"]`.prop("checked", true));
-                })
+                        $(`.size-option[value="${size}"]`).prop("checked", true);
+                });
                 $("#discountPercentage").val(product.DiscountPercentage);
                 
                 const allowedCategories = [
@@ -255,6 +257,9 @@
                         return false;
                     }
                 }
+                console.log("URL ID:", productId);
+                console.log("All IDs:", products.map(p => p.ID));
             });
         </script>
+
 </body>
