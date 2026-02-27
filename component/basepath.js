@@ -1,6 +1,6 @@
 // Detect base path dynamically
 
-function getBasePath() {
+export function getBasePath() {
     const path = window.location.pathname;
 
     // Remove file name => get folder path
