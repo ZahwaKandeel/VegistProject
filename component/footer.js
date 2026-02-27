@@ -1,4 +1,6 @@
-function footer() {
+import { getBasePath } from "./basepath.js";
+
+export function footer() {
     const basepath = getBasePath();
     return `
         <footer class="container-fluid p-0 mainFooterTheme">
