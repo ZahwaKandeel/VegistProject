@@ -23,6 +23,18 @@
                 display: none;
                 min-width: 120px;
             }
+            .productImage{
+                width: 50px;
+                height: 60px;
+            }
+            .productImg{
+                width: 70px;
+            }
+            .apply-btn:hover{
+                background-color: var(--main-main-color) !important;
+                color: black !important;
+                transition: all 0.3s ease;
+            }
         </style>
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
         <script
@@ -53,57 +65,35 @@
         <hr class="my-0"/>
         <main>
             <div class="accordion accordion-flush mb-3 d-lg-none">
-                <div class="accordion-item border-0">
+                <div class="accordion-item border-0 ">
                     <h2 class="accordion-header">
                     <button class="accordion-button border-0 bg-secondary bg-opacity-10 mainTextTheme px-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                         Order summary
                     </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse ">
                         <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
                             <form action="" class="checkout">
-                                <main class="d-flex flex-column">
-                                    <section class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
-                                            <img src="/cart/images/39.webp" alt="" class="productImage w-100">
+                                <main class="d-flex flex-column" id="accordionForm">
+                                    <form class="mb-3 p-2 discountFrom">
+                                        <div class="d-flex p-2 ps-5">
+                                            <input type="text" id="discount" class="col-9 border border-1 border-secondary-subtle rounded-2 p-2" placeholder="Discount code"/>
+                                            <input type="submit" value="Apply" class="col-2 border border-1 bg-body-tertiary bg-opacity-10 text-secondary rounded-2 py-3 px-2 px-sm-3 ms-4 me-2 apply-btn"/>
                                         </div>
-                                        <div class="col-7 productContect">
-                                            <p class="m-0 productName">Organic conconet</p>
-                                            <small class="text-secondary productDetails">1kg/ Canada</small>
-                                        </div>
-                                        <div class="col-2 productPrice">
-                                            <p>35.55</p>
-                                        </div>
-                                    </section>
-                                    <section class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
-                                            <img src="/cart/images/39.webp" alt="" class="productImage w-100">
-                                        </div>
-                                        <div class="col-7 productContect">
-                                            <p class="m-0 productName">Fresh organic fruit(50gm)</p>
-                                            <small class="text-secondary productDetails">5kg</small>
-                                        </div>
-                                        <div class="col-2 productPrice">
-                                            <p>35.55</p>
-                                        </div>
-                                    </section>
-                                    <section class="d-flex mb-3">
-                                        <input type="text" id="discount" class="border border-1 border-secondary-subtle rounded-2 p-2 w-75" placeholder="Discount code"/>
-                                        <label for="disount" class="border border-1 bg-secondary bg-opacity-10 text-secondary rounded-2 py-2 px-3 ms-4 me-2">Apply</label>
-                                    </section>
-                                    <section class="mb-3">
+                                    </form>
+                                    <section class="mb-3 p-2 px-5">
                                         <div class="d-flex justify-content-between">
-                                            <small class="mb-2">Subtotal . <span>2 items</span></small>
-                                            <small>68.00</small>
+                                            <small class="mb-2">Subtotal . <span class="itemNumber"></span></small>
+                                            <small class="subtotal"></small>
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <small>Shipping</small>
-                                            <small>13.95</small>
+                                            <small class="shipping"></small>
                                         </div>
                                     </section>
-                                    <section class="d-flex justify-content-between">
+                                    <section class="d-flex justify-content-between mb-3 p-2 px-5">
                                         <p><b>Total</b></p>
-                                        <p><b>81.95</b></p>
+                                        <p><b class="total"></b></p>
                                     </section>
                                 </main>
                             </form>
@@ -121,8 +111,8 @@
                                 <a href="/auth/Template/login.html" class="mainTextTheme">Sing in</a>
                             </section>
                             <section>
-                                <input id="guestContact" type="text" placeholder="Email or mobile phone number" 
-                                    class="w-100 p-2 py-3 border border-secondary-subtle rounded-3 mb-2">
+                                <input id="guestContact" type="text" placeholder="Email" 
+                                    class="w-100 p-2 py-3 border border-secondary-subtle rounded-3 mb-2" autofocus>
                             </section>
                             <section id="userContact">
                                 <div class="d-flex align-items-center justify-content-between">
@@ -149,10 +139,6 @@
                                 </div>
                                 <hr>
                             </section>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="newDetails" class="form-check-input me-1">
-                            <label for="newDetails"><small>Email me with new offers</small></label>
                         </div>
                     </section>
                     <section class="p-2 mb-3 ">
@@ -184,7 +170,7 @@
                             <p><b>Shipping mehtod</b></p>
                             <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
                                 <p class="m-2"><small>Standard</small></p>
-                                <p class="m-2"><small><b id="shipping"></b></small></p>
+                                <p class="m-2"><small><b class="shipping"></b></small></p>
                             </section>
                         </div>
                     </section>
@@ -204,9 +190,7 @@
                                 <b>Total</b>
                                 <small>items</small>
                             </p>
-                            <p class="me-4">
-                                81.96
-                            </p>
+                            <p class="me-4"><b class="total">81.96</b></p>
                         </div>
                         <div class="text-center">
                             <button id="orderBtn" type="submit" class="mainBackgroundTheme border-0 rounded w-100 text-body my-lg-2 py-2">
@@ -219,48 +203,26 @@
                 <div class="d-none d-lg-block bg-secondary bg-opacity-10 pt-5 col-lg-6 pe-lg-5">
                     <div class="px-5">
                         <form action="" class="checkout pe-xxl-5">
-                            <main class="d-flex flex-column pe-xl-5">
-                                <section class="d-flex justify-content-between align-items-center mb-3">
-                                    <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
-                                        <img src="/cart/images/39.webp" alt="" class="productImage w-100">
+                            <main class="d-flex flex-column pe-xl-5" id="lgForm">
+                                <form class="mb-3 p-2 discountFrom">
+                                    <div class="d-flex p-2">
+                                        <input type="text" id="discount" class="col-9 border border-1 border-secondary-subtle rounded-2 p-2" placeholder="Discount code"/>
+                                        <input type="submit" value="Apply" class="col-3 border border-1 bg-body-tertiary bg-opacity-10 text-secondary rounded-2 py-3 px-3 ms-4 me-2 apply-btn"/>
                                     </div>
-                                    <div class="col-7 productContect">
-                                        <p class="m-0 productName">Organic conconet</p>
-                                        <small class="text-secondary productDetails">1kg/ Canada</small>
-                                    </div>
-                                    <div class="col-2 productPrice">
-                                        <p>35.55</p>
-                                    </div>
-                                </section>
-                                <section class="d-flex justify-content-between align-items-center mb-3">
-                                    <div class="col-2 border border-2 border-white rounded-3 text-center productImg">
-                                        <img src="/cart/images/39.webp" alt="" class="productImage w-100">
-                                    </div>
-                                    <div class="col-7 productContect">
-                                        <p class="m-0 productName">Fresh organic fruit(50gm)</p>
-                                        <small class="text-secondary productDetails">5kg</small>
-                                    </div>
-                                    <div class="col-2 productPrice">
-                                        <p>35.55</p>
-                                    </div>
-                                </section>
-                                <section class="d-flex mb-3">
-                                    <input type="text" id="discount" class="border border-1 border-secondary-subtle rounded-2 p-2 w-75" placeholder="Discount code"/>
-                                    <label for="disount" class="border border-1 bg-secondary bg-opacity-10 text-secondary rounded-2 py-2 px-3 ms-4 me-2">Apply</label>
-                                </section>
-                                <section class="mb-3">
+                                </form>
+                                <section class="mb-3 p-2 ">
                                     <div class="d-flex justify-content-between">
-                                        <small class="mb-2">Subtotal . <span>2 items</span></small>
-                                        <small>68.00</small>
+                                        <small class="mb-2">Subtotal . <span class="itemNumber"></span></small>
+                                        <small class="subtotal"></small>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <small>Shipping</small>
-                                        <small>13.95</small>
+                                        <small class="shipping"></small>
                                     </div>
                                 </section>
-                                <section class="d-flex justify-content-between">
+                                <section class="d-flex justify-content-between mb-3 p-2">
                                     <p><b>Total</b></p>
-                                    <p><b>81.95</b></p>
+                                    <p><b class="total"></b></p>
                                 </section>
                             </main>
                         </form>
