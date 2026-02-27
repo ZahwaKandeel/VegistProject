@@ -15,7 +15,7 @@ let matchedUsers = users.filter(user =>
   activeUsers.some(order => order.customerId == user.id)
 );
 
-console.log(users.length);
+console.log(matchedUsers.length);
 
 
 const dashboardData = {
@@ -24,8 +24,8 @@ const dashboardData = {
         lastMonth :users.length
     },
     activeUseres:{
-        current :8940,
-        lastMonth : 7650
+        current :matchedUsers.length,
+        lastMonth : matchedUsers.length
     },
     newRegistrations:{
         current:users.length-1,
@@ -134,7 +134,7 @@ document.getElementById("lastRegistrations").innerText = dashboardData.newRegist
 //       }
 //     },
 
-//----------------
+
 // ------------Retention Rate--------------------
 const ctx2 = document.getElementById('retentionChart').getContext('2d');
 
@@ -206,25 +206,81 @@ const ctx = document.getElementById('revenueChart').getContext('2d');
 
 
 
+//----------------break-----------------
+function formatHour(date) {
+  let hours = date.getHours();
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+  return hours + ampm;
+}
 
+function getRevenueData() {
+  let todayData = {};
+  let weekData = { Mon:0,Tue:0,Wed:0,Thu:0,Fri:0,Sat:0,Sun:0 };
+  let monthData = { Jan:0,Feb:0,Mar:0,Apr:0,May:0,Jun:0,Jul:0,Aug:0,Sep:0,Oct:0,Nov:0,Dec:0 };
+
+  let today = new Date().toDateString();
+
+  for (let order of activeUsers) {
+    let orderDate = new Date(order.createdAt);
+    
+    // ===== Today =====
+    if (orderDate.toDateString() === today) {
+      let hour = formatHour(orderDate);
+      if (!todayData[hour]) todayData[hour] = 0;
+      todayData[hour] += order.total;
+    }
+
+    // ===== Week =====
+    let dayName = orderDate.toLocaleString("en-US", { weekday: "short" });
+    if (weekData[dayName] !== undefined) {
+      weekData[dayName] += order.total;
+    }
+
+    // ===== Month =====
+    let monthName = orderDate.toLocaleString("en-US", { month: "short" });
+    monthData[monthName] += order.total;
+  }
+
+  return {
+    today: {
+      labels: Object.keys(todayData),
+      data: Object.values(todayData)
+    },
+    week: {
+      labels: Object.keys(weekData),
+      data: Object.values(weekData)
+    },
+    month: {
+      labels: Object.keys(monthData),
+      data: Object.values(monthData)
+    }
+  };
+}
+
+let dataSets = getRevenueData();
+
+
+
+//----------------break-----------------
 
 
 
 // ===== Data =====
-const dataSets = {
-  today: {
-    labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
-    data: [2000, 5000, 8000, 6000, 9000, 7000]
-  },
-  week: {
-    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-    data: [12000,19000,15000,22000,18000,25000,21000]
-  },
-  month: {
-    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
-  }
-};
+// const dataSets = {
+//   today: {
+//     labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
+//     data: [2000, 5000, 8000, 6000, 9000, 7000]
+//   },
+//   week: {
+//     labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+//     data: [12000,19000,15000,22000,18000,25000,21000]
+//   },
+//   month: {
+//     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+//     data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
+//   }
+// };
 
 // ===== Gradient =====
 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
