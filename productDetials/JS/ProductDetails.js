@@ -174,7 +174,7 @@ function loadRelatedProducts() {
 
 loadRelatedProducts();
 
-// Wishlist from popup
+// Wishlist icon beside the popup
 $(document).on('click', '.fa-heart', function () {
     const cardId = parseInt($(this).closest(".cards").attr("id"));
     const product = products.find(p => p.ID === cardId);
@@ -182,11 +182,129 @@ $(document).on('click', '.fa-heart', function () {
     addToWishlist(product.ID);
 });
 
-// Shopping bag icon from popup
+// Shopping bag icon beside the popup
 $(document).on('click', '.fa-shopping-bag', function () {
     const cardId = parseInt($(this).closest(".cards").attr("id"));
     const product = products.find(p => p.ID === cardId);
     if (!product) return;
-    // Replace quantity & size with defaults if needed
+    // Replace quantity & size with defaults
     addToCart(product.ID, 1, product.Sizes[0]);
+});
+
+//Stars Rating
+const stars = document.querySelectorAll(".star");
+const ratingInput = document.getElementById("reviewRating");
+stars.forEach(star => {
+    star.addEventListener("click", function () {
+        const value = this.getAttribute("data-value");
+        ratingInput.value = value;
+
+        // Reset all stars
+        stars.forEach(s => {
+            s.classList.remove("bi-star-fill");
+            s.classList.add("bi-star");
+        });
+
+        // Fill stars up to selected value
+        for (let i = 0; i < value; i++) {
+            stars[i].classList.remove("bi-star");
+            stars[i].classList.add("bi-star-fill");
+        }
+    });
+});
+
+//Save the review
+const reviewForm = document.getElementById("reviewForm");
+reviewForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Get current product id from URL
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
+
+    if (!productId) return;
+
+    // Get form values
+    const review = {
+        productId: productId,
+        rating: document.getElementById("reviewRating").value,
+        title: document.getElementById("reviewTitle").value,
+        content: document.getElementById("reviewContent").value,
+        name: document.getElementById("reviewName").value,
+        email: document.getElementById("reviewEmail").value,
+        date: new Date().toLocaleDateString()
+    };
+
+    // Basic validation
+    if (!review.rating || !review.title || !review.content || !review.name || !review.email) {
+        alert("Please fill all fields and select rating.");
+        return;
+    }
+
+    // Get existing reviews
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    // Add new review
+    reviews.push(review);
+
+    // Save back
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
+    // Reset form
+    reviewForm.reset();
+    document.getElementById("reviewRating").value = "";
+
+    stars.forEach(s => {
+        s.classList.remove("bi-star-fill");
+        s.classList.add("bi-star");
+    });
+
+    // Reload reviews display
+    displayReviews();
+});
+
+//Display saved reviews
+function displayReviews() {
+
+    const container = document.getElementById("reviewsContainer");
+    container.innerHTML = "";
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
+
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    // Filter reviews for current product
+    const productReviews = reviews.filter(r => r.productId === productId);
+
+    if (productReviews.length === 0) {
+        container.innerHTML = "<p class='text-center text-muted'>No reviews yet.</p>";
+        return;
+    }
+
+    productReviews.forEach(r => {
+
+        let starsHTML = "";
+        for (let i = 0; i < 5; i++) {
+            if (i < r.rating) {
+                starsHTML += `<i class="bi bi-star-fill text-warning"></i>`;
+            } else {
+                starsHTML += `<i class="bi bi-star text-warning"></i>`;
+            }
+        }
+
+        container.innerHTML += `
+            <div class="mb-4">
+                <h5>${r.title}</h5>
+                <div>${starsHTML}</div>
+                <p class="mt-2">${r.content}</p>
+                <small class="text-muted">By ${r.name} on ${r.date}</small>
+                <hr>
+            </div>
+        `;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    displayReviews();
 });
