@@ -1,33 +1,35 @@
+// Import Order model
 import { Order } from '../../models/order.js';
-import { dummyProducts } from '../../seller/JS/dummyproducts.js';
 
-// List of available discount coupons
+// Available discount coupons list
 const coupons = [
-  { code: "SAVE10", value: 10 },
-  { code: "SAVE20", value: 20 },
-  { code: "SAVE30", value: 30 },
-  { code: "SAVE40", value: 40 },
-  { code: "SAVE50", value: 50 },
+    { code: "SAVE10", value: 10 },
+    { code: "SAVE20", value: 20 },
+    { code: "SAVE30", value: 30 },
+    { code: "SAVE40", value: 40 },
+    { code: "SAVE50", value: 50 },
 ];
 
-// Variables to keep track of applied coupon and special instructions
+// Track currently applied coupon and special instructions
 let appliedCoupon = null;
 let special_instructions;
 
 $(document).ready(function () {
-    // localStorage.setItem('products', JSON.stringify(dummyProducts))
-  
-    $(document).ready(function () {
 
+    // ================================
+    // Load countries from external API
+    // ================================
     $.ajax({
         url: "https://countriesnow.space/api/v0.1/countries",
         method: "GET",
         success: function (response) {
-            console.log(response);
             let countries = response.data;
             let countrySelect = $('#countries');
+
+            // Default option
             countrySelect.append('<option value="">Select Country</option>');
-            
+
+            // Populate dropdown
             countries.forEach(function (country) {
                 countrySelect.append(
                     $('<option></option>')
@@ -38,6 +40,9 @@ $(document).ready(function () {
         }
     });
 
+    // ================================
+    // When country changes → load cities
+    // ================================
     $('#countries').change(function () {
         let selectedCountry = $(this).val();
         if (!selectedCountry) return;
@@ -50,9 +55,11 @@ $(document).ready(function () {
             success: function (response) {
                 let cities = response.data;
                 let citySelect = $('#cities');
+
                 citySelect.empty();
-            citySelect.append('<option value="">Select City</option>');
-                
+                citySelect.append('<option value="">Select City</option>');
+
+                // Populate city dropdown
                 cities.forEach(function (city) {
                     citySelect.append(
                         $('<option></option>')
@@ -61,14 +68,15 @@ $(document).ready(function () {
                     );
                 });
 
+                // Show city select container
                 citySelect.parent().removeClass('d-none');
             }
         });
     });
 
-});
-
-    // Calculate shipping when the button is clicked
+    // ================================
+    // Calculate shipping rate UI message
+    // ================================
     $('#calc-shipping-btn').click(function () {
         let selectedCountry = $('#countries').val();
         let selectedCity = $('#cities').val();
@@ -76,31 +84,33 @@ $(document).ready(function () {
 
         if (selectedCountry && selectedCity && zipCode) {
             $('.shipping-rate').empty()
-            .append(`<p>There is one shipping rate available for ${zipCode}, ${selectedCity}, ${selectedCity}.</p> <p>Standard at €14,00 EUR</p>`);
+                .append(`<p>There is one shipping rate available for ${zipCode}, ${selectedCity}, ${selectedCity}.</p> <p>Standard at €14,00 EUR</p>`);
+
             $('.shipping-rate p:first').addClass('text-success');
             $('.shipping-rate p:last').addClass('text-secondary');
         } else {
             $('.shipping-rate').empty()
-            .append(`<p>You should select a country, city, and enter a zip code to calculate shipping.</p>`);
+                .append(`<p>You should select a country, city, and enter a zip code to calculate shipping.</p>`);
+
             $('.shipping-rate > p').addClass('text-danger fw-bold');
         }
     });
 
-    // Display cart items on page load
+    // Render cart items on page load
     displayCart();
 });
 
-// Function to render cart items
 
+// ======================================================
+// Render cart items from localStorage into the checkout UI
+// ======================================================
 function displayCart() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let products = JSON.parse(localStorage.getItem('products')) || [];  
+    let products = JSON.parse(localStorage.getItem('products')) || [];
+
     $('.cart-items').empty();
-    console.log(cart);
-    console.log(products);
-    
-  
-    // If cart is empty, show a message and link back to the store
+
+    // If cart empty → show message
     if (cart.length === 0) {
         $('main .container-fluide').empty().append(`
             <div class="text-center h3 my-5">
@@ -110,36 +120,42 @@ function displayCart() {
         return;
     }
 
-    // Loop through cart items and display each
+    // Loop through each cart item and render it
     cart.map(item => {
         const product = products.find(p => p._id == item.product_id);
-        
+
         $('.cart-items').append(`
             <div class="row align-items-center border-bottom p-2 mb-3">
-                <!-- Product Info -->
+
+                <!-- Product information -->
                 <div class="col-12 col-md-6">
                     <div class="card mb-3 bg-transparent border-0">
                         <div class="row g-0 ">
                             <div class="col-4">
-                            <img src="${product?._imageUrl}" class="img-fluid" alt="${product?._name}" />
+                                <img src="${product?._imageUrl}" class="img-fluid" alt="${product?._name}" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body p-2">
-                                    <h5 class="card-title mb-1"> ${product?._name} </h5>
-                                     ${product?._discountPercentage?` <p class="card-text price fw-bold m-1">
-                            $${product?._price - (product?._price * product._discountPercentage/100)}
-                            <span class="fw-normal text-decoration-line-through"> $${product?._price}</span>
-                        </p>`:` <p class="card-text price fw-bold m-1">
-                        $${product?._price}
-                        </p>`}
+                                    <h5 class="card-title mb-1">${product?._name}</h5>
+
+                                    <!-- Show discounted price if exists -->
+                                    ${product?._discountPercentage
+                                        ? `<p class="card-text price fw-bold m-1">
+                                            $${product?._price - (product?._price * product._discountPercentage / 100)}
+                                            <span class="fw-normal text-decoration-line-through">$${product?._price}</span>
+                                           </p>`
+                                        : `<p class="card-text price fw-bold m-1">$${product?._price}</p>`}
+
+                                    <!-- Size selector -->
                                     <p class="card-text fw-bold m-1">
-                                    Size:
-                                    <div class="sizes d-flex flex-wrap gap-1">
-                                       ${checkSize(product?._id)}
+                                        Size:
+                                        <div class="sizes d-flex flex-wrap gap-1">
+                                            ${checkSize(product?._id)}
                                         </div>
                                     </p>
+
                                     <p class="card-text fw-bold m-1">
-                                      Category: <span class="material fw-normal">${product?._category}</span>
+                                        Category: <span class="material fw-normal">${product?._category}</span>
                                     </p>
                                 </div>
                             </div>
@@ -147,13 +163,13 @@ function displayCart() {
                     </div>
                 </div>
 
-                <!-- Quantity Controls -->
+                <!-- Quantity controls -->
                 <div class="col-6 col-md-3 text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2">
                         <div class="quantity border d-flex" style="width: 160px">
-                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 decrease-btn" data-id=${product?._id} type="button">-</button>
+                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 decrease-btn" data-id=${product?._id}>-</button>
                             <input type="number" class="w-50 text-center ps-2 border-0" value="${item.quantity}" readonly />
-                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 increase-btn" data-id=${product?._id} type="button">+</button>
+                            <button class="btn btn-outline-secondary w-25 border-0 rounded-0 increase-btn" data-id=${product?._id}>+</button>
                         </div>
                         <button class="bg-transparent border-0 remove-btn" data-id=${product?._id}>
                             <i class="fa-regular fa-trash-can"></i>
@@ -161,17 +177,24 @@ function displayCart() {
                     </div>
                 </div>
 
-                <!-- Item Total -->
+                <!-- Item total -->
                 <div class="col-6 col-md-3 fw-bold text-center item-total">
-                ${item.size? `                    $${((product?._price - (product?._price * product._discountPercentage/100)||product?._price) * item.size * item.quantity).toFixed(2)}
-`: `                    $${((product?._price - (product?._price * product._discountPercentage/100)||product?._price) * item.quantity).toFixed(2)}
-`}
+                    ${
+                        item.size
+                            ? `$${((product?._price - (product?._price * product._discountPercentage / 100) || product?._price) * item.size * item.quantity).toFixed(2)}`
+                            : `$${((product?._price - (product?._price * product._discountPercentage / 100) || product?._price) * item.quantity).toFixed(2)}`
+                    }
                 </div>
             </div>`);
     });
 
     calculateSubtotal();
 }
+
+
+// ======================================================
+// Generate size radio buttons and mark selected one
+// ======================================================
 function checkSize(productId) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let products = JSON.parse(localStorage.getItem('products')) || [];
@@ -182,7 +205,7 @@ function checkSize(productId) {
     const product = products.find(p => p._id == productId);
     if (!product) return '';
 
-    const selectedSize = cartItem.size; // المقاس المختار إن وجد
+    const selectedSize = cartItem.size;
 
     return product._sizes.map((size) => `
         <input 
@@ -196,122 +219,123 @@ function checkSize(productId) {
         >
         <label 
             for="size-${productId}-${size}" 
-            class="btn btn-outline-warning rounded-pill py-1 me-2 size-label ${selectedSize == size ? 'active' : ''}"
-        >
+            class="btn btn-outline-warning rounded-pill py-1 me-2 size-label ${selectedSize == size ? 'active text-white' : ''}">
             ${size} kg
         </label>
     `).join('');
 }
 
-$(document).on('change', '.choose-size', function () {
 
+// ======================================================
+// Update cart when user selects size
+// ======================================================
+$(document).on('change', '.choose-size', function () {
     let productId = $(this).data('id');
     let selectedSize = $(this).val();
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
     let item = cart.find(i => i.product_id == productId);
-    if (item) {
-        item.size = selectedSize;
-    }
-    let sizesContainer = $(this).closest('.sizes');
-    sizesContainer.find('.size-label').removeClass('selected'); 
-    $(this).next().addClass('selected'); 
+
+    if (item) item.size = selectedSize;
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCart()
-
+    displayCart();
 });
 
 
+// ======================================================
 // Remove item from cart
-function removeFromCart(product_id){
+// ======================================================
+function removeFromCart(product_id) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart = cart.filter(item => item.product_id != product_id);
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Event listener for remove button
-$(document).on("click", ".remove-btn", function() {
+$(document).on("click", ".remove-btn", function () {
     const id = Number($(this).data("id"));
     removeFromCart(id);
     displayCart();
 });
 
-// Increase quantity of an item
-function increaseQuantity(product_id){
+
+// ======================================================
+// Quantity increase/decrease handlers
+// ======================================================
+function increaseQuantity(product_id) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const item = cart.find(item => item.product_id == product_id);
+    if (item) item.quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function decreaseQuantity(product_id) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const item = cart.find(item => item.product_id == product_id);
 
     if (item) {
-        item.quantity += 1;
+        if (item.quantity > 1) item.quantity -= 1;
+        else cart = cart.filter(item => item.product_id != product_id);
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Event listener for increase button
-$(document).on("click", ".increase-btn", function() {
-    const id = Number($(this).data("id"));
-    increaseQuantity(id);
+$(document).on("click", ".increase-btn", function () {
+    increaseQuantity(Number($(this).data("id")));
     displayCart();
 });
 
-// Decrease quantity of an item
-function decreaseQuantity(product_id){
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const item = cart.find(item => item.product_id == product_id);
-
-    if (item) {
-        if (item.quantity > 1) {
-            item.quantity -= 1;
-        } else {
-            cart = cart.filter(item => item.product_id != product_id);
-        }
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// Event listener for decrease button
-$(document).on("click", ".decrease-btn", function() {
-    const id = Number($(this).data("id"));
-    decreaseQuantity(id);
+$(document).on("click", ".decrease-btn", function () {
+    decreaseQuantity(Number($(this).data("id")));
     displayCart();
 });
 
-// Update free shipping progress bar
-function checkFreeShipping(subtotal){
+
+// ======================================================
+// Update progress bar toward free shipping
+// ======================================================
+function checkFreeShipping(subtotal) {
     $('.progress-truck').css("left", `${subtotal}%`);
     $(".progress-bar").css("width", `${subtotal}%`);
-    
+
     if (subtotal >= 100) {
         $('.progress-truck').css("left", `100%`);
         $(".progress-bar").css("width", `100%`);
-        $(".shipping-text").empty().text("Congratulations, you've got free shipping!");
+        $(".shipping-text").text("Congratulations, you've got free shipping!");
     } else {
-        $(".shipping-text").empty().text(`Spend €${100-subtotal} more and get free shipping!`);
+        $(".shipping-text").text(`Spend €${100 - subtotal} more and get free shipping!`);
     }
 }
 
-// Apply coupon code
-$('#discount-code-btn').on('click', function() {
+
+// ======================================================
+// Apply coupon logic
+// ======================================================
+$('#discount-code-btn').on('click', function () {
     const code = $('#coupon-code').val().trim().toUpperCase();
     const coupon = coupons.find(c => c.code === code);
 
     if (!coupon) {
-        $('.coupon-message').text("* Invalid coupon code!").removeClass("text-success").addClass("text-danger");
+        $('.coupon-message').text("* Invalid coupon code!")
+            .removeClass("text-success").addClass("text-danger");
+
         appliedCoupon = null;
         calculateSubtotal();
         return;
     }
 
     appliedCoupon = coupon;
-    $('.coupon-message').text(`Coupon applied: ${coupon.code}`).removeClass("text-danger").addClass("text-success");
+    $('.coupon-message').text(`Coupon applied: ${coupon.code}`)
+        .removeClass("text-danger").addClass("text-success");
+
     calculateSubtotal();
 });
 
+
+// ======================================================
 // Calculate subtotal including discounts
+// ======================================================
 function calculateSubtotal() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let products = JSON.parse(localStorage.getItem('products')) || [];
@@ -322,27 +346,34 @@ function calculateSubtotal() {
         const product = products.find(p => p._id == item.product_id);
         if (!product) return;
 
-        const price = product?._price - (product?._price * product._discountPercentage/100) || product._price;
+        const price = product?._price - (product?._price * product._discountPercentage / 100) || product._price;
         subtotal += price * item.size * item.quantity;
     });
-    
+
+    // Apply coupon discount if exists
     if (appliedCoupon) {
-        subtotal = subtotal - (subtotal * appliedCoupon.value / 100);
+        subtotal -= subtotal * appliedCoupon.value / 100;
     }
-    
-    $('.subtotal').empty().text(`$ ${subtotal.toFixed(2)} dollar`);
-    
+
+    $('.subtotal').text(`$ ${subtotal.toFixed(2)} dollar`);
     checkFreeShipping(subtotal);
+
     return subtotal;
 }
 
-// Track special instructions input
-$('#instructions').on('input', function() {
+
+// ======================================================
+// Track special instructions text input
+// ======================================================
+$('#instructions').on('input', function () {
     special_instructions = $(this).val();
 });
 
-// Build order object for checkout
-function buildOrderData(){
+
+// ======================================================
+// Build order object to store in localStorage
+// ======================================================
+function buildOrderData() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const subtotal = calculateSubtotal();
 
@@ -368,20 +399,24 @@ function buildOrderData(){
         special_instructions: special_instructions || ""
     });
 
-    // Save current order in local storage
     localStorage.setItem("currentOrder", JSON.stringify(newOrder));
-
     return newOrder;
 }
 
-// Checkout button click handler
-$('#checkout-btn').on('click', function() {
+
+// ======================================================
+// Checkout button handler
+// ======================================================
+$('#checkout-btn').on('click', function () {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Prevent checkout if any product missing size
     const missingSize = cart.some(item => !item.size);
     if (missingSize) {
         alert("Please select a size for each product in your cart");
         return;
     }
+
     const order = buildOrderData();
     if (!order) return;
 
@@ -390,6 +425,7 @@ $('#checkout-btn').on('click', function() {
 
     localStorage.setItem('orders', JSON.stringify(orders));
     localStorage.removeItem('cart');
+
     displayCart();
 
     alert("Order placed successfully!");

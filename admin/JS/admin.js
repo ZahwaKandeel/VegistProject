@@ -1,18 +1,37 @@
 
 
+
+let users = JSON.parse(localStorage.getItem("Users")) || []; // number of users 
+//console.log(users[0].id); 
+console.log(users); 
+
+
+let activeUsers = JSON.parse(localStorage.getItem("doneOrders")) || []; 
+console.log(activeUsers[0].customerId); 
+console.log(activeUsers); 
+
+
+let matchedUsers = users.filter(user =>
+  activeUsers.some(order => order.customerId == user.id)
+);
+
+console.log(matchedUsers.length);
+
+
 const dashboardData = {
     totalUsers : {
-        current : 12560 ,
-        lastMonth :10195
+        current : users.length ,
+        lastMonth :users.length
     },
     activeUseres:{
-        current :8940,
-        lastMonth : 7650
+        current :matchedUsers.length,
+        lastMonth : matchedUsers.length
     },
     newRegistrations:{
-        current:1240,
-        lastMonth : 950
+        current:users.length-1,
+        lastMonth : users.length-1
     },
+
     blockedUsers :{
          current:300,
         lastMonth : 260
@@ -20,6 +39,14 @@ const dashboardData = {
 
 
 };
+
+
+
+
+
+
+
+
 
 function calculatePercent(current ,last ){
     return ( ( (current -last) / last) *100 ).toFixed(2);
@@ -58,13 +85,13 @@ document.getElementById("lastRegistrations").innerText = dashboardData.newRegist
 
  // data of Blocks
 
-document.getElementById("blockusres").innerText = dashboardData.blockedUsers.current.toLocaleString() ;
+// document.getElementById("blockusres").innerText = dashboardData.blockedUsers.current.toLocaleString() ;
 
 
- document.getElementById("blockusrespercent").innerText =  "+" + 
- calculatePercent(dashboardData.newRegistrations.current ,  dashboardData.blockedUsers.lastMonth ) +"%";
+//  document.getElementById("blockusrespercent").innerText =  "+" + 
+//  calculatePercent(dashboardData.newRegistrations.current ,  dashboardData.blockedUsers.lastMonth ) +"%";
 
-document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers.lastMonth.toLocaleString();
+// document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers.lastMonth.toLocaleString();
 
 
 
@@ -107,8 +134,8 @@ document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers
 //       }
 //     },
 
-//----------------
 
+// ------------Retention Rate--------------------
 const ctx2 = document.getElementById('retentionChart').getContext('2d');
 
 new Chart(ctx2, {
@@ -174,24 +201,86 @@ new Chart(ctx2, {
   }
 });
 
-
+ // ------------Revenue--------------------
 const ctx = document.getElementById('revenueChart').getContext('2d');
 
-// ===== Data =====
-const dataSets = {
-  today: {
-    labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
-    data: [2000, 5000, 8000, 6000, 9000, 7000]
-  },
-  week: {
-    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-    data: [12000,19000,15000,22000,18000,25000,21000]
-  },
-  month: {
-    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
+
+
+//----------------break-----------------
+function formatHour(date) {
+  let hours = date.getHours();
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+  return hours + ampm;
+}
+
+function getRevenueData() {
+  let todayData = {};
+  let weekData = { Mon:0,Tue:0,Wed:0,Thu:0,Fri:0,Sat:0,Sun:0 };
+  let monthData = { Jan:0,Feb:0,Mar:0,Apr:0,May:0,Jun:0,Jul:0,Aug:0,Sep:0,Oct:0,Nov:0,Dec:0 };
+
+  let today = new Date().toDateString();
+
+  for (let order of activeUsers) {
+    let orderDate = new Date(order.createdAt);
+    
+    // ===== Today =====
+    if (orderDate.toDateString() === today) {
+      let hour = formatHour(orderDate);
+      if (!todayData[hour]) todayData[hour] = 0;
+      todayData[hour] += order.total;
+    }
+
+    // ===== Week =====
+    let dayName = orderDate.toLocaleString("en-US", { weekday: "short" });
+    if (weekData[dayName] !== undefined) {
+      weekData[dayName] += order.total;
+    }
+
+    // ===== Month =====
+    let monthName = orderDate.toLocaleString("en-US", { month: "short" });
+    monthData[monthName] += order.total;
   }
-};
+
+  return {
+    today: {
+      labels: Object.keys(todayData),
+      data: Object.values(todayData)
+    },
+    week: {
+      labels: Object.keys(weekData),
+      data: Object.values(weekData)
+    },
+    month: {
+      labels: Object.keys(monthData),
+      data: Object.values(monthData)
+    }
+  };
+}
+
+let dataSets = getRevenueData();
+
+
+
+//----------------break-----------------
+
+
+
+// ===== Data =====
+// const dataSets = {
+//   today: {
+//     labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
+//     data: [2000, 5000, 8000, 6000, 9000, 7000]
+//   },
+//   week: {
+//     labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+//     data: [12000,19000,15000,22000,18000,25000,21000]
+//   },
+//   month: {
+//     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+//     data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
+//   }
+// };
 
 // ===== Gradient =====
 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
@@ -244,30 +333,30 @@ document.getElementById('monthBtn').onclick = () => updateChart('month');
 
 
 
-const ctx3 = document.getElementById('myChart').getContext('2d');
-new Chart(ctx3, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [15, 25, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
+// const ctx3 = document.getElementById('myChart').getContext('2d');
+// new Chart(ctx3, {
+//   type: 'bar',
+//   data: {
+//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//     datasets: [{
+//       label: '# of Votes',
+//       data: [15, 25, 3, 5, 2, 3],
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     }
+//   }
+// });
 
 
 
 
-
+//----------------Sales Pipeline Overview and deals ---------
 const getDashboardData =  {
   
 closeDeals : 26 , 
@@ -284,8 +373,11 @@ meeting : [
   {title : "HR" , time : "06:00 - 07:00"},
   {title : "Team Stand Up" , time : "06:00 - 07:00"},
   {title : "All Hands Meeting " , time : "06:00 - 07:00"}
-]
+],
+totalcontact:{current: activeUsers.length,
+              lastMonth : activeUsers.length
 
+},
 }
 
 
@@ -317,26 +409,34 @@ document.getElementById("closed").innerText = getDashboardData.pipeline.closed ;
 //-----------------------
 
 
+document.getElementById("totalcontact").innerText = getDashboardData.totalcontact.current.toLocaleString();
+document.getElementById("lasttotalcontact").innerText = getDashboardData.totalcontact.lastMonth.toLocaleString();
 
-const ctx5 = document.getElementById('myChartx').getContext('2d');
 
-  new Chart(ctx5, {
-       type: 'doughnut',
+
+document.getElementById("totalcontactPrecent").innerText =  "+" +
+  calculatePercent(getDashboardData.totalcontact.current ,  getDashboardData.totalcontact.lastMonth ) +"%";
+
+
+// const ctx5 = document.getElementById('myChartx').getContext('2d');
+
+  // new Chart(ctx5, {
+  //      type: 'doughnut',
  
-   data1 : {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
-   }})
+  //  data1 : {
+  // labels: [
+  //   'Red',
+  //   'Blue',
+  //   'Yellow'
+  // ],
+  // datasets: [{
+  //   label: 'My First Dataset',
+  //   data: [300, 50, 100],
+  //   backgroundColor: [
+  //     'rgb(255, 99, 132)',
+  //     'rgb(54, 162, 235)',
+  //     'rgb(255, 205, 86)'
+  //   ],
+  //   hoverOffset: 4
+  // }]
+  //  }})

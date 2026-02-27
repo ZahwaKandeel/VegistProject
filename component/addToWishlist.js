@@ -1,5 +1,4 @@
 // This function adds a product to the wishlist
-// Send product id object as parameter
 
 function addToWishlist(product_id) {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];

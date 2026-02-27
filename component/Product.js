@@ -1,6 +1,6 @@
 import { User } from "/models/user.js"
 export class Product{
-    constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountValue, discountPercentage){
+    constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountPercentage){
         this.ID =id;
         this.SellerId = sellerId;
         this.Name = name;
@@ -12,7 +12,6 @@ export class Product{
         this.Sizes = sizes;
         this.Rating = rating;
         this.Reviews = reviews || [];
-        this.DiscountValue = discountValue;
         this.DiscountPercentage = discountPercentage;
     }
 
@@ -29,15 +28,15 @@ export class Product{
     }
     set SellerId(sellerId)
     {
-        if(!Number.isInteger(sellerId)||sellerId<=0)
-            throw new Error("Seller ID must be positive integer")
+        // if(!Number.isInteger(sellerId)||sellerId<=0)
+        //     throw new Error("Seller ID must be positive integer")
         
-        const users = JSON.parse(localStorage.getItem("Users")) || [];
-        const seller = users.find(u => u.id === sellerId)
-        if(!seller)
-            throw new Error("Seller does not exist");
-        if(seller.role!== "seller")
-            throw new Error("User is not a seller");
+        // const users = JSON.parse(localStorage.getItem("Users")) || [];
+        // const seller = users.find(u => u.id === sellerId)
+        // if(!seller)
+        //     throw new Error("Seller does not exist");
+        // if(seller.role!== "seller")
+        //     throw new Error("User is not a seller");
 
         this._sellerId = sellerId;
     }
@@ -162,7 +161,7 @@ export class Product{
             reviews.forEach(review => {
                 total += review.rating                
             });
-            this._rating = (total/reviews.length).toFixed(2);
+            this._rating = Number((total/reviews.length).toFixed(2));
         }else{
             this.rating = 0;
         }
@@ -172,15 +171,6 @@ export class Product{
         return this._reviews;
     }
 
-    set DiscountValue(discountValue)
-    {
-        if(discountValue<0) throw new Error("Discounts values cannot be negative");
-        this._discountValue = discountValue;
-    }
-    get DiscountValue()
-    {
-        return this._discountValue;
-    }
 
     set DiscountPercentage(discountPercentage)
     {
@@ -213,7 +203,6 @@ export function loadProducts(){
         p._sizes,
         p._rating,
         p._reviews,
-        p._discountValue,
         p._discountPercentage
     ));
 }
@@ -234,7 +223,6 @@ export function editProduct(productID, updatedData){
         p._sizes,
         p._rating,
         p._reviews,
-        p._discountValue,
         p._discountPercentage
     ));
 
@@ -271,9 +259,6 @@ export function editProduct(productID, updatedData){
 
     if(updatedData.reviews !== undefined)
         product.Reviews = updatedData.reviews;
-
-    if(updatedData.discountValue !== undefined)
-        product.DiscountValue = updatedData.discountValue;
 
     if(updatedData.discountPercentage !== undefined)
         product.DiscountPercentage = updatedData.discountPercentage;
