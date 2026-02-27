@@ -7,12 +7,12 @@
 /* main theme */
 
 :root {
-  --main-footer-bg: #fbe2cb;
+  --main-footer-bg: #faf8ed;
   --main-text-color: #e29911;
   --secondry-text-color: #b87700;
   --main-main-color: #f5ab1e;
-  --main-accordion-button-bg: #fbe2cb;
-  --main-accordion-body-bg: #e6cbb3;
+  --main-accordion-button-bg: #faf8ed;
+  --main-accordion-body-bg: #faf8ed;
 }
 
 /* dark theme */
