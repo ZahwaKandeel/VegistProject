@@ -25,8 +25,18 @@
         <script src="/component/layout.js"></script>
         <script src="/component/moodToggle.js"></script>
         <script type="module" src="/auth/JS/login.js"></script>
+        <script>
+        $(document).ready(function() {
+            const $header = $("header");
+            const $footer = $("footer");
+
+            if ($header.length) $header.replaceWith(header());
+            if ($footer.length) $footer.replaceWith(footer());
+        });
+    </script>
     </head>
     <body>
+        <header></header>
         <main class="container-fluid p-0">
             <div class="position-relative">
                 <nav class="bg-image d-flex justify-content-center align-items-center">
@@ -79,5 +89,6 @@
                 </section>
             </div>
         </main>
+        <footer></footer>
     </body>
 </html>

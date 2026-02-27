@@ -55,7 +55,7 @@ $(function() {
             password.addClass("is-invalid");
             return;
         }
-
+        // Create currentUser object
         user.saveCurrentUser();
 
         // Check if we have a returnUrl parameter

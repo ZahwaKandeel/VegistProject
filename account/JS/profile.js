@@ -26,6 +26,11 @@ $(function() {
 });
 
 $(function() {
+    const currentUser = localStorage.getItem("currentUser")
+    if (currentUser) {
+        $(".logoutBtn").text("Logout")
+    } else {$(".logoutBtn").text("Login")}
+    
     $(".logoutBtn").off("click").on("click", (function(e) {
         e.preventDefault();
         e.stopPropagation();
