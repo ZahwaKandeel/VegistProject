@@ -5,11 +5,6 @@ $(function(){
 
 const user = isAuth();
 
-// if (  user.role == "seller") {
-//     document.getElementById("sellerBtn").style.display = "block";
-// } else {
-//     document.getElementById("sellerBtn").style.display = "none";
-// }
 if (user.role === "seller") {
     $(".sellerBtn").show();
 } else {
