@@ -314,9 +314,7 @@ window.initializeEditProduct = function(productId){
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     
-    if(!currentUser || currentUser.role !== "seller"){
-        alert("Only Sellers can create products");
-        }
+
 
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const product = products.find(p => Number(p.ID) === Number(id));   
