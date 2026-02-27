@@ -7,7 +7,8 @@ export class Order {
     createdAt = "",
     shipping = {},
     subtotal = 0,
-    discount_code = ""
+    discount_code = "",
+    discount_codes_list = []
   }) {
 
     this.id = id;
@@ -29,6 +30,7 @@ export class Order {
 
     this.subtotal = subtotal;
     this.discount_code = discount_code;
+    this.discount_codes_list = discount_codes_list
   }
 
 }

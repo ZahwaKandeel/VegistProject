@@ -1,4 +1,5 @@
 import { Order } from '../../models/order.js';
+import { dummyProducts } from '../../seller/JS/dummyproducts.js';
 
 // List of available discount coupons
 const coupons = [
@@ -125,8 +126,8 @@ function displayCart() {
                             <div class="col-8">
                                 <div class="card-body p-2">
                                     <h5 class="card-title mb-1"> ${product?._name} </h5>
-                                     ${product?._discountValue?` <p class="card-text price fw-bold m-1">
-                            $${product?._discountValue}
+                                     ${product?._discountPercentage?` <p class="card-text price fw-bold m-1">
+                            $${product?._price - (product?._price * product._discountPercentage/100)}
                             <span class="fw-normal text-decoration-line-through"> $${product?._price}</span>
                         </p>`:` <p class="card-text price fw-bold m-1">
                         $${product?._price}
@@ -162,7 +163,9 @@ function displayCart() {
 
                 <!-- Item Total -->
                 <div class="col-6 col-md-3 fw-bold text-center item-total">
-                    $${((product?._discountValue||product?._price) * item.quantity).toFixed(2)}
+                ${item.size? `                    $${((product?._price - (product?._price * product._discountPercentage/100)||product?._price) * item.size * item.quantity).toFixed(2)}
+`: `                    $${((product?._price - (product?._price * product._discountPercentage/100)||product?._price) * item.quantity).toFixed(2)}
+`}
                 </div>
             </div>`);
     });
@@ -170,7 +173,6 @@ function displayCart() {
     calculateSubtotal();
 }
 function checkSize(productId) {
-
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let products = JSON.parse(localStorage.getItem('products')) || [];
 
@@ -180,20 +182,22 @@ function checkSize(productId) {
     const product = products.find(p => p._id == productId);
     if (!product) return '';
 
-    if (cartItem.size) {
-        return `<span class="btn btn-outline-warning rounded-pill py-1 me-2">${cartItem.size} kg</span>`;
-    }
+    const selectedSize = cartItem.size; // المقاس المختار إن وجد
 
-    return product._sizes.map((size, index) => `
+    return product._sizes.map((size) => `
         <input 
             type="radio"
             class="choose-size d-none"
-            name="size-${index}"
-            id="size-${index}"
+            name="size-${productId}"     
+            id="size-${productId}-${size}" 
             data-id="${productId}"
             value="${size}"
+            ${selectedSize == size ? 'checked' : ''}
         >
-        <label for="size-${index}" class="btn btn-outline-warning rounded-pill py-1 me-2 size-label">
+        <label 
+            for="size-${productId}-${size}" 
+            class="btn btn-outline-warning rounded-pill py-1 me-2 size-label ${selectedSize == size ? 'active' : ''}"
+        >
             ${size} kg
         </label>
     `).join('');
@@ -210,10 +214,12 @@ $(document).on('change', '.choose-size', function () {
     if (item) {
         item.size = selectedSize;
     }
-    $(".size-label").removeClass("selected")
-    $(this).next().addClass('selected')
+    let sizesContainer = $(this).closest('.sizes');
+    sizesContainer.find('.size-label').removeClass('selected'); 
+    $(this).next().addClass('selected'); 
 
     localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart()
 
 });
 
@@ -316,8 +322,8 @@ function calculateSubtotal() {
         const product = products.find(p => p._id == item.product_id);
         if (!product) return;
 
-        const price = product._discountValue || product._price;
-        subtotal += price * item.quantity;
+        const price = product?._price - (product?._price * product._discountPercentage/100) || product._price;
+        subtotal += price * item.size * item.quantity;
     });
     
     if (appliedCoupon) {
@@ -358,6 +364,7 @@ function buildOrderData(){
         },
         subtotal: subtotal,
         discount_code: appliedCoupon ? appliedCoupon.code : "",
+        discount_codes_list: coupons,
         special_instructions: special_instructions || ""
     });
 
@@ -369,6 +376,12 @@ function buildOrderData(){
 
 // Checkout button click handler
 $('#checkout-btn').on('click', function() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const missingSize = cart.some(item => !item.size);
+    if (missingSize) {
+        alert("Please select a size for each product in your cart");
+        return;
+    }
     const order = buildOrderData();
     if (!order) return;
 
