@@ -412,33 +412,18 @@
                 <li class="nav-item" role="presentation">
                 <button class="nav-link rounded-pill px-4 m-2" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">ADDITIONAL INFORMATION</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link rounded-pill px-4 m-2" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">REVIEWS</button>
-                </li>
+                </li> -->
             </ul>
             <div class="tab-content border-top pt-4" id="productTabContent">
 
                 <!-- Section 1 -->
                 <div class="tab-pane fade show active" id="description" role="tabpanel">
-                <h3>More Detail</h3>
-                <ul>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.</li>
-                    <li>type here your detail one by one li more add</li>
-                    <li>has been the industry’s standard dummy text ever since. Lorem Ips</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsum has been the industry’s standard dummy text ever since. Lorem Ipsum is simply dummy text.</li>
-                </ul>
-
-                <h3>Key Specification</h3>
-                <ul>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.</li>
-                    <li>type here your detail one by one li more add</li>
-                    <li>has been the industry’s standard dummy text ever since. Lorem Ips</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsum has been the industry’s standard dummy text ever since. Lorem Ipsum is simply dummy text.</li>
-                </ul>
+                    <h3>More Detail</h3>
+                    <ul>
+                        <li id="moreDetail"></li>
+                    </ul>
                 </div>
                 
                 <!-- Section 2 -->
@@ -448,24 +433,16 @@
                             <table class="table table-bordered custom-info-table">
                             <tbody>
                                 <tr>
-                                <td class="fw-bold text-dark py-3 ps-4" style="width: 50%;">Vendor:</td>
-                                <td class="text-muted py-3 ps-4">Vegist</td>
-                                </tr>
-                                <tr>
                                 <td class="fw-bold text-dark py-3 ps-4">Size:</td>
-                                <td class="text-muted py-3 ps-4">2kg, 3kg</td>
+                                <td id="table-productsize" class="text-muted py-3 ps-4">KG</td>
                                 </tr>
                                 <tr>
-                                <td class="fw-bold text-dark py-3 ps-4">Material:</td>
-                                <td class="text-muted py-3 ps-4">India, Canada</td>
-                                </tr>
-                                <tr>
-                                <td class="fw-bold text-dark py-3 ps-4">Food product form:</td>
-                                <td class="text-muted py-3 ps-4">Fresh, Frozen, Ground</td>
+                                <td class="fw-bold text-dark py-3 ps-4">Category:</td>
+                                <td id="table-productCategory" class="text-muted py-3 ps-4"></td>
                                 </tr>
                                 <tr>
                                 <td class="fw-bold text-dark py-3 ps-4">SKU:</td>
-                                <td class="text-muted py-3 ps-4">123456</td>
+                                <td id="table-productSKU" class="text-muted py-3 ps-4"></td>
                                 </tr>
                             </tbody>
                             </table>
@@ -474,7 +451,7 @@
                 </div>
 
                 <!-- Section 3 -->
-                <div class="tab-pane fade show" id="reviews" role="tabpanel">
+                <!-- <div class="tab-pane fade show" id="reviews" role="tabpanel">
                     <div class="text-center">
                         <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#reviewForm" aria-expanded="false">
                             Write a review
@@ -528,7 +505,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div> <!-- End Tab Panel -->
 
@@ -540,31 +517,31 @@
                 <div id="1" class="cards  col-6  col-md-4  col-lg-3   position-relative "> <!--div of card 1 -->
 
 
-                <div class=" position-relative  ">
+                <div class="card-image">
                     <img src="" class="img-fluid w-100 main-img">
                     <img src="" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
                 
 
-                <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2 ">
+                    <div class="icons" style="margin-bottom: 100px ;">
 
-                <span class="icon  p-2   "  >
-                <i class="fa-regular fa-heart "></i>
-                </span>
-                <span class="icon  p-2   ">
-                    <i class="fa fa-shopping-bag"></i>
-                </span>
+                    <span class="  p-2   "  >
+                    <i class="fa-regular fa-heart "></i>
+                    </span>
+                    <span class="  p-2   ">
+                        <i class="fa fa-shopping-bag"></i>
+                    </span>
 
-                <!-- add that part to work the popup -->
-                <span class="icon p-2"
+                    <!-- add that part to work the popup -->
+                    <span class=" p-2"
                         data-bs-toggle="modal"
                         data-bs-target="#quickViewModal"
                         style="cursor: pointer;">
-                        <i class="fa fa-eye"></i>
+                    <i class="fa fa-eye"></i> <!--  opens the popup -->
                     </span> 
-                </div>
-                </div>
+                    </div>
+                </div> 
                 <div>
-                <p class=""> <a href=""  class="para text-decoration-none  " ></a></p>
+                <p class=""> <a href=""  class="para text-decoration-none  " > </a></p>
                         <p class="fw-bold"></p>
 
                         <div class="d-flex align-items-center  "> <!-- review by stars -->
@@ -585,30 +562,31 @@
                 <div id="2" class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 2 -->
 
 
-                            <div class="position-relative">
+                            <div class="card-image">
                         <img src="" class="img-fluid w-100 main-img">
                         <img src="" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
                     
 
-                            <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                            <div class="icons" style="margin-bottom: 100px ;">
 
-                    <span class="icon  p-2   "  >
+                    <span class="p-2"  >
                     <i class="fa-regular fa-heart "></i>
                     </span>
-                    <span class="icon  p-2   ">
+                    <span class="p-2">
                         <i class="fa fa-shopping-bag"></i>
                     </span>
 
-                    <span class="icon p-2"
+                    <span class="p-2"
                         data-bs-toggle="modal"
                         data-bs-target="#quickViewModal"
                         style="cursor: pointer;">
                         <i class="fa fa-eye"></i>
-                    </span>  
+                    </span> 
                     </div>
-                    </div>   
+                    </div>
+                        
                         <div>
-                    <p class=""> <a href=""  class="para text-decoration-none  " > </a></p>
+                    <p class=""> <a href=""  class="para text-decoration-none  " ></a></p>
                             <p class="fw-bold"></p>
                                 <div class="d-flex align-items-center"> <!-- review by stars -->
                         <div class="text-warning me-2 rating">
@@ -628,21 +606,21 @@
                 <div id="3" class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 3 -->
 
 
-                            <div class="position-relative">
+                            <div class="card-image">
                         <img src="" class="img-fluid w-100 main-img">
                         <img src="" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
                     
 
-                            <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                            <div class="icons" style="margin-bottom: 100px ;">
 
-                    <span class="icon  p-2   "  >
+                    <span class="  p-2   "  >
                     <i class="fa-regular fa-heart "></i>
                     </span>
-                    <span class="icon  p-2   ">
+                    <span class="  p-2   ">
                         <i class="fa fa-shopping-bag"></i>
                     </span>
 
-                    <span class="icon p-2"
+                    <span class=" p-2"
                         data-bs-toggle="modal"
                         data-bs-target="#quickViewModal"
                         style="cursor: pointer;">
@@ -650,6 +628,7 @@
                     </span>  
                     </div>
                     </div>
+                        
                         <div>
                     <p class=""> <a href=""  class="para text-decoration-none  " > </a></p>
                             <p class="fw-bold"></p>
@@ -671,30 +650,31 @@
                 <div id="4" class=" cards  col-6 col-md-4 col-lg-3   position-relative "> <!--div of card 4 -->
 
 
-                            <div class="position-relative">
+                            <div class="card-image">
                         <img src="" class="img-fluid w-100 main-img">
                         <img src="" class="img-fluid w-100 hover-img position-absolute top-0 start-0">
                     
 
-                            <div class="icons position-absolute  start-50 translate-middle-x d-flex gap-2">
+                            <div class="icons" style="margin-bottom: 100px ;">
 
-                    <span class="icon  p-2   "  >
+                    <span class="  p-2   "  >
                     <i class="fa-regular fa-heart "></i>
                     </span>
-                    <span class="icon  p-2   ">
+                    <span class="  p-2   ">
                         <i class="fa fa-shopping-bag"></i>
                     </span>
 
-                    <span class="icon p-2"
+                    <span class=" p-2"
                         data-bs-toggle="modal"
                         data-bs-target="#quickViewModal"
                         style="cursor: pointer;">
                         <i class="fa fa-eye"></i>
                     </span> 
                     </div>
-                      </div>  
+                    </div>
+                        
                         <div>
-                    <p class=""> <a href=""  class="para text-decoration-none  " >  </a></p>
+                    <p class=""> <a href=""  class="para text-decoration-none  " > </a></p>
                             <p class="fw-bold"></p>
                                 <div class="d-flex align-items-center"> <!-- review by stars -->
                         <div class="text-warning me-2 rating">
