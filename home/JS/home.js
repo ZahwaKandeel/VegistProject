@@ -3,6 +3,7 @@ $(function(){
         window.location.href = "/productList/Template/product_list.html"
     });    
 });
+
 document.addEventListener("DOMContentLoaded", function(){
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const carouselInner = document.getElementById("carouselInner");
@@ -108,28 +109,10 @@ $(document).ready(function(){
         addToCart(productId,1);
         alert("Added to cart");
     });
-    $(document).on("click", "view-icon", function(){
+    $(document).on("click", ".view-icon", function(){
         const productId = parseInt($(this).data("id"));
         openQuickView(productId);
     });
 });
 
 
-// --- Event Listener 1: Add to Cart ---
-// document.addEventListener("DOMContentLoaded", function () {
-//     const addToCartButtons = document.querySelectorAll(".btn-warning");
-
-//     addToCartButtons.forEach(function (button) {
-//         // We check the text to make sure we hit the right button
-//         if (button.textContent.trim().toLowerCase() === "add to cart") {
-//             button.addEventListener("click", function() {
-//                 redirectToCart();
-//             });
-//         }
-//     });
-// });
-
-// function redirectToCart() {
-//     console.log("Navigating to Cart...");
-//     window.location.href = "cart/Template/cart.html";
-// }
