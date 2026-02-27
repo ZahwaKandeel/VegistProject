@@ -1,12 +1,21 @@
 
 
 
-const users = JSON.parse(localStorage.getItem("Users")) || []; // number of users 
-console.log(users[0].id); 
+let users = JSON.parse(localStorage.getItem("Users")) || []; // number of users 
+//console.log(users[0].id); 
+console.log(users); 
 
-const activeUsers = JSON.parse(localStorage.getItem("orders")) || []; 
-console.log(activeUsers[1].id); 
 
+let activeUsers = JSON.parse(localStorage.getItem("doneOrders")) || []; 
+console.log(activeUsers[0].customerId); 
+console.log(activeUsers); 
+
+
+let matchedUsers = users.filter(user =>
+  activeUsers.some(order => order.customerId == user.id)
+);
+
+console.log(users.length);
 
 
 const dashboardData = {
@@ -36,8 +45,6 @@ const dashboardData = {
 
 
 
-
-// const user = JSON.parse(localStorage.getItem("user"));
 
 
 
@@ -196,6 +203,12 @@ new Chart(ctx2, {
 
  // ------------Revenue--------------------
 const ctx = document.getElementById('revenueChart').getContext('2d');
+
+
+
+
+
+
 
 // ===== Data =====
 const dataSets = {
