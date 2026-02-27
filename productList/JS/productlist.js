@@ -2,7 +2,6 @@ import { isAuth } from '../../component/isAuth.js';
 
 $(function(){
 
-
 const user = isAuth();
 
 if (user.role === "seller") {
