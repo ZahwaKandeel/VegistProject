@@ -144,7 +144,7 @@ export function header(){
                             </div>
                         </div>
                         <!-- Heart icon -->
-                        <a href="" class="icon">
+                        <a href="${basepath}wishlist/Template/wishlist.html" class="icon">
                             <i class="fa-regular fa-heart text-body px-1"></i>
                         </a>
                         <!-- Bag icon -->
@@ -194,5 +194,6 @@ export function header(){
 
 
 $(function() {
-    
+    const porducts = JSON.parse(localStorage.getItem("products"))
+
 })
