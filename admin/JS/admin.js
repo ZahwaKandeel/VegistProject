@@ -1,18 +1,28 @@
 
 
+
+const users = JSON.parse(localStorage.getItem("Users")) || []; // number of users 
+console.log(users[0].id); 
+
+const activeUsers = JSON.parse(localStorage.getItem("orders")) || []; 
+console.log(activeUsers[1].id); 
+
+
+
 const dashboardData = {
     totalUsers : {
-        current : 12560 ,
-        lastMonth :10195
+        current : users.length ,
+        lastMonth :users.length
     },
     activeUseres:{
         current :8940,
         lastMonth : 7650
     },
     newRegistrations:{
-        current:1240,
-        lastMonth : 950
+        current:users.length-1,
+        lastMonth : users.length-1
     },
+
     blockedUsers :{
          current:300,
         lastMonth : 260
@@ -20,6 +30,16 @@ const dashboardData = {
 
 
 };
+
+
+
+
+
+
+
+// const user = JSON.parse(localStorage.getItem("user"));
+
+
 
 function calculatePercent(current ,last ){
     return ( ( (current -last) / last) *100 ).toFixed(2);
@@ -58,13 +78,13 @@ document.getElementById("lastRegistrations").innerText = dashboardData.newRegist
 
  // data of Blocks
 
-document.getElementById("blockusres").innerText = dashboardData.blockedUsers.current.toLocaleString() ;
+// document.getElementById("blockusres").innerText = dashboardData.blockedUsers.current.toLocaleString() ;
 
 
- document.getElementById("blockusrespercent").innerText =  "+" + 
- calculatePercent(dashboardData.newRegistrations.current ,  dashboardData.blockedUsers.lastMonth ) +"%";
+//  document.getElementById("blockusrespercent").innerText =  "+" + 
+//  calculatePercent(dashboardData.newRegistrations.current ,  dashboardData.blockedUsers.lastMonth ) +"%";
 
-document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers.lastMonth.toLocaleString();
+// document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers.lastMonth.toLocaleString();
 
 
 
@@ -108,7 +128,7 @@ document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers
 //     },
 
 //----------------
-
+// ------------Retention Rate--------------------
 const ctx2 = document.getElementById('retentionChart').getContext('2d');
 
 new Chart(ctx2, {
@@ -174,7 +194,7 @@ new Chart(ctx2, {
   }
 });
 
-
+ // ------------Revenue--------------------
 const ctx = document.getElementById('revenueChart').getContext('2d');
 
 // ===== Data =====
@@ -244,30 +264,30 @@ document.getElementById('monthBtn').onclick = () => updateChart('month');
 
 
 
-const ctx3 = document.getElementById('myChart').getContext('2d');
-new Chart(ctx3, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [15, 25, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
+// const ctx3 = document.getElementById('myChart').getContext('2d');
+// new Chart(ctx3, {
+//   type: 'bar',
+//   data: {
+//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//     datasets: [{
+//       label: '# of Votes',
+//       data: [15, 25, 3, 5, 2, 3],
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     }
+//   }
+// });
 
 
 
 
-
+//----------------Sales Pipeline Overview and deals ---------
 const getDashboardData =  {
   
 closeDeals : 26 , 
@@ -284,8 +304,11 @@ meeting : [
   {title : "HR" , time : "06:00 - 07:00"},
   {title : "Team Stand Up" , time : "06:00 - 07:00"},
   {title : "All Hands Meeting " , time : "06:00 - 07:00"}
-]
+],
+totalcontact:{current: activeUsers.length,
+              lastMonth : activeUsers.length
 
+},
 }
 
 
@@ -317,26 +340,34 @@ document.getElementById("closed").innerText = getDashboardData.pipeline.closed ;
 //-----------------------
 
 
+document.getElementById("totalcontact").innerText = getDashboardData.totalcontact.current.toLocaleString();
+document.getElementById("lasttotalcontact").innerText = getDashboardData.totalcontact.lastMonth.toLocaleString();
 
-const ctx5 = document.getElementById('myChartx').getContext('2d');
 
-  new Chart(ctx5, {
-       type: 'doughnut',
+
+document.getElementById("totalcontactPrecent").innerText =  "+" +
+  calculatePercent(getDashboardData.totalcontact.current ,  getDashboardData.totalcontact.lastMonth ) +"%";
+
+
+// const ctx5 = document.getElementById('myChartx').getContext('2d');
+
+  // new Chart(ctx5, {
+  //      type: 'doughnut',
  
-   data1 : {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
-   }})
+  //  data1 : {
+  // labels: [
+  //   'Red',
+  //   'Blue',
+  //   'Yellow'
+  // ],
+  // datasets: [{
+  //   label: 'My First Dataset',
+  //   data: [300, 50, 100],
+  //   backgroundColor: [
+  //     'rgb(255, 99, 132)',
+  //     'rgb(54, 162, 235)',
+  //     'rgb(255, 205, 86)'
+  //   ],
+  //   hoverOffset: 4
+  // }]
+  //  }})
