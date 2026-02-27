@@ -1,4 +1,5 @@
-function header(){
+import { getBasePath } from "./basepath.js";
+export function header(){
     const basepath = getBasePath();
     return`
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
@@ -53,14 +54,13 @@ function header(){
                                 <div class="offcanvas-body">
                                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                         <li class="nav-item"><a class="nav-link text-body active"href="${basepath}home/Template/home.html">Home</a></li>
-                                        <li class="nav-item"><a class="nav-link text-body" href="#">Collection</a></li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link text-body dropdown-toggle"
                                                 href="${basepath}productList/Template/product_list.html"
                                                 data-bs-toggle="dropdown">
-                                                Shop
+                                                Collection
                                             </a>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu collectionMenu">
                                                 <li><a class="dropdown-item"href="#">Action</a></li>
                                                 <li><a class="dropdown-item"href="#">Another action</a></li>
                                                 <li><hr class="dropdown-divider"/></li>
@@ -74,12 +74,14 @@ function header(){
                                                 Pages
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item"href="#">Action</a></li>
-                                                <li><a class="dropdown-item"href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="/home/Template/home.html">Home</a></li>
+                                                <li><a class="dropdown-item" href="/productList/Template/product_list.html">Catalog</a></li>
                                                 <li><hr class="dropdown-divider"/></li>
-                                                <li><a class="dropdown-item"href="#">Something else here</a></li>
+                                                <li><a class="dropdown-item sellerdash" href="/seller/Template/sellerdash.html">Seller Dashbord</a></li>
+                                                <li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>
                                             </ul>
                                         </li>
+                                        <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -157,17 +159,15 @@ function header(){
                 <nav>
                     <ul class="nav nav-tabs justify-content-around col-12 gap-5">
                         <li class="nav-item"><a class="nav-link text-body active" href="${basepath}home/Template/home.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-body" href="#">Collection</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-body dropdown-toggle"
                                 href="#"
-                                id="shopDropdown"
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Shop
+                                Collection
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu collectionMenu">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -176,12 +176,14 @@ function header(){
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link text-body dropdown-toggle"href="#"data-bs-toggle="dropdown">Pages</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="/home/Template/home.html">Home</a></li>
+                                <li><a class="dropdown-item" href="/productList/Template/product_list.html">Catalog</a></li>
+                                <li><hr class="dropdown-divider"/></li>
+                                <li><a class="dropdown-item sellerdash" href="/seller/Template/sellerdash.html">Seller Dashbord</a></li>
+                                <li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
                     </ul>
                 </nav>
                 <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0">🌙</button>
@@ -191,3 +193,6 @@ function header(){
 }
 
 
+$(function() {
+    
+})
