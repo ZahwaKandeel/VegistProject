@@ -356,7 +356,7 @@
                             <img src="../images/editIcon.png" width="30" alt="edit">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="editProduct(5)">
+                        <button id="editProductBtn" class="btn btn-warning w-100 py-2 fw-bold rounded-pill">
                             Edit Product
                         </button>
                     </div>
@@ -385,7 +385,7 @@
                             <img src="../images/editIcon.png" width="30" alt="edit">
                         </div>
 
-                        <button class="btn btn-warning w-100 py-2 fw-bold rounded-pill" onclick="editProduct(5)">
+                        <button id="editProductBtnSmall" class="btn btn-warning w-100 py-2 fw-bold rounded-pill">
                             Edit Product
                         </button>
                     </div>
@@ -718,6 +718,7 @@
 
         </main>
         <div id="quickViewModal"></div>
+        <div id="editModalContainer"></div>
 
         <script type="module" src="/productDetials/JS/ProductDetails.js"></script>
         <script type="module" src="/component/PopUpFunctions.js"></script>
@@ -726,16 +727,32 @@
         <script src="../../component/addToCart.js"></script>
     
 
-        <script
+        <!-- <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
-        ></script>
+        ></script> -->
         <script>
             function editProduct(id){
-                window.location.href = `editProductPopup.html?id=${id}`;
-
+                $("#editModalContainer").load(`/productDetials/Template/editProductPopup.html`,
+                function(){
+                    const modal = new bootstrap.Modal(
+                        document.getElementById("editProductModal")
+                    );
+                    modal.show();
+                    initializeEditProduct(id);
+                }
+                )
             }
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentProductId = parseInt(urlParams.get("id"));
+
+            document.getElementById("editProductBtn")?.addEventListener("click", function(){
+                editProduct(currentProductId);
+            });
+            document.getElementById("editProductBtnSmall")?.addEventListener("click", function(){
+                editProduct(currentProductId);
+            });
         </script>
         <footer></footer>
     </body>

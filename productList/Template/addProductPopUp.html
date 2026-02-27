@@ -104,7 +104,8 @@
                         <input type="text" class="form-control" id="discountPercentage" name="discountPercentage" placeholder="20%">
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="productSubmit btn btn-light fw-bold mt-2 px-4 py-2">Submit</button>
+                        <button type="submit" class="productSubmit btn btn-light fw-bold mt-2 px-4 py-2">
+                            Add Product</button>
                     </div>
                 </form>
             </div>
@@ -126,7 +127,7 @@
                 "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
             ];
 
-            $("form").on("submit", function(e){
+            $("form").off("submit").on("submit", function(e){
                 e.preventDefault();
                 let isValid = true;
 
@@ -205,10 +206,13 @@
                     saveProducts(products);
                     alert("Product added Successfully!");
                     //window.location.href = "product_list.html"
-                    const modal = bootstrap.Modal.getInstance(
-                        document.getElementById("addProductModal")
-                    );
+                    const modalElement = document.getElementById("addProductModal");
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+                
                     modal.hide();
+                    document.body.classList.remove("modal-open");
+                    $(".modal-backdrop").remove();
+                    
                 }catch(error){
                     alert(error.message)
                 }
@@ -242,4 +246,3 @@
             }
         });
     </script>
-</body>
