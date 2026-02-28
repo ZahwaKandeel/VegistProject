@@ -18,7 +18,7 @@ $(async function () {
     
         function isNameValid($input) {
             const name = $input.val().trim();
-            return /^[A-Za-z]{4,30}$/.test(name);
+            return /^[A-Za-z]{3,30}$/.test(name);
         }
     
         function isEmailValid() {
