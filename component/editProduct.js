@@ -12,24 +12,24 @@ export function initializeEditProduct (productId){
     //         return;
     //     }
 
-    console.log(products);
+    console.log(product);
     
-    $("#updateName").val(product.Name);
-    $("#updatePrice").val(product.Price);
-    $("#updateDescription").val(product.Description);
-    $("#updateStock").val(product.Stock);
-    $("#category").val(product.Category);
-    $("#updateImage").val(product.ImageUrl);
-    product.Sizes.forEach(size =>{
+    $("#updateName").val(product._name);
+    $("#updatePrice").val(product._price);
+    $("#updateDescription").val(product._description);
+    $("#updateStock").val(product._stock);
+    $("#category").val(product._category);
+    $("#updateImage").val(product._imageUrl);
+    product._sizes.forEach(size =>{
             $(`.size-option[value="${size}"]`).prop("checked", true);
     });
-    $("#discountPercentage").val(product.DiscountPercentage);
+    $("#discountPercentage").val(product._discountPercentage);
         
     const allowedCategories = [
         "bagel", "candy", "beans", "bestseller", "bread",
         "biscuite", "breakfast", "cake", "cookie", "cupcake",
         "Dairy&Cheese", "Dinner"
-    ]; 
+    ];
         
     $("#editProductForm").off("submit").on("submit", function(e){
         e.preventDefault();
@@ -87,14 +87,14 @@ export function initializeEditProduct (productId){
         }
         if (!isValid) return;
 
-        product.Name = name;
-        product.Price = price;
-        product.Description = description;
-        product.Stock = parseInt($("#updateStock").val());
-        product.Category = category;
-        product.ImageUrl = image;
-        product.Sizes = sizes;
-        product.DiscountPercentage = discountPercentage;
+        product._name = name;
+        product._price = price;
+        product._description = description;
+        product._stock = parseInt($("#updateStock").val());
+        product._category = category;
+        product._imageUrl = image;
+        product._sizes = sizes;
+        product._discountPercentage = discountPercentage;
 
         saveProducts(products);
 
