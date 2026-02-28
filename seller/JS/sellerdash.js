@@ -23,7 +23,12 @@ $(function(){
     $("#conversionRate h3").html(stats.conversionRate+"%");
 
     const ctx = document.getElementById("SalesReportChart")
-    
+                //--main-footer-bg: #fbe2cb;
+                //--main-text-color: #e29911;
+                //--secondry-text-color: #b87700;
+                //--main-main-color: #f5ab1e;
+                //--main-accordion-button-bg: #fbe2cb;
+               // --main-accordion-body-bg: #e6cbb3; -->
     let salesChart = new Chart(ctx,{
         type: "line",
         data:{
@@ -32,16 +37,16 @@ $(function(){
                 {
                     label: "Revenue",
                     data: monthly.revenue,
-                    borderColor: "#4E73DF",
-                    backgroundColor: "rgba(78,115,223,0.1)",
+                    borderColor: "#f5ab1e",
+                    backgroundColor: "#fbe2cb",
                     tension: 0.3,
                     fill: true
                 },
                 {
                     label: "Orders",
                     data: monthly.orders,
-                    borderColor: "#1CC88A",
-                    backgroundColor: "rgba(28,200,138,0.1)",
+                    borderColor: "#5fa800",
+                    backgroundColor: "#e6ffc5",
                     tension: 0.3,
                     fill: true
                 }
@@ -86,7 +91,7 @@ $(function(){
             ],
             datasets: [{
                 data:[percentage,100-percentage],
-                backgroundColor:["#1CC88A","#E3E6f0"],
+                backgroundColor:["#f5ab1e","#fbe2cb"],
                 borderWidth:0
             }]
         },

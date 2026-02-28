@@ -24,20 +24,11 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-    <script src="/component/basepath.js"></script>
-    <script src="/component/header.js"></script>
-    <script src="/component/footer.js"></script>
-    <script src="/component/layout.js"></script>
+    <script type="module" src="/component/basepath.js"></script>
+    <script type="module" src="/component/header.js"></script>
+    <script type="module" src="/component/footer.js"></script>
+    <script type="module" src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
-    <script>
-        $(document).ready(function() {
-            const $header = $("header");
-            const $footer = $("footer");
-
-            if ($header.length) $header.replaceWith(header());
-            if ($footer.length) $footer.replaceWith(footer());
-        });
-    </script>
     <style>
     .card-img-wrapper {
         height: 250px; 
@@ -262,9 +253,9 @@
                         <p id="productStock" class="mb-2"><strong>Availability:</strong> <span class="text-success"></span></p>
 
                         <div class="d-flex align-items-center mb-3">
-                            <span id="productPrice" class="fs-4 fw-bold me-2"></span>
-                            <span class="text-decoration-line-through text-muted me-2"></span>
-                            <span class="badge bg-danger"></span>
+                            <span id="productAfterDiscount" class="fs-4 fw-bold me-2"></span>
+                            <span id="productPrice" class="text-decoration-line-through text-muted me-2"></span>
+                            <span id="discount" class="badge bg-danger"></span>
                         </div>
 
                         <p id="productDescription" class="text-muted small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
@@ -412,9 +403,9 @@
                 <li class="nav-item" role="presentation">
                 <button class="nav-link rounded-pill px-4 m-2" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">ADDITIONAL INFORMATION</button>
                 </li>
-                <!-- <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation">
                 <button class="nav-link rounded-pill px-4 m-2" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">REVIEWS</button>
-                </li> -->
+                </li>
             </ul>
             <div class="tab-content border-top pt-4" id="productTabContent">
 
@@ -451,61 +442,65 @@
                 </div>
 
                 <!-- Section 3 -->
-                <!-- <div class="tab-pane fade show" id="reviews" role="tabpanel">
-                    <div class="text-center">
-                        <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#reviewForm" aria-expanded="false">
-                            Write a review
-                        </button>
-                    </div>
-
-                    <div class="collapse mt-4" id="reviewForm">
-                        <div class="container" style="max-width: 700px;">
-                            <h3 class="text-center mb-4">Write a review</h3>
-                            
-                            <form>
-                                <div class="text-center mb-3">
-                                    <label class="d-block mb-1 text-muted">Rating</label>
-                                    <div class="star-rating fs-2 text-warning">
-                                        <i class="bi bi-star"></i>
-                                        <i class="bi bi-star"></i>
-                                        <i class="bi bi-star"></i>
-                                        <i class="bi bi-star"></i>
-                                        <i class="bi bi-star"></i>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3 text-center">
-                                    <label class="form-label text-muted">Review Title</label>
-                                    <input type="text" class="form-control custom-input" placeholder="Give your review a title">
-                                </div>
-
-                                <div class="mb-3 text-center">
-                                    <label class="form-label text-muted">Review content</label>
-                                    <textarea class="form-control custom-input" rows="5" placeholder="Start writing here..."></textarea>
-                                </div>
-
-                                <div class="mb-3 text-center">
-                                    <label class="form-label text-muted">Display name</label>
-                                    <input type="text" class="form-control custom-input" placeholder="Display name">
-                                </div>
-
-                                <div class="mb-3 text-center">
-                                    <label class="form-label text-muted">Email address</label>
-                                    <input type="email" class="form-control custom-input" placeholder="Your email address">
-                                </div>
-
-                                <p class="text-center text-muted small mt-4">
-                                    How we use your data: We'll only contact you about the review you left, and only if necessary. By submitting your review, you agree to Judge.me's <strong>terms</strong>, <strong>privacy</strong> and <strong>content</strong> policies.
-                                </p>
-
-                                <div class="d-flex justify-content-center gap-3 mt-4">
-                                    <button type="button" class="btn btn-warning btn-custom px-5 py-2" data-bs-toggle="collapse" data-bs-target="#reviewForm">Cancel review</button>
-                                    <button type="submit" class="btn btn-warning btn-custom px-5 py-2">Submit Review</button>
-                                </div>
-                            </form>
+                             <!-- Section 3 -->
+            <div class="tab-pane fade show" id="reviews" role="tabpanel">
+                        <div class="text-center">
+                            <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#reviewFormCollapse" aria-expanded="false">
+                                Write a review
+                            </button>
                         </div>
-                    </div>
-                </div> -->
+
+                        <div class="collapse mt-4" id="reviewFormCollapse">
+                            <div class="container" style="max-width: 700px;">
+                                <h3 class="text-center mb-4">Write a review</h3>
+                                    
+                                <form id="reviewForm">
+                                        <div class="text-center mb-3">
+                                            <label class="d-block mb-1 text-muted">Rating</label>
+                                            <div class="star-rating fs-2 text-warning">
+                                                <i class="bi bi-star star" data-value="1"></i>
+                                                <i class="bi bi-star star" data-value="2"></i>
+                                                <i class="bi bi-star star" data-value="3"></i>
+                                                <i class="bi bi-star star" data-value="4"></i>
+                                                <i class="bi bi-star star" data-value="5"></i>
+                                            </div>
+                                                <input type="hidden" id="reviewRating">
+                                        </div>
+
+                                        <div class="mb-3 text-center">
+                                            <label class="form-label text-muted">Review Title</label>
+                                            <input id="reviewTitle" type="text" class="form-control custom-input" placeholder="Give your review a title">
+                                        </div>
+
+                                        <div class="mb-3 text-center">
+                                            <label class="form-label text-muted">Review Content</label>
+                                            <textarea id="reviewContent" class="form-control custom-input" rows="5" placeholder="Start writing here..."></textarea>
+                                        </div>
+
+                                        <div class="mb-3 text-center">
+                                            <label class="form-label text-muted">Display name</label>
+                                            <input id="reviewName" type="text" class="form-control custom-input" placeholder="Display name">
+                                        </div>
+
+                                        <div class="mb-3 text-center">
+                                            <label class="form-label text-muted">Email address</label>
+                                            <input id="reviewEmail" type="email" class="form-control custom-input" placeholder="Your email address">
+                                        </div>
+
+                                        <p class="text-center text-muted small mt-4">
+                                            How we use your data: We'll only contact you about the review you left, and only if necessary. By submitting your review, you agree to Judge.me's <strong>terms</strong>, <strong>privacy</strong> and <strong>content</strong> policies.
+                                        </p>
+
+                                        <div class="d-flex justify-content-center gap-3 mt-4">
+                                            <button id="cancelReview" type="button" class="btn btn-warning btn-custom px-5 py-2" data-bs-toggle="collapse" data-bs-target="#reviewFormCollapse">Cancel review</button>
+                                            <button id="addReview" type="submit" class="btn btn-warning btn-custom px-5 py-2" >Submit Review</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    <hr class="my-5">
+                    <div id="reviewsContainer"></div>
+            </div>
 
             </div> <!-- End Tab Panel -->
 
@@ -712,7 +707,15 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script> -->
-        <script>
+        <script type="module">
+            
+            import { initializeEditProduct } from "/component/editProduct.js";
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentProductId = parseInt(urlParams.get("id"));
+
+            console.log(currentProductId);
+
             function editProduct(id){
                 $("#editModalContainer").load(`/productDetials/Template/editProductPopup.html`,
                 function(){
@@ -724,8 +727,7 @@
                 }
                 )
             }
-            const urlParams = new URLSearchParams(window.location.search);
-            const currentProductId = parseInt(urlParams.get("id"));
+            
 
             document.getElementById("editProductBtn")?.addEventListener("click", function(){
                 editProduct(currentProductId);
@@ -733,6 +735,12 @@
             document.getElementById("editProductBtnSmall")?.addEventListener("click", function(){
                 editProduct(currentProductId);
             });
+
+initializeEditProduct();
+        </script>
+        <script>
+            
+            
         </script>
         <footer></footer>
     </body>

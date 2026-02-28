@@ -27,21 +27,12 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-        <script src="/component/basepath.js"></script>
-        <script src="/component/header.js"></script>
-        <script src="/component/footer.js"></script>
-        <script src="/component/layout.js"></script>
+        <script type="module" src="/component/basepath.js"></script>
+        <script type="module" src="/component/header.js"></script>
+        <script type="module" src="/component/footer.js"></script>
+        <script type="module" src="/component/layout.js"></script>
         <script src="/component/moodToggle.js"></script>
         <script type="module" src="/auth/JS/register.js"></script>
-        <script>
-        $(document).ready(function() {
-            const $header = $("header");
-            const $footer = $("footer");
-
-            if ($header.length) $header.replaceWith(header());
-            if ($footer.length) $footer.replaceWith(footer());
-        });
-    </script>
     </head>
     <body>
         <header></header>
@@ -51,34 +42,34 @@
                     <div class="bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item z-3"><a href="/home/Template/home.html" class="text-decoration-none text-white">Home</a></li>
-                        <li class="breadcrumb-item active text-white z-3">Account</li>
+                        <li class="breadcrumb-item active text-white z-3">Create Account</li>
                     </ul>
                 </nav>
             </div>
-            <div class="d-lg-flex justify-content-center align-items-center">
-                <section class="col-lg-4 col-xxl-3 my-xxl-4">
-                    <form action="" class="border border-1 p-2 mx-3 my-5 p-lg-4" novalidate>
+            <div class="d-md-flex justify-content-center align-items-center">
+                <section class="col-md-5 col-lg-4 col-xl-4">
+                    <form action="" class="border border-1 p-2 mx-3 my-5 p-md-4" novalidate>
                         <h2>Create Account</h2>
-                        <div class="mb-3 mb-lg-3">
+                        <div class="mb-3 mb-md-3">
                             <small class="d-block pb-4">Please register below account detail</small>
                             <input type="text" id="firstName" class="form-control rounded-pill" placeholder="First Name">
                             <div class="invalid-feedback">
-                                <p class="py-0 my-0 invalid-warning"><small>First Name Must be only letters , not less than 4</small></p>
+                                <p class="py-0 my-0 invalid-warning"><small>First Name Must be only letters , not less than 3</small></p>
                             </div>
                         </div>
-                        <div class="mb-3 mb-lg-3">
+                        <div class="mb-3 mb-md-3">
                             <input type="text" id="lastName" class="form-control rounded-pill" placeholder="Last Name">
                             <div class="invalid-feedback">
-                                <p class="py-0 my-0 invalid-warning"><small>Last Name Must be only letters , not less than 4</small></p>
+                                <p class="py-0 my-0 invalid-warning"><small>Last Name Must be only letters , not less than 3</small></p>
                             </div>
                         </div>
-                        <div class="mb-3 mb-lg-3">
+                        <div class="mb-3 mb-md-3">
                             <input type="email" id="email" class="form-control rounded-pill" placeholder="Email">
                             <div class="invalid-feedback">
                                 <p class="py-0 my-0 invalid-warning"><small>Please insert valid email.</small></p>
                             </div>
                         </div>
-                        <div class="mb-3 mb-lg-3">
+                        <div class="mb-3 mb-md-3">
                             <input type="password" id="password" class="form-control rounded-pill" placeholder="Password">
                             <div class="invalid-feedback">
                                 <p class="py-0 my-0 invalid-warning"><small>Passwrod must contain Uppercase lettters</small></p>
@@ -99,12 +90,11 @@
                             </section>
                         </div>
                         <div class="text-center">
-                            <button type="submit" id="create" class="btn btn-warning rounded-pill w-100 text-white hover-bg-white my-lg-2"><b>Create</b></button>
-                            <p class="text-warning mt-2"><b>Forgot your password?</b></p>
+                            <button type="submit" id="create" class="btn btn-warning rounded-pill w-100 text-white hover-bg-white my-md-2"><b>Create</b></button>
                         </div>
                     </form>
                 </section>
-                <section class="col-lg-4 col-xxl-3">
+                <section class="col-md-5 col-lg-4 col-xl-4">
                     <div class="text-center">
                         <p><b>ِAlready an account holder?</b></p>
                         <button type="submit" id="login" class="btn btn-warning rounded-pill text-white px-4"><b>Log in</b></button>

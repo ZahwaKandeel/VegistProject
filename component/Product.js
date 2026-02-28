@@ -28,15 +28,15 @@ export class Product{
     }
     set SellerId(sellerId)
     {
-        if(!Number.isInteger(sellerId)||sellerId<=0)
-            throw new Error("Seller ID must be positive integer")
+        // if(!Number.isInteger(sellerId)||sellerId<=0)
+        //     throw new Error("Seller ID must be positive integer")
         
-        const users = JSON.parse(localStorage.getItem("Users")) || [];
-        const seller = users.find(u => u.id === sellerId)
-        if(!seller)
-            throw new Error("Seller does not exist");
-        if(seller.role!== "seller")
-            throw new Error("User is not a seller");
+        // const users = JSON.parse(localStorage.getItem("Users")) || [];
+        // const seller = users.find(u => u.id === sellerId)
+        // if(!seller)
+        //     throw new Error("Seller does not exist");
+        // if(seller.role!== "seller")
+        //     throw new Error("User is not a seller");
 
         this._sellerId = sellerId;
     }
@@ -161,7 +161,7 @@ export class Product{
             reviews.forEach(review => {
                 total += review.rating                
             });
-            this._rating = (total/reviews.length).toFixed(2);
+            this._rating = Number((total/reviews.length).toFixed(2));
         }else{
             this.rating = 0;
         }

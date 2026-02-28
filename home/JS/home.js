@@ -3,9 +3,10 @@ $(function(){
         window.location.href = "/productList/Template/product_list.html"
     });    
 });
+
+const products = JSON.parse(localStorage.getItem("products")) || [];
+const carouselInner = document.getElementById("carouselInner");
 document.addEventListener("DOMContentLoaded", function(){
-    const products = JSON.parse(localStorage.getItem("products")) || [];
-    const carouselInner = document.getElementById("carouselInner");
 
     
     function getProductsPerSlide(){
@@ -41,44 +42,44 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 });
 
-function createProductCard(product){
-    const ratingStars = generateStars(product._rating);
+function createProductCard(products){
+    const ratingStars = generateStars(products._rating);
     return`
-        <div id="${product._id}" class="cards col-6 col-md-4 col-lg-3 position-relative">
+        <div id="${products._id}" class="cards col-6 col-md-4 col-lg-3 position-relative">
             <div class="position-relative">
-                <img src="${product._imageUrl}"
+                <img src="${products._imageUrl}"
                     class="img-fluid w-100 main-img"/>
-                <img src="${product._imageUrl}"
+                <img src="${products._imageUrl}"
                     class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>    
             </div>
             <div class="icons position-absolute start-50 translate-middle-x d-flex gap-2">
                 <span class="icon p-2">
-                    <i class="fa-regular fa-heart wishlist-icon" data-id="${product._id}"></i>
+                    <i class="fa-regular fa-heart wishlist-icon" data-id="${products._id}"></i>
                 </span>
                 <span class="icon p-2">
-                    <i class="fa fa-shopping-bag cart-icon" data-id="${product._id}"></i>
+                    <i class="fa fa-shopping-bag cart-icon" data-id="${products._id}"></i>
                 </span>
                 <span class="icon p-2"
                     data-bs-toggle="modal"
                     data-bs-target="#quickViewModal"
                     style="cursor: pointer;">
-                    <i class="fa fa-eye view-icon" data-id="${product._id}"></i>
+                    <i class="fa fa-eye view-icon" data-id="${products._id}"></i>
                 </span>
             </div>
             <div>
                 <p>
-                    <a href="/productDetails/productDetails.html?id=${product._id}"
+                    <a href="/productDetails/productDetails.html?id=${products._id}"
                         class="para text-decoration-none">
-                        ${product._name}
+                        ${products._name}
                     </a>
                 </p>
-                <p class="fw-bold">€${product._price.toFixed(2)}</p>
+                <p class="fw-bold">€${products._price.toFixed(2)}</p>
                 <div class="d-flex align-items-center">
                     <div class="text-warning me-2 rating">
                         ${ratingStars}
                     </div>
                     <span class="text-muted ratingspa">
-                        ${product._rating.toFixed(1)}/5
+                        ${products._rating.toFixed(1)}/5
                     </span>
                 </div>
             </div>
@@ -108,28 +109,10 @@ $(document).ready(function(){
         addToCart(productId,1);
         alert("Added to cart");
     });
-    $(document).on("click", "view-icon", function(){
+    $(document).on("click", ".view-icon", function(){
         const productId = parseInt($(this).data("id"));
         openQuickView(productId);
     });
 });
 
 
-// --- Event Listener 1: Add to Cart ---
-// document.addEventListener("DOMContentLoaded", function () {
-//     const addToCartButtons = document.querySelectorAll(".btn-warning");
-
-//     addToCartButtons.forEach(function (button) {
-//         // We check the text to make sure we hit the right button
-//         if (button.textContent.trim().toLowerCase() === "add to cart") {
-//             button.addEventListener("click", function() {
-//                 redirectToCart();
-//             });
-//         }
-//     });
-// });
-
-// function redirectToCart() {
-//     console.log("Navigating to Cart...");
-//     window.location.href = "cart/Template/cart.html";
-// }

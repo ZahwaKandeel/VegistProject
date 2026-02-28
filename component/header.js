@@ -131,7 +131,7 @@ export function header(){
                     <div class=" d-flex align-items-center">
                     <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0">🌙</button>
                         <!-- Account icon -->
-                        <a href="${basepath}account/Template/profile.html" class="icon">
+                        <a href="${basepath}account/Template/profile.html">
                             <i class="fa-regular fa-user text-body px-1"></i>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
@@ -144,11 +144,11 @@ export function header(){
                             </div>
                         </div>
                         <!-- Heart icon -->
-                        <a href="" class="icon">
+                        <a href="${basepath}wishlist/Template/wishlist.html">
                             <i class="fa-regular fa-heart text-body px-1"></i>
                         </a>
                         <!-- Bag icon -->
-                        <a href="${basepath}cart/Template/cart.html" class="icon">
+                        <a href="${basepath}cart/Template/cart.html">
                             <i class="fa-solid fa-bag-shopping text-body px-1"></i>
                         </a>
                     </div>
@@ -194,5 +194,6 @@ export function header(){
 
 
 $(function() {
-    
+    const porducts = JSON.parse(localStorage.getItem("products"))
+
 })
