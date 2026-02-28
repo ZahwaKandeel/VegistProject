@@ -12,24 +12,44 @@ export function initializeEditProduct (productId){
     //         return;
     //     }
 
-    console.log(products);
+    let imageBase64 = product._imageUrl;//maintain old image
     
-    $("#updateName").val(product.Name);
-    $("#updatePrice").val(product.Price);
-    $("#updateDescription").val(product.Description);
-    $("#updateStock").val(product.Stock);
-    $("#category").val(product.Category);
-    $("#updateImage").val(product.ImageUrl);
-    product.Sizes.forEach(size =>{
+    //load product data in form fields
+    $("#updateName").val(product._name);
+    $("#updatePrice").val(product._price);
+    $("#updateDescription").val(product._description);
+    $("#updateStock").val(product._stock);
+    $("#category").val(product._category);
+    $("#updateImagePreview").attr("src", product._imageUrl)
+                            .removeClass("d-none");
+    product._sizes.forEach(size =>{
             $(`.size-option[value="${size}"]`).prop("checked", true);
     });
-    $("#discountPercentage").val(product.DiscountPercentage);
+    $("#discountPercentage").val(product._discountPercentage);
+
+
+    $("#updateImage").off("change").on("change", function(){
+        const file = this.files[0];
+        if(!file) return;
+        if(!file.type.startsWith("image/")){
+            alert("Please select a valid image file.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e){
+            imageBase64 = e.target.result;
+            $("#updateImagePreview").attr("src", imageBase64)
+                                    .removeClass("d-none");
+        };
+        reader.readAsDataURL(file);
+    });
         
     const allowedCategories = [
         "bagel", "candy", "beans", "bestseller", "bread",
         "biscuite", "breakfast", "cake", "cookie", "cupcake",
-        "Dairy&Cheese", "Dinner"
-    ]; 
+        "Diary&Cheese", "Dinner"
+    ];
         
     $("#editProductForm").off("submit").on("submit", function(e){
         e.preventDefault();
@@ -43,7 +63,6 @@ export function initializeEditProduct (productId){
         let description = $("#updateDescription").val().trim();
         let stock = parseInt($("#updateStock").val());
         let category = $("#category").val().trim();
-        let image = $("#updateImage").val().trim();
 
         let sizes = $(".size-option:checked").map(function(){
             return parseInt($(this).val(),10);
@@ -71,10 +90,6 @@ export function initializeEditProduct (productId){
             showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
             isValid = false;
         }
-        if (!isValidURL(image)) {
-            showError("#updateImage", "Enter a valid image URL.");
-            isValid = false;
-        }
         if (sizes.length === 0) {
             $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
             isValid = false;
@@ -87,14 +102,14 @@ export function initializeEditProduct (productId){
         }
         if (!isValid) return;
 
-        product.Name = name;
-        product.Price = price;
-        product.Description = description;
-        product.Stock = parseInt($("#updateStock").val());
-        product.Category = category;
-        product.ImageUrl = image;
-        product.Sizes = sizes;
-        product.DiscountPercentage = discountPercentage;
+        product._name = name;
+        product._price = price;
+        product._description = description;
+        product._stock = parseInt($("#updateStock").val());
+        product._category = category;
+        product._imageUrl = imageBase64;
+        product._sizes = sizes;
+        product._discountPercentage = discountPercentage;
 
         saveProducts(products);
 
@@ -110,8 +125,5 @@ export function initializeEditProduct (productId){
         $(selector).addClass("is-invalid");
         $(selector).after(`<div class="invalid-feedback">${message}</div>`);
     }
-    function isValidURL(url){
-        try {new URL(url); return true;}
-        catch {return false;}
-    }
+
 };

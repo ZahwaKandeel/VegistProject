@@ -57,7 +57,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="updateImage" class="form-label fw-bold">Image:</label>
-                        <input type="text" class="form-control" id="updateImage" name="updateImage" placeholder="images.google.com">
+                        <!-- <input type="text" class="form-control" id="image" name="image" placeholder="images.google.com"> -->
+                        <input type="file" class = "form-control" id="updateImage" accept="image/*">
+                        <img id="updateImagePreview" class="mt-3 w-100 d-none" style="max-height: 200px; object-fit:contain">
                     </div>
                     <div class="mb-3">
                         <label for="sizes" class="form-label fw-bold">Size (KG):</label>
