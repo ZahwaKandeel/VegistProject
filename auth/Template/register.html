@@ -27,21 +27,12 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-        <script src="/component/basepath.js"></script>
-        <script src="/component/header.js"></script>
-        <script src="/component/footer.js"></script>
-        <script src="/component/layout.js"></script>
+        <script type="module" src="/component/basepath.js"></script>
+        <script type="module" src="/component/header.js"></script>
+        <script type="module" src="/component/footer.js"></script>
+        <script type="module" src="/component/layout.js"></script>
         <script src="/component/moodToggle.js"></script>
         <script type="module" src="/auth/JS/register.js"></script>
-        <script>
-        $(document).ready(function() {
-            const $header = $("header");
-            const $footer = $("footer");
-
-            if ($header.length) $header.replaceWith(header());
-            if ($footer.length) $footer.replaceWith(footer());
-        });
-    </script>
     </head>
     <body>
         <header></header>
@@ -63,13 +54,13 @@
                             <small class="d-block pb-4">Please register below account detail</small>
                             <input type="text" id="firstName" class="form-control rounded-pill" placeholder="First Name">
                             <div class="invalid-feedback">
-                                <p class="py-0 my-0 invalid-warning"><small>First Name Must be only letters , not less than 4</small></p>
+                                <p class="py-0 my-0 invalid-warning"><small>First Name Must be only letters , not less than 3</small></p>
                             </div>
                         </div>
                         <div class="mb-3 mb-lg-3">
                             <input type="text" id="lastName" class="form-control rounded-pill" placeholder="Last Name">
                             <div class="invalid-feedback">
-                                <p class="py-0 my-0 invalid-warning"><small>Last Name Must be only letters , not less than 4</small></p>
+                                <p class="py-0 my-0 invalid-warning"><small>Last Name Must be only letters , not less than 3</small></p>
                             </div>
                         </div>
                         <div class="mb-3 mb-lg-3">
