@@ -8,6 +8,10 @@ let products = loadProducts() || [];
 const params = new URLSearchParams(window.location.search);
 const productId = parseInt(params.get("id")); // URL like ?id=1
 
+let selectedSize = 1;
+let pricePerKg = 0;
+let finalPricePerKg = 0;
+
 let product = null;
 if (productId && products.length > 0) {
     product = products.find(p => p.ID === productId);
@@ -58,6 +62,9 @@ if (!productId) {
     }
     const finalPrice = getFinalPrice(product);
 
+    finalPricePerKg = finalPrice;     // discounted 1KG price
+    pricePerKg = finalPricePerKg;     // initial price per KG
+
     const productafterDiscount = $("#productAfterDiscount");
     const productPrice = $("#productPrice");
     const originalPrice = product._price;
@@ -103,6 +110,7 @@ $(document).ready(function () {
         if (product) {
             let quantity = parseInt($('#quantityValue').val());
             let selectedSize = $('input[name="size_choice"]:checked').val();
+            let totalPrice = pricePerKg * quantity;
             addToCart(product.ID, quantity, selectedSize);
             window.location.href = "../../cart/Template/cart.html";
         }
@@ -123,16 +131,19 @@ $(document).ready(function () {
 // Subtotal
 let total;
 function calculateSubTotal(){
-    total = product.Price * value;
+    total = pricePerKg * value;
     return total;
 }
 
 // Buy it now
 function buyItNow(){
+    let quantity = parseInt($('#quantityValue').val()) || 1;
+    let subtotal = pricePerKg * quantity;
+
     let currentOrder = new Order({
         id: Date.now(),
         sellerId: 1,
-        cart: [{ product_id: productId, quantity: value }],
+        cart: [{ product_id: productId, quantity: value, size: selectedSize, price: pricePerKg }],
         createdAt: new Date(),
         shipping: {
             fristName: "",
@@ -169,6 +180,30 @@ product.Sizes.forEach((item, index) => {
         <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
         <label class="btn btn-outline-warning rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
     `);
+});
+
+// Update price when size changes
+$(document).on('change', 'input[name="size_choice"]', function () {
+
+    selectedSize = parseFloat($(this).val());
+
+    let originalPrice = Number(product._price);
+
+    let newOriginalPrice = selectedSize * originalPrice;
+    let newAfterDiscount = selectedSize * finalPricePerKg;
+
+    //update global pricePerKg (price of selected size)
+    pricePerKg = finalPricePerKg * selectedSize;
+
+    if (product._discountPercentage > 0) {
+        $("#productAfterDiscount").text(newAfterDiscount.toFixed(2));
+        $("#productPrice").text(newOriginalPrice.toFixed(2));
+        $("#discount").text(product._discountPercentage + "%");
+    } else {
+        $("#productAfterDiscount").text(newAfterDiscount.toFixed(2));
+        $("#productPrice").text("");
+        $("#discount").text("");
+    }
 });
 
 // Related products
@@ -232,6 +267,13 @@ stars.forEach(star => {
     });
 });
 
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const userEmail = currentUser.email;
+    const userName = currentUser.firstName;
+
+    document.getElementById("reviewName").value = userName;
+    document.getElementById("reviewEmail").value = userEmail;
+
 //Save the review
 const reviewForm = document.getElementById("reviewForm");
 reviewForm.addEventListener("submit", function (e) {
@@ -243,14 +285,18 @@ reviewForm.addEventListener("submit", function (e) {
 
     if (!productId) return;
 
+
+
+
+
     // Get form values
     const review = {
         productId: productId,
         rating: document.getElementById("reviewRating").value,
         title: document.getElementById("reviewTitle").value,
         content: document.getElementById("reviewContent").value,
-        name: document.getElementById("reviewName").value,
-        email: document.getElementById("reviewEmail").value,
+        name: document.getElementById("reviewName").value = userName,
+        email: document.getElementById("reviewEmail").value = userEmail,
         date: new Date().toLocaleDateString()
     };
 
