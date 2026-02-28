@@ -21,8 +21,8 @@ if (!productId) {
     console.log("Product not found");
 } else {
     // Fill main product info
-    document.getElementById("name").textContent = product.Name;
-    document.getElementById("productPrice").textContent = `€${product.Price.toFixed(2)}`;
+    document.getElementById("name").innerText = product._name;
+    document.getElementById("productPrice");
     document.getElementById("productStock").innerHTML = `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
     document.getElementById("productDescription").textContent = product.Description;
     document.getElementById("productSKU").textContent = product.ID;
@@ -34,6 +34,8 @@ if (!productId) {
     document.getElementById("table-productCategory").textContent = product.Category;
     document.getElementById("table-productSKU").textContent = product.ID;
 
+    $("#discount").text(`${product._discountPercentage}%`);
+
     // Carousel images
     const carouselImages = document.querySelectorAll("#carouselVeg img");
     carouselImages.forEach(img => img.src = product.ImageUrl);
@@ -44,10 +46,27 @@ if (!productId) {
 
     // Discount info
     const priceContainer = document.getElementById("productPrice");
-    if (product.DiscountPercentage > 0) {
-        priceContainer.nextElementSibling.textContent = `€${(product.Price + product.DiscountValue).toFixed(2)}`;
-        const badge = priceContainer.nextElementSibling.nextElementSibling;
-        badge.textContent = `${product.DiscountPercentage}%`;
+    function getFinalPrice(product) {
+        const price = Number(product._price);
+        const discount = Number(product._discountPercentage) || 0;
+
+        if (discount > 0) {
+            const discounted = price - (price * (discount / 100));
+            return Math.max(0, discounted);
+        }
+        return price;
+    }
+    const finalPrice = getFinalPrice(product);
+
+    const productafterDiscount = $("#productAfterDiscount");
+    const productPrice = $("#productPrice");
+    const originalPrice = product._price;
+
+    if(finalPrice < originalPrice){
+        productafterDiscount.text(finalPrice);
+        productPrice.text(originalPrice);
+    }else{
+        productafterDiscount.text(finalPrice);
     }
 }
 
@@ -308,122 +327,3 @@ function displayReviews() {
 document.addEventListener("DOMContentLoaded", function () {
     displayReviews();
 });
-
-    
-window.initializeEditProduct = function(productId){    
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    
-
-
-    const products = JSON.parse(localStorage.getItem("products")) || [];
-    const product = products.find(p => Number(p.ID) === Number(id));   
-
-    if(!product){
-            alert("Product not found");
-            return;
-        }
-
-        //const sellerId = currentUser.id;
-        //const params = new URLSearchParams(window.location.search);
-        //const productId = parseInt(params.get("id"));
-    
-    $("#updateName").val(product.Name);
-    $("#updatePrice").val(product.Price);
-    $("#updateDescription").val(product.Description);
-    $("#updateStock").val(product.Stock);
-    $("#category").val(product.Category);
-    $("#updateImage").val(product.ImageUrl);
-    product.Sizes.forEach(size =>{
-            $(`.size-option[value="${size}"]`).prop("checked", true);
-    });
-    $("#discountPercentage").val(product.DiscountPercentage);
-        
-    const allowedCategories = [
-        "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
-    ]; 
-        
-    $("#editProductForm").off("submit").on("submit", function(e){
-        e.preventDefault();
-        let isValid = true;
-
-        $(".form-control").removeClass("is-invalid");
-        $(".invalid-feedback").remove();
-
-        let name = $("#updateName").val().trim();
-        let price = parseFloat($("#updatePrice").val());
-        let description = $("#updateDescription").val().trim();
-        let stock = parseInt($("#updateStock").val());
-        let category = $("#category").val().trim();
-        let image = $("#updateImage").val().trim();
-
-        let sizes = $(".size-option:checked").map(function(){
-            return parseInt($(this).val(),10);
-        }).get();
-
-        let discountPercentage = parseInt($("#discountPercentage").val());
-
-        if (name.length<3){
-            showError("#updateName", "Name must be at least 3 characters");
-            isValid = false;
-        }
-        if (isNaN(price) || price<=0){
-            showError("#updatePrice", "Price must be a number greater than 0");
-            isValid = false;
-        }
-        if (description.length < 100 || description.length > 200){
-            showError("#updateDescription", "Description must be at least 100 characters and less than 200");
-            isValid = false;
-        }
-        if (isNaN(stock) || stock<=0){
-            showError("#updateStock", "Stock must be a number greater than 0");
-            isValid = false;
-        }
-        if (!allowedCategories.includes(category)){
-            showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
-            isValid = false;
-        }
-        if (!isValidURL(image)) {
-            showError("#updateImage", "Enter a valid image URL.");
-            isValid = false;
-        }
-        if (sizes.length === 0) {
-            $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
-            isValid = false;
-        } else {
-            $("#sizesError").html("");
-        }
-        if(isNaN(discountPercentage) || discountPercentage<0 || discountPercentage>100){
-            showError("#discountPercentage","Discount Percentage must be a number between 0 and 100");
-            isValid = false;
-        }
-        if (!isValid) return;
-
-        product.Name = name;
-        product.Price = price;
-        product.Description = description;
-        product.Stock = parseInt($("#updateStock").val());
-        product.Category = category;
-        product.ImageUrl = image;
-        product.Sizes = sizes;
-        product.DiscountPercentage = discountPercentage;
-
-        saveProducts(products);
-
-        alert("Product updated successfully");
-        const modal = bootstrap.Modal.getInstance(
-            document.getElementById("editProductModal")
-        )
-        modal.hide();
-        location.reload();
-    });
-        
-    function showError(selector, message){
-        $(selector).addClass("is-invalid");
-        $(selector).after(`<div class="invalid-feedback">${message}</div>`);
-    }
-    function isValidURL(url){
-        try {new URL(url); return true;}
-        catch {return false;}
-    }
-};
