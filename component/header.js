@@ -2,14 +2,14 @@ import { getBasePath } from "./basepath.js";
 export function header(){
     const basepath = getBasePath();
     return`
-        <header class="container-fluid px-md-5 sticky-top p-3 bg-body">
-            <div class="d-flex align-items-center justify-content-between px-xl-4">
+        <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
+            <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
                     <a href="${basepath}home/Template/home.html">
                         <img src="${basepath}Static/Images/logo-1.svg" alt="logo" class="w-50 h-100"/>
                     </a>
                 </section>
-                <form class="d-none d-md-flex input-group w-50" role="search">
+                <form class="d-none d-lg-flex input-group w-50" role="search">
                     <label for="global-search" class="d-flex position-relative w-100">
                         <input
                             class="form-control rounded-pill d-block w-100"
@@ -26,7 +26,7 @@ export function header(){
                     </label>
                 </form>
                 <section class="d-flex align-items-center">
-                    <nav class="navbar d-xl-none">
+                    <nav class="navbar d-xxl-none">
                         <div class="container px-0">
                             <button
                                 class="navbar-toggler border-0 p-0"
@@ -87,7 +87,7 @@ export function header(){
                             </div>
                         </div>
                     </nav>
-                    <div class="d-flex d-md-none mt-4 px-1"> <!-- maginfier icon -->
+                    <div class="d-flex d-lg-none mt-4 px-1"> <!-- maginfier icon -->
                         <button
                             class="btn btn mb-4 p-0"
                             type="button"
@@ -129,12 +129,12 @@ export function header(){
                         </div>
                     </div>
                     <div class=" d-flex align-items-center">
-                    <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xl-none p-0">🌙</button>
+                    <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0">🌙</button>
                         <!-- Account icon -->
-                        <a href="${basepath}account/Template/profile.html" class="header-icon">
+                        <a href="${basepath}account/Template/profile.html">
                             <i class="fa-regular fa-user text-body px-1"></i>
                         </a>
-                        <div id="account" class="d-none d-lg-flex flex-column">
+                        <div id="account" class="d-none d-xl-flex flex-column">
                             <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>Account</b></a>
                             <div class="d-flex">
                                 <a href="${basepath}auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
@@ -144,18 +144,18 @@ export function header(){
                             </div>
                         </div>
                         <!-- Heart icon -->
-                        <a href="${basepath}wishlist/Template/wishlist.html" class="header-icon">
+                        <a href="${basepath}wishlist/Template/wishlist.html">
                             <i class="fa-regular fa-heart text-body px-1"></i>
                         </a>
                         <!-- Bag icon -->
-                        <a href="${basepath}cart/Template/cart.html" class="header-icon">
+                        <a href="${basepath}cart/Template/cart.html">
                             <i class="fa-solid fa-bag-shopping text-body px-1"></i>
                         </a>
                     </div>
                 </section>
             </div>
-            <hr class="d-none d-xl-block mx-4 my-2"/>
-            <section class="d-none d-xl-flex justify-content-between px-4">
+            <hr class="d-none d-xxl-block mx-4 my-2"/>
+            <section class="d-none d-xxl-flex justify-content-between px-4">
                 <nav>
                     <ul class="nav nav-tabs justify-content-around col-12 gap-5">
                         <li class="nav-item"><a class="nav-link text-body active" href="${basepath}home/Template/home.html">Home</a></li>
