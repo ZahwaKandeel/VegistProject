@@ -708,7 +708,14 @@
             crossorigin="anonymous"
         ></script> -->
         <script type="module">
-            import { initializeEditProduct } from "../../components/editProduct.js"
+            
+            import { initializeEditProduct } from "/component/editProduct.js";
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentProductId = parseInt(urlParams.get("id"));
+
+            console.log(currentProductId);
+
             function editProduct(id){
                 $("#editModalContainer").load(`/productDetials/Template/editProductPopup.html`,
                 function(){
@@ -720,8 +727,7 @@
                 }
                 )
             }
-            const urlParams = new URLSearchParams(window.location.search);
-            const currentProductId = parseInt(urlParams.get("id"));
+            
 
             document.getElementById("editProductBtn")?.addEventListener("click", function(){
                 editProduct(currentProductId);
@@ -729,6 +735,12 @@
             document.getElementById("editProductBtnSmall")?.addEventListener("click", function(){
                 editProduct(currentProductId);
             });
+
+initializeEditProduct();
+        </script>
+        <script>
+            
+            
         </script>
         <footer></footer>
     </body>

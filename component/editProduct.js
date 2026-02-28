@@ -1,16 +1,18 @@
-import { saveProducts } from "./Product";
+import { saveProducts } from "./Product.js";
 export function initializeEditProduct (productId){    
     
     // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     const products = JSON.parse(localStorage.getItem("products")) || [];
-    const product = products.find(p => Number(p.ID) === Number(productId));   
+    const product = products.find(p => Number(p._id) === Number(productId));   
 
-    if(!product){
-            alert("Product not found");
-            return;
-        }
 
+    // if(!product){
+    //         alert("Product not found");
+    //         return;
+    //     }
+
+    console.log(products);
     
     $("#updateName").val(product.Name);
     $("#updatePrice").val(product.Price);
