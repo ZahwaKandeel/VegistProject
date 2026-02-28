@@ -285,10 +285,6 @@ reviewForm.addEventListener("submit", function (e) {
 
     if (!productId) return;
 
-
-
-
-
     // Get form values
     const review = {
         productId: productId,
