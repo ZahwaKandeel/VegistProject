@@ -97,16 +97,6 @@ document.getElementById("lastRegistrations").innerText = dashboardData.newRegist
 
 // document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers.lastMonth.toLocaleString();
 
-
-
-
-
-
-
-
-
-
-
 // const ctx = document.getElementById('revenueChart').getContext('2d');
 
 // // Create gradient
@@ -140,70 +130,70 @@ document.getElementById("lastRegistrations").innerText = dashboardData.newRegist
 
 
 // ------------Retention Rate--------------------
-const ctx2 = document.getElementById('retentionChart').getContext('2d');
+// const ctx2 = document.getElementById('retentionChart').getContext('2d');
 
-new Chart(ctx2, {
-  type: 'bar',
-  data: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    datasets: [
-      {
-        label: 'SMEs',
-        data: [20, 35, 30, 10, 8, 12],
-        backgroundColor: '#f5ab1e',
-        borderRadius: 8,
-        borderSkipped: false,
-        stack: 'stack1'
-      },
-      {
-        label: 'Startups',
-        data: [15, 25, 20, 25, 12, 15],
-        backgroundColor: '#f2c36d',
-        borderRadius: 8,
-        borderSkipped: false,
-        stack: 'stack1'
-      },
-      {
-        label: 'Enterprises',
-        data: [25, 40, 35, 30, 18, 20],
-        backgroundColor: '#efd7aa',
-        borderRadius: 8,
-        borderSkipped: false,
-        stack: 'stack1'
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: {
-          boxWidth: 12,
-          usePointStyle: true,
-          pointStyle: 'rect'
-        }
-      },
-      tooltip: {
-        backgroundColor: '#111',
-        titleColor: '#fff',
-        bodyColor: '#fff'
-      }
-    },
-    scales: {
-      x: {
-        stacked: true,
-        grid: { display: false }
-      },
-      y: {
-        stacked: true,
-        grid: { display: false },
-        ticks: { display: false }
-      }
-    }
-  }
-});
+// new Chart(ctx2, {
+//   type: 'bar',
+//   data: {
+//     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+//     datasets: [
+//       {
+//         label: 'SMEs',
+//         data: [20, 35, 30, 10, 8, 12],
+//         backgroundColor: '#f5ab1e',
+//         borderRadius: 8,
+//         borderSkipped: false,
+//         stack: 'stack1'
+//       },
+//       {
+//         label: 'Startups',
+//         data: [15, 25, 20, 25, 12, 15],
+//         backgroundColor: '#f2c36d',
+//         borderRadius: 8,
+//         borderSkipped: false,
+//         stack: 'stack1'
+//       },
+//       {
+//         label: 'Enterprises',
+//         data: [25, 40, 35, 30, 18, 20],
+//         backgroundColor: '#efd7aa',
+//         borderRadius: 8,
+//         borderSkipped: false,
+//         stack: 'stack1'
+//       }
+//     ]
+//   },
+//   options: {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     plugins: {
+//       legend: {
+//         position: 'bottom',
+//         labels: {
+//           boxWidth: 12,
+//           usePointStyle: true,
+//           pointStyle: 'rect'
+//         }
+//       },
+//       tooltip: {
+//         backgroundColor: '#111',
+//         titleColor: '#fff',
+//         bodyColor: '#fff'
+//       }
+//     },
+//     scales: {
+//       x: {
+//         stacked: true,
+//         grid: { display: false }
+//       },
+//       y: {
+//         stacked: true,
+//         grid: { display: false },
+//         ticks: { display: false }
+//       }
+//     }
+//   }
+// });
 
  // ------------Revenue--------------------
 const ctx = document.getElementById('revenueChart').getContext('2d');
@@ -369,6 +359,25 @@ document.getElementById('monthBtn').onclick = () => updateChart('month');
 
 
 
+// let product = JSON.parse(localStorage.getItem("products"))
+// console.log(product)
+
+// product.forEach(
+
+// )
+
+let product = JSON.parse(localStorage.getItem("products"))
+
+let totalRating = 0
+
+product.forEach(item => {
+  totalRating += item._rating
+})
+
+let averageRating = totalRating / product.length
+
+console.log(averageRating)
+
 
 
 //----------------Sales Pipeline Overview and deals ---------
@@ -396,28 +405,28 @@ totalcontact:{current: contacts.length,
 }
 
 
-  
+  document.getElementById("avargerating").innerText =  averageRating.toFixed(1) + " % " ;
 
 
 // Deals Overview
 
-document.getElementById("closeDeals").innerText = getDashboardData.closeDeals;
+//document.getElementById("closeDeals").innerText = getDashboardData.closeDeals;
 
-document.getElementById("pipelineValue").innerText = "$" + (getDashboardData.pipelineValue / 1000000 ) + "M" ;
+//document.getElementById("pipelineValue").innerText = "$" + (getDashboardData.pipelineValue / 1000000 ) + "M" ;
 
-document.getElementById("conversionRate").innerText = getDashboardData.conversation + "%";
+//document.getElementById("conversionRate").innerText = getDashboardData.conversation + "%";
 
 // pipeline 
 
-document.getElementById("salesTotal").innerText = "$" + getDashboardData.salesTotal.toLocaleString() ; 
+// document.getElementById("salesTotal").innerText = "$" + getDashboardData.salesTotal.toLocaleString() ; 
 
-document.getElementById("leads").innerText = getDashboardData.pipeline.leads ;
+// document.getElementById("leads").innerText = getDashboardData.pipeline.leads ;
 
-document.getElementById("prospects").innerText = getDashboardData.pipeline.prospectts ;
+// document.getElementById("prospects").innerText = getDashboardData.pipeline.prospectts ;
 
-document.getElementById("opportunities").innerText = getDashboardData.pipeline.opporunities ;
+// document.getElementById("opportunities").innerText = getDashboardData.pipeline.opporunities ;
 
-document.getElementById("closed").innerText = getDashboardData.pipeline.closed ;
+// document.getElementById("closed").innerText = getDashboardData.pipeline.closed ;
 
 
 

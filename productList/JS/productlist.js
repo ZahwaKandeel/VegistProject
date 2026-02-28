@@ -370,60 +370,6 @@ $(".allStock").click(function () {
 
 
 
-// $(".sort-option").click(function (e) {
-//     e.preventDefault();
-
-//     const sortType = $(this).data("sort");
-
-//     let container = $("#divlayout1");
-//     let items = container.children(".cards").get();
-
-//     items.sort(function (a, b) {
-
-//         let nameA = $(a).find(".para").text().toLowerCase();
-//         let nameB = $(b).find(".para").text().toLowerCase();
-
-//         if (sortType === "az") {
-//             return nameA.localeCompare(nameB);
-//         } else {
-//             return nameB.localeCompare(nameA);
-//         }
-//     });
-
-//     $.each(items, function (index, item) {
-//         container.append(item);
-//     });
-
-//     $(".dropdown-toggle .text-secondary").text($(this).text());
-
-//     setupPagination("divlayout1", "cards", "pagination1", 16);
-// });
-// ------------------------------------------------breakkkkk--------------------------------------------------------
-// let container2 = $("#divlayout2");
-// let items2 = container2.children(".cards2").get();
-
-// items2.sort(function (a, b) {
-
-//     let nameA = $(a).find(".para").text().toLowerCase();
-//     let nameB = $(b).find(".para").text().toLowerCase();
-
-//     if (sortType === "az") {
-//         return nameA.localeCompare(nameB);
-//     } else {
-//         return nameB.localeCompare(nameA);
-//     }
-// });
-
-// $.each(items2, function (index, item) {
-//     container2.append(item);
-// });
-
-// setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-
-
-
-
 
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
@@ -524,6 +470,15 @@ $(".btnbag2").click(function(){
 
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+$("#acs").click(function(){
+
+
+ userData.sort((a, b) => a._name.localeCompare(b._name));
+
+
+
+})
 
 
 
