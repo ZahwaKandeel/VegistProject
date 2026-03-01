@@ -2,14 +2,16 @@ import { isAuth } from '../../component/isAuth.js';
 
 $(function(){
 
-const user = isAuth();
-
+const user = isAuth();  //return currentUser to compare it 
+ 
+// to show button add product if he is a seller
 if (user.role === "seller") {
     $(".sellerBtn").show();
 } else {
     $(".sellerBtn").hide();
 }
 
+// href to send user to product details page and seller to details page with edit product and remove
 const detailsPage = user?.role == "seller"
     ? "../../productDetials/Template/SellerProductDetaill.html"
     : "../../productDetials/Template/productDetails.html";
@@ -28,7 +30,7 @@ console.log(userData);
 let cards = "";
 
 userData.forEach(product => {
-
+// to append raiting to card
 function generateStars(rating){
     let stars ="";
     for (let i = 1; i<=5; i++){
@@ -40,7 +42,7 @@ function generateStars(rating){
     }
     return stars;
 }
-
+// to calc raiting
      let ratingStars = generateStars(product._rating);
   cards += `
   
@@ -104,7 +106,7 @@ document.getElementById("divlayout1").innerHTML = cards;
 let cards2 = "";
 
 userData.forEach(product => {
-
+// to append raiting to card
 function generateStars(rating){
     let stars ="";
     for (let i = 1; i<=5; i++){
@@ -116,7 +118,7 @@ function generateStars(rating){
     }
     return stars;
 }
-
+// to calc raiting
  let ratingStars = generateStars(product._rating);
 
   cards2 += `
@@ -244,8 +246,6 @@ function applyFilters(layoutClass) {
     });
 
 }
-
-
 
 
 

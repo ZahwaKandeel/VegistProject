@@ -113,6 +113,13 @@ canvas {
       border-radius: 0.5rem;
       opacity: 0.6;
     }
+    .hiegh{
+      height: 350px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      
+    }
 
 </style>
 
@@ -272,7 +279,7 @@ canvas {
 <div class="row my-2"><!--start of the row 3 -->
 
 <div class="col-12 col-md-6 col-xl-4 my-2">     <!--start of the card  -->
-      <div class="card-custom">
+      <div class="card-custom card">
         <div class="d-flex justify-content-around">
         <h5 class="mb-4">Upcoming Meetings</h5>
 
@@ -299,7 +306,7 @@ canvas {
           <div class="text-muted small">Marketing · 06:00 - 07:00</div>
         </div>
 
-        <div class="p-3 bg-light rounded">
+        <div class="p-3 bg-light rounded ">
           <strong>All Hands Meeting</strong>
           <div class="text-muted small">Manager · 06:00 - 07:00</div>
         </div>
@@ -337,13 +344,13 @@ canvas {
     <!--end of the card  -->
 <!--------------------------------------------------------------------------->
     <!-- Total Contacts -->
-   <div class="col-6 col-md-6 col-lg-4">
-      <div class="card">
+   <div class="col-6 col-md-6 col-lg-4 ">
+      <div class="card hiegh">
 
         <h6 class="text-muted">Total Contacts</h6>
         <div class="stat-number "> <span  id="totalcontact"></span> <span id="totalcontactPrecent" class="text-success fs-6 stat-change"></span></div>
         <small class="text-muted">Vs last month: <span id="lasttotalcontact"></span> </small>
-        <div class="chart-placeholder mt-3"></div>
+       
 
       </div>
     </div>
@@ -351,12 +358,12 @@ canvas {
 
 <!--------------------------------------------------------------------------->
  <!-- Product Raiting -->
-    <div class="col-6 col-md-6 col-lg-4">
-      <div class="card">
+    <div class="col-6 col-md-6 col-lg-4 ">
+      <div class="card hiegh ">
         <h6 class="text-muted">Product Raiting</h6>
         <div id="avargerating"  class="stat-number text-success"> </div>
         <small class="text-muted">Compared to Last Month</small>
-        <div class="chart-placeholder mt-3"></div>
+       
       </div>
     </div>
 <!--------------------------------------------------------------------------->
@@ -445,18 +452,7 @@ canvas {
 </div> <!--end of the row 2 -->
 <!--------------------------------------------------------------------------->
 <div class="row g-3 my-2  "> <!--start of the row 4 -->
-    <!-- Total Contacts -->
-    <!-- <div class="col-6 col-md-6 col-lg-4">
-      <div class="card">
-
-        <h6 class="text-muted">Total Contacts</h6>
-        <div class="stat-number "> <span  id="totalcontact"></span> <span id="totalcontactPrecent" class="text-success fs-6 stat-change"></span></div>
-        <small class="text-muted">Vs last month: <span id="lasttotalcontact"></span> </small>
-        <div class="chart-placeholder mt-3"></div>
-
-      </div>
-    </div> -->
-    <!-- Product Raiting -->
+  
     <!-- <div class="col-6 col-md-6 col-lg-4">
       <div class="card">
         <h6 class="text-muted">Product Raiting</h6>
@@ -498,10 +494,6 @@ canvas {
     </div>
   </div> -->
     <!--end of the row 4 -->
-
-
-
-
 
 
 </div><!--end of the container-->

@@ -366,7 +366,7 @@ document.getElementById('monthBtn').onclick = () => updateChart('month');
 
 // )
 
-let product = JSON.parse(localStorage.getItem("products"))
+let product = JSON.parse(localStorage.getItem("products")) // fetch of products to get rating 
 
 let totalRating = 0
 
