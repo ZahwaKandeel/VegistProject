@@ -3,6 +3,8 @@ import { Order } from "/models/order.js";
 
 let products = loadProducts() || [];
 let selectedProduct = null;
+let bsModal = null;
+
 
 // Load modal HTML and bind events
 document.addEventListener("DOMContentLoaded", function () {
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#modal-discount").text(selectedProduct.DiscountPercentage);
         $("#modal-category").text(selectedProduct.Category);
         $("#modal-productDescription").text(selectedProduct.Description || "No description available.");
+        
 
         // Fill sizes
         $('.sizediv').empty();
@@ -46,10 +49,35 @@ document.addEventListener("DOMContentLoaded", function () {
             `);
         });
 
+        let pricePerKg = selectedProduct.Price;
+        let selectedSize = parseFloat($('input[name="size_choice"]:checked').val());
+        // $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+
+        $(document).on('change', 'input[name="size_choice"]', function () {
+            selectedSize = parseFloat($(this).val());
+            $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+
+            function getFinalPrice(products) {
+                const price = Number(products._price);
+                const discount = Number(products._discountPercentage) || 0;
+
+                if (discount > 0) {
+                    const discounted = price - (price * (discount / 100));
+                    return Math.max(0, discounted);
+                }
+                return price;
+            }
+            const finalPrice = getFinalPrice(products);
+            const discoutedPrice = (finalPrice).toFixed(2)
+            ("#modal-productAfterDiscount").text(discoutedPrice);
+
+        });
+
         // Show the modal
         const modalEl = container.querySelector(".modal");
         const bsModal = new bootstrap.Modal(modalEl);
         bsModal.show();
+
     });
 });
 
