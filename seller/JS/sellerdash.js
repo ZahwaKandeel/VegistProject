@@ -13,12 +13,17 @@ const monthly = SalesReport.getMonthly();
 const recentSales = RecentSale.getDummyList();
 const topSellingItem = TopSellingItem.getDummyList();
 
-const order = localStorage.getItem("currentOrder");
+const doneOrders = JSON.parse(localStorage.getItem("doneOrders")) || [];
+const users = JSON.parse(localStorage.getItem("Users")) || [];
+const seller = users.find(u => u.id === sellerId);
+const sellerId = seller;
+const totalEarnings = sellerOrders.reduce((sum, order) => sum + order.total, 0);
 
 $(function(){
-    $("#totalEarnings h3").html("&pound;"+stats.totalEarnings.toLocaleString());
+
+    $("#totalEarnings h3").html("&pound;"+totalEarnings.toLocaleString());
     $("#totalEarnings span").html(stats.earningsChange+"%");
-    $("#totalOrders h3").html(stats.totalOrders);
+    $("#totalOrders h3").html(sellerOrders.length);
     $("#totalOrders span").html(stats.ordersChange+"%");
     $("#revenueGrowth h3").html(stats.revenueGrowth+"%");
     $("#conversionRate h3").html(stats.conversionRate+"%");
@@ -111,19 +116,21 @@ $(function(){
 
 
 
-    recentSales.forEach(sale =>{
-        const row = `
-            <tr>
-                <td>${sale.orderId}</td>
-                <td>${sale.customer}</td>
-                <td>${sale.product}</td>
-                <td>${sale.amount}</td>
-                <td>${sale.payment}</td>
-                <td>${sale.status}</td>
-            </tr>
-        `;
-        $("#RecentSales tbody").append(row);
-    });
+    sellerOrders.sort((a,b) => new Date(b.createdAt)- new Date(a.createdAt))
+                .slice(0,5)
+                .forEach(order =>{
+                    const row = `
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>Customer #${order.customerId}</td>
+                        <td>${order.orderDetail.cart.length} items</td>
+                        <td>£${order.total}</td>
+                        <td>${order.payment}</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+                    `;
+                    $("#RecentSales tbody").append(row);
+                });
 
     topSellingItem.forEach(sale =>{
         const row = `

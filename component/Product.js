@@ -66,7 +66,7 @@ export class Product{
     
     set Description(description)
     {
-        if(description.length<100)
+        if(description.length<70)
             throw new Error("Description must be at least 100 characters")
         this._description = description;
     }
@@ -144,7 +144,7 @@ export class Product{
                 throw new Error("Each review must be an object");
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
-            const {uid = currentUser, title, rating, comment} = review;
+            const {uid = currentUser.id, title, rating, comment} = review;
             if((uid == null ) || (title == review) || (rating == review) || (comment == review))
                 throw new Error("Review must contain userId, title, rating and comment properties");
             if(typeof title !== "string" || title.trim().length<5)
@@ -153,7 +153,7 @@ export class Product{
                 throw new Error("UserId invalid");
             if(typeof rating !== "number" || rating.length<0)
                 throw new Error("Rating invalid")
-            if(typeof comment !== "string" || comment.trim().length<50)
+            if(typeof comment !== "string" || comment.trim().length<20)
                 throw new Error("Comment length must be at least 50 characters");
         });
         this._reviews = reviews;
