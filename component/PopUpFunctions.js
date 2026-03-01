@@ -5,80 +5,79 @@ let products = loadProducts() || [];
 let selectedProduct = null;
 let bsModal = null;
 
-
-// Load modal HTML and bind events
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("quickViewModal");
 
     fetch("/component/quickViewModal.html")
     .then(response => response.text())
     .then(data => {
-        container.innerHTML = data;
+        container.innerHTML = data; // modal HTML is now in DOM
+
+        // Initialize the Bootstrap modal AFTER it's in the DOM
+        const modalEl = container.querySelector(".modal");
+        if (modalEl) {
+            bsModal = new bootstrap.Modal(modalEl, {
+                backdrop: true
+            });
+        }
 
         // Bind Buy It Now click AFTER the modal exists
         $(container).on('click', '#modal-BuyItNow', function () {
-            console.log("BUY BUTTON CLICKED"); // Debug
             buyItNow();
             window.location.href = "../../checkOut/Template/checkOut.html";
         });
-    });
 
-    // Bind the eye icon to open the modal
-    $(document).on('click', '.fa-eye', function() {
-        const cardId = parseInt($(this).closest(".cards").attr("id"));
-        selectedProduct = products.find(p => p.ID === cardId);
-        if (!selectedProduct) return;
+        // Bind the eye icon to open the modal
+        $(document).on('click', '.fa-eye', function() {
+            const cardId = parseInt($(this).closest(".cards").attr("id"));
+            selectedProduct = products.find(p => p.ID === cardId);
+            if (!selectedProduct) return;
 
-        // Fill modal info
-        $("#modal-productImage").attr("src", selectedProduct.ImageUrl);
-        $("#modal-name").text(selectedProduct.Name);
-        $("#modal-productPrice").text(`€${selectedProduct.Price}`);
-        $("#modal-productStock").text(selectedProduct.Stock);
-        $("#modal-discount").text(selectedProduct.DiscountPercentage);
-        $("#modal-category").text(selectedProduct.Category);
-        $("#modal-productDescription").text(selectedProduct.Description || "No description available.");
-        
+            // Fill modal info
+            $("#modal-productImage").attr("src", selectedProduct.ImageUrl);
+            $("#modal-name").text(selectedProduct.Name);
+            $("#modal-productPrice").text(`€${selectedProduct.Price}`);
+            $("#modal-productStock").text(selectedProduct.Stock);
+            $("#modal-discount").text(selectedProduct.DiscountPercentage);
+            $("#modal-category").text(selectedProduct.Category);
+            $("#modal-productDescription").text(selectedProduct.Description || "No description available.");
 
-        // Fill sizes
-        $('.sizediv').empty();
-        selectedProduct.Sizes.forEach((item, index) => {
-            let sizeId = `size_${index}`;
-            $('.sizediv').append(`
-                <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
-                <label class="btn ${index === 0 ? "btn-warning text-white" : "btn-outline-warning"} rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
-            `);
-        });
+            // Fill sizes
+            $('.sizediv').empty();
+            selectedProduct.Sizes.forEach((item, index) => {
+                let sizeId = `size_${index}`;
+                $('.sizediv').append(`
+                    <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
+                    <label class="btn ${index === 0 ? "btn-warning text-white" : "btn-outline-warning"} rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
+                `);
+            });
 
-        let pricePerKg = selectedProduct.Price;
-        let selectedSize = parseFloat($('input[name="size_choice"]:checked').val());
-        // $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
-
-        $(document).on('change', 'input[name="size_choice"]', function () {
-            selectedSize = parseFloat($(this).val());
-            $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
-
-            function getFinalPrice(products) {
-                const price = Number(products._price);
-                const discount = Number(products._discountPercentage) || 0;
-
-                if (discount > 0) {
-                    const discounted = price - (price * (discount / 100));
-                    return Math.max(0, discounted);
-                }
-                return price;
+            // Set prices (your existing code)
+            let pricePerKg = selectedProduct.Price;
+            let selectedSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
+            function getFinalPrice(selectedSize) {
+                const price = Number(selectedProduct.Price);
+                const discount = Number(selectedProduct.DiscountPercentage) || 0;
+                let total = price * selectedSize;
+                if (discount > 0) total = total - (total * (discount / 100));
+                return Math.max(0, total);
             }
-            const finalPrice = getFinalPrice(products);
-            const discoutedPrice = (finalPrice).toFixed(2)
-            ("#modal-productAfterDiscount").text(discoutedPrice);
 
+            $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+            $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+
+            // Update prices when size changes
+            $(document).on('change', 'input[name="size_choice"]', function () {
+                selectedSize = parseFloat($(this).val()) || 1;
+                $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+                $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+            });
+
+            // Show the modal
+            if (bsModal) bsModal.show();
         });
 
-        // Show the modal
-        const modalEl = container.querySelector(".modal");
-        const bsModal = new bootstrap.Modal(modalEl);
-        bsModal.show();
-
-    });
+    }); // end fetch
 });
 
 //Quantity Plus/Minus
