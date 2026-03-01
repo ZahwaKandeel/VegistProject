@@ -121,9 +121,9 @@
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
         $(document).ready(function(){
-            if(!currentUser || currentUser.role !== "seller"){
+            /*if(!currentUser || currentUser.role !== "seller"){
                 alert("Only Sellers can create products");
-            }
+            }*/
             const sellerId = currentUser.id;
             const allowedCategories = [
                 "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"

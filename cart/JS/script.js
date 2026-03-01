@@ -304,7 +304,7 @@ function checkFreeShipping(subtotal) {
         $(".progress-bar").css("width", `100%`);
         $(".shipping-text").text("Congratulations, you've got free shipping!");
     } else {
-        $(".shipping-text").text(`Spend €${100 - subtotal} more and get free shipping!`);
+        $(".shipping-text").text(`Spend €${(100 - subtotal.toFixed(2))} more and get free shipping!`);
     }
 }
 

@@ -3,7 +3,7 @@
 //get the product will be removed
 //filter it from other products
 //update to set the remained products
-function deleteProductById(id) {
+export function deleteProductById(id) {
 
   let products = JSON.parse(localStorage.getItem("products")) || [];
   const updatedProducts = products.filter(product => product._id !== Number(id));
