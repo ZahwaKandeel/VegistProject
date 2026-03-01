@@ -185,7 +185,7 @@ $(function() {
                         ${
                             finalPrice < originalPrice
                             ? `
-                                <del><i class="text-warning">$${totalFinalPrice.toFixed(2)}</i></del>
+                                <del><i class="text-warning">$${totalOriginalPrice.toFixed(2)}</i></del>
                                 <span>$${totalFinalPrice.toFixed(2)}</span>
                             `
                             : `
@@ -210,7 +210,7 @@ $(function() {
 })
 
 
-$("form").on("submit", function(e) {
+$("discountFrom").on("submit", function(e) {
     e.preventDefault();
     const discountCode = $("input[type='text']").val().trim();
     const discountList = plainOrder.discount_codes_list;
