@@ -9,25 +9,23 @@ let products = loadProducts() || [];
 
 // Get the product ID from the URL
 const params = new URLSearchParams(window.location.search)
-const idParam = params.get("id");
+const idParam = Number(params.get("id"));
+
 let selectedSize = 1;
-
 let pricePerKg = 0;
-
 let finalPricePerKg = 0;
 let product = null;
-let productId = null;
+
+
 if (idParam === null) {
     console.log("No product ID found in URL");
 } else {
-
-    productId = Number(idParam);
 
     if (products.length === 0) {
         console.log("No products found in localStorage");
     } else {
 
-        product = products.find(p => p._id === productId); 
+        product = products.find(p => p._id === idParam); 
 
         if (!product) {
             console.log("Product not found");
@@ -39,9 +37,7 @@ if (idParam === null) {
             document.getElementById("productDescription").textContent = product.Description;
             document.getElementById("productSKU").textContent = product._id;
             document.getElementById("category").textContent = product.Category;
-
             document.getElementById("table-productsize").textContent = product.Sizes.join(" - ");
-
             document.getElementById("moreDetail").textContent = product.Description;
             document.getElementById("table-productCategory").textContent = product.Category;
             document.getElementById("table-productSKU").textContent = product._id;
@@ -83,7 +79,6 @@ if (idParam === null) {
             }else{
                 productafterDiscount.text(finalPrice);
             }
-
 
         // Wishlist
         $(document).ready(function () {
@@ -150,7 +145,7 @@ if (idParam === null) {
             let currentOrder = new Order({
                 id: Date.now(),
                 sellerId: 1,
-                cart: [{ product_id: productId, quantity: value, size: selectedSize, price: pricePerKg }],
+                cart: [{ product_id: idParam, quantity: value, size: selectedSize, price: pricePerKg }],
                 createdAt: new Date(),
                 shipping: {
                     fristName: "",
@@ -171,7 +166,6 @@ if (idParam === null) {
             localStorage.setItem("currentOrder", JSON.stringify(currentOrder));
             console.log(currentOrder);
         }
-
         $(document).ready(function () {
             $('#buyItNow').on('click', function() {
                 buyItNow();
@@ -253,9 +247,10 @@ if (idParam === null) {
             addToCart(product._id, 1, product.Sizes[0]);
         });
 
-        //Stars Rating
+        //Stars Rating inside review
         const stars = document.querySelectorAll(".star");
         const ratingInput = document.getElementById("reviewRating");
+
         stars.forEach(star => {
             star.addEventListener("click", function () {
                 const value = this.getAttribute("data-value");
@@ -275,49 +270,61 @@ if (idParam === null) {
             });
         });
 		
+        // get currentuser email and name
 		const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-		const userEmail = currentUser.email;
+        const userEmail = currentUser.email;
 		const userName = currentUser.firstName;
+		
+        // Find current product
+        const currentProduct = products.find(p => p._id === Number(idParam));
+        
+        //Get existing reviews
+        const reviews = currentProduct._reviews;
 
-		document.getElementById("reviewName").value = userName;
+        document.getElementById("reviewName").value = userName;
 		document.getElementById("reviewEmail").value = userEmail;
+        
+        let review_rating ;
+        const Productsreview = products._reviews; 
 
         //Save the review
         const reviewForm = document.getElementById("reviewForm");
+
         reviewForm.addEventListener("submit", function (e) {
             e.preventDefault();
+            if (!idParam) return;
 
-            // Get current product id from URL
-            const params = new URLSearchParams(window.location.search);
-            const productId = params.get("id");
-
-            if (!productId) return;
+            let userTitle = document.getElementById("reviewTitle").value;
+            let userRating = Number(document.getElementById("reviewRating").value);
+            let userContent = document.getElementById("reviewContent").value;
 
             // Get form values
             const review = {
-                productId: productId,
-                rating: document.getElementById("reviewRating").value,
-                title: document.getElementById("reviewTitle").value,
-                content: document.getElementById("reviewContent").value,
-                name: document.getElementById("reviewName").value = userName,
-				email: document.getElementById("reviewEmail").value = userEmail,
+                userId: currentUser.id, 
+                title: userTitle,
+                rating:userRating,
+                comment: userContent,
+                name: userName,
+                email: userEmail,
                 date: new Date().toLocaleDateString()
             };
 
+            review_rating = review.rating;
+            console.log("review_rating", review_rating)
+
             // Basic validation
-            if (!review.rating || !review.title || !review.content || !review.name || !review.email) {
-                alert("Please fill all fields and select rating.");
-                return;
+            console.log("set reviq",review);
+            if(!review.rating || !review.title || !review.comment || !review.name || !review.email){
+                alert("All fields must be filled");
+                return
             }
-
-            // Get existing reviews
-            let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-
-            // Add new review
+            
+           // Push review inside product
             reviews.push(review);
+            localStorage.setItem("Productsreview", JSON.stringify(reviews));
 
-            // Save back
-            localStorage.setItem("reviews", JSON.stringify(reviews));
+            // Save updated products back
+            saveProducts(products);
 
             // Reset form
             reviewForm.reset();
@@ -330,28 +337,54 @@ if (idParam === null) {
 
             // Reload reviews display
             displayReviews();
+
+            
         });
 
+        //product rating 
+         if (currentProduct) {
+                
+                let rating;
+                if (reviews.length > 0) {
+
+                    let total = 0;
+
+                    reviews.forEach(review => {
+                        total += review.rating;
+                    });
+                    rating = Number((total / reviews.length).toFixed(2));
+
+                } else {
+                    rating = 0;
+                }
+
+                currentProduct._rating = rating;
+
+                const divstars = $(".getRating");
+                divstars.empty();
+
+                for (let i = 0; i < 5; i++) {
+                    if (i < Math.floor(rating))
+                        divstars.append(`<i class="bi bi-star-fill"></i>`);
+                    else
+                        divstars.append(`<i class="bi bi-star"></i>`);
+                }
+
+                
+        }
+        
         //Display saved reviews
         function displayReviews() {
 
             const container = document.getElementById("reviewsContainer");
             container.innerHTML = "";
 
-            const params = new URLSearchParams(window.location.search);
-            const productId = params.get("id");
-
-            let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-
-            // Filter reviews for current product
-            const productReviews = reviews.filter(r => r.productId === productId);
-
-            if (productReviews.length === 0) {
+            if (reviews.length === 0) {
                 container.innerHTML = "<p class='text-center text-muted'>No reviews yet.</p>";
                 return;
             }
 
-            productReviews.forEach(r => {
+            reviews.forEach(r => {
 
                 let starsHTML = "";
                 for (let i = 0; i < 5; i++) {
@@ -366,7 +399,7 @@ if (idParam === null) {
                     <div class="mb-4">
                         <h5>${r.title}</h5>
                         <div>${starsHTML}</div>
-                        <p class="mt-2">${r.content}</p>
+                        <p class="mt-2">${r.comment}</p>
                         <small class="text-muted">By ${r.name} on ${r.date}</small>
                         <hr>
                     </div>
@@ -377,5 +410,6 @@ if (idParam === null) {
         document.addEventListener("DOMContentLoaded", function () {
             displayReviews();
         });
+
     }
 }}
