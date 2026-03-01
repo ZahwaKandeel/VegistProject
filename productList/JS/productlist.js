@@ -51,8 +51,14 @@ function generateStars(rating){
   <div class="   position-relative "> 
 
 <div class=" card position-relative ">
+    
    <a class="position-relative" href="${detailsPage}?id=${product._id}">
         <img src="${product._imageUrl}" class="w-100 main-img ">
+        <!-- Show discount badge if exists -->
+        ${product._discountPercentage ? `
+        <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
+            ${product._discountPercentage}%
+        </div>` : ``}
       </a>
   
 
@@ -130,6 +136,11 @@ function generateStars(rating){
 <div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
   <a href="${detailsPage}?id=${product._id}">
         <img src="${product._imageUrl}" class="w-100 main-img object-fit-cover h-100">
+        <!-- Show discount badge if exists -->
+        ${product._discountPercentage ? `
+        <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
+            ${product._discountPercentage}%
+        </div>` : ``}
       </a>
     
     
@@ -256,13 +267,16 @@ function applyFilters(layoutClass) {
 
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
-$(".discountBtn").on("click", function () {
-
-    activeFilters.discountOnly = !activeFilters.discountOnly;
-
-
-    applyFilters("cards");
-setupPagination("divlayout1", "cards", "pagination1", 16);
+$(function(){
+    const discount = localStorage.getItem("discountOnly");
+    
+    if (discount === "true") {
+        activeFilters.discountOnly = true;
+        applyFilters("cards");
+        setupPagination("divlayout1", "cards", "pagination1", 16);
+    
+        localStorage.removeItem("discountOnly");
+    }
 });
 // --------------------------------filter by Category  --------------------------------
 
@@ -528,7 +542,6 @@ $("#acs").click(function () {
   cards.sort(function (a, b) {
     let nameA = $(a).find(".para").text().toLowerCase();
     let nameB = $(b).find(".para").text().toLowerCase();
-
     return nameA.localeCompare(nameB);
   });
 
@@ -537,6 +550,23 @@ $("#acs").click(function () {
   });
 
 });
+
+$("#acs").click(function () {
+
+  let cards = $(".cards2").get();
+
+  cards.sort(function (a, b) {
+    let nameA = $(a).find(".para").text().toLowerCase();
+    let nameB = $(b).find(".para").text().toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
+
+  $.each(cards, function (index, card) {
+    $("#divlayout2").append(card);
+  });
+
+});
+
 $("#decs").click(function () {
 
   let cards = $(".cards").get();
@@ -550,6 +580,23 @@ $("#decs").click(function () {
 
   $.each(cards, function (index, card) {
     $("#divlayout1").append(card);
+  });
+
+});
+
+$("#decs").click(function () {
+
+  let cards = $(".cards2").get();
+
+  cards.sort(function (a, b) {
+    let nameA = $(a).find(".para").text().toLowerCase();
+    let nameB = $(b).find(".para").text().toLowerCase();
+
+    return nameB.localeCompare(nameA);
+  });
+
+  $.each(cards, function (index, card) {
+    $("#divlayout2").append(card);
   });
 
 });

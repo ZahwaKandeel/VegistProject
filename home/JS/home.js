@@ -1,5 +1,6 @@
 $(function(){
     $(".shopnow").click(function(){
+        localStorage.setItem("discountOnly", "true");
         window.location.href = "/productList/Template/product_list.html"
     });    
 });
@@ -51,7 +52,12 @@ function createProductCard(products){
                 <img src="${products._imageUrl}"
                     class="img-fluid w-100 main-img"/>
                 <img src="${products._imageUrl}"
-                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>    
+                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>
+                    <!-- Show discount badge if exists -->
+                    ${products._discountPercentage ? `
+                        <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
+                            ${products._discountPercentage}%
+                        </div>` : ``}    
             </div>
             <div class="icons position-absolute start-50 translate-middle-x d-flex gap-2">
                 <span class="" id="iconbtns">
@@ -117,7 +123,6 @@ $(document).ready(function(){
     $(document).on("click", ".cards", function(e){
         if($(e.target).closest(".icon").length) return;
         const productId = $(this).attr("id");
-        window.location.href = `/productDetials/Template/productDetails.html?id=${productId}`;
     })
 });
 
