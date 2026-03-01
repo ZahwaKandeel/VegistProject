@@ -174,7 +174,7 @@ export function header(){
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link text-body dropdown-toggle data-bs-toggle="dropdown">Pages</a>
+                        <li class="nav-item dropdown"><a class="nav-link text-body dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/home/Template/home.html">Home</a></li>
                                 <li><a class="dropdown-item" href="/productList/Template/product_list.html">Catalog</a></li>

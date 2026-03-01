@@ -5,18 +5,8 @@ import { Order } from "/models/order.js";
 let products = loadProducts() || [];
 
 // Get the product ID from the URL
-<<<<<<< HEAD
-const params = new URLSearchParams(window.location.search);
-const productId = parseInt(params.get("id")); // URL like ?id=1
-
-let selectedSize = 1;
-let pricePerKg = 0;
-let finalPricePerKg = 0;
-
-=======
 const params = new URLSearchParams(window.location.search)
 const idParam = params.get("id");
->>>>>>> 380b47d5f10a61b7efdbc92b51d2b13adb6bd6fd
 let product = null;
 let productId = null;
 if (idParam === null) {
@@ -31,191 +21,8 @@ if (idParam === null) {
 
         product = products.find(p => p._id === productId); 
 
-<<<<<<< HEAD
-    // Carousel images
-    const carouselImages = document.querySelectorAll("#carouselVeg img");
-    carouselImages.forEach(img => img.src = product.ImageUrl);
-
-    // Thumbnail images
-    const thumbImages = document.querySelectorAll(".d-flex.justify-content-evenly img");
-    thumbImages.forEach(img => img.src = product.ImageUrl);
-
-    // Discount info
-    const priceContainer = document.getElementById("productPrice");
-    function getFinalPrice(product) {
-        const price = Number(product._price);
-        const discount = Number(product._discountPercentage) || 0;
-
-        if (discount > 0) {
-            const discounted = price - (price * (discount / 100));
-            return Math.max(0, discounted);
-        }
-        return price;
-    }
-    const finalPrice = getFinalPrice(product);
-
-    finalPricePerKg = finalPrice;     // discounted 1KG price
-    pricePerKg = finalPricePerKg;     // initial price per KG
-
-    const productafterDiscount = $("#productAfterDiscount");
-    const productPrice = $("#productPrice");
-    const originalPrice = product._price;
-
-    if(finalPrice < originalPrice){
-        productafterDiscount.text(finalPrice);
-        productPrice.text(originalPrice);
-    }else{
-        productafterDiscount.text(finalPrice);
-    }
-}
-
-// Wishlist
-$(document).ready(function () {
-    $('.bi-heart').on('click', function(e) {
-        e.preventDefault();
-        if (product) {
-            addToWishlist(product.ID);
-            window.location.href = "../../wishlist/Template/wishlist.html";
-        }
-    });
-});
-
-// Quantity
-let value = parseInt($('#quantityValue').val());
-
-$(document).on('click', '.qty-plus', function () {
-    value++;
-    $('.qty-input').val(value);  
-    calculateSubTotal();
-});
-
-$(document).on('click', '.qty-minus', function () {
-    if (value > 1) value--;
-    $('.qty-input').val(value);
-    calculateSubTotal();
-});
-
-// Add to Cart
-$(document).ready(function () {
-    $('#addToCart').on('click', function(e) {
-        e.preventDefault();
-        if (product) {
-            let quantity = parseInt($('#quantityValue').val());
-            let selectedSize = $('input[name="size_choice"]:checked').val();
-            let totalPrice = pricePerKg * quantity;
-            addToCart(product.ID, quantity, selectedSize);
-            window.location.href = "../../cart/Template/cart.html";
-        }
-    });
-});
-
-// Remove product (Seller page)
-$(document).ready(function () {
-    $('#removeProduct1').on('click', function(e) {
-        e.preventDefault();
-        if (product) {
-            deleteProductById(product.ID);
-            window.location.href = "../../seller/Template/sellerdash.html";
-        }
-    });
-});
-
-// Subtotal
-let total;
-function calculateSubTotal(){
-    total = pricePerKg * value;
-    return total;
-}
-
-// Buy it now
-function buyItNow(){
-    let quantity = parseInt($('#quantityValue').val()) || 1;
-    let subtotal = pricePerKg * quantity;
-
-    let currentOrder = new Order({
-        id: Date.now(),
-        sellerId: 1,
-        cart: [{ product_id: productId, quantity: value, size: selectedSize, price: pricePerKg }],
-        createdAt: new Date(),
-        shipping: {
-            fristName: "",
-            lastName: "",
-            phone: "",
-            country:  "",
-            fullAddress: "",
-            appartment: "",
-            postalCode: "",
-            City: "",
-            shipping_fees: null
-        },
-        subtotal: total,
-        discount_code:  "",
-        special_instructions: ""
-    });
-
-    localStorage.setItem("currentOrder", JSON.stringify(currentOrder));
-    console.log(currentOrder);
-}
-
-$(document).ready(function () {
-    $('#buyItNow').on('click', function() {
-        buyItNow();
-        window.location.href = "../../checkOut/Template/checkOut.html";
-    });
-});
-
-// Sizes
-$('.sizediv').empty();
-product.Sizes.forEach((item, index) => {
-    let sizeId = `size_${index}`;
-    $('.sizediv').append(`
-        <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
-        <label class="btn btn-outline-warning rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
-    `);
-});
-
-// Update price when size changes
-$(document).on('change', 'input[name="size_choice"]', function () {
-
-    selectedSize = parseFloat($(this).val());
-
-    let originalPrice = Number(product._price);
-
-    let newOriginalPrice = selectedSize * originalPrice;
-    let newAfterDiscount = selectedSize * finalPricePerKg;
-
-    //update global pricePerKg (price of selected size)
-    pricePerKg = finalPricePerKg * selectedSize;
-
-    if (product._discountPercentage > 0) {
-        $("#productAfterDiscount").text(newAfterDiscount.toFixed(2));
-        $("#productPrice").text(newOriginalPrice.toFixed(2));
-        $("#discount").text(product._discountPercentage + "%");
-    } else {
-        $("#productAfterDiscount").text(newAfterDiscount.toFixed(2));
-        $("#productPrice").text("");
-        $("#discount").text("");
-    }
-});
-
-// Related products
-function loadRelatedProducts() {
-    if (!product || products.length === 0) return;
-
-    let related = products.filter(p => p.ID !== product.ID);
-    let cards = $(".cards");
-
-    cards.each(function (index) {
-        if (index < related.length) {
-            let p = related[index];
-            $(this).attr("data-id", p.ID).show();
-            $(this).find(".main-img").attr("src", p.ImageUrl);
-            $(this).find(".para").text(p.Name).attr("href", `productDetails.html?id=${p.ID}`);
-            $(this).find(".fw-bold").text(`€${p.Price}`);
-=======
         if (!product) {
             console.log("Product not found");
->>>>>>> 380b47d5f10a61b7efdbc92b51d2b13adb6bd6fd
         } else {
             // Fill main product info
             document.getElementById("name").innerText = product._name;
@@ -324,19 +131,6 @@ function loadRelatedProducts() {
             return total;
         }
 
-<<<<<<< HEAD
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const userEmail = currentUser.email;
-    const userName = currentUser.firstName;
-
-    document.getElementById("reviewName").value = userName;
-    document.getElementById("reviewEmail").value = userEmail;
-
-//Save the review
-const reviewForm = document.getElementById("reviewForm");
-reviewForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-=======
         // Buy it now
         function buyItNow(){
             let currentOrder = new Order({
@@ -359,7 +153,6 @@ reviewForm.addEventListener("submit", function (e) {
                 discount_code:  "",
                 special_instructions: ""
             });
->>>>>>> 380b47d5f10a61b7efdbc92b51d2b13adb6bd6fd
 
             localStorage.setItem("currentOrder", JSON.stringify(currentOrder));
             console.log(currentOrder);
@@ -372,22 +165,6 @@ reviewForm.addEventListener("submit", function (e) {
             });
         });
 
-<<<<<<< HEAD
-
-
-
-
-    // Get form values
-    const review = {
-        productId: productId,
-        rating: document.getElementById("reviewRating").value,
-        title: document.getElementById("reviewTitle").value,
-        content: document.getElementById("reviewContent").value,
-        name: document.getElementById("reviewName").value = userName,
-        email: document.getElementById("reviewEmail").value = userEmail,
-        date: new Date().toLocaleDateString()
-    };
-=======
         // Sizes
         $('.sizediv').empty();
         product.Sizes.forEach((item, index) => {
@@ -397,7 +174,6 @@ reviewForm.addEventListener("submit", function (e) {
                 <label class="btn btn-outline-warning rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
             `);
         });
->>>>>>> 380b47d5f10a61b7efdbc92b51d2b13adb6bd6fd
 
         // Related products
         function loadRelatedProducts() {
