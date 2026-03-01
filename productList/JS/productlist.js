@@ -46,7 +46,7 @@ function generateStars(rating){
      let ratingStars = generateStars(product._rating);
   cards += `
   
-<div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}">
+<div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" data-discountPercentage="${product._discountPercentage}">
 <!--div of card 1 -->
   <div class="   position-relative "> 
 
@@ -122,7 +122,7 @@ function generateStars(rating){
  let ratingStars = generateStars(product._rating);
 
   cards2 += `
-<div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" > <!--div of card 1  with icons   -->
+<div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" data-discountPercentage="${product._discountPercentage}" > <!--div of card 1  with icons   -->
 
 <div     class="    row  "  > <!--container card with icons     -->
 
@@ -193,7 +193,8 @@ let activeFilters = {
     category: null,
     stock: null,
     sizes: [],
-    maxPrice: null
+    maxPrice: null,
+     discountOnly: false
 };
 
 function applyFilters(layoutClass) {
@@ -204,6 +205,7 @@ function applyFilters(layoutClass) {
         const stock = $(this).data("stock");
         const price = parseFloat($(this).data("price"));
         const sizes = JSON.parse($(this).attr("data-size"));
+        const discount = parseFloat($(this).data("discountpercentage")) 
 
         let show = true;
 
@@ -235,6 +237,10 @@ function applyFilters(layoutClass) {
             if (!hasMatch) show = false;
         }
 
+        if (activeFilters.discountOnly && discount <= 0) {
+    show = false;
+}
+
 
 
         if (show) {
@@ -250,10 +256,19 @@ function applyFilters(layoutClass) {
 
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
+$(".discountBtn").on("click", function () {
 
+    activeFilters.discountOnly = !activeFilters.discountOnly;
+
+
+    applyFilters("cards");
+setupPagination("divlayout1", "cards", "pagination1", 16);
+});
 // --------------------------------filter by Category  --------------------------------
 
   
+
+
 $('input[name="categories"]').on('change', function () {
 
     const selectedCategory = $(this).val();
