@@ -95,15 +95,14 @@ if (idParam === null) {
         let value = parseInt($('#quantityValue').val());
 
         $(document).on('click', '.qty-plus', function () {
+            if (value >= product.Stock) return;
             value++;
             $('.qty-input').val(value);  
-            // calculateSubTotal();
         });
 
         $(document).on('click', '.qty-minus', function () {
             if (value > 1) value--;
             $('.qty-input').val(value);
-            // calculateSubTotal();
         });
 
         // Add to Cart
@@ -112,6 +111,7 @@ if (idParam === null) {
                 e.preventDefault();
                 if (product) {
                     let quantity = parseInt($('#quantityValue').val());
+                    if (quantity > product.Stock) return; 
                     let selectedSize = $('input[name="size_choice"]:checked').val();
 					let totalPrice = pricePerKg * quantity;
                     addToCart(product._id, quantity, selectedSize);
@@ -169,6 +169,7 @@ if (idParam === null) {
         }
         $(document).ready(function () {
             $('#buyItNow').on('click', function() {
+                if (quantity > product.Stock) return; 
                 buyItNow();
                 window.location.href = "../../checkOut/Template/checkOut.html";
             });
@@ -411,8 +412,5 @@ if (idParam === null) {
         document.addEventListener("DOMContentLoaded", function () {
             displayReviews();
         });
-
-
-        //test
     }
 }}

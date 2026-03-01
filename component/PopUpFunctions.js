@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Bind Buy It Now click AFTER the modal exists
         $(container).on('click', '#modal-BuyItNow', function () {
+            if (quantity > product.Stock) return; 
             buyItNow();
             window.location.href = "../../checkOut/Template/checkOut.html";
         });
@@ -83,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //Quantity Plus/Minus
 // Quantity Plus
 $(document).on('click', '.modal-qty-plus', function () {
+    if (value >= product.Stock) return;
     let value = parseInt($('#modal-quantityValue').val()) || 1;
     value++;
     $('#modal-quantityValue').val(value);
@@ -103,7 +105,7 @@ $(document).on('click', '#modal-addToCart', function(e) {
 
     let quantity = parseInt($('#modal-quantityValue').val()) || 1;
     let selectedSize = $('input[name="size_choice"]:checked').val();
-
+    if (quantity > product.Stock) return; 
     addToCart(selectedProduct.ID, quantity, selectedSize);
 
     window.location.href = "../../cart/Template/cart.html";
