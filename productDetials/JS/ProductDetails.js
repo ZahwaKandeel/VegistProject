@@ -97,13 +97,13 @@ if (idParam === null) {
         $(document).on('click', '.qty-plus', function () {
             value++;
             $('.qty-input').val(value);  
-            calculateSubTotal();
+            // calculateSubTotal();
         });
 
         $(document).on('click', '.qty-minus', function () {
             if (value > 1) value--;
             $('.qty-input').val(value);
-            calculateSubTotal();
+            // calculateSubTotal();
         });
 
         // Add to Cart
@@ -137,6 +137,7 @@ if (idParam === null) {
             total = pricePerKg * value;
             return total;
         }
+        calculateSubTotal();
 
         // Buy it now
         function buyItNow(){
@@ -158,7 +159,7 @@ if (idParam === null) {
                     City: "",
                     shipping_fees: null
                 },
-                subtotal: total,
+                subtotal: subtotal,
                 discount_code:  "",
                 special_instructions: ""
             });
