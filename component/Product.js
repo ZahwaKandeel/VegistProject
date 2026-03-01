@@ -102,8 +102,9 @@ export class Product{
     set ImageUrl(imageUrl)
     {
         const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
+        const relativePattern = /^(\.{1,2}\/.*\.(png|jpg|jpeg|webp))$/i;
         const base64Pattern = /^data:image\/(png|jpg|jpeg|webp);base64,/i;
-        if(!urlPattern.test(imageUrl) && !base64Pattern.test(imageUrl))
+        if(!urlPattern.test(imageUrl) && !relativePattern.test(imageUrl) && !base64Pattern.test(imageUrl))
             throw new Error("Invalid image URL or Base64 image");
         this._imageUrl = imageUrl;
     }

@@ -72,7 +72,7 @@ export const dummyProducts = [
 
     new Product(1,1,"Classic Bagel",25,
     "A delicious freshly baked bagel made from high quality wheat flour and natural ingredients. Perfect for breakfast with cream cheese and jam for a delightful start to your day.",
-    0,"bagel","https://picsum.photos/200/300?1.jpg",
+    0,"bagel","https://github.com/ZahwaKandeel/VegistProject/blob/22610efb153e6dfb66792b2137e81b4b90732971/productList/images/apples.jpg",
     [1,2],4.5,
     [{
         uid:1,
