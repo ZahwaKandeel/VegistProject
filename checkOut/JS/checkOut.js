@@ -210,7 +210,7 @@ $(function() {
 })
 
 
-$("discountFrom").on("submit", function(e) {
+$("form").on("submit", function(e) {
     e.preventDefault();
     const discountCode = $("input[type='text']").val().trim();
     const discountList = plainOrder.discount_codes_list;

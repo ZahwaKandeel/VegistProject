@@ -31,21 +31,12 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-    <script src="/component/basepath.js"></script>
-    <script src="/component/header.js"></script>
-    <script src="/component/footer.js"></script>
-    <script src="/component/layout.js"></script>
+    <script type="module" src="/component/basepath.js"></script>
+    <script type="module" src="/component/header.js"></script>
+    <script type="module" src="/component/footer.js"></script>
+    <script type="module" src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
     <script type="module" src="../JS/profile.js"></script>
-    <script>
-        $(document).ready(function() {
-            const $header = $("header");
-            const $footer = $("footer");
-
-            if ($header.length) $header.replaceWith(header());
-            if ($footer.length) $footer.replaceWith(footer());
-        });
-    </script>
     </head>
     <body>
         <header></header>
@@ -75,13 +66,6 @@
                     <hr class=" d-md-none">
                     <div id="accountDetails" class="w-50">
                         <h5>Account Details</h5>
-                    </div>
-                </section>
-                <section class="my-3">
-                    <h5>Order History</h5>
-                    <hr class="m-0 order-hr">
-                    <div class="p-2 mt-2 mb-5 box-shadow">
-                        <p class="text-secondary m-2">You haven't place any order yet.</p>
                     </div>
                 </section>
             </div>

@@ -123,6 +123,7 @@ $(document).ready(function(){
     $(document).on("click", ".cards", function(e){
         if($(e.target).closest(".icon").length) return;
         const productId = $(this).attr("id");
+        window.location.href = "/productList/Template/product_list.html"
     })
 });
 
