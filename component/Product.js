@@ -1,4 +1,3 @@
-import { User } from "/models/user.js"
 export class Product{
     constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountPercentage){
         this.ID =id;
@@ -28,16 +27,6 @@ export class Product{
     }
     set SellerId(sellerId)
     {
-        // if(!Number.isInteger(sellerId)||sellerId<=0)
-        //     throw new Error("Seller ID must be positive integer")
-        
-        // const users = JSON.parse(localStorage.getItem("Users")) || [];
-        // const seller = users.find(u => u.id === sellerId)
-        // if(!seller)
-        //     throw new Error("Seller does not exist");
-        // if(seller.role!== "seller")
-        //     throw new Error("User is not a seller");
-
         this._sellerId = sellerId;
     }
     get SellerId()
@@ -66,8 +55,8 @@ export class Product{
     
     set Description(description)
     {
-        if(description.length<100)
-            throw new Error("Description must be at least 100 characters")
+        if(description.length<20)
+            throw new Error("Description must be at least 20 characters")
         this._description = description;
     }
     get Description()
@@ -87,9 +76,9 @@ export class Product{
 
     set Category(category)
     {
-        const allowed = ["bagel", "candy", "beans", "bestseller", "bread",
-            "biscuite", "breakfast", "cake", "cookie",
-            "cupcake", "Diary&Cheese", "Dinner"];
+        const allowed = ["Fresh Fruits", "Tropical Fruits", "Citrus Fruits", "Berries",
+                        "Leafy Vegetables", "Root Vegetables", "Cruciferous Vegetables",
+                        "Allium Vegetables", "Gourds", "Legumes"];
         if(!allowed.includes(category))
             throw new Error("Invalid Category");
         this._category = category;
@@ -102,8 +91,9 @@ export class Product{
     set ImageUrl(imageUrl)
     {
         const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
+        const relativePattern = /^(\.{1,2}\/.*\.(png|jpg|jpeg|webp))$/i;
         const base64Pattern = /^data:image\/(png|jpg|jpeg|webp);base64,/i;
-        if(!urlPattern.test(imageUrl) && !base64Pattern.test(imageUrl))
+        if(!urlPattern.test(imageUrl) && !relativePattern.test(imageUrl) && !base64Pattern.test(imageUrl))
             throw new Error("Invalid image URL or Base64 image");
         this._imageUrl = imageUrl;
     }
@@ -154,7 +144,7 @@ export class Product{
             if(typeof rating !== "number" || rating.length<0)
                 throw new Error("Rating invalid")
             if(typeof comment !== "string" || comment.trim().length<10)
-                throw new Error("Comment length must be at least 50 characters");
+                throw new Error("Comment length must be at least 10 characters");
         });
         this._reviews = reviews;
         if(reviews.length>0){

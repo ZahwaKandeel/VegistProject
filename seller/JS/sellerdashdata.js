@@ -106,12 +106,12 @@ export class RecentSale{
 
     static getDummyList(){
         return[
-            new RecentSale("#ORD-10234","Ahmed Hassan","Wireless Headphones",120,"Credit Card","Completed"),
-            new RecentSale("#ORD-10235","Mariam Ali","Smart Watch",89,"PayPal","Pending"),
-            new RecentSale("#ORD-10236","Omar Khaled","Bluetooth Speaker",65,"Cash on Delivery","Shipped"),
-            new RecentSale("#ORD-10237","Salma Youssef","Gaming Mouse",45,"Credit Card","Completed"),
-            new RecentSale("#ORD-10238","Youssef Adel","Mechanical Keyboard",150,"Credit Card","Completed")
-        ];
+            new RecentSale("#ORD-10234","Ahmed Hassan","Apple",75,"Cash on Delivery","Completed"),
+            new RecentSale("#ORD-10235","Mariam Ali","Avocado",45,"Credit Card","Pending"),
+            new RecentSale("#ORD-10236","Omar Khaled","Banana",90,"Cash on Delivery","Pending"),
+            new RecentSale("#ORD-10237","Salma Youssef","Red Berries",52,"Credit Card","Completed"),
+            new RecentSale("#ORD-10238","Youssef Adel","Papaya",85,"Credit Card","Completed")
+    ];
     }
 }
 
@@ -126,12 +126,12 @@ export class TopSellingItem{
     }
 
     static getDummyList(){
-        return[
-            new TopSellingItem("#PRD-01","Wireless Headphones",120,120,540,"In Stock"),
-            new TopSellingItem("#PRD-02","Smart Watch",75,89,420,"Low Stock"),
-            new TopSellingItem("#PRD-03","Bluetooth Speaker",210,65,610,"In Stock"),
-            new TopSellingItem("#PRD-04","Gaming Mouse",35,45,390,"Low Stock"),
-            new TopSellingItem("#PRD-05","Mechanical Keyboard",18,150,275,"Almost Out")
-        ];
-    }
+    return[
+        new TopSellingItem(1,"Apple",100,25,540,"In Stock"),
+        new TopSellingItem(3,"Banana",120,30,610,"In Stock"),
+        new TopSellingItem(16,"Lemon",100,25,420,"In Stock"),
+        new TopSellingItem(18,"Papaya",45,85,275,"Low Stock"),
+        new TopSellingItem(9,"Carrot",150,12,390,"In Stock")
+    ];
+}
 }

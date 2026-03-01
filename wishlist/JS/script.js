@@ -95,9 +95,9 @@ function displayWishlist() {
 
                             <!-- Reviews count -->
                             ${
-                                product.Reviews
+                                product._reviews
                                 ? `<span class="text-secondary fw-semibold ms-0 ms-md-3">
-                                        ${product.Reviews.length} review
+                                ${product._reviews.length == 1 ? ` ${product._reviews.length} review`:` ${product._reviews.length} reviews`}
                                    </span>`
                                 : `<span class="text-secondary fw-semibold ms-0 ms-md-3">
                                         no reviews
@@ -124,20 +124,14 @@ function renderStars(rating) {
 
         // Full star
         if (i <= Math.floor(rating)) {
-            starsHTML += `<i class="fa-solid fa-star text-warning"></i>`;
-            console.log(rating);
-            
+            starsHTML += `<i class="fa-solid fa-star text-warning"></i>`;            
         }
         // Half star
-        else if (i - rating < 1) {
-            console.log(rating);
-            
+        else if (i - rating < 1) {            
             starsHTML += `<i class="fa-solid fa-star-half-stroke text-warning"></i>`;
         }
         // Empty star
-        else {
-            console.log(rating);
-            
+        else {            
             starsHTML += `<i class="fa-regular fa-star text-warning"></i>`;
         }
     }

@@ -1,16 +1,11 @@
 import { saveProducts } from "./Product.js";
 export function initializeEditProduct (productId){    
-    
-    // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const product = products.find(p => Number(p._id) === Number(productId));   
 
 
-    // if(!product){
-    //         alert("Product not found");
-    //         return;
-    //     }
+    
 
     let imageBase64 = product._imageUrl;//maintain old image
     
@@ -45,10 +40,9 @@ export function initializeEditProduct (productId){
         reader.readAsDataURL(file);
     });
         
-    const allowedCategories = [
-        "bagel", "candy", "beans", "bestseller", "bread",
-        "biscuite", "breakfast", "cake", "cookie", "cupcake",
-        "Diary&Cheese", "Dinner"
+    const allowedCategories = ["Fresh Fruits", "Tropical Fruits", "Berries",
+                                "Leafy Vegetables", "Root Vegetables", "Cruciferous Vegetables",
+                                "Gourds", "Citrus Fruits"
     ];
         
     $("#editProductForm").off("submit").on("submit", function(e){
@@ -78,7 +72,7 @@ export function initializeEditProduct (productId){
             showError("#updatePrice", "Price must be a number greater than 0");
             isValid = false;
         }
-        if (description.length < 100 || description.length > 200){
+        if (description.length < 20 || description.length > 200){
             showError("#updateDescription", "Description must be at least 100 characters and less than 200");
             isValid = false;
         }

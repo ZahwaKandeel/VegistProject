@@ -113,6 +113,13 @@ canvas {
       border-radius: 0.5rem;
       opacity: 0.6;
     }
+    .hiegh{
+      height: 350px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      
+    }
 
 </style>
 
@@ -135,7 +142,7 @@ canvas {
 
  <h6 class="card-title">Total Users</h6>
  
-<div class="dropdown">
+<!-- <div class="dropdown">
   <a class="btn btn-white shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
    <i class="fa-solid fa-ellipsis"></i>
   </a>
@@ -144,10 +151,10 @@ canvas {
     <li><a class="dropdown-item" href="#">Edit</a></li>
     <li><a class="dropdown-item" href="#">Delete</a></li>
   </ul>
-</div>
+</div> -->
 
    
-</div> <!--end of the dropdown -->
+</div>  <!--end of the dropdown -->
     <div class="my-2 border-bottom p-1">
   <p > 
 
@@ -178,7 +185,7 @@ canvas {
 <div class="d-flex justify-content-around">
 
  <h6 class="card-title">Active Users</h6>
- 
+<!--  
 <div class="dropdown">
   <a class="btn btn-white shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
    <i class="fa-solid fa-ellipsis"></i>
@@ -188,10 +195,11 @@ canvas {
     <li><a class="dropdown-item" href="#">Edit</a></li>
     <li><a class="dropdown-item" href="#">Delete</a></li>
   </ul>
-</div>
+</div> -->
 
    
-</div> <!--end of the dropdown -->
+</div> 
+<!--end of the dropdown -->
     <div class="my-2 border-bottom p-1">
   <p > 
     <span class="border rounded-circle clrspan2 p-3 text-center">
@@ -223,7 +231,7 @@ canvas {
 
  <h6 class="card-title">New Registrations</h6>
  
-<div class="dropdown">
+<!-- <div class="dropdown">
   <a class="btn btn-white shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
    <i class="fa-solid fa-ellipsis"></i>
   </a>
@@ -232,7 +240,7 @@ canvas {
     <li><a class="dropdown-item" href="#">Edit</a></li>
     <li><a class="dropdown-item" href="#">Delete</a></li>
   </ul>
-</div>
+</div> -->
 
    
 </div> <!--end of the dropdown -->
@@ -264,12 +272,134 @@ canvas {
 <!--------------------------------------------------------------------------->
 
 
+
+
+
+
+<div class="row my-2"><!--start of the row 3 -->
+
+<div class="col-12 col-md-6 col-xl-4 my-2">     <!--start of the card  -->
+      <div class="card-custom card">
+        <div class="d-flex justify-content-around">
+        <h5 class="mb-4">Upcoming Meetings</h5>
+
+        <!-- <div class="dropdown">
+  <a class="btn bg-soft-green shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+   <i class="fa-solid fa-ellipsis"></i>
+  </a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Edit</a></li>
+    <li><a class="dropdown-item" href="#">Delete</a></li>
+  </ul>
+</div> -->
+</div>
+
+        
+        <div class="mb-3 p-3 bg-light rounded">
+          <strong>HR</strong>
+          <div class="text-muted small">06:00 - 07:00</div>
+        </div>
+
+        <div class="mb-3 p-3 bg-light rounded">
+          <strong>Team Stand Up</strong>
+          <div class="text-muted small">Marketing · 06:00 - 07:00</div>
+        </div>
+
+        <div class="p-3 bg-light rounded ">
+          <strong>All Hands Meeting</strong>
+          <div class="text-muted small">Manager · 06:00 - 07:00</div>
+        </div>
+      </div>
+    </div><!--end of the card  -->
+<!--------------------------------------------------------------------------->
+<!--start of the card  -->
+ <!-- <div class="col-12 col-md-6 col-xl-4 my-2"> 
+      <div class="card-custom">
+        <h5 class="mb-4">Deals Overview</h5> 
+
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div class="p-3 bg-light rounded text-center">
+              <h6>Closed Deals</h6>
+              <h4 id="closeDeals"></h4>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-light rounded text-center">
+              <h6>Pipeline Value</h6>
+              <h4 id="pipelineValue"></h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-soft-purple p-4 rounded text-center">
+          <strong>Conversion Rate <span id="conversionRate"></span> </strong>
+        </div>
+
+
+
+      </div>
+    </div> -->
+    <!--end of the card  -->
+<!--------------------------------------------------------------------------->
+    <!-- Total Contacts -->
+   <div class="col-6 col-md-6 col-lg-4 ">
+      <div class="card hiegh">
+
+        <h6 class="text-muted">Total Contacts</h6>
+        <div class="stat-number "> <span  id="totalcontact"></span> <span id="totalcontactPrecent" class="text-success fs-6 stat-change"></span></div>
+        <small class="text-muted">Vs last month: <span id="lasttotalcontact"></span> </small>
+       
+
+      </div>
+    </div>
+
+
+<!--------------------------------------------------------------------------->
+ <!-- Product Raiting -->
+    <div class="col-6 col-md-6 col-lg-4 ">
+      <div class="card hiegh ">
+        <h6 class="text-muted">Product Raiting</h6>
+        <div id="avargerating"  class="stat-number text-success"> </div>
+        <small class="text-muted">Compared to Last Month</small>
+       
+      </div>
+    </div>
+<!--------------------------------------------------------------------------->
+<!-- <div class="col-12 col-md-12 col-xl-4 my-2">
+      <div class="card-custom">
+        <h5 class="mb-4">Sales Pipeline Overview</h5>
+        <h3 id="salesTotal"></h3>
+
+        <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
+          Leads <span id="leads" class="ms-auto"></span>
+        </div>
+
+        <div class="pipeline-bar bg-soft-green d-flex align-items-center px-3">
+          Prospects <span id="prospects" class="ms-auto"></span>
+        </div>
+
+        <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
+          Opportunities <span id="opportunities" class="ms-auto"></span>
+        </div>
+
+        <div class="pipeline-bar bg-soft-pink d-flex align-items-center px-3">
+          Closed Deals <span id="closed" class="ms-auto"></span>
+        </div>
+      </div>
+    </div> -->
+
+
+</div><!--end of the row 3 -->
+
+<!--------------------------------------------------------------------------->
 <div class="row my-2"> <!--start of the row 2 -->
 
 
 
     
-    <div class=" col-12   col-lg-8 my-2 "><!--start  Card onee-->
+    <div class=" col-12   col-lg-12 my-2 "><!--start  Card onee-->
       <div class="card p-4">
         
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -294,7 +424,8 @@ canvas {
       </div>
     </div><!--end  Card onee-->
 
-<div class="col-lg-4 my-2"> <!--start  Card twoo-->
+<!--start  Card twoo-->
+<!-- <div class="col-lg-4 my-2"> 
       <div class="card p-4">
         <h5>Retention Rate</h5>
 
@@ -311,7 +442,8 @@ canvas {
 
       </div>
       
-    </div><!--end  Card twoo-->
+    </div> -->
+    <!--end  Card twoo-->
 
 
     
@@ -319,122 +451,16 @@ canvas {
 
 </div> <!--end of the row 2 -->
 <!--------------------------------------------------------------------------->
-
-<div class="row my-2"><!--start of the row 3 -->
-
-<div class="col-12 col-md-6 col-xl-4 my-2">     <!--start of the card  -->
-      <div class="card-custom">
-        <div class="d-flex justify-content-around">
-        <h5 class="mb-4">Upcoming Meetings</h5>
-
-        <div class="dropdown">
-  <a class="btn bg-soft-green shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-   <i class="fa-solid fa-ellipsis"></i>
-  </a>
-
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Edit</a></li>
-    <li><a class="dropdown-item" href="#">Delete</a></li>
-  </ul>
-</div>
-</div>
-
-        
-        <div class="mb-3 p-3 bg-light rounded">
-          <strong>HR</strong>
-          <div class="text-muted small">06:00 - 07:00</div>
-        </div>
-
-        <div class="mb-3 p-3 bg-light rounded">
-          <strong>Team Stand Up</strong>
-          <div class="text-muted small">Marketing · 06:00 - 07:00</div>
-        </div>
-
-        <div class="p-3 bg-light rounded">
-          <strong>All Hands Meeting</strong>
-          <div class="text-muted small">Manager · 06:00 - 07:00</div>
-        </div>
-      </div>
-    </div><!--end of the card  -->
-<!--------------------------------------------------------------------------->
- <div class="col-12 col-md-6 col-xl-4 my-2"> 
-      <div class="card-custom">
-        <h5 class="mb-4">Deals Overview</h5> <!--start of the card  -->
-
-        <div class="row g-3 mb-4">
-          <div class="col-6">
-            <div class="p-3 bg-light rounded text-center">
-              <h6>Closed Deals</h6>
-              <h4 id="closeDeals"></h4>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="p-3 bg-light rounded text-center">
-              <h6>Pipeline Value</h6>
-              <h4 id="pipelineValue"></h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-soft-purple p-4 rounded text-center">
-          <strong>Conversion Rate <span id="conversionRate"></span> </strong>
-        </div>
-
-<!-- <canvas id="myChart" width="400" height="200"></canvas> -->
-
-      </div>
-    </div><!--end of the card  -->
-<!--------------------------------------------------------------------------->
-
-<div class="col-12 col-md-12 col-xl-4 my-2">
-      <div class="card-custom">
-        <h5 class="mb-4">Sales Pipeline Overview</h5>
-        <h3 id="salesTotal"></h3>
-
-        <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
-          Leads <span id="leads" class="ms-auto"></span>
-        </div>
-
-        <div class="pipeline-bar bg-soft-green d-flex align-items-center px-3">
-          Prospects <span id="prospects" class="ms-auto"></span>
-        </div>
-
-        <div class="pipeline-bar bg-soft-purple d-flex align-items-center px-3">
-          Opportunities <span id="opportunities" class="ms-auto"></span>
-        </div>
-
-        <div class="pipeline-bar bg-soft-pink d-flex align-items-center px-3">
-          Closed Deals <span id="closed" class="ms-auto"></span>
-        </div>
-      </div>
-    </div>
-
-
-</div><!--end of the row 3 -->
-
-<!--------------------------------------------------------------------------->
-
 <div class="row g-3 my-2  "> <!--start of the row 4 -->
-    <!-- Total Contacts -->
-    <div class="col-6 col-md-6 col-lg-4">
+  
+    <!-- <div class="col-6 col-md-6 col-lg-4">
       <div class="card">
-
-        <h6 class="text-muted">Total Contacts</h6>
-        <div class="stat-number "> <span  id="totalcontact"></span> <span id="totalcontactPrecent" class="text-success fs-6 stat-change"></span></div>
-        <small class="text-muted">Vs last month: <span id="lasttotalcontact"></span> </small>
-        <div class="chart-placeholder mt-3"></div>
-
-      </div>
-    </div>
-    <!-- Lead Analytics -->
-    <div class="col-6 col-md-6 col-lg-4">
-      <div class="card">
-        <h6 class="text-muted">Lead Analytics</h6>
-        <div class="stat-number">70 <span class="text-danger fs-6 stat-change">-2.57%</span></div>
+        <h6 class="text-muted">Product Raiting</h6>
+        <div id="avargerating"  class="stat-number text-success"> </div>
         <small class="text-muted">Compared to Last Month</small>
         <div class="chart-placeholder mt-3"></div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Tasks Overview -->
     <!-- <div class="col-12 col-md-6 col-lg-3">
@@ -455,22 +481,19 @@ canvas {
 
     <!-- Active Deals -->
 
-    <div class="col-12 col-md-6 col-lg-4">
+    <!-- <div class="col-12 col-md-6 col-lg-4">
       <div class="card">
         <h6 class="text-muted">Active Deals</h6>
         <div class="stat-number">1,249 <span class="text-success fs-6 stat-change">+2.57%</span></div>
         <small class="text-muted">Vs last month: 1,195</small>
         <div>
           <div class="chart-placeholder mt-3"></div>
-      <!-- <canvas id="myChartx" width="400" height="150"></canvas> -->
+    
       </div>
       </div>
     </div>
-  </div>  <!--end of the row 4 -->
-
-
-
-
+  </div> -->
+    <!--end of the row 4 -->
 
 
 </div><!--end of the container-->
