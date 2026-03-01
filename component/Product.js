@@ -1,4 +1,3 @@
-import { User } from "/models/user.js"
 export class Product{
     constructor(id,sellerId, name, price, description, stock, category, imageUrl, sizes, rating, reviews, discountPercentage){
         this.ID =id;
@@ -28,16 +27,6 @@ export class Product{
     }
     set SellerId(sellerId)
     {
-        // if(!Number.isInteger(sellerId)||sellerId<=0)
-        //     throw new Error("Seller ID must be positive integer")
-        
-        // const users = JSON.parse(localStorage.getItem("Users")) || [];
-        // const seller = users.find(u => u.id === sellerId)
-        // if(!seller)
-        //     throw new Error("Seller does not exist");
-        // if(seller.role!== "seller")
-        //     throw new Error("User is not a seller");
-
         this._sellerId = sellerId;
     }
     get SellerId()
@@ -66,8 +55,8 @@ export class Product{
     
     set Description(description)
     {
-        if(description.length<70)
-            throw new Error("Description must be at least 100 characters")
+        if(description.length<20)
+            throw new Error("Description must be at least 20 characters")
         this._description = description;
     }
     get Description()
