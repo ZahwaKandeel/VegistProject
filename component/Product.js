@@ -66,7 +66,7 @@ export class Product{
     
     set Description(description)
     {
-        if(description.length<100)
+        if(description.length<70)
             throw new Error("Description must be at least 100 characters")
         this._description = description;
     }
@@ -102,8 +102,9 @@ export class Product{
     set ImageUrl(imageUrl)
     {
         const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
+        const relativePattern = /^(\.{1,2}\/.*\.(png|jpg|jpeg|webp))$/i;
         const base64Pattern = /^data:image\/(png|jpg|jpeg|webp);base64,/i;
-        if(!urlPattern.test(imageUrl) && !base64Pattern.test(imageUrl))
+        if(!urlPattern.test(imageUrl) && !relativePattern.test(imageUrl) && !base64Pattern.test(imageUrl))
             throw new Error("Invalid image URL or Base64 image");
         this._imageUrl = imageUrl;
     }
@@ -153,7 +154,11 @@ export class Product{
                 throw new Error("UserId invalid");
             if(typeof rating !== "number" || rating.length<0)
                 throw new Error("Rating invalid")
+<<<<<<< HEAD
             if(typeof comment !== "string" || comment.trim().length<10)
+=======
+            if(typeof comment !== "string" || comment.trim().length<20)
+>>>>>>> cbc1630dcd78b494b562585e44859e7542dda4fc
                 throw new Error("Comment length must be at least 50 characters");
         });
         this._reviews = reviews;

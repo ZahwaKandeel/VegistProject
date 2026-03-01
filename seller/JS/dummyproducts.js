@@ -1,10 +1,78 @@
 import { Product, saveProducts } from "../../component/Product.js";
 
+// export async function loadDummyProductsFromAPI(){
+//     try {
+//         const response =  await fetch("https://dummyjson.com/products/category/groceries");
+//         const data = await response.json();
+
+//         const categorySet = new Set();
+
+//         data.products.forEach(p =>{
+//             if(p.tags && Array.isArray(p.tags)){
+//                 p.tags.forEach(tag => categorySet.add(tag));
+//             }
+//         });
+
+//         Product.AllowedCategories = [...categorySet];
+//         console.log("Allowed categories:", Product.AllowedCategories);
+
+//         const products = data.products.map(p => {
+
+//             const category = p.tags && p.tags.length > 0
+//                 ? p.tags[0]
+//                 :"uncategorized";
+
+//             return new Product(
+//                 p.id,
+//                 1,
+//                 p.title,
+//                 p.price,
+//                 formatDescription(p.description),
+//                 p.stock,
+//                 category,
+//                 p.thumbnail,
+//                 [1,2,3],
+//                 p.rating,
+//                 mapReviews(p.reviews),
+//                 p.discountPercentage
+//             );
+//         });
+//            saveProducts(products);
+//            console.log("Product Saved Successfully");
+//            return products;
+//     }
+//     catch(error){
+//         console.error("Error loading products", error);
+//     }
+//     function formatDescription(desc){
+//         if (desc.length >= 70) return desc;
+//         return desc + "This product is part of our premium grocery collection carefully selected for quality and freshness."
+//     }
+//     function formatComment(comment){
+//         if (comment.length >= 20) return comment;
+//         return comment + "This product is part of our premium grocery collection carefully selected for quality and freshness."
+//     }
+//     function mapReviews(apiReviews){
+//         if(!Array.isArray(apiReviews)) return [];
+        
+//         return apiReviews.map((r, index) =>({
+//             uid: index + 1,
+//             title: r.reviewerName || "Customer Review",
+//             rating: r.rating,
+//             comment: formatComment(r.comment)
+//         }));
+//     }  
+     
+// }
+// if (!localStorage.getItem("products")) {
+//         loadDummyProductsFromAPI();
+//     } 
+
 export const dummyProducts = [
 
     new Product(1,1,"Classic Bagel",25,
     "A delicious freshly baked bagel made from high quality wheat flour and natural ingredients. Perfect for breakfast with cream cheese and jam for a delightful start to your day.",
-    0,"bagel","https://picsum.photos/200/300?1.jpg",
+    0,"bagel","https://github.com/ZahwaKandeel/VegistProject/blob/22610efb153e6dfb66792b2137e81b4b90732971/productList/images/apples.jpg",
     [1,2],4.5,
     [{
         uid:1,
@@ -243,6 +311,7 @@ export const dummyProducts = [
     10)
 
 ];
+
 
 if(!localStorage.getItem("products")){
     saveProducts(dummyProducts);
