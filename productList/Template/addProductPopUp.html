@@ -41,23 +41,19 @@
                     <div class="mb-3">
                         <label for="category" class="form-label fw-bold">Category:</label>
                         <select class="form-select" id="category" aria-label="Categories">
-                            <option value="bagel">Bagel</option>
-                            <option value="candy">Candy</option>
-                            <option value="beans">Beans</option>
-                            <option value="bestseller">Bestseller</option>
-                            <option value="bread">Bread</option>
-                            <option value="biscuite">Biscuite</option>
-                            <option value="breakfast">Breakfast</option>
-                            <option value="cake">Cake</option>
-                            <option value="cookie">Cookie</option>
-                            <option value="cupcake">Cupcake</option>
-                            <option value="Dairy&Cheese">Dairy & Cheese</option>
-                            <option value="Dinner">Dinner</option>
+                            <option value="Fresh Fruits">Fresh Fruits</option>
+                            <option value="Tropical Fruits">Tropical Fruits</option>
+                            <option value="Berries">Berries</option>
+                            <option value="Leafy Vegetables">Leafy Vegetables</option>
+                            <option value="Root Vegetables">Root Vegetables</option>
+                            <option value="Cruciferous Vegetables">Cruciferous Vegetables</option>
+                            <option value="Gourds">Gourds</option>
+                            <option value="Citrus Fruits">Citrus Fruits</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label fw-bold">Image:</label>
-                        <!-- <input type="text" class="form-control" id="image" name="image" placeholder="images.google.com"> -->
+                        
                         <input type="file" class = "form-control" id="image" accept="image/*">
                         <img id="imagePreview" class="mt-3 w-100 d-none" style="max-height: 200px; object-fit:contain">
                     </div>
@@ -121,12 +117,16 @@
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
         $(document).ready(function(){
-            /*if(!currentUser || currentUser.role !== "seller"){
-                alert("Only Sellers can create products");
-            }*/
+            
             const sellerId = currentUser.id;
-            const allowedCategories = [
-                "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
+            const allowedCategories = ["Fresh Fruits",
+                                        "Tropical Fruits",
+                                        "Berries",
+                                        "Leafy Vegetables",
+                                        "Root Vegetables",
+                                        "Cruciferous Vegetables",
+                                        "Gourds",
+                                        "Citrus Fruits"
             ];
             let imageBase64 = "";
             $("#image").on("change", function(){
@@ -159,7 +159,6 @@
                 let description = $("#description").val().trim();
                 let stock = parseInt($("#stock").val());
                 let category = $("#category").val().trim();
-                //let image = $("#image").val().trim();
                 if(!imageBase64){
                     alert("Please Upload an image");
                     return;
@@ -192,10 +191,6 @@
                     showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
                     isValid = false;
                 }
-                //if (!isValidURL(image)) {
-                //    showError("#image", "Enter a valid image URL.");
-                //    isValid = false;
-                //}
                 if (sizes.length === 0) {
                     $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
                     isValid = false;
@@ -229,7 +224,6 @@
 
                     saveProducts(products);
                     alert("Product added Successfully!");
-                    //window.location.href = "product_list.html"
                     const modalElement = document.getElementById("addProductModal");
                     const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
                 

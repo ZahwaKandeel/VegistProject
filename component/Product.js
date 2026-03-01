@@ -87,9 +87,9 @@ export class Product{
 
     set Category(category)
     {
-        const allowed = ["bagel", "candy", "beans", "bestseller", "bread",
-            "biscuite", "breakfast", "cake", "cookie",
-            "cupcake", "Diary&Cheese", "Dinner"];
+        const allowed = ["Fresh Fruits", "Tropical Fruits", "Citrus Fruits", "Berries",
+                        "Leafy Vegetables", "Root Vegetables", "Cruciferous Vegetables",
+                        "Allium Vegetables", "Gourds", "Legumes"];
         if(!allowed.includes(category))
             throw new Error("Invalid Category");
         this._category = category;
@@ -154,12 +154,8 @@ export class Product{
                 throw new Error("UserId invalid");
             if(typeof rating !== "number" || rating.length<0)
                 throw new Error("Rating invalid")
-<<<<<<< HEAD
             if(typeof comment !== "string" || comment.trim().length<10)
-=======
-            if(typeof comment !== "string" || comment.trim().length<20)
->>>>>>> cbc1630dcd78b494b562585e44859e7542dda4fc
-                throw new Error("Comment length must be at least 50 characters");
+                throw new Error("Comment length must be at least 10 characters");
         });
         this._reviews = reviews;
         if(reviews.length>0){

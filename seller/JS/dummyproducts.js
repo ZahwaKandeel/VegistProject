@@ -1,316 +1,209 @@
 import { Product, saveProducts } from "../../component/Product.js";
 
-// export async function loadDummyProductsFromAPI(){
-//     try {
-//         const response =  await fetch("https://dummyjson.com/products/category/groceries");
-//         const data = await response.json();
-
-//         const categorySet = new Set();
-
-//         data.products.forEach(p =>{
-//             if(p.tags && Array.isArray(p.tags)){
-//                 p.tags.forEach(tag => categorySet.add(tag));
-//             }
-//         });
-
-//         Product.AllowedCategories = [...categorySet];
-//         console.log("Allowed categories:", Product.AllowedCategories);
-
-//         const products = data.products.map(p => {
-
-//             const category = p.tags && p.tags.length > 0
-//                 ? p.tags[0]
-//                 :"uncategorized";
-
-//             return new Product(
-//                 p.id,
-//                 1,
-//                 p.title,
-//                 p.price,
-//                 formatDescription(p.description),
-//                 p.stock,
-//                 category,
-//                 p.thumbnail,
-//                 [1,2,3],
-//                 p.rating,
-//                 mapReviews(p.reviews),
-//                 p.discountPercentage
-//             );
-//         });
-//            saveProducts(products);
-//            console.log("Product Saved Successfully");
-//            return products;
-//     }
-//     catch(error){
-//         console.error("Error loading products", error);
-//     }
-//     function formatDescription(desc){
-//         if (desc.length >= 70) return desc;
-//         return desc + "This product is part of our premium grocery collection carefully selected for quality and freshness."
-//     }
-//     function formatComment(comment){
-//         if (comment.length >= 20) return comment;
-//         return comment + "This product is part of our premium grocery collection carefully selected for quality and freshness."
-//     }
-//     function mapReviews(apiReviews){
-//         if(!Array.isArray(apiReviews)) return [];
-        
-//         return apiReviews.map((r, index) =>({
-//             uid: index + 1,
-//             title: r.reviewerName || "Customer Review",
-//             rating: r.rating,
-//             comment: formatComment(r.comment)
-//         }));
-//     }  
-     
-// }
-// if (!localStorage.getItem("products")) {
-//         loadDummyProductsFromAPI();
-//     } 
-
 export const dummyProducts = [
 
-    new Product(1,1,"Classic Bagel",25,
-    "A delicious freshly baked bagel made from high quality wheat flour and natural ingredients. Perfect for breakfast with cream cheese and jam for a delightful start to your day.",
-    0,"bagel","https://github.com/ZahwaKandeel/VegistProject/blob/22610efb153e6dfb66792b2137e81b4b90732971/productList/images/apples.jpg",
-    [1,2],4.5,
-    [{
+    new Product(1,1,"Apple",25,
+        "Fresh red apples harvested from trusted farms. Crisp texture with natural sweetness and perfect balance of flavor. Ideal for snacking, juicing, baking, or adding to fruit salads for a healthy treat.",
+        100,"Fresh Fruits","../../productList/images/apples.jpg",
+        [1,2],4.6,[{
         uid:1,
-        title:"Fresh and Soft",
-        rating:4.5,
-        comment:"This bagel is consistently fresh and soft with an amazing texture that makes breakfast much more enjoyable every single time."
-    }],
-    10),
-
-    new Product(2,1,"Chocolate Candy",15,
-    "Rich chocolate candy crafted from premium cocoa beans blended smoothly to create a sweet and satisfying treat loved by both kids and adults everywhere.",
-    100,"candy","https://picsum.photos/200/300?2.jpg",
-    [1,2,3],4.2,
-    [{
-        uid:1,
-        title:"Perfect Sweet Balance",
-        rating:4.2,
-        comment:"The chocolate has a perfectly balanced sweetness and smooth texture making it enjoyable without feeling overly heavy or sugary."
-    }],
-    5),
-
-    new Product(3,1,"Green Beans Pack",30,
-    "Fresh organic green beans carefully selected from trusted farms to ensure high quality and nutritional value suitable for healthy meals and balanced diets.",
-    40,"beans","https://picsum.photos/200/300?3.jpg",
-    [1,2,3,5],4.0,
-    [{
-        uid:1,
-        title:"Very Fresh Quality",
-        rating:4.0,
-        comment:"These beans are always fresh and vibrant in color and they remain crisp and flavorful even after cooking for longer periods."
-    }],
-    0),
-
-    new Product(4,1,"Best Seller Bread",20,
-    "Our bestselling bread baked daily with love and care to provide a soft texture and golden crust ideal for sandwiches and breakfast meals.",
-    70,"bestseller","https://picsum.photos/200/300?4.jpg",
-    [1,2],4.7,
-    [{
-        uid:1,
-        title:"Soft with Great Crust",
-        rating:4.7,
-        comment:"The texture is incredibly soft with a beautiful crust and it stays fresh longer than most other bread options available."
-    }],
-    15),
-
-    new Product(5,1,"Whole Wheat Bread",22,
-    "Nutritious whole wheat bread made from 100 percent natural grains providing fiber and essential nutrients to support a healthy lifestyle.",
-    60,"bread","https://picsum.photos/200/300?5.jpg",
-    [1,2],4.3,
-    [{
-        uid:1,
-        title:"Healthy Choice",
-        rating:4.3,
-        comment:"Healthy and delicious with a rich whole wheat flavor that makes it perfect for anyone trying to maintain a balanced diet."
-    }],
-    8),
-
-    new Product(6,1,"Vanilla Biscuit",18,
-    "Crunchy vanilla flavored biscuit baked to perfection offering a delightful snack option for tea time and quick energy breaks during busy days.",
-    90,"biscuite","https://picsum.photos/200/300?6.jpg",
-    [1,2,3],4.1,
-    [{
-        uid:1,
-        title:"Crispy and Aromatic",
-        rating:4.1,
-        comment:"Crispy texture with a pleasant vanilla aroma that makes it a perfect companion for tea or coffee breaks."
-    }],
-    5),
-
-    new Product(7,1,"Breakfast Cereal",35,
-    "Healthy breakfast cereal enriched with vitamins and minerals to give you sustained energy and a nutritious start every single morning.",
-    45,"breakfast","https://picsum.photos/200/300?7.jpg",
-    [1,2,3],4.6,
-    [{
-        uid:1,
-        title:"Nutritious Option",
+        title:"Crisp and Sweet",
         rating:4.6,
-        comment:"Very nutritious and not overly sweet which makes it ideal for both kids and adults every morning."
-    }],
-    12),
+        comment:"These apples are very fresh and juicy with a satisfying crunch and natural sweetness."
+        }],10),
 
-    new Product(8,1,"Strawberry Cake",80,
-    "Soft sponge cake layered with fresh strawberry cream filling and topped with natural fruit slices for a refreshing dessert experience.",
-    20,"cake","https://picsum.photos/200/300?8.jpg",
-    [1,2,3],4.8,
-    [{
+        new Product(2,1,"Avocado",15,
+        "Premium ripe avocados rich in healthy fats and nutrients. Smooth creamy texture makes them perfect for salads, sandwiches, smoothies, and homemade guacamole recipes.",
+        90,"Tropical Fruits","../../productList/images/avocado.webp",
+        [1,2,3],4.5,[{
         uid:1,
-        title:"Light and Delicious",
+        title:"Perfectly Ripe",
+        rating:4.5,
+        comment:"The avocados arrive fresh and creamy with excellent flavor and no bruising."
+        }],5),
+
+        new Product(3,1,"Banana",30,
+        "Naturally sweet bananas packed with potassium and energy. Carefully selected for freshness and ideal for breakfast smoothies or healthy daily snacks.",
+        120,"Tropical Fruits","../../productList/images/Banana.jpg",
+        [1,2,3],4.4,[{
+        uid:1,
+        title:"Fresh and Sweet",
+        rating:4.4,
+        comment:"Soft texture with natural sweetness and great quality every time."
+        }],0),
+
+        new Product(4,1,"Red Berries",26,
+        "Fresh mixed red berries packed with antioxidants and natural sweetness. Carefully selected for vibrant color and juicy texture, perfect for smoothies, desserts, fruit bowls, and healthy snacks.",
+        80,"Berries","../../productList/images/redberries.jpg",
+        [1,2],4.7,[{
+        uid:1,
+        title:"Sweet and Vibrant",
+        rating:4.7,
+        comment:"These red berries are extremely fresh, juicy, and full of natural sweetness with beautiful color."
+        }],12),
+
+        new Product(5,1,"BlackBerry",22,
+        "Fresh blackberries packed with antioxidants and natural sweetness. Juicy and flavorful, ideal for smoothies, desserts, or healthy snacking.",
+        75,"Berries","../../productList/images/BlackBerry.jpg",
+        [1,2],4.3,[{
+        uid:1,
+        title:"Sweet and Juicy",
+        rating:4.3,
+        comment:"Very flavorful berries with perfect ripeness and freshness."
+        }],8),
+
+        new Product(6,1,"BlueBerry",18,
+        "Premium blueberries carefully selected for quality and taste. Rich in nutrients and perfect for breakfast bowls, baking, and smoothies.",
+        95,"Berries","../../productList/images/blueberry.webp",
+        [1,2,3],4.2,[{
+        uid:1,
+        title:"Great for Smoothies",
+        rating:4.2,
+        comment:"Fresh blueberries with a nice balance of sweetness and tartness."
+        }],5),
+
+        new Product(7,1,"Cabbage",35,
+        "Fresh green cabbage with tightly packed leaves and crisp texture. Perfect for salads, coleslaw, soups, and healthy home cooking.",
+        60,"Leafy Vegetables","../../productList/images/cabbage.jpg",
+        [1,2,3],4.5,[{
+        uid:1,
+        title:"Crunchy and Fresh",
+        rating:4.5,
+        comment:"Very fresh cabbage with crisp leaves and excellent flavor."
+        }],12),
+
+        new Product(8,1,"Cantalope",80,
+        "Sweet and juicy cantaloupe melon with refreshing flavor. Carefully selected for ripeness and ideal for fruit salads or summer snacks.",
+        40,"Tropical Fruits","../../productList/images/canatalope.jpg",
+        [1,2,3],4.8,[{
+        uid:1,
+        title:"Extremely Sweet",
         rating:4.8,
-        comment:"The strawberries taste fresh and the cream is light and fluffy making every bite extremely enjoyable."
-    }],
-    20),
+        comment:"Very juicy and sweet with perfect ripeness and aroma."
+        }],20),
 
-    new Product(9,1,"Chocolate Cookie",12,
-    "Freshly baked chocolate cookie with a crispy exterior and soft gooey center providing a perfect sweet snack for all ages.",
-    120,"cookie","https://picsum.photos/200/300?9.jpg",
-    [1,2],4.4,
-    [{
+        new Product(9,1,"Carrot",12,
+        "Fresh organic carrots with vibrant orange color and natural sweetness. Great for salads, cooking, juicing, and healthy snacking.",
+        150,"Root Vegetables","../../productList/images/carrots.jpg",
+        [1,2],4.4,[{
         uid:1,
-        title:"Rich Chocolate Flavor",
+        title:"Crunchy and Sweet",
         rating:4.4,
-        comment:"Rich chocolate flavor with a soft center that makes it comforting and delicious every time."
-    }],
-    0),
+        comment:"Firm texture and naturally sweet flavor. Very high quality."
+        }],0),
 
-    new Product(10,1,"Red Velvet Cupcake",28,
-    "Moist red velvet cupcake topped with creamy frosting delivering a rich flavor and beautiful presentation for special occasions.",
-    75,"cupcake","https://picsum.photos/200/300?10.jpg",
-    [1,2],4.9,
-    [{
+        new Product(10,1,"Cauliflower",28,
+        "Fresh white cauliflower heads packed with nutrients and mild flavor. Ideal for roasting, steaming, or healthy low carb recipes.",
+        70,"Cruciferous Vegetables","../../productList/images/Cauliflower.webp",
+        [1,2],4.6,[{
         uid:1,
-        title:"Perfect for Celebrations",
-        rating:4.9,
-        comment:"Beautiful presentation and perfectly balanced sweetness making it ideal for birthdays and celebrations."
-    }],
-    10),
-
-    new Product(11,1,"Cheddar Cheese",45,
-    "Premium cheddar cheese aged perfectly to enhance its rich flavor making it ideal for sandwiches pasta dishes and gourmet recipes.",
-    30,"Diary&Cheese","https://picsum.photos/200/300?11.jpg",
-    [1,2,5],4.6,
-    [{
-        uid:1,
-        title:"Excellent Melting",
+        title:"Clean and Fresh",
         rating:4.6,
-        comment:"Sharp rich flavor with excellent melting quality that works well in many recipes and dishes."
-    }],
-    12),
+        comment:"Well packed and very fresh with no discoloration."
+        }],10),
 
-    new Product(12,1,"Dinner Pasta",55,
-    "Italian style dinner pasta made from high quality durum wheat providing an authentic taste and texture for family meals.",
-    35,"Dinner","https://picsum.photos/200/300?12.jpg",
-    [1,2,3,5],4.2,
-    [{
+        new Product(11,1,"Coconut",45,
+        "Natural whole coconuts with rich refreshing water and thick creamy flesh. Perfect for tropical dishes, desserts, and beverages.",
+        50,"Tropical Fruits","../../productList/images/Coconut.webp",
+        [1,2,5],4.6,[{
         uid:1,
-        title:"Authentic Texture",
-        rating:4.2,
-        comment:"Authentic texture and consistent cooking results that make family dinners easy and enjoyable."
-    }],
-    10),
+        title:"Very Fresh Inside",
+        rating:4.6,
+        comment:"Fresh coconut water and soft tasty flesh inside."
+        }],12),
 
-    new Product(13,1,"Honey Bagel",27,
-    "Sweet honey glazed bagel baked fresh every day with natural ingredients and perfect for pairing with butter or cream cheese.",
-    55,"bagel","https://picsum.photos/200/300?13.jpg",
-    [1,2],4.5,
-    [{
+        new Product(12,1,"Cucumber",55,
+        "Cool and refreshing cucumbers with crisp texture and high water content. Excellent for salads, sandwiches, and detox drinks.",
+        65,"Gourds","../../productList/images/cucumber.webp",
+        [1,2,3],4.3,[{
         uid:1,
-        title:"Sweet and Soft",
-        rating:4.5,
-        comment:"Subtle honey sweetness combined with a soft texture makes this bagel absolutely delicious."
-    }],
-    7),
-
-    new Product(14,1,"Caramel Candy",16,
-    "Smooth caramel candy with a rich buttery flavor crafted carefully to melt in your mouth and satisfy your sweet cravings.",
-    85,"candy","https://picsum.photos/200/300?14.jpg",
-    [1,2,3],4.3,
-    [{
-        uid:1,
-        title:"Creamy Caramel Taste",
+        title:"Crisp and Hydrating",
         rating:4.3,
-        comment:"Creamy and rich caramel taste that lasts long and feels premium compared to other brands."
-    }],
-    5),
+        comment:"Very fresh cucumbers with crunchy texture and clean taste."
+        }],10),
 
-    new Product(15,1,"Black Beans",32,
-    "High quality black beans packed with protein and fiber suitable for soups stews and healthy balanced dishes.",
-    60,"beans","https://picsum.photos/200/300?15.jpg",
-    [1,2,3,5],4.1,
-    [{
+        new Product(13,1,"Grape Fruit",27,
+        "Fresh grapefruit rich in vitamin C with balanced sweet and tangy flavor. Ideal for juices and healthy breakfasts.",
+        70,"Citrus Fruits","../../productList/images/grapefruit.jpg",
+        [1,2],4.4,[{
         uid:1,
-        title:"Great for Recipes",
-        rating:4.1,
-        comment:"Consistent quality and excellent flavor after cooking making it perfect for traditional recipes."
-    }],
-    0),
-
-    new Product(16,1,"Butter Croissant",25,
-    "Flaky butter croissant baked with premium ingredients providing a soft interior and crispy outer layer ideal for breakfast.",
-    70,"bread","https://picsum.photos/200/300?16.jpg",
-    [1,2],4.7,
-    [{
-        uid:1,
-        title:"Buttery and Flaky",
-        rating:4.7,
-        comment:"Flaky layers with a strong buttery aroma that truly elevates any breakfast experience."
-    }],
-    10),
-
-    new Product(17,1,"Blueberry Muffin",30,
-    "Delicious blueberry muffin bursting with fresh berries and baked to golden perfection for a delightful snack option.",
-    65,"breakfast","https://picsum.photos/200/300?17.jpg",
-    [1,2],4.4,
-    [{
-        uid:1,
-        title:"Full of Berries",
+        title:"Refreshing Taste",
         rating:4.4,
-        comment:"Generous amount of blueberries with a moist interior that stays soft even after a day."
-    }],
-    6),
+        comment:"Perfect balance between sweetness and citrus tanginess."
+        }],7),
 
-    new Product(18,1,"Chocolate Cake",85,
-    "Rich chocolate cake layered with smooth cocoa cream and decorated elegantly making it perfect for celebrations.",
-    25,"cake","https://picsum.photos/200/300?18.jpg",
-    [1,2,3],4.9,
-    [{
+        new Product(14,1,"Green Coconut",16,
+        "Tender green coconut filled with naturally refreshing coconut water. Hydrating and perfect for hot weather.",
+        85,"Tropical Fruits","../../productList/images/greencoconut.jpg",
+        [1,2,3],4.5,[{
         uid:1,
-        title:"Outstanding Chocolate",
-        rating:4.9,
-        comment:"Intense chocolate flavor combined with smooth frosting layers makes this cake outstanding."
-    }],
-    18),
+        title:"Very Refreshing",
+        rating:4.5,
+        comment:"Extremely refreshing coconut water with natural sweetness."
+        }],5),
 
-    new Product(19,1,"Vanilla Cookie",10,
-    "Light and crispy vanilla cookie baked with natural flavors offering a sweet and satisfying bite every time.",
-    110,"cookie","https://picsum.photos/200/300?19.jpg",
-    [1,2],4.0,
-    [{
+        new Product(15,1,"Guava",32,
+        "Fresh guavas with sweet fragrance and soft juicy interior. Rich in vitamins and perfect for juices or fruit salads.",
+        60,"Tropical Fruits","../../productList/images/Guava.jpg",
+        [1,2,3],4.2,[{
         uid:1,
-        title:"Light and Tasty",
-        rating:4.0,
-        comment:"Light texture with balanced sweetness making it suitable for both kids and adults."
-    }],
-    0),
+        title:"Aromatic and Sweet",
+        rating:4.2,
+        comment:"Delicious aroma and soft texture with natural sweetness."
+        }],0),
 
-    new Product(20,1,"Cream Cheese",40,
-    "Soft and creamy cheese made from high quality dairy products ideal for spreads baking and gourmet cooking recipes.",
-    50,"Diary&Cheese","https://picsum.photos/200/300?20.jpg",
-    [1,2,3],4.6,
-    [{
+        new Product(16,1,"Lemon",25,
+        "Bright yellow lemons packed with vitamin C and strong citrus flavor. Perfect for cooking, baking, and refreshing drinks.",
+        100,"Citrus Fruits","../../productList/images/Lemon.jpg",
+        [1,2],4.7,[{
         uid:1,
-        title:"Smooth and Rich",
+        title:"Strong Fresh Flavor",
+        rating:4.7,
+        comment:"Very fresh lemons with intense citrus aroma and juice."
+        }],10),
+
+        new Product(17,1,"Orange",30,
+        "Sweet and juicy oranges full of vitamin C. Easy to peel and perfect for fresh juice or healthy snacks.",
+        110,"Citrus Fruits","../../productList/images/Orange.webp",
+        [1,2],4.6,[{
+        uid:1,
+        title:"Juicy and Sweet",
         rating:4.6,
-        comment:"Smooth creamy consistency and rich flavor that works perfectly in both savory and sweet dishes."
-    }],
-    10)
+        comment:"Very juicy oranges with natural sweetness and freshness."
+        }],6),
+
+        new Product(18,1,"Papaya",85,
+        "Ripe papayas with soft texture and tropical sweetness. Rich in nutrients and perfect for smoothies and fruit bowls.",
+        45,"Tropical Fruits","../../productList/images/Papaya.jpg",
+        [1,2,3],4.8,[{
+        uid:1,
+        title:"Soft and Delicious",
+        rating:4.8,
+        comment:"Perfectly ripe papaya with smooth texture and rich sweetness."
+        }],18),
+
+        new Product(19,1,"Peach",10,
+        "Fresh peaches with soft skin and juicy interior. Naturally sweet and ideal for desserts or fresh consumption.",
+        130,"Fresh Fruits","../../productList/images/Peach.jpg",
+        [1,2],4.3,[{
+        uid:1,
+        title:"Very Juicy",
+        rating:4.3,
+        comment:"Sweet and juicy peaches with great freshness and flavor."
+        }],0),
+
+        new Product(20,1,"Tomato",40,
+        "Fresh red tomatoes rich in flavor and nutrients. Perfect for salads, sauces, sandwiches, and everyday cooking.",
+        95,"Gourds","../../productList/images/Tomato.jpg",
+        [1,2,3],4.5,[{
+        uid:1,
+        title:"Rich Flavor",
+        rating:4.5,
+        comment:"Very fresh tomatoes with firm texture and delicious taste."
+        }],10)
 
 ];
+
 
 
 if(!localStorage.getItem("products")){
