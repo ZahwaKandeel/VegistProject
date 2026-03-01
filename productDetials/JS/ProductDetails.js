@@ -411,5 +411,7 @@ if (idParam === null) {
             displayReviews();
         });
 
+
+        //test
     }
 }}
