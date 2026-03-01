@@ -54,13 +54,13 @@ function createProductCard(products){
                     class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>    
             </div>
             <div class="icons position-absolute start-50 translate-middle-x d-flex gap-2">
-                <span class="icon" id="iconbtns">
+                <span class="" id="iconbtns">
                     <i class="fa-regular fa-heart wishlist-icon" data-id="${products._id}"></i>
                 </span>
-                <span class="icon" id="iconbtns">
+                <span class="" id="iconbtns">
                     <i class="fa fa-shopping-bag cart-icon" data-id="${products._id}"></i>
                 </span>
-                <span class="icon" id="iconbtns"
+                <span class="" id="iconbtns"
                     data-bs-toggle="modal"
                     data-bs-target="#quickViewModal"
                     style="cursor: pointer;">
