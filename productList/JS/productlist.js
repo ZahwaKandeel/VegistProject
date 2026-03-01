@@ -2,14 +2,16 @@ import { isAuth } from '../../component/isAuth.js';
 
 $(function(){
 
-const user = isAuth();
-
+const user = isAuth();  //return currentUser to compare it 
+ 
+// to show button add product if he is a seller
 if (user.role === "seller") {
     $(".sellerBtn").show();
 } else {
     $(".sellerBtn").hide();
 }
 
+// href to send user to product details page and seller to details page with edit product and remove
 const detailsPage = user?.role == "seller"
     ? "../../productDetials/Template/SellerProductDetaill.html"
     : "../../productDetials/Template/productDetails.html";
@@ -22,10 +24,26 @@ console.log(userData);
 
 
 
+
+
   //-------------------------------- get data to layout onee--------------------------------
 let cards = "";
 
 userData.forEach(product => {
+// to append raiting to card
+function generateStars(rating){
+    let stars ="";
+    for (let i = 1; i<=5; i++){
+        if(i<=Math.floor(rating)){
+            stars += `<i class="fa fa-star"></i>`;
+        }else{
+            stars += `<i class="fa-regular fa-star"></i>`
+        }
+    }
+    return stars;
+}
+// to calc raiting
+     let ratingStars = generateStars(product._rating);
   cards += `
   
 <div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}">
@@ -59,14 +77,12 @@ userData.forEach(product => {
 
         <div class="d-flex align-items-center  "> <!-- review by stars -->
     <div class="text-warning me-2 rating ">
-      <i class=" fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-     <i class="fa-regular fa-star"></i>
+     ${ratingStars}
       
     </div>
-    <span class="text-muted ratingspa">No reviews</span>
+    <span class="text-muted ratingspa">  
+   ${product._rating.toFixed(1)}/5
+       </span>
   </div>
 </div>
        
@@ -90,6 +106,21 @@ document.getElementById("divlayout1").innerHTML = cards;
 let cards2 = "";
 
 userData.forEach(product => {
+// to append raiting to card
+function generateStars(rating){
+    let stars ="";
+    for (let i = 1; i<=5; i++){
+        if(i<=Math.floor(rating)){
+            stars += `<i class="fa fa-star"></i>`;
+        }else{
+            stars += `<i class="fa-regular fa-star"></i>`
+        }
+    }
+    return stars;
+}
+// to calc raiting
+ let ratingStars = generateStars(product._rating);
+
   cards2 += `
 <div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" > <!--div of card 1  with icons   -->
 
@@ -112,13 +143,9 @@ userData.forEach(product => {
 
         <div class="d-flex align-items-center  "> <!-- review by stars -->
     <div class="text-warning me-2 rating ">
-      <i class=" fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-     <i class="fa-regular fa-star"></i>
+    ${ratingStars}
     </div>
-    <span class="text-muted ratingspa">No reviews</span>
+    <span class="text-muted ratingspa">   ${product._rating.toFixed(1)}/5 </span>
 
   </div>    <!--   name and price   -->
   <div class=" "> <!--   paragraph   -->
@@ -219,8 +246,6 @@ function applyFilters(layoutClass) {
     });
 
 }
-
-
 
 
 
@@ -370,60 +395,6 @@ $(".allStock").click(function () {
 
 
 
-// $(".sort-option").click(function (e) {
-//     e.preventDefault();
-
-//     const sortType = $(this).data("sort");
-
-//     let container = $("#divlayout1");
-//     let items = container.children(".cards").get();
-
-//     items.sort(function (a, b) {
-
-//         let nameA = $(a).find(".para").text().toLowerCase();
-//         let nameB = $(b).find(".para").text().toLowerCase();
-
-//         if (sortType === "az") {
-//             return nameA.localeCompare(nameB);
-//         } else {
-//             return nameB.localeCompare(nameA);
-//         }
-//     });
-
-//     $.each(items, function (index, item) {
-//         container.append(item);
-//     });
-
-//     $(".dropdown-toggle .text-secondary").text($(this).text());
-
-//     setupPagination("divlayout1", "cards", "pagination1", 16);
-// });
-// ------------------------------------------------breakkkkk--------------------------------------------------------
-// let container2 = $("#divlayout2");
-// let items2 = container2.children(".cards2").get();
-
-// items2.sort(function (a, b) {
-
-//     let nameA = $(a).find(".para").text().toLowerCase();
-//     let nameB = $(b).find(".para").text().toLowerCase();
-
-//     if (sortType === "az") {
-//         return nameA.localeCompare(nameB);
-//     } else {
-//         return nameB.localeCompare(nameA);
-//     }
-// });
-
-// $.each(items2, function (index, item) {
-//     container2.append(item);
-// });
-
-// setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-
-
-
-
 
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
@@ -525,7 +496,50 @@ $(".btnbag2").click(function(){
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
 
+// $("#acs").click(function(){
 
+
+//  let nedat = userData.sort((a, b) => a._name.localeCompare(b._name));
+// console.log(nedat)
+
+
+ 
+// })
+
+$("#acs").click(function () {
+
+  let cards = $(".cards").get();
+
+  cards.sort(function (a, b) {
+    let nameA = $(a).find(".para").text().toLowerCase();
+    let nameB = $(b).find(".para").text().toLowerCase();
+
+    return nameA.localeCompare(nameB);
+  });
+
+  $.each(cards, function (index, card) {
+    $("#divlayout1").append(card);
+  });
+
+});
+$("#decs").click(function () {
+
+  let cards = $(".cards").get();
+
+  cards.sort(function (a, b) {
+    let nameA = $(a).find(".para").text().toLowerCase();
+    let nameB = $(b).find(".para").text().toLowerCase();
+
+    return nameB.localeCompare(nameA);
+  });
+
+  $.each(cards, function (index, card) {
+    $("#divlayout1").append(card);
+  });
+
+});
+
+//    setupPagination("divlayout1", "cards", "pagination1", 16);
 
 
 
@@ -590,38 +604,6 @@ let items = $(`#${containerId} .${cardClass}:visible`);
 
 
 
-//  ------------------- filter  by Price rangeee--------------------
-// function filterByPrice(minPrice, maxPrice) {
-
-//     $(".cards").each(function () {
-
-//         let price = parseFloat($(this).data("price"));
-
-//         if (price >= minPrice && price <= maxPrice) {
-//             $(this).show();
-           
-//         } else {
-//             $(this).hide();
-//         }
-//         setupPagination("divlayout1", "cards", "pagination1", 16);
-
-//     });
-    
-// }
-// //-------------------------------- filter by Price rangeee--------------------------------
-// $('input[type="range"]').on("input", function () {
-//     activeFilters.maxPrice = parseFloat($(this).val());
-
-//     applyFilters("cards");
-//     setupPagination("divlayout1", "cards", "pagination1", 16);
-
-//     // let maxPrice = parseFloat($(this).val());
-
-//     // filterByPrice(0, maxPrice);
-
-//     // $(".form-label").text(`The highest price is €${maxPrice}`);
-//  // setupPagination("divlayout1", ".cards", "pagination1", 16);
-// });
 
 
 
@@ -629,37 +611,6 @@ let items = $(`#${containerId} .${cardClass}:visible`);
     // ------------------------------------------------breakkkkk--------------------------------------------------------
 
 
-//--------------------------------filter by Price --------------------------------
-// function filterByPrice2(minPrice, maxPrice) {
-
-//     $(".cards2").each(function () {
-
-//         let price = parseFloat($(this).data("price"));
-
-//         if (price >= minPrice && price <= maxPrice) {
-//             $(this).show();
-//         } else {
-//             $(this).hide();
-//         }
-
-//     });
-   
-// }
-// //-------------------------------- filter by Price rangeee--------------------------------
-// $('input[type="range"]').on("input", function () {
-
-//     let maxPrice = parseFloat($(this).val());
-
-//     filterByPrice2(0, maxPrice);
-
-//     $(".form-label").text(`The highest price is €${maxPrice}`);
-
-//     //      $("#paginationnav2").removeClass("d-none");
-//     // $("#paginationnav").addClass("d-none");
-//     // setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-
-// });
 
 
  // ------------------------------------------------breakkkkk--------------------------------------------------------
