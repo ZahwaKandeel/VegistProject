@@ -13,6 +13,7 @@ const monthly = SalesReport.getMonthly();
 const recentSales = RecentSale.getDummyList();
 const topSellingItem = TopSellingItem.getDummyList();
 
+const order = localStorage.getItem("currentOrder");
 
 $(function(){
     $("#totalEarnings h3").html("&pound;"+stats.totalEarnings.toLocaleString());
@@ -23,12 +24,7 @@ $(function(){
     $("#conversionRate h3").html(stats.conversionRate+"%");
 
     const ctx = document.getElementById("SalesReportChart")
-                //--main-footer-bg: #fbe2cb;
-                //--main-text-color: #e29911;
-                //--secondry-text-color: #b87700;
-                //--main-main-color: #f5ab1e;
-                //--main-accordion-button-bg: #fbe2cb;
-               // --main-accordion-body-bg: #e6cbb3; -->
+                
     let salesChart = new Chart(ctx,{
         type: "line",
         data:{
@@ -138,7 +134,6 @@ $(function(){
                 <td>${sale.price}</td>
                 <td>${sale.totalSales}</td>
                 <td>${sale.status}</td>
-                <td>${sale.action}</td>
             </tr>
         `;
         $("#TopSellingItems tbody").append(row);

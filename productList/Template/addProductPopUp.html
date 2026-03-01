@@ -57,7 +57,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label fw-bold">Image:</label>
-                        <input type="text" class="form-control" id="image" name="image" placeholder="images.google.com">
+                        <!-- <input type="text" class="form-control" id="image" name="image" placeholder="images.google.com"> -->
+                        <input type="file" class = "form-control" id="image" accept="image/*">
+                        <img id="imagePreview" class="mt-3 w-100 d-none" style="max-height: 200px; object-fit:contain">
                     </div>
                     <div class="mb-3">
                         <label for="sizes" class="form-label fw-bold">Size (KG):</label>
@@ -119,13 +121,31 @@
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
         $(document).ready(function(){
-            if(!currentUser || currentUser.role !== "seller"){
+            /*if(!currentUser || currentUser.role !== "seller"){
                 alert("Only Sellers can create products");
-            }
+            }*/
             const sellerId = currentUser.id;
             const allowedCategories = [
                 "bagel", "candy", "beans", "bestseller", "bread", "biscuite", "breakfast", "cake", "cookie", "cupcake", "Dairy&Cheese", "Dinner"
             ];
+            let imageBase64 = "";
+            $("#image").on("change", function(){
+                const file = this.files[0];
+
+                if(!file) return;
+
+                if(!file.type.startsWith("image/")){
+                    alert("Please select a valid image file.");
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e){
+                    imageBase64 = e.target.result;
+                $("#imagePreview").attr("src", imageBase64)
+                                .removeClass("d-none");
+                };
+                reader.readAsDataURL(file);
+            });
 
             $("form").off("submit").on("submit", function(e){
                 e.preventDefault();
@@ -139,7 +159,11 @@
                 let description = $("#description").val().trim();
                 let stock = parseInt($("#stock").val());
                 let category = $("#category").val().trim();
-                let image = $("#image").val().trim();
+                //let image = $("#image").val().trim();
+                if(!imageBase64){
+                    alert("Please Upload an image");
+                    return;
+                }
 
                 let sizes = $(".size-option:checked").map(function(){
                     return parseInt($(this).val(),10);
@@ -168,10 +192,10 @@
                     showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
                     isValid = false;
                 }
-                if (!isValidURL(image)) {
-                    showError("#image", "Enter a valid image URL.");
-                    isValid = false;
-                }
+                //if (!isValidURL(image)) {
+                //    showError("#image", "Enter a valid image URL.");
+                //    isValid = false;
+                //}
                 if (sizes.length === 0) {
                     $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
                     isValid = false;
@@ -195,7 +219,7 @@
                         description,
                         stock,
                         category,
-                        image,
+                        imageBase64,
                         sizes,
                         0,
                         [],

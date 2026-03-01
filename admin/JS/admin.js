@@ -6,10 +6,14 @@ let users = JSON.parse(localStorage.getItem("Users")) || []; // number of users
 console.log(users); 
 
 
-let activeUsers = JSON.parse(localStorage.getItem("doneOrders")) || []; 
+let activeUsers = JSON.parse(localStorage.getItem("doneOrders")) || []; // number of doneorer 
 console.log(activeUsers[0].customerId); 
 console.log(activeUsers); 
 
+
+
+let contacts = JSON.parse(localStorage.getItem("orders")) || []; // number of contacts 
+// compare if idUser == orderCustomerId so he is an active user 
 
 let matchedUsers = users.filter(user =>
   activeUsers.some(order => order.customerId == user.id)
@@ -207,6 +211,25 @@ const ctx = document.getElementById('revenueChart').getContext('2d');
 
 
 //----------------break-----------------
+
+// ===== Data =====
+// const dataSets = {
+//   today: {
+//     labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
+//     data: [2000, 5000, 8000, 6000, 9000, 7000]
+//   },
+//   week: {
+//     labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+//     data: [12000,19000,15000,22000,18000,25000,21000]
+//   },
+//   month: {
+//     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+//     data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
+//   }
+// };
+
+
+// to transformation from 24 hours to 12 hours
 function formatHour(date) {
   let hours = date.getHours();
   let ampm = hours >= 12 ? "PM" : "AM";
@@ -214,26 +237,53 @@ function formatHour(date) {
   return hours + ampm;
 }
 
+
+
 function getRevenueData() {
+// range by 3 hours
+  const fixedHours = ['12AM', '3AM', '6AM', '9AM', '12PM', '3PM', '6PM', '9PM'];
+ 
   let todayData = {};
+  fixedHours.forEach(h => todayData[h] = 0); // to zero hours
+   
+  // start with data by zero 
   let weekData = { Mon:0,Tue:0,Wed:0,Thu:0,Fri:0,Sat:0,Sun:0 };
   let monthData = { Jan:0,Feb:0,Mar:0,Apr:0,May:0,Jun:0,Jul:0,Aug:0,Sep:0,Oct:0,Nov:0,Dec:0 };
 
+// get day 
   let today = new Date().toDateString();
+  // console.log(today)
 
+
+  //loop orders and 
   for (let order of activeUsers) {
-    let orderDate = new Date(order.createdAt);
-    
+   
+   // convert date to object
+    let orderDate = new Date(order.createdAt.replace(" ", "T"));
+
+
     // ===== Today =====
-    if (orderDate.toDateString() === today) {
-      let hour = formatHour(orderDate);
-      if (!todayData[hour]) todayData[hour] = 0;
-      todayData[hour] += order.total;
-    }
+    if (orderDate.toDateString() == today) {
+  let hourNum = orderDate.getHours();
+  let hourKey = null;
+
+  if (hourNum >= 0 && hourNum < 3) hourKey = '12AM';
+  else if (hourNum >= 3 && hourNum < 6) hourKey = '3AM';
+  else if (hourNum >= 6 && hourNum < 9) hourKey = '6AM';
+  else if (hourNum >= 9 && hourNum < 12) hourKey = '9AM';
+  else if (hourNum >= 12 && hourNum < 15) hourKey = '12PM';
+  else if (hourNum >= 15 && hourNum < 18) hourKey = '3PM';
+  else if (hourNum >= 18 && hourNum < 21) hourKey = '6PM';
+  else if (hourNum >= 21) hourKey = '9PM';
+
+  if (hourKey) todayData[hourKey] += Number(order.total);
+}
+ 
+
 
     // ===== Week =====
     let dayName = orderDate.toLocaleString("en-US", { weekday: "short" });
-    if (weekData[dayName] !== undefined) {
+    if (weekData[dayName] != undefined) {
       weekData[dayName] += order.total;
     }
 
@@ -241,7 +291,7 @@ function getRevenueData() {
     let monthName = orderDate.toLocaleString("en-US", { month: "short" });
     monthData[monthName] += order.total;
   }
-
+// return result   
   return {
     today: {
       labels: Object.keys(todayData),
@@ -260,27 +310,10 @@ function getRevenueData() {
 
 let dataSets = getRevenueData();
 
-
-
-//----------------break-----------------
+//----------break-----------------
 
 
 
-// ===== Data =====
-// const dataSets = {
-//   today: {
-//     labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
-//     data: [2000, 5000, 8000, 6000, 9000, 7000]
-//   },
-//   week: {
-//     labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-//     data: [12000,19000,15000,22000,18000,25000,21000]
-//   },
-//   month: {
-//     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-//     data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
-//   }
-// };
 
 // ===== Gradient =====
 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
@@ -318,7 +351,9 @@ const revenueChart = new Chart(ctx, {
 });
 
 // ===== Button Function =====
+
 function updateChart(type) {
+  const dataSets = getRevenueData();
   revenueChart.data.labels = dataSets[type].labels;
   revenueChart.data.datasets[0].data = dataSets[type].data;
   revenueChart.update();
@@ -332,26 +367,6 @@ document.getElementById('monthBtn').onclick = () => updateChart('month');
 
 
 
-
-// const ctx3 = document.getElementById('myChart').getContext('2d');
-// new Chart(ctx3, {
-//   type: 'bar',
-//   data: {
-//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//     datasets: [{
-//       label: '# of Votes',
-//       data: [15, 25, 3, 5, 2, 3],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true
-//       }
-//     }
-//   }
-// });
 
 
 
@@ -374,8 +389,8 @@ meeting : [
   {title : "Team Stand Up" , time : "06:00 - 07:00"},
   {title : "All Hands Meeting " , time : "06:00 - 07:00"}
 ],
-totalcontact:{current: activeUsers.length,
-              lastMonth : activeUsers.length
+totalcontact:{current: contacts.length,
+              lastMonth : contacts.length
 
 },
 }
@@ -408,7 +423,7 @@ document.getElementById("closed").innerText = getDashboardData.pipeline.closed ;
 
 //-----------------------
 
-
+// number of doneorer  and this is mean total contact
 document.getElementById("totalcontact").innerText = getDashboardData.totalcontact.current.toLocaleString();
 document.getElementById("lasttotalcontact").innerText = getDashboardData.totalcontact.lastMonth.toLocaleString();
 
@@ -418,25 +433,3 @@ document.getElementById("totalcontactPrecent").innerText =  "+" +
   calculatePercent(getDashboardData.totalcontact.current ,  getDashboardData.totalcontact.lastMonth ) +"%";
 
 
-// const ctx5 = document.getElementById('myChartx').getContext('2d');
-
-  // new Chart(ctx5, {
-  //      type: 'doughnut',
- 
-  //  data1 : {
-  // labels: [
-  //   'Red',
-  //   'Blue',
-  //   'Yellow'
-  // ],
-  // datasets: [{
-  //   label: 'My First Dataset',
-  //   data: [300, 50, 100],
-  //   backgroundColor: [
-  //     'rgb(255, 99, 132)',
-  //     'rgb(54, 162, 235)',
-  //     'rgb(255, 205, 86)'
-  //   ],
-  //   hoverOffset: 4
-  // }]
-  //  }})

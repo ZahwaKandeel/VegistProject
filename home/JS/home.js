@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         slideIndex++;
     }
+    loadCustomerReviews();
 });
 
 function createProductCard(products){
@@ -115,4 +116,63 @@ $(document).ready(function(){
     });
 });
 
+function loadCustomerReviews(){
+    const carouselInner = document.querySelector("#customersCarousel .carousel-inner");
+    if(!carouselInner) return;
 
+    let allReviews = [];
+    products.forEach(product =>{
+        if (Array.isArray(product._reviews)){
+            product._reviews.forEach(review =>{ 
+                allReviews.push({
+                    title: review.title,
+                    comment: review.comment,
+                    rating: review.rating,
+                    uid: review.uid
+                });
+            });
+        }
+    });
+    
+    if (allReviews.length === 0){
+        carouselInner.innerHTML= `
+            <div class = "carousel-item active">
+                <div class="d-flex justify-content-center">
+                    <p class = "text-muted"> No Reviews yet.</p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    const reviewsPerSlide = 2;
+    let slideIndex = 0;
+
+    for(let i=0; i<allReviews.length; i+=reviewsPerSlide){
+        const slideReviews = allReviews.slice(i, i + reviewsPerSlide);
+        const carouselItem = document.createElement("div");
+        carouselItem.className = "carousel-item";
+        if(slideIndex === 0) carouselItem.classList.add("active");
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "d-flex justify-content-center gap-4 align-items-stretch";
+
+        slideReviews.forEach((review, index) => {
+            const reviewCard = document.createElement("div");
+            reviewCard.className = "customer-card card text-center p-4 bg-transparent" 
+            + (index === 1 ? " d-none d-md-block" : "");
+
+            reviewCard.innerHTML = `
+                <h5 class="fw-bold">"${review.title}"</h5>
+                <p class="mb-3">"${review.comment}"</p>
+                <small class="fw-bold">By ${review.uid}</small>
+                <p class="stars">${generateStars(review.rating)}</p>
+            `;
+            wrapper.appendChild(reviewCard);
+        });
+        carouselItem.appendChild(wrapper);
+        carouselInner.appendChild(carouselItem);
+
+        slideIndex++;
+    }
+}

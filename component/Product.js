@@ -102,8 +102,9 @@ export class Product{
     set ImageUrl(imageUrl)
     {
         const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
-        if(!urlPattern.test(imageUrl))
-            throw new Error("Invalid image URL")
+        const base64Pattern = /^data:image\/(png|jpg|jpeg|webp);base64,/i;
+        if(!urlPattern.test(imageUrl) && !base64Pattern.test(imageUrl))
+            throw new Error("Invalid image URL or Base64 image");
         this._imageUrl = imageUrl;
     }
     get ImageUrl()
@@ -143,7 +144,7 @@ export class Product{
                 throw new Error("Each review must be an object");
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
-            const {uid = currentUser, title, rating, comment} = review;
+            const {uid = currentUser.id, title, rating, comment} = review;
             if((uid == null ) || (title == review) || (rating == review) || (comment == review))
                 throw new Error("Review must contain userId, title, rating and comment properties");
             if(typeof title !== "string" || title.trim().length<5)
@@ -152,7 +153,7 @@ export class Product{
                 throw new Error("UserId invalid");
             if(typeof rating !== "number" || rating.length<0)
                 throw new Error("Rating invalid")
-            if(typeof comment !== "string" || comment.trim().length<50)
+            if(typeof comment !== "string" || comment.trim().length<10)
                 throw new Error("Comment length must be at least 50 characters");
         });
         this._reviews = reviews;
