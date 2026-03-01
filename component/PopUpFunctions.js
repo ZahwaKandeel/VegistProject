@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
             $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
-
             // Update prices when size changes
             $(document).on('change', 'input[name="size_choice"]', function () {
                 selectedSize = parseFloat($(this).val()) || 1;
@@ -109,6 +108,7 @@ $(document).on('click', '#modal-addToCart', function(e) {
     window.location.href = "../../cart/Template/cart.html";
 });
 
+console.log("(selectedProduct",selectedProduct)
 // Buy It Now function
 function buyItNow() {
     if (!selectedProduct) return;
