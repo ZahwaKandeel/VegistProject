@@ -453,14 +453,6 @@
 <label for="range1" class="form-label text-secondary">The highest price is €67,00</label>
 <input type="range" class="form-range" id="range1">
 
-<!-- <div class="d-flex">
-<div ><label for="minPrice">from</label>
-<input id="minPrice" class="w-50 " type="number"></div>
-
-<div ><label for="maxPrice">to</label>
-<input id="maxPrice" class="w-50 " type="number"></div>
-</div> -->
-
 
 </div> 
     </div>
@@ -526,14 +518,6 @@
 <div id="divlayoutdefult"  class="   col-12   col-lg-9  row g-4  px-0 mx-0  d-flex    align-items-baseline  " > <!--div of all cards  -->  <!--start  of section 2 --> 
  
 <div id="divlayout1"  class="     row   px-0 mx-0 my-1   g-4 ">     <!--row of products  --> 
-
-
-   
-
-  
-
-
-
     </div> 
                                 
 
@@ -623,24 +607,6 @@
 
 <script type="module" src="../JS/productlist.js"></script>
 <script type="module" src="../../component/PopUpFunctions.js"></script>
-<script>
-          $(document).ready(function(){
-              // Load external modal file
-              $("#modalContainer").load("addproductpopup.html", function(){
-                  function openModal(){
-                    const modal = new bootstrap.Modal(
-                      document.getElementById("addProductModal")
-                    );
-                    modal.show();
-                  }
-                  $("#openAddProduct").on("click", openModal);
-                  $("#openAddProductMobile").on("click", openModal);
-
-              });
-          });
-          
-        
-        </script>
 
 
     </body>
