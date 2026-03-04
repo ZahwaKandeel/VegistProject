@@ -152,15 +152,15 @@ export const dummyProducts = [
         comment:"Delicious aroma and soft texture with natural sweetness."
         }],0),
 
-        new Product(16,1,"Lemon",25,
-        "Bright yellow lemons packed with vitamin C and strong citrus flavor. Perfect for cooking, baking, and refreshing drinks.",
-        100,"Citrus Fruits","../../productList/images/Lemon.jpg",
-        [1,2],4.7,[{
-        uid:1,
-        title:"Strong Fresh Flavor",
-        rating:4.7,
-        comment:"Very fresh lemons with intense citrus aroma and juice."
-        }],10),
+        // new Product(16,1,"Lemon",25,
+        // "Bright yellow lemons packed with vitamin C and strong citrus flavor. Perfect for cooking, baking, and refreshing drinks.",
+        // 100,"Citrus Fruits","../../productList/images/Lemon.jpg",
+        // [1,2],4.7,[{
+        // uid:1,
+        // title:"Strong Fresh Flavor",
+        // rating:4.7,
+        // comment:"Very fresh lemons with intense citrus aroma and juice."
+        // }],10),
 
         new Product(17,1,"Orange",30,
         "Sweet and juicy oranges full of vitamin C. Easy to peel and perfect for fresh juice or healthy snacks.",

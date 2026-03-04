@@ -185,7 +185,7 @@ $(function() {
                         ${
                             finalPrice < originalPrice
                             ? `
-                                <del><i class="text-warning">$${totalFinalPrice.toFixed(2)}</i></del>
+                                <del><i class="text-warning">$${totalOriginalPrice.toFixed(2)}</i></del>
                                 <span>$${totalFinalPrice.toFixed(2)}</span>
                             `
                             : `

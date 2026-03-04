@@ -179,8 +179,8 @@ export function header(){
                                 <li><a class="dropdown-item" href="/home/Template/home.html">Home</a></li>
                                 <li><a class="dropdown-item" href="/productList/Template/product_list.html">Catalog</a></li>
                                 <li><hr class="dropdown-divider"/></li>
-                                <li><a class="dropdown-item sellerdash" href="/seller/Template/sellerdash.html">Seller Dashbord</a></li>
-                                <li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>
+                                <li><a class="dropdown-item sellerdash d-none" href="/seller/Template/sellerdash.html">Seller Dashbord</a></li>
+                                <li><a class="dropdown-item adminpanel d-none" href="/admin/Template/adminPanal.html">Admin Panel</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
@@ -194,6 +194,15 @@ export function header(){
 
 
 $(function() {
-    const porducts = JSON.parse(localStorage.getItem("products"))
+    const currentUser = localStorage.getItem("currentUser");
+    if(!currentUser) {return};
+    const role = currentUser.role;
+
+    if (role === "seller") {
+        $(".sellerdash").removeClass("d-none");
+    }
+    else if (role === "admin") {
+        $(".adminpanel").removeClass("d-none");
+    }
 
 })

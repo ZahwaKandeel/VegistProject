@@ -72,7 +72,7 @@ export function initializeEditProduct (productId){
             showError("#updatePrice", "Price must be a number greater than 0");
             isValid = false;
         }
-        if (description.length < 100 || description.length > 200){
+        if (description.length < 20 || description.length > 200){
             showError("#updateDescription", "Description must be at least 100 characters and less than 200");
             isValid = false;
         }
