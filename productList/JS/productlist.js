@@ -454,7 +454,7 @@ $(".categName").text('All products')
      $("#paginationnav2").addClass("d-none")
       $("#paginationnav").removeClass("d-none");
 
-setupPagination("divlayout1", "cards", "pagination1", 16);
+
 })
 
 setupPagination("divlayout1", "cards", "pagination1", 16);
@@ -600,7 +600,7 @@ let items = $(`#${containerId} .${cardClass}:visible`);
         $(`#${paginationId} li:first`).addClass("active");
 
         $(`#${paginationId} .page-link`).click(function (e) {
-            e.preventDefault();
+            // e.preventDefault();
 
             const page = parseInt($(this).text());
 
