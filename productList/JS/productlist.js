@@ -135,7 +135,7 @@ function generateStars(rating){
     
 </div>
 
-<div class="  col-12 col-lg-8 card ">     <!--   name and price and raitng  -->
+<div class="  col-12 col-lg-8 card  mt-2">     <!--   name and price and raitng  -->
 
 
 <p class=""> <a href=""  class="para text-decoration-none  " > ${ product._name}</a></p>  <!--   name and price   -->
@@ -434,11 +434,13 @@ $(".categName").text('All products')
 
      $("#paginationnav2").removeClass("d-none");
     $("#paginationnav").addClass("d-none");
+
+
+
 setupPagination("divlayout2", "cards2", "pagination2", 8);
 
-
-
 })
+
 
 // that btn to back to defult layout of divs 
 $(".btnlay1").click(function(){
