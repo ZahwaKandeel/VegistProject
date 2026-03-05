@@ -46,6 +46,11 @@ $(function() {
     });
 });
 
+const singInButton = $("#singIn")
+singInButton.on("click", function() {
+    window.location.href = "/auth/Template/login.html";
+})
+
 $(function() {
 
     // Load Current User
@@ -55,12 +60,12 @@ $(function() {
         // Email & icon
         $("#userEmail").text(user.email);
         $("#userInitial").text(user.firstName.charAt(0).toUpperCase());
-
-        $("#contentHeader").addClass("d-none");
-        $("#guestContact").hide();
         $("#userContact").show();
+        singInButton.hide();
     }
 });
+
+
 
 const currentAddress = plainUser.address || [];
 const order = localStorage.getItem("currentOrder");
