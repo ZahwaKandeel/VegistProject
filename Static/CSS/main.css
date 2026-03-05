@@ -155,3 +155,7 @@ the image and this div wrapped in a div with class "card-image" */
   color: #fff;
   cursor: pointer;
 }
+
+.invalid-warning{
+    font-size: 12px;
+}

@@ -1,7 +1,16 @@
 import { getBasePath } from "./basepath.js";
-export function header(){
+export function header() {
     const basepath = getBasePath();
-    return`
+    const name = JSON.parse(localStorage.getItem("currentUser")).firstName;
+    const authButtons = name
+        ? ""
+        : `<div class="d-flex">
+                                <a href="${basepath}auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
+                                    >Register</a
+                                >
+                                <a href="${basepath}auth/Template/login.html" class="fw-light secondryTextTheme  ms-1 text-decoration-none">Login</a>
+                            </div>`;
+    return `
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
@@ -135,13 +144,8 @@ export function header(){
                             <i class="fa-regular fa-user text-body px-1"></i>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
-                            <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>Account</b></a>
-                            <div class="d-flex">
-                                <a href="${basepath}auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
-                                    >Register</a
-                                >
-                                <a href="${basepath}auth/Template/login.html" class="fw-light secondryTextTheme  ms-1 text-decoration-none">Login</a>
-                            </div>
+                            <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>${name || "Account"}</b></a>
+                            ${authButtons}
                         </div>
                         <!-- Heart icon -->
                         <a href="${basepath}wishlist/Template/wishlist.html">
@@ -189,20 +193,19 @@ export function header(){
                 <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0">🌙</button>
             </section>
         </header>
-    `
+    `;
 }
 
-
-$(function() {
+$(function () {
     const currentUser = localStorage.getItem("currentUser");
-    if(!currentUser) {return};
+    if (!currentUser) {
+        return;
+    }
     const role = currentUser.role;
 
     if (role === "seller") {
         $(".sellerdash").removeClass("d-none");
-    }
-    else if (role === "admin") {
+    } else if (role === "admin") {
         $(".adminpanel").removeClass("d-none");
     }
-
-})
+});

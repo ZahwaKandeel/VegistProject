@@ -10,7 +10,6 @@ let user = Object.assign(new User({}), plainUser );
 
 $(function() {
     // LOGOUT
-    // Use this function once per page to avoid double-handlers
     $(".logoutBtn").off("click").on("click", (function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -50,11 +49,9 @@ $(function() {
 $(function() {
 
     // Load Current User
-
     $("#userContact").hide();
 
     if (userData) {
-        
         // Email & icon
         $("#userEmail").text(user.email);
         $("#userInitial").text(user.firstName.charAt(0).toUpperCase());
@@ -65,11 +62,17 @@ $(function() {
     }
 });
 
-let newAddress;
 const currentAddress = plainUser.address || [];
 const order = localStorage.getItem("currentOrder");
 const plainOrder = order ? JSON.parse(order) : {};
 const orderAddress = plainOrder.shipping || {};
+const firstName = $("#firstname");
+const lastName = $("#lastname");
+const address = $("#address");
+const apartment = $("#apartment");
+const city = $("#city");
+const postal = $("#postal");
+const country = $("#country")
 
 $(function() {
     // fetch address data
@@ -80,19 +83,23 @@ $(function() {
     if (orderAddress) {
         const defaultAddress = currentAddress.filter(addr => addr.isDefault === true)[0] || {};
         console.log("plan order: ", plainOrder);
-        
-        $(".firstname").val(orderAddress.firstName || defaultAddress.firstName || '');
-        $(".lastname").val(orderAddress.lastName || defaultAddress.lastName || '');
-        $(".address").val(orderAddress.fullAddress || defaultAddress.address || '');
-        $(".apartment").val(orderAddress.appartment || defaultAddress.apartment || '');
-        $(".city").val(orderAddress.city || defaultAddress.city || '');
-        $(".postal").val(orderAddress.postalCode || defaultAddress.postalCode || '');
-        $("#country").val(orderAddress.country || defaultAddress.country || '');
-    
-        if (orderAddress.country) {
+        firstName.val(orderAddress.firstName || defaultAddress.firstName || '');
+        lastName.val(orderAddress.lastName || defaultAddress.lastName || '');
+        address.val(orderAddress.fullAddress || defaultAddress.address || '');
+        apartment.val(orderAddress.appartment || defaultAddress.apartment || '');
+        // !! BOMB
+        city.value = orderAddress.city || defaultAddress.city || ''
+        postal.val(orderAddress.postalCode || defaultAddress.postalCode || '');
+        country.val(orderAddress.country || defaultAddress.country || '');
+        console.log("address :",address)
+        console.log("city :",city)
+        if (orderAddress.country && orderAddress.city) {
             $("#countryFirstOption").text(orderAddress.country);
+            $("#cityFirstOption").text(orderAddress.city);
+
+            console.log("cart country:",orderAddress.country)
+            console.log("cart councity:",orderAddress.city)
         }
-        console.log(orderAddress.country)
         
     }
 })
@@ -107,6 +114,9 @@ const shippingValue = Number(orderAddress.shipping_fees);
 const totalValue = subtotalValue + shippingValue;
 const products = JSON.parse(localStorage.getItem("products"));
 const cart = plainOrder.cart;
+if(!cart || cart?.length ===0){
+    alert("Please place an order First.")
+}
 const orderProducts = cart.map(item => {
     const product = products.find(p => p._id === Number(item.product_id));
     
@@ -253,15 +263,72 @@ $(function() {
 
         const isDefaultChecked = $("#saveInfo").prop("checked");
         
+        function isNameValid($input) {
+            const name = $input.val().trim();
+            return /^[A-Za-z]{3,30}$/.test(name);
+        }
+        function isAddressValid() {
+            const trimmed = address.val().trim();
+            if (trimmed.length < 10 || trimmed.length > 150) {
+                return false;
+            }
+
+            const dangerousPattern = /[<>`{}#$]/;
+            return !dangerousPattern.test(trimmed)
+        }
+
+        function isApartmentValid() {
+            const trimmed = apartment.val().trim();
+            if (trimmed.length < 10 || trimmed.length > 40) {
+                return false;
+            }
+
+            const dangerousPattern = /[<>`{}#$]/;
+            return !dangerousPattern.test(trimmed)
+        }
+
+        function isPostalValid() {
+            const value = postal.val().trim();
+            console.log(value)
+            const regex = /^\d{4,10}$/;
+
+            return regex.test(value);
+        }
+
+        function setValidation($input, isValid) {
+            // validation UI
+            if (isValid) {
+                $input.removeClass("is-invalid").addClass("is-valid");
+            } else {
+                $input.removeClass("is-valid").addClass("is-invalid");
+            }
+        }
+        
+        const firstValid = isNameValid(firstName);
+        const lastValid = isNameValid(lastName);
+        const addressValid = isAddressValid();
+        const apartmentValid = isApartmentValid();
+        const postalValid = isPostalValid();
+        
+        setValidation(firstName, firstValid);
+        setValidation(lastName, lastValid);
+        setValidation(address, addressValid);
+        setValidation(apartment, apartmentValid);
+        setValidation(postal, postalValid);
+        
+        if (!firstValid || !lastValid || !addressValid || !apartmentValid || !postalValid) {
+            alert("Please fix invalid fields");
+            return;
+        }
         
         const newAddress = {
-            firstName: $(".firstname").val(),
-            lastName: $(".lastname").val(),
-            address: $(".address").val(),
-            apartment: $(".apartment").val(),
-            city: $(".city").val(),
-            postalCode: $(".postal").val(),
-            country: $("#country").val(),
+            firstName: firstName.val(),
+            lastName: lastName.val(),
+            address: address.val(),
+            apartment: apartment.val(),
+            city: city.val(),
+            postalCode: postal.val(),
+            country: country.val(),
             isDefault: isDefaultChecked
         };
 
