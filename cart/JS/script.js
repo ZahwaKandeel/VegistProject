@@ -74,25 +74,54 @@ $(document).ready(function () {
         });
     });
 
+
+        let zipCode = $('#zip-code').val();
+        const zipRegex = /^[A-Za-z0-9][A-Za-z0-9\s-]{2,10}$/;
+
+    $('#zip-code').on('input', function () {
+
+    let zipCode = $(this).val();
+
+    if (zipCode.length === 0) {
+        $("#zip-error").text("").removeClass("alert alert-danger mt-1 p-1");
+        return;
+    }
+
+    if (!zipRegex.test(zipCode)) {
+        $("#zip-error")
+            .text("Invalid ZIP Code")
+            .addClass("alert alert-danger mt-1 p-1");
+    } else {
+        $("#zip-error")
+            .text("")
+            .removeClass("alert alert-danger mt-1 p-1");
+    }
+
+});
+
     // ================================
     // Calculate shipping rate UI message
     // ================================
     $('#calc-shipping-btn').click(function () {
         let selectedCountry = $('#countries').val();
         let selectedCity = $('#cities').val();
-        let zipCode = $('#zip-code').val();
 
-        if (selectedCountry && selectedCity && zipCode) {
-            $('.shipping-rate').empty()
-                .append(`<p>There is one shipping rate available for ${zipCode}, ${selectedCity}, ${selectedCity}.</p> <p>Standard at €14,00 EUR</p>`);
-
-            $('.shipping-rate p:first').addClass('text-success');
-            $('.shipping-rate p:last').addClass('text-secondary');
-        } else {
+        if (!selectedCountry && !selectedCity && !zipCode) {
+            console.log("n");
+            
             $('.shipping-rate').empty()
                 .append(`<p>You should select a country, city, and enter a zip code to calculate shipping.</p>`);
 
-            $('.shipping-rate > p').addClass('text-danger fw-bold');
+            $('.shipping-rate > p').addClass('alert alert-danger py-1');
+        } else {
+            console.log("y");
+            
+            $('.shipping-rate').empty()
+                .append(`<p>There is one shipping rate available for ${selectedCountry}, ${selectedCity}, ${zipCode}.</p> <p>Standard at €14,00 EUR</p>`);
+
+           $('.shipping-rate p:first').removeClass('alert alert-danger py-1').addClass('text-success');
+        $('.shipping-rate p:last').addClass('text-secondary');
+            
         }
     });
 
