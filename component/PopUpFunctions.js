@@ -3,7 +3,7 @@ import { Order } from "/models/order.js";
 
 let products = loadProducts() || [];
 let selectedProduct = null;
-let bsModal = null;
+//let bsModal = null;
 
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("quickViewModal");
@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         container.innerHTML = data; // modal HTML is now in DOM
 
         // Initialize the Bootstrap modal AFTER it's in the DOM
-        const modalEl = container.querySelector(".modal");
-        if (modalEl) {
-            bsModal = new bootstrap.Modal(modalEl, {
-                backdrop: true
-            });
-        }
+        // const modalEl = container.querySelector(".modal");
+        // if (modalEl) {
+        //     bsModal = new bootstrap.Modal(modalEl, {
+        //         backdrop: true
+        //     });
+        // }
 
         // Bind Buy It Now click AFTER the modal exists
         $(container).on('click', '#modal-BuyItNow', function () {
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!selectedProduct) return;
 
             // Fill modal info
-            $("#modal-productImage").attr("src", selectedProduct.ImageUrl);
+            $(".modal-productImage").attr("src", selectedProduct.ImageUrl);
             $("#modal-name").text(selectedProduct.Name);
             $("#modal-productPrice").text(`€${selectedProduct.Price}`);
             $("#modal-productStock").text(selectedProduct.Stock);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `);
             });
 
-            // Set prices (your existing code)
+            // Set prices
             let pricePerKg = selectedProduct.Price;
             let selectedSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
             function getFinalPrice(selectedSize) {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             // Show the modal
-            if (bsModal) bsModal.show();
+            //if (bsModal) bsModal.show();
         });
 
     }); // end fetch
@@ -98,7 +98,7 @@ $(document).on('click', '.modal-qty-minus', function () {
 
 //AddToCart
 $(document).on('click', '#modal-addToCart', function(e) {
-    e.preventDefault(); // VERY IMPORTANT
+    e.preventDefault(); 
 
     if (!selectedProduct) return;
 
@@ -110,7 +110,6 @@ $(document).on('click', '#modal-addToCart', function(e) {
     window.location.href = "../../cart/Template/cart.html";
 });
 
-console.log("(selectedProduct",selectedProduct)
 // Buy It Now function
 function buyItNow() {
     if (!selectedProduct) return;
