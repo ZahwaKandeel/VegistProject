@@ -1,8 +1,4 @@
-import {
-    Product,
-    loadProducts,
-    saveProducts,
-} from "../../component/Product.js";
+import {Product, loadProducts,saveProducts,} from "../../component/Product.js";
 import { Order } from "/models/order.js";
 import { deleteProductById } from "/component/deleteProduct.js";
 
@@ -32,26 +28,18 @@ if (idParam === null) {
             // Fill main product info
             document.getElementById("name").innerText = product._name;
             document.getElementById("productPrice");
-            document.getElementById("productStock").innerHTML =
-                `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
-            document.getElementById("productDescription").textContent =
-                product.Description;
+            document.getElementById("productStock").innerHTML = `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
+            document.getElementById("productDescription").textContent = product.Description;
             document.getElementById("productSKU").textContent = product._id;
             document.getElementById("category").textContent = product.Category;
-            document.getElementById("table-productsize").textContent =
-                product.Sizes.join(" - ");
-            document.getElementById("moreDetail").textContent =
-                product.Description;
-            document.getElementById("table-productCategory").textContent =
-                product.Category;
-            document.getElementById("table-productSKU").textContent =
-                product._id;
-
+            document.getElementById("table-productsize").textContent = product.Sizes.join(" - ");
+            document.getElementById("moreDetail").textContent = product.Description;
+            document.getElementById("table-productCategory").textContent = product.Category;
+            document.getElementById("table-productSKU").textContent = product._id;
             $("#discount").text(`${product._discountPercentage}%`);
 
             // Carousel images
-            const carouselImages =
-                document.querySelectorAll("#carouselVeg img");
+            const carouselImages =document.querySelectorAll("#carouselVeg img");
             carouselImages.forEach((img) => (img.src = product.ImageUrl));
 
             // Thumbnail images
@@ -94,8 +82,7 @@ if (idParam === null) {
                     e.preventDefault();
                     if (product) {
                         addToWishlist(product._id);
-                        window.location.href =
-                            "../../wishlist/Template/wishlist.html";
+                        window.location.href = "../../wishlist/Template/wishlist.html";
                     }
                 });
             });
@@ -107,13 +94,11 @@ if (idParam === null) {
                 if (value >= product.Stock) return;
                 value++;
                 $(".qty-input").val(value);
-                // calculateSubTotal();
             });
 
             $(document).on("click", ".qty-minus", function () {
                 if (value > 1) value--;
                 $(".qty-input").val(value);
-                // calculateSubTotal();
             });
 
             // Add to Cart
@@ -139,8 +124,7 @@ if (idParam === null) {
                     e.preventDefault();
                     if (product) {
                         deleteProductById(product._id);
-                        window.location.href =
-                            "/productList/Template/product_list.html";
+                        window.location.href = "/productList/Template/product_list.html";
                     }
                 });
             });
@@ -195,8 +179,7 @@ if (idParam === null) {
                 $("#buyItNow").on("click", function () {
                     if (quantity > product.Stock) return;
                     buyItNow();
-                    window.location.href =
-                        "../../checkOut/Template/checkOut.html";
+                    window.location.href ="../../checkOut/Template/checkOut.html";
                 });
             });
 
@@ -223,9 +206,7 @@ if (idParam === null) {
                 pricePerKg = finalPricePerKg * selectedSize;
 
                 if (product._discountPercentage > 0) {
-                    $("#productAfterDiscount").text(
-                        newAfterDiscount.toFixed(2),
-                    );
+                    $("#productAfterDiscount").text( newAfterDiscount.toFixed(2),);
                     $("#productPrice").text(newOriginalPrice.toFixed(2));
                     $("#discount").text(product._discountPercentage + "%");
                 } else {
@@ -249,10 +230,7 @@ if (idParam === null) {
                         let p = related[index];
                         $(this).attr("data-id", p.ID).show();
                         $(this).find(".main-img").attr("src", p.ImageUrl);
-                        $(this)
-                            .find(".para")
-                            .text(p.Name)
-                            .attr("href", `productDetails.html?id=${p.ID}`);
+                        $(this).find(".para").text(p.Name).attr("href", `productDetails.html?id=${p.ID}`);
                         $(this).find(".fw-bold").text(`€${p.Price}`);
                     } else {
                         $(this).hide();
@@ -329,6 +307,7 @@ if (idParam === null) {
                 if (!idParam) return;
 
                 let userTitle = document.getElementById("reviewTitle").value;
+
                 let userRating = Number(
                     document.getElementById("reviewRating").value,
                 );
@@ -444,8 +423,6 @@ if (idParam === null) {
             document.addEventListener("DOMContentLoaded", function () {
                 displayReviews();
             });
-
-            //test
         }
     }
 }
