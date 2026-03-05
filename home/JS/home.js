@@ -1,3 +1,4 @@
+// Discount diplay function
 $(function(){
     $(".shopnow").click(function(){
         localStorage.setItem("discountOnly", "true");
@@ -117,8 +118,8 @@ $(document).ready(function(){
         alert("Added to cart");
     });
     // $(document).on("click", ".view-icon", function(){
-    //     // const productId = parseInt($(this).data("id"));
-    //     // openQuickView(productId);
+    //     const productId = parseInt($(this).data("id"));
+    //     openQuickView(productId);
     // });
     $(document).on("click", ".cards", function(e){
         if($(e.target).closest(".icon").length) return;

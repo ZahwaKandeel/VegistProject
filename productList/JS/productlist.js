@@ -3,11 +3,15 @@ import { isAuth } from '../../component/isAuth.js';
 $(function(){
 
 const user = isAuth();  //return currentUser to compare it 
+ console.log("User",user)
  
 // to show button add product if he is a seller
-if (user.role === "seller") {
+if (!user) {
+    $(".sellerBtn").hide();
+}
+else if (user.role === "seller") {
     $(".sellerBtn").show();
-} else {
+} else{
     $(".sellerBtn").hide();
 }
 
@@ -468,7 +472,6 @@ $(".categName").text('All products')
      $("#paginationnav2").addClass("d-none")
       $("#paginationnav").removeClass("d-none");
 
-setupPagination("divlayout1", "cards", "pagination1", 16);
 })
 
 setupPagination("divlayout1", "cards", "pagination1", 16);
