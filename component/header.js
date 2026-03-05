@@ -1,7 +1,29 @@
 import { getBasePath } from "./basepath.js";
-export function header(){
+export function header() {
     const basepath = getBasePath();
-    return`
+    const user = JSON.parse(localStorage.getItem("currentUser")) || {};
+    const name = user.lastName;
+    const authButtons = name
+        ? ""
+        : `<div class="d-flex">
+                <a href="${basepath}auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
+                    >Register</a
+                >
+                <a href="${basepath}auth/Template/login.html" class="fw-light secondryTextTheme  ms-1 text-decoration-none">Login</a>
+            </div>`;
+        
+    
+    const role = user.role;
+    console.log("role:", role);
+    let roleMenu = "";
+    if (role === "seller") {
+        roleMenu = '<li><a class="dropdown-item sellerdash" href="/seller/Template/sellerdash.html">Seller Dashboard</a></li>';
+        }
+        else if (role === "admin") {
+            roleMenu = '<li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>';
+        }
+
+    return `
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
                 <section>
@@ -73,12 +95,11 @@ export function header(){
                                                 data-bs-toggle="dropdown">
                                                 Pages
                                             </a>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu pagesMenu">
                                                 <li><a class="dropdown-item" href="/home/Template/home.html">Home</a></li>
                                                 <li><a class="dropdown-item" href="/productList/Template/product_list.html">Catalog</a></li>
                                                 <li><hr class="dropdown-divider"/></li>
-                                                <li><a class="dropdown-item sellerdash" href="/seller/Template/sellerdash.html">Seller Dashbord</a></li>
-                                                <li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>
+                                                ${roleMenu}
                                             </ul>
                                         </li>
                                         <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
@@ -135,13 +156,8 @@ export function header(){
                             <i class="fa-regular fa-user text-body px-1"></i>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
-                            <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>Account</b></a>
-                            <div class="d-flex">
-                                <a href="${basepath}auth/Template/register.html" class="border-1 border-end pe-1 fw-light  text-decoration-none secondryTextTheme"
-                                    >Register</a
-                                >
-                                <a href="${basepath}auth/Template/login.html" class="fw-light secondryTextTheme  ms-1 text-decoration-none">Login</a>
-                            </div>
+                            <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>${name || "Account"}</b></a>
+                            ${authButtons}
                         </div>
                         <!-- Heart icon -->
                         <a href="${basepath}wishlist/Template/wishlist.html">
@@ -175,12 +191,11 @@ export function header(){
                             </ul>
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link text-body dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu pagesMenu">
                                 <li><a class="dropdown-item" href="/home/Template/home.html">Home</a></li>
                                 <li><a class="dropdown-item" href="/productList/Template/product_list.html">Catalog</a></li>
                                 <li><hr class="dropdown-divider"/></li>
-                                <li><a class="dropdown-item sellerdash" href="/seller/Template/sellerdash.html">Seller Dashbord</a></li>
-                                <li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>
+                                ${roleMenu}
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
@@ -189,11 +204,6 @@ export function header(){
                 <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0">🌙</button>
             </section>
         </header>
-    `
+    `;
 }
 
-
-$(function() {
-    const porducts = JSON.parse(localStorage.getItem("products"))
-
-})

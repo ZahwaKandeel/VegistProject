@@ -1,13 +1,18 @@
+// Discount diplay function
 $(function(){
     $(".shopnow").click(function(){
+        window.location.href = "/productList/Template/product_list.html"
+    }); 
+    $(".shopnowdisc").click(function(){
         localStorage.setItem("discountOnly", "true");
         window.location.href = "/productList/Template/product_list.html"
     });    
 });
 
-const products = JSON.parse(localStorage.getItem("products")) || [];
-const carouselInner = document.getElementById("carouselInner");
 document.addEventListener("DOMContentLoaded", function(){
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const carouselInner = document.getElementById("carouselInner");
 
     
     function getProductsPerSlide(){
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(){
 function createProductCard(products){
     const ratingStars = generateStars(products._rating);
     return`
-        <div id="${products._id}" class="cards col-6 col-md-4 col-lg-3 position-relative">
+        <div id="${products._id}" class="cards col-6 col-md-3 col-lg-3 position-relative">
             <div class="position-relative">
                 <img src="${products._imageUrl}"
                     class="img-fluid w-100 main-img"/>
@@ -75,7 +80,7 @@ function createProductCard(products){
             </div>
             <div>
                 <p>
-                    <a href="/productDetails/productDetails.html?id=${products._id}"
+                    <a href="/productDetials/productDetails.html?id=${products._id}"
                         class="para text-decoration-none">
                         ${products._name}
                     </a>
@@ -116,14 +121,11 @@ $(document).ready(function(){
         addToCart(productId,1);
         alert("Added to cart");
     });
-    $(document).on("click", ".view-icon", function(){
-        const productId = parseInt($(this).data("id"));
-        openQuickView(productId);
-    });
     $(document).on("click", ".cards", function(e){
-        if($(e.target).closest(".icon").length) return;
+        if($(e.target).closest(".icons").length) return;
         const productId = $(this).attr("id");
-    })
+        window.location.href = `/productDetials/Template/productDetails.html?id=${productId}`;
+    });
 });
 
 function loadCustomerReviews(){

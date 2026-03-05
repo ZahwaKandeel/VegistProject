@@ -452,7 +452,7 @@
                             <div class="container" style="max-width: 700px;">
                                 <h3 class="text-center mb-4">Write a review</h3>
                                     
-                                <form id="reviewForm">
+                                <form id="reviewForm" novalidate>
                                         <div class="text-center mb-3">
                                             <label class="d-block mb-1 text-muted">Rating</label>
                                             <div class="star-rating fs-2 text-warning">
@@ -468,6 +468,7 @@
                                         <div class="mb-3 text-center">
                                             <label class="form-label text-muted">Review Title</label>
                                             <input id="reviewTitle" type="text" class="form-control custom-input" placeholder="Give your review a title">
+                                            <div class="invalid-feedback"><p><small>Not less than 5 characters</small></p></div>
                                         </div>
 
                                         <div class="mb-3 text-center">

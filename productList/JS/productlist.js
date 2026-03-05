@@ -3,11 +3,15 @@ import { isAuth } from '../../component/isAuth.js';
 $(function(){
 
 const user = isAuth();  //return currentUser to compare it 
+ console.log("User",user)
  
 // to show button add product if he is a seller
-if (user.role === "seller") {
+if (!user) {
+    $(".sellerBtn").hide();
+}
+else if (user.role === "seller") {
     $(".sellerBtn").show();
-} else {
+} else{
     $(".sellerBtn").hide();
 }
 
@@ -133,7 +137,7 @@ function generateStars(rating){
 <div     class="    row  "  > <!--container card with icons     -->
 
   
-<div class=" position-relative col-12 col-lg-4  "  style="height: 250px;" >    <!--Image -->
+<div class=" position-relative col-12 col-lg-4 imaglayout2 "  style="height: 250px;" >    <!--Image -->
   <a href="${detailsPage}?id=${product._id}">
         <img src="${product._imageUrl}" class="w-100 main-img object-fit-cover h-100">
         <!-- Show discount badge if exists -->
@@ -146,7 +150,7 @@ function generateStars(rating){
     
 </div>
 
-<div class="  col-12 col-lg-8 card ">     <!--   name and price and raitng  -->
+<div class="  col-12 col-lg-8 card  mt-2">     <!--   name and price and raitng  -->
 
 
 <p class=""> <a href=""  class="para text-decoration-none  " > ${ product._name}</a></p>  <!--   name and price   -->
@@ -435,24 +439,8 @@ $(".catmemb").text(`All products`)
 
 // breakkkkk--------------------------------------------------------
 
-  // that btn to change layout of divs to make it single  
-$(".btnlay2").click(function(){
 
 
-$(".filternum").text(`(${userData.length})`)
-$(".catmemb").text(`All products`)
-$(".categName").text('All products')
-
-    $("#divlayoutdefult").addClass("d-none");
-    $("#divlayout2").removeClass("d-none");
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-
-
-})
 
 // that btn to back to defult layout of divs 
 $(".btnlay1").click(function(){
@@ -468,23 +456,30 @@ $(".categName").text('All products')
      $("#paginationnav2").addClass("d-none")
       $("#paginationnav").removeClass("d-none");
 
-setupPagination("divlayout1", "cards", "pagination1", 16);
 })
 
 setupPagination("divlayout1", "cards", "pagination1", 16);
 
-
-
-// $(".btnheart").click(function(){
- 
+  // that btn to change layout of divs to make it single
     
-//  const parentIdd = $(this).parent().parent().parent().parent().attr("id");
-
-//   addToWishlist(parentIdd)
+$(".btnlay2").click(function(){
 
 
-  
-// })
+$(".filternum").text(`(${userData.length})`)
+$(".catmemb").text(`All products`)
+$(".categName").text('All products')
+
+    $("#divlayoutdefult").addClass("d-none");
+    $("#divlayout2").removeClass("d-none");
+
+     $("#paginationnav2").removeClass("d-none");
+    $("#paginationnav").addClass("d-none");
+
+
+
+setupPagination("divlayout2", "cards2", "pagination2", 8);
+
+})
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
 //----------------------------------- add to cart layout one -----------------------------------
@@ -647,7 +642,7 @@ let items = $(`#${containerId} .${cardClass}:visible`);
         $(`#${paginationId} li:first`).addClass("active");
 
         $(`#${paginationId} .page-link`).click(function (e) {
-            e.preventDefault();
+            // e.preventDefault();
 
             const page = parseInt($(this).text());
 

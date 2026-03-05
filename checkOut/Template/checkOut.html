@@ -66,12 +66,6 @@
                         <div class="accordion-body bg-secondary bg-opacity-10 border border-bottom">
                             <form action="" class="checkout">
                                 <main class="d-flex flex-column" id="accordionForm">
-                                    <form class="mb-3 p-2 discountFrom">
-                                        <div class="d-flex p-2 ps-5">
-                                            <input type="text" id="discount" class="col-9 border border-1 border-secondary-subtle rounded-2 p-2" placeholder="Discount code"/>
-                                            <input type="submit" value="Apply" class="col-2 border border-1 bg-body-tertiary bg-opacity-10 text-secondary rounded-2 py-3 px-2 px-sm-3 ms-4 me-2 apply-btn"/>
-                                        </div>
-                                    </form>
                                     <section class="mb-3 p-2 px-5">
                                         <div class="d-flex justify-content-between">
                                             <small class="mb-2">Subtotal . <span class="itemNumber"></span></small>
@@ -95,16 +89,9 @@
             </div>
             <section class="d-flex flex-column justify-content-start flex-lg-row ms-lg-5 px-0 me-0 ps-xl-5">
                 <div class="d-flex flex-column col-lg-6 pt-lg-4 pe-lg-3 px-sm-5">
-                    <section class="mb-3 p-2">
+                    <section class="p-2">
                         <div id="content" class="d-flex flex-column justify-content-between">
-                            <section id="contentHeader" class="d-flex justify-content-between">
-                                <h5>Contact</h5>
-                                <a href="/auth/Template/login.html" class="mainTextTheme">Sing in</a>
-                            </section>
-                            <section>
-                                <input id="guestContact" type="text" placeholder="Email" 
-                                    class="w-100 p-2 py-3 border border-secondary-subtle rounded-3 mb-2" autofocus>
-                            </section>
+                            <button id="singIn" class=" mainBackgroundTheme border-0 rounded w-100 text-center my-lg-2 py-2"><b>Sing in</b></button>
                             <section id="userContact">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center gap-2">
@@ -132,75 +119,119 @@
                             </section>
                         </div>
                     </section>
-                    <section class="p-2 mb-3 ">
-                        <h5>Delivery</h5>
-                        <div class="mb-3">
-                            <select name="country" id="country" class="form-select py-3 mb-3">
-                                <option id="countryFirstOption">Egypt</option>
-                            </select>
-                            <div class="d-sm-flex gap-3">
-                                <input type="text" placeholder="First name (optional)"
-                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 firstname">
-                                <input type="text" placeholder="Last name" 
-                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 lastname">
+                    <form class="border-0" novalidate>
+                        <section class="p-2 mb-3 ">
+                            <h5>Delivery</h5>
+                            <div class="mb-3">
+                                <select name="country" id="country" class="form-select py-3 mb-3  bg-transparent ">
+                                    <option id="countryFirstOption">Select Country</option>
+                                </select>
+                                <div class="d-sm-flex gap-2">
+                                    <div class="col-6 mb-3">
+                                        <input type="text" placeholder="First name" id="firstname"
+                                        class="form-control px-2 py-3 w-100 border border-secondary-subtle rounded-3">
+                                        <div class="invalid-feedback">
+                                            <p class="py-0 my-0 invalid-warning">
+                                                <small>
+                                                    letters only, not less than 3
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3 pe-2">
+                                        <input type="text" placeholder="Last name" id="lastname"
+                                        class="px-2 py-3 w-100 border border-secondary-subtle rounded-3">
+                                        <div class="invalid-feedback">
+                                            <p class="py-0 my-0 invalid-warning">
+                                                <small>
+                                                    letters only, not less than 3
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Address" id="address"
+                                        class="form-control w-100 px-2 py-3 border border-secondary-subtle rounded-3">
+                                    <div class="invalid-feedback">
+                                        <p class="py-0 my-0 invalid-warning">
+                                            <small>
+                                                Not less tha 10 or more than 150
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Apartment, suite, etc." id="apartment"
+                                        class=" form-control w-100 px-2 py-3 border border-secondary-subtle rounded-3">
+                                    <div class="invalid-feedback">
+                                        <p class="py-0 my-0 invalid-warning">
+                                            <small>
+                                                Not less tha 10 or more than 40
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="d-sm-flex gap-2 pe-2">
+                                    <div class="mb-3 col-6">
+                                        <input type="text" placeholder="Postal code"  id="postal"
+                                            class="form-control w-100 px-2 py-3 border border-secondary-subtle rounded-3">
+                                        <div class="invalid-feedback">
+                                            <p class="py-0 my-0 invalid-warning">
+                                                <small>
+                                                    Between 4-10 character
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-6">
+                                        <select name="city" id="city"                 class="form-select py-3 mb-3  bg-transparent ">
+                                            <option id="cityFirstOption">Select City</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="checkbox" id="saveInfo" class="form-check-input me-1">
+                                <label for="saveInfo"><small>Save this information for next time</small></label>
                             </div>
-                            <input type="text" placeholder="Address" 
-                                class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 address">
-                            <input type="text" placeholder="Apartment, suite, etc. (optional)" 
-                                class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 apartment">
-                            <div class="d-sm-flex gap-3">
-                                <input type="text" placeholder="Postal code" 
-                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 postal">
-                                <input type="text" placeholder="City" 
-                                    class="w-100 px-2 py-3 border border-secondary-subtle rounded-3 mb-3 city">
+                            <div>
+                                <p><b>Shipping mehtod</b></p>
+                                <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
+                                    <p class="m-2"><small>Standard</small></p>
+                                    <p class="m-2"><small><b class="shipping"></b></small></p>
+                                </section>
                             </div>
-                            <input type="checkbox" id="saveInfo" class="form-check-input me-1">
-                            <label for="saveInfo"><small>Save this information for next time</small></label>
-                        </div>
-                        <div>
-                            <p><b>Shipping mehtod</b></p>
-                            <section class="d-flex justify-content-between border border-2 border-warning rounded-3 px-2 bg-warning bg-opacity-25">
-                                <p class="m-2"><small>Standard</small></p>
-                                <p class="m-2"><small><b class="shipping"></b></small></p>
-                            </section>
-                        </div>
-                    </section>
-                    <section class="p-2">
-                        <div>
-                            <h5>Payment</h5>
-                            <div class="bg-secondary bg-opacity-10 rounded px-3 py-3">
-                                <input type="radio" id="payment" class="me-2" checked>
-                                <label for="payment"><small>Cash on Delivery(COD)</small></label>
+                        </section>
+                        <section class="p-2">
+                            <div>
+                                <h5>Payment</h5>
+                                <div class="bg-secondary bg-opacity-10 rounded px-3 py-3">
+                                    <input type="radio" id="payment" class="me-2" checked>
+                                    <label for="payment"><small>Cash on Delivery(COD)</small></label>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section class="d-flex flex-column me-2 p-2">
-                        <div class="d-flex justify-content-between ps-xxl-5">
-                            <p class="d-flex flex-column ms-5">
-                                <b>Total</b>
-                                <small>items</small>
-                            </p>
-                            <p class="me-4"><b class="total">81.96</b></p>
-                        </div>
-                        <div class="text-center">
-                            <button id="orderBtn" type="submit" class="mainBackgroundTheme border-0 rounded w-100 text-body my-lg-2 py-2">
-                                <b>Complete order</b>
-                            </button>
-                            <hr>
-                        </div>
-                    </section>
+                        <section class="d-flex flex-column me-2 p-2">
+                            <div class="d-flex justify-content-between ps-xxl-5">
+                                <p class="d-flex flex-column ms-5">
+                                    <b>Total</b>
+                                    <small>items</small>
+                                </p>
+                                <p class="me-4"><b class="total">81.96</b></p>
+                            </div>
+                            <div class="text-center">
+                                <button id="orderBtn" type="submit" class="mainBackgroundTheme border-0 rounded w-100 text-body my-lg-2 py-2">
+                                    <b>Complete order</b>
+                                </button>
+                                <hr>
+                            </div>
+                        </section>
+                    </form>
                 </div>
                 <div class="d-none d-lg-block bg-secondary bg-opacity-10 pt-5 col-lg-6 pe-lg-5">
                     <div class="px-5">
                         <form action="" class="checkout pe-xxl-5">
                             <main class="d-flex flex-column pe-xl-5" id="lgForm">
-                                <form class="mb-3 p-2 discountFrom">
-                                    <div class="d-flex p-2">
-                                        <input type="text" id="discount" class="col-9 border border-1 border-secondary-subtle rounded-2 p-2" placeholder="Discount code"/>
-                                        <input type="submit" value="Apply" class="col-3 border border-1 bg-body-tertiary bg-opacity-10 text-secondary rounded-2 py-3 px-3 ms-4 me-2 apply-btn"/>
-                                    </div>
-                                </form>
                                 <section class="mb-3 p-2 ">
                                     <div class="d-flex justify-content-between">
                                         <small class="mb-2">Subtotal . <span class="itemNumber"></span></small>
