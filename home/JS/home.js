@@ -116,10 +116,10 @@ $(document).ready(function(){
         addToCart(productId,1);
         alert("Added to cart");
     });
-    $(document).on("click", ".view-icon", function(){
-        const productId = parseInt($(this).data("id"));
-        openQuickView(productId);
-    });
+    // $(document).on("click", ".view-icon", function(){
+    //     // const productId = parseInt($(this).data("id"));
+    //     // openQuickView(productId);
+    // });
     $(document).on("click", ".cards", function(e){
         if($(e.target).closest(".icon").length) return;
         const productId = $(this).attr("id");

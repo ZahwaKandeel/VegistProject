@@ -2,8 +2,6 @@ import{
     DashboardStats,
     SalesReport,
     MonthlyTarget,
-    RevenueGrowth,
-    ConversionData,
     RecentSale,
     TopSellingItem
 } from "../JS/sellerdashdata.js"
