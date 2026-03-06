@@ -1,4 +1,4 @@
-// Discount diplay function
+// Discount display function
 $(function(){
     $(".shopnow").click(function(){
         window.location.href = "/productList/Template/product_list.html"
@@ -14,8 +14,54 @@ document.addEventListener("DOMContentLoaded", function(){
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const carouselInner = document.getElementById("carouselInner");
 
-    
-    function getProductsPerSlide(){
+
+    function buildProductCarousel(){
+        if(!carouselInner) return;
+
+        carouselInner.innerHTML = "";
+
+        const productsPerSlide = getProductsPerSlide();
+        const maxProducts = productsPerSlide * 2;
+        const limitedProducts = products.slice(0, maxProducts);
+
+        let slideIndex = 0;
+        for(let i=0; i<limitedProducts.length; i+= productsPerSlide){
+            const slideProducts = limitedProducts.slice(i, i+productsPerSlide);
+            const carouselItem = document.createElement("div");
+            carouselItem.className = "carousel-item";
+            if(slideIndex === 0) carouselItem.classList.add("active");
+            
+            const row = document.createElement("div");
+            row.className = "row g-3";
+
+            slideProducts.forEach(product =>{
+            row.innerHTML += createProductCard(product);
+            });
+
+            carouselItem.appendChild(row);
+            carouselInner.appendChild(carouselItem);
+
+            slideIndex++;
+        }
+    }
+
+    buildProductCarousel();
+    loadCustomerReviews(products);
+
+    let resizeTimer;
+    window.addEventListener("resize", function(){
+        clearTimeout(resizeTimer);
+        resizeTimer = this.setTimeout(function(){
+            buildProductCarousel();
+        }, 250);
+    });
+
+
+
+
+});
+
+function getProductsPerSlide(){
         const width = window.innerWidth;
         if(width>=992){
             return 8;
@@ -27,37 +73,14 @@ document.addEventListener("DOMContentLoaded", function(){
             return 4;
         }        
     }
-    const productsPerSlide = getProductsPerSlide();
-    let slideIndex = 0;
-    for(let i = 0; i<products.length; i+= productsPerSlide){
-        const slideProducts =  products.slice(i,i+productsPerSlide);
-        const carouselItem = document.createElement("div");
-        carouselItem.className = "carousel-item";
-        if(slideIndex === 0) carouselItem.classList.add("active");
-        const row = document.createElement("div");
-        row.className = "row g-3";
-
-        slideProducts.forEach(product =>{
-            row.innerHTML += createProductCard(product);
-        });
-
-        carouselItem.appendChild(row);
-        carouselInner.appendChild(carouselItem);
-
-        slideIndex++;
-    }
-    loadCustomerReviews();
-});
 
 function createProductCard(products){
     const ratingStars = generateStars(products._rating);
     return`
-        <div id="${products._id}" class="cards col-6 col-md-3 col-lg-3 position-relative">
+        <div id="${products._id}" class="cards col-6 col-md-4 col-lg-3 position-relative">
             <div class="position-relative">
-                <img src="${products._imageUrl}"
-                    class="img-fluid w-100 main-img"/>
-                <img src="${products._imageUrl}"
-                    class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>
+                <img src="${products._imageUrl}" class="img-fluid w-100 main-img"/>
+                <img src="${products._imageUrl}" class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>
                     <!-- Show discount badge if exists -->
                     ${products._discountPercentage ? `
                         <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
@@ -128,7 +151,7 @@ $(document).ready(function(){
     });
 });
 
-function loadCustomerReviews(){
+function loadCustomerReviews(products){
     const carouselInner = document.querySelector("#customersCarousel .carousel-inner");
     if(!carouselInner) return;
 
@@ -170,6 +193,10 @@ function loadCustomerReviews(){
         wrapper.className = "d-flex justify-content-center gap-4 align-items-stretch";
 
         slideReviews.forEach((review, index) => {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const user = users.find(u => u._id == review.uid);
+            const userName = user ? user._name :"Unknown User";
+
             const reviewCard = document.createElement("div");
             reviewCard.className = "customer-card card text-center p-4 bg-transparent" 
             + (index === 1 ? " d-none d-md-block" : "");
@@ -177,7 +204,8 @@ function loadCustomerReviews(){
             reviewCard.innerHTML = `
                 <h5 class="fw-bold">"${review.title}"</h5>
                 <p class="mb-3">"${review.comment}"</p>
-                <small class="fw-bold">By ${review.uid}</small>
+                <!-- <small class="fw-bold">By ${review.uid}</small> -->
+                <small class="fw-bold">By ${userName}</small>
                 <p class="stars">${generateStars(review.rating)}</p>
             `;
             wrapper.appendChild(reviewCard);
