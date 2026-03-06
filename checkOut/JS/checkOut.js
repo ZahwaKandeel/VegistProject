@@ -295,7 +295,7 @@ $(function() {
         function isPostalValid() {
             const value = postal.val().trim();
             console.log(value)
-            const regex = /^\d{4,10}$/;
+            const regex = /^[A-Za-z0-9]{3,11}$/;
 
             return regex.test(value);
         }
