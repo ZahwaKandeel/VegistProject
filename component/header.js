@@ -150,10 +150,10 @@ export function header() {
                         </div>
                     </div>
                     <div class=" d-flex align-items-center">
-                    <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0">🌙</button>
+                    <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0 icon-size">🌙</button>
                         <!-- Account icon -->
                         <a href="${basepath}account/Template/profile.html">
-                            <i class="fa-regular fa-user text-body px-1"></i>
+                            <i class="fa-regular fa-user text-body px-1 icon-size"></i>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
                             <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>${name || "Account"}</b></a>
@@ -161,11 +161,11 @@ export function header() {
                         </div>
                         <!-- Heart icon -->
                         <a href="${basepath}wishlist/Template/wishlist.html">
-                            <i class="fa-regular fa-heart text-body px-1"></i>
+                            <i class="fa-regular fa-heart text-body px-1 icon-size"></i>
                         </a>
                         <!-- Bag icon -->
                         <a href="${basepath}cart/Template/cart.html">
-                            <i class="fa-solid fa-bag-shopping text-body px-1"></i>
+                            <i class="fa-solid fa-bag-shopping text-body px-1 icon-size"></i>
                         </a>
                     </div>
                 </section>
@@ -201,7 +201,7 @@ export function header() {
                         <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
                     </ul>
                 </nav>
-                <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0">🌙</button>
+                <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 icon-size py-0">🌙</button>
             </section>
         </header>
     `;
