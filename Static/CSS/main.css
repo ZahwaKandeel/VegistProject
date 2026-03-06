@@ -159,3 +159,15 @@ the image and this div wrapped in a div with class "card-image" */
 .invalid-warning{
     font-size: 12px;
 }
+
+.icon-size {
+  font-size: 1.2rem;
+  padding: 4;
+}
+
+@media (min-width: 1200px) {
+    .icon-size {
+      font-size: 1.8rem;
+      padding: 8;
+    }
+}
