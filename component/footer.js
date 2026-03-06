@@ -1,5 +1,7 @@
 import { getBasePath } from "./basepath.js";
 
+const products = JSON.parse(localStorage.getItem("products"))
+
 export function footer() {
     const basepath = getBasePath();
     return `
@@ -98,12 +100,7 @@ export function footer() {
                                 </button>
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                                    <div class="accordion-body mainAccourdionButtonBgColor ">
-                                        <p><a href="" class="text-decoration-none text-body link-warning">Fresh fruits</a></p>
-                                        <p><a href="" class="text-decoration-none text-body link-warning">Organic juice</a></p>
-                                        <p><a href="" class="text-decoration-none text-body link-warning">Dairy & cheese</a></p>
-                                        <p><a href="" class="text-decoration-none text-body link-warning">Fresh meet</a></p>
-                                    </div>
+                                    <div class="accordion-body mainAccourdionButtonBgColor accordionCategories"></div>
                                 </div>
                             </div>
                             <div class="accordion-item border-0">
@@ -114,7 +111,7 @@ export function footer() {
                                 </h2>
                                 <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                                 <div class="accordion-body mainAccourdionButtonBgColor ">
-                                    <p><a href="" class="text-decoration-none text-body link-warning">About vegist</a></p>
+                                    <p><a href="/aboutus/Template/aboutUs.html" class="text-decoration-none text-body link-warning">About vegist</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Faq's</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Contact us</a></p>
                                     <p><a href="" class="text-decoration-none text-body link-warning">Store location</a></p>
@@ -144,24 +141,19 @@ export function footer() {
                                 </h2>
                                 <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
                                 <div class="accordion-body mainAccourdionButtonBgColor ">
-                                    <p><a href="" class="text-decoration-none text-body link-warning">My account</a></p>
-                                    <p><a href="" class="text-decoration-none text-body link-warning">My Cart</a></p>
-                                    <p><a href="" class="text-decoration-none text-body link-warning">My wishlist</a></p>
-                                    <p><a href="" class="text-decoration-none text-body link-warning">My address</a></p>
+                                    <p><a href="/account/Template/profile.html" class="text-decoration-none text-body link-warning">My account</a></p>
+                                    <p><a href="/cart/Template/cart.html" class="text-decoration-none text-body link-warning">My Cart</a></p>
+                                    <p><a href="/wishlist/Template/wishlist.html" class="text-decoration-none text-body link-warning">My wishlist</a></p>
+                                    <p><a href="/account/Template/profileAddress.html" class="text-decoration-none text-body link-warning">My address</a></p>
                                 </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="container-lg  d-lg-flex justify-content-lg-center">
-                        <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>Top categories</b>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Fresh fruits</a></li>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Organic juice</a></li>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Dairy & cheese</a></li>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Fresh meet</a></li>
-                        </ul>
+                        <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3 footerCategories"><b>Top categories</b></ul>
                         <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>Services</b>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">About vegist</a></li>
+                            <li class="mb-2 li-dashed"><a href="/aboutus/Template/aboutUs.html" class="text-decoration-none text-body link-warning">About vegist</a></li>
                             <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Faq's</a></li>
                             <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Contact us</a></li>
                             <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Store location</a></li>
@@ -173,10 +165,10 @@ export function footer() {
                             <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">Shipping policy</a></li>
                         </ul>
                         <ul class="list-unstyled d-none d-lg-block pe-4 col-lg-3"><b>My account</b>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">My account</a></li>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">My Cart</a></li>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">My wishlist</a></li>
-                            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">My address</a></li>
+                            <li class="mb-2 li-dashed"><a href="/account/Template/profile.html" class="text-decoration-none text-body link-warning">My account</a></li>
+                            <li class="mb-2 li-dashed"><a href="/cart/Template/cart.html" class="text-decoration-none text-body link-warning">My Cart</a></li>
+                            <li class="mb-2 li-dashed"><a href="/wishlist/Template/wishlist.html" class="text-decoration-none text-body link-warning">My wishlist</a></li>
+                            <li class="mb-2 li-dashed"><a href="/account/Template/profileAddress.html" class="text-decoration-none text-body link-warning">My address</a></li>
                         </ul>
                     </div>
                 </section>
@@ -248,4 +240,27 @@ export function footer() {
             </section>
         </footer>
     `
+}
+
+export function loadFooterCategorires() {
+    const categories = new Set();
+    console.log("products",products)
+    console.log("menu:", $(".categories"));
+    
+    products.forEach(product => {
+        categories.add(product._category)
+    });
+    const TopCategories = Array.from(categories).slice(0, 4)
+    TopCategories.forEach(category => {
+        $(".accordionCategories").append(
+            `
+            <p><a href="" class="text-decoration-none text-body link-warning">${category}</a></p>
+            `
+        )
+        $(".footerCategories").append(
+            `
+            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">${category}</a></li>
+            `
+        )
+    })
 }

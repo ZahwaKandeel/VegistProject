@@ -1,8 +1,11 @@
 import { getBasePath } from "./basepath.js";
+
+const basepath = getBasePath();
+const products = JSON.parse(localStorage.getItem("products")) || [];
+const user = JSON.parse(localStorage.getItem("currentUser")) || {};
+const name = user.firstName;
+
 export function header() {
-    const basepath = getBasePath();
-    const user = JSON.parse(localStorage.getItem("currentUser")) || {};
-    const name = user.firstName;
     const authButtons = name
         ? ""
         : `<div class="d-flex">
@@ -22,6 +25,7 @@ export function header() {
         else if (role === "admin") {
             roleMenu = '<li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>';
         }
+
 
     return `
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
@@ -82,12 +86,7 @@ export function header() {
                                                 data-bs-toggle="dropdown">
                                                 Collection
                                             </a>
-                                            <ul class="dropdown-menu collectionMenu">
-                                                <li><a class="dropdown-item"href="#">Action</a></li>
-                                                <li><a class="dropdown-item"href="#">Another action</a></li>
-                                                <li><hr class="dropdown-divider"/></li>
-                                                <li><a class="dropdown-item"href="#">Something else here</a></li>
-                                            </ul>
+                                            <ul class="dropdown-menu collectionMenu"></ul>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link text-body dropdown-toggle"
@@ -183,12 +182,7 @@ export function header() {
                                 aria-expanded="false">
                                 Collection
                             </a>
-                            <ul class="dropdown-menu collectionMenu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <ul class="dropdown-menu collectionMenu"></ul>
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link text-body dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
                             <ul class="dropdown-menu pagesMenu">
@@ -207,3 +201,21 @@ export function header() {
     `;
 }
 
+
+export function loadCategorires() {
+    const categories = new Set();
+    console.log("products",products)
+    console.log("menu:", $(".collectionMenu"));
+    
+    products.forEach(product => {
+        categories.add(product._category)
+    });
+    
+    categories.forEach(category => {
+        $(".collectionMenu").append(
+            `
+            <li><a class="dropdown-item"href="#">${category}</a></li>
+            `
+        )
+    })
+}
