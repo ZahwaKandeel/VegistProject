@@ -163,7 +163,8 @@ function loadCustomerReviews(products){
                     title: review.title,
                     comment: review.comment,
                     rating: review.rating,
-                    uid: review.uid
+                    uid: review.uid,
+                    uName : review.uName
                 });
             });
         }
