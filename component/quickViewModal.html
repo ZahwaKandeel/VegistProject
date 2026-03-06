@@ -1,117 +1,112 @@
 <div id="quickViewModal" class="modal fade" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
-                    
-                    <div class="modal-header border-0 pb-0">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+            
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                    <div class="modal-body pt-0">
-                        <div class="container-fluid">
-                            <div class="row align-items-start">
+            <div class="modal-body pt-0">
+                <div class="container-fluid">
+                    <div class="row align-items-start">
+                        
+                            <div class="col-12 col-md-6 col-xxl-4">
+                                <div id="carouselPopup" class="carousel slide border overflow-hidden position-relative" data-bs-interval="false">
+                                    <div class="carousel-inner w-100">
+                                        <div class="carousel-item active">
+                                            <div class="ratio ratio-1x1">
+                                                <img src="" class="modal-productImage w-100" style="object-fit: cover;">
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="ratio ratio-1x1">
+                                                <img src="" class="modal-productImage w-100" style="object-fit: cover;">
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="ratio ratio-1x1">
+                                                <img src="" class="modal-productImage w-100" style="object-fit: cover;">
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="ratio ratio-1x1">
+                                                <img src="" class="modal-productImage w-100" style="object-fit: cover;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="carousel-control-prev opacity-0" type="button" data-bs-target="#carouselPopup" data-bs-slide="prev" 
+                                            style="transition: opacity 0.3s;"
+                                            onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
+                                            onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
+                                        <span class="carousel-control-prev-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
+                                            style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
+                                        </span>
+                                    </button>
+                                    <button class="carousel-control-next opacity-0" type="button" data-bs-target="#carouselPopup" data-bs-slide="next" 
+                                            style="transition: opacity 0.3s;"
+                                            onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
+                                            onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
+                                        <span class="carousel-control-next-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
+                                            style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
+                                        </span>
+                                    </button>
+                                </div>
+                            </div> <!--  Col 1 -->
+
+                            <div class="col-12 col-md-6 col-xxl-8">
+                                <div class="px-2">
+                                    <h2  id="modal-name" class="fw-bold"></h2>
                                 
-                                <div class="col-12 col-md-6 col-xxl-4">
-                                    <div id="carouselPopup" class="carousel slide border overflow-hidden position-relative" data-bs-interval="false">
-                                        <div class="carousel-inner w-100">
-                                            <div class="carousel-item active">
-                                                <div class="ratio ratio-1x1">
-                                                    <img src="" class="modal-productImage w-100" style="object-fit: cover;">
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <div class="ratio ratio-1x1">
-                                                    <img src="" class="modal-productImage w-100" style="object-fit: cover;">
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <div class="ratio ratio-1x1">
-                                                    <img src="" class="modal-productImage w-100" style="object-fit: cover;">
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <div class="ratio ratio-1x1">
-                                                    <img src="" class="modal-productImage w-100" style="object-fit: cover;">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <p class="mb-2">
+                                        <strong>Availability:</strong> 
+                                        <span id="modal-productStock" class="text-success"></span> 
+                                    </p>
 
-                                        <button class="carousel-control-prev opacity-0" type="button" data-bs-target="#carouselPopup" data-bs-slide="prev" 
-                                                style="transition: opacity 0.3s;"
-                                                onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
-                                                onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
-                                            <span class="carousel-control-prev-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
-                                                style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
-                                            </span>
-                                        </button>
-                                        <button class="carousel-control-next opacity-0" type="button" data-bs-target="#carouselPopup" data-bs-slide="next" 
-                                                style="transition: opacity 0.3s;"
-                                                onmouseover="this.classList.replace('opacity-0', 'opacity-100')" 
-                                                onmouseout="this.classList.replace('opacity-100', 'opacity-0')">
-                                            <span class="carousel-control-next-icon d-flex align-items-center justify-content-center bg-warning rounded-circle" 
-                                                style="width: 35px; height: 35px; background-color: #ffb400 !important;" aria-hidden="true">
-                                            </span>
-                                        </button>
+                                    <div class="d-flex align-items-center mb-3"> 
+                                        <span id="modal-productAfterDiscount" class="fs-4 fw-bold me-2 text-dark"></span>
+                                        <span id="modal-productPrice" class="fs-6 text-muted me-2" style="text-decoration: line-through;"></span>
+                                        <span id="modal-discount" class="badge bg-danger"></span>
                                     </div>
-                                </div> <!--  Col 1 -->
 
-                                <div class="col-12 col-md-6 col-xxl-8">
-                                    <div class="px-2">
-                                        <h2  id="modal-name" class="fw-bold"></h2>
-                                       
-                                        <p class="mb-2">
-                                            <strong>Availability:</strong> 
-                                            <span id="modal-productStock" class="text-success"></span> 
-                                        </p>
+                                    <p id="modal-productDescription" class="text-muted small"></p>
 
-                                        <div class="d-flex align-items-center mb-3"> 
-                                            <span id="modal-productAfterDiscount" class="fs-4 fw-bold me-2 text-dark"></span>
-                                            <span id="modal-productPrice" class="fs-6 text-muted me-2" style="text-decoration: line-through;"></span>
-                                            <span id="modal-discount" class="badge bg-danger"></span>
-                                        </div>
-
-                                        <p id="modal-productDescription" class="text-muted small"></p>
-
-                                        <div class="mb-3">
-                                            <label id="productsize" class="d-block fw-bold mb-2">Size:</label>
-                                                <div class="sizediv d-flex flex-wrap gap-2">
-                                                    
-                                                </div>
+                                    <div class="mb-3">
+                                        <label id="productsize" class="d-block fw-bold mb-2">Size:</label>
+                                            <div class="sizediv d-flex flex-wrap gap-2">
                                                 
-                                        </div>
-                                    </div>
-
-                                        <div class="d-flex align-items-center flex-md-row mb-4">
-                                            <p id="modal-categoy" class="fw-bold mb-2">Category:</p>
-                                            <label id="modal-category" class="btn btn-variant-pill"></label>
-                                        </div>
-
-                                        <div class="d-flex align-items-center mb-4">
-                                            <div class="mb-3">
-                                                <span class="me-3 fw-bold text-dark">Quantity:</span>
-                                                    <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
-                                                        <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
-                                                        <button class="btn btn-light border-0 modal-qty-minus" type="button">-</button>
-    
-                                                        <input type="text" id="modal-quantityValue" 
-                                                        class="form-control border-0 text-center bg-transparent fw-bold modal-qty-input" 
-                                                        value="1" readonly>
-    
-                                                        <button class="btn btn-light border-0 modal-qty-plus" type="button">+</button>
-                                                        </div>
-                                                    </div>
                                             </div>
-                                        </div>
-
-                                        <div class="d-flex gap-2 mb-3">
-                                            <button id="modal-addToCart" class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
-                                            <button id="modal-BuyItNow" class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
-                                        </div>
+                                            
                                     </div>
-                                </div>  <!--  Col 2 -->
+                                </div>
 
-                            </div>
-                        </div>
-                    </div>
+                                <div class="d-flex align-items-center flex-md-row mb-4">
+                                    <p id="modal-categoy" class="fw-bold mb-2">Category:</p>
+                                    <label id="modal-category" class="btn btn-variant-pill"></label>
+                                </div>
+
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="mb-3">
+                                        <span class="me-3 fw-bold text-dark">Quantity:</span>
+                                            <div class="input-group border rounded-pill overflow-hidden" style="width: 120px;">
+                                                <button class="btn btn-light border-0 modal-qty-minus" type="button">-</button>
+
+                                                <input type="text" id="modal-quantityValue" class="form-control border-0 text-center bg-transparent fw-bold modal-qty-input" value="1" readonly>
+
+                                                <button class="btn btn-light border-0 modal-qty-plus" type="button">+</button>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex gap-2 mb-3">
+                                    <button id="modal-addToCart" class="btn btn-warning w-100 py-2 fw-bold text-white rounded-pill">Add to cart</button>
+                                    <button id="modal-BuyItNow" class="btn btn-dark w-100 py-2 fw-bold rounded-pill">Buy it now</button>
+                                </div>
+                            </div> <!--  Col 2 -->
+                    </div>  
                 </div>
+            </div>
 
-</div>  <!-- PopUp -->
+        </div> <!-- content end -->
+    </div> <!-- dialoug end -->
+</div>  <!-- modal end -->

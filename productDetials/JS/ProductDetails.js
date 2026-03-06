@@ -82,7 +82,6 @@ if (idParam === null) {
                     e.preventDefault();
                     if (product) {
                         addToWishlist(product._id);
-                        window.location.href = "../../wishlist/Template/wishlist.html";
                     }
                 });
             });
@@ -113,7 +112,7 @@ if (idParam === null) {
                         ).val();
                         let totalPrice = pricePerKg * quantity;
                         addToCart(product._id, quantity, selectedSize);
-                        window.location.href = "../../cart/Template/cart.html";
+                        alert('Product has already added to your cart')
                     }
                 });
             });
@@ -137,10 +136,10 @@ if (idParam === null) {
             }
             calculateSubTotal();
 
+            let quantity = parseInt($("#quantityValue").val()) || 1;
+            let subtotal = pricePerKg * quantity;
             // Buy it now
             function buyItNow() {
-                let quantity = parseInt($("#quantityValue").val()) || 1;
-                let subtotal = pricePerKg * quantity;
                 let currentOrder = new Order({
                     id: Date.now(),
                     sellerId: 1,
@@ -303,8 +302,6 @@ if (idParam === null) {
             const reviewTitleInput  = document.getElementById("reviewTitle");
             const userRatingInput = document.getElementById("reviewRating");
             const userContentInput =document.getElementById("reviewContent");
-            console.log(userRatingInput)
-            console.log(userContentInput)
             
             function isTitalValid(title) {
                 const trimmed = title.trim();

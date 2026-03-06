@@ -3,45 +3,38 @@ import { Order } from "/models/order.js";
 
 let products = loadProducts() || [];
 let selectedProduct = null;
-//let bsModal = null;
 
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById("quickViewModal");
 
     fetch("/component/quickViewModal.html")
     .then(response => response.text())
     .then(data => {
-        container.innerHTML = data; // modal HTML is now in DOM
+        //modalEl.innerHTML = data; 
 
-        // Initialize the Bootstrap modal AFTER it's in the DOM
-        // const modalEl = container.querySelector(".modal");
-        // if (modalEl) {
-        //     bsModal = new bootstrap.Modal(modalEl, {
-        //         backdrop: true
-        //     });
-        // }
+        document.body.insertAdjacentHTML('beforeend', data);
 
-        // Bind Buy It Now click AFTER the modal exists
-        $(container).on('click', '#modal-BuyItNow', function () {
-            buyItNow();
-            window.location.href = "../../checkOut/Template/checkOut.html";
+        //creating the modal
+        const modalEl = document.getElementById('quickViewModal')
+        const bsModal = new bootstrap.Modal(modalEl, {
+            backdrop: true,
+            keyboard: true
         });
 
         // Bind the eye icon to open the modal
         $(document).on('click', '.fa-eye', function() {
             const cardId = parseInt($(this).closest(".cards").attr("id"));
             selectedProduct = products.find(p => p.ID === cardId);
+
             if (!selectedProduct) return;
 
             // Fill modal info
             $(".modal-productImage").attr("src", selectedProduct.ImageUrl);
             $("#modal-name").text(selectedProduct.Name);
-            $("#modal-productPrice").text(`€${selectedProduct.Price}`);
             $("#modal-productStock").text(selectedProduct.Stock);
             $("#modal-discount").text(selectedProduct.DiscountPercentage);
             $("#modal-category").text(selectedProduct.Category);
             $("#modal-productDescription").text(selectedProduct.Description || "No description available.");
-
+        
             // Fill sizes
             $('.sizediv').empty();
             selectedProduct.Sizes.forEach((item, index) => {
@@ -53,31 +46,24 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             // Set prices
-            let pricePerKg = selectedProduct.Price;
             let selectedSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
-            function getFinalPrice(selectedSize) {
-                const price = Number(selectedProduct.Price);
-                const discount = Number(selectedProduct.DiscountPercentage) || 0;
-                let total = price * selectedSize;
-                if (discount > 0) total = total - (total * (discount / 100));
-                return Math.max(0, total);
-            }
+            let pricePerKg = selectedProduct.Price;
 
             $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
             $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
-            // Update prices when size changes
-            $(document).on('change', 'input[name="size_choice"]', function () {
-                selectedSize = parseFloat($(this).val()) || 1;
-                $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
-                $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+            
+            // Calling Buy It Now function
+            $(modalEl).on('click', '#modal-BuyItNow', function () {
+                buyItNow();
+                window.location.href = "../../checkOut/Template/checkOut.html";
             });
+            bsModal.show();
+        }); //end eye icon
 
-            // Show the modal
-            //if (bsModal) bsModal.show();
-        });
+        
 
     }); // end fetch
-});
+}); //end event listener
 
 //Quantity Plus/Minus
 // Quantity Plus
@@ -104,8 +90,7 @@ $(document).on('click', '#modal-addToCart', function(e) {
     let selectedSize = $('input[name="size_choice"]:checked').val();
     
     addToCart(selectedProduct.ID, quantity, selectedSize);
-
-    window.location.href = "../../cart/Template/cart.html";
+    alert('Product has already added to your cart')
 });
 
 // Buy It Now function
@@ -152,4 +137,20 @@ $(document).on('click', '.sizediv label', function () {
     $(this)
         .removeClass('btn-outline-warning')
         .addClass('btn-warning text-white');
+});
+
+//calculate the price of each selected size
+function getFinalPrice(selectedSize) {
+    const price = Number(selectedProduct.Price);
+    const discount = Number(selectedProduct.DiscountPercentage) || 0;
+    let total = price * selectedSize;
+    if (discount > 0) total = total - (total * (discount / 100));
+    return Math.max(0, total);
+}
+
+// Update prices when size changes
+$(document).on('change', 'input[name="size_choice"]', function () {
+    selectedSize = parseFloat($(this).val()) || 1;
+    $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+    $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
 });
