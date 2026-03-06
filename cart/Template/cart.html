@@ -72,14 +72,16 @@
   <body>
     <header></header>
     <main>
-      <div
-        class="bg-image text-dark d-flex justify-content-center align-items-center gap-2"
-      >
-        <a href="../../home/Template/home.html" class="btn p-0 text-dark">Home</a>
-        <span>/</span>
-        <p class="m-0">Your Shopping Cart</p>
-    </div>
-    
+      <div class="position-relative">
+          <nav class="bg-image d-flex justify-content-center align-items-center">
+              <div class="bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
+              <ul class="breadcrumb">
+                  <li class="breadcrumb-item z-3"><a href="/home/Template/home.html" class="text-decoration-none text-white">Home</a></li>
+                  <li class="breadcrumb-item active text-white z-3">Your Shopping Cart</li>
+              </ul>
+          </nav>
+      </div>
+
 
 
 

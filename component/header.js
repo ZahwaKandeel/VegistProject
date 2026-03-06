@@ -2,7 +2,7 @@ import { getBasePath } from "./basepath.js";
 export function header() {
     const basepath = getBasePath();
     const user = JSON.parse(localStorage.getItem("currentUser")) || {};
-    const name = user.lastName;
+    const name = user.firstName;
     const authButtons = name
         ? ""
         : `<div class="d-flex">

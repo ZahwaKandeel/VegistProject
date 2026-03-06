@@ -215,11 +215,11 @@ $(function() {
     
     const itemsCountVal = orderProducts.length;
 
-    subtotal.text(`$${plainOrder.subtotal}`)
+    subtotal.text(`$${(plainOrder.subtotal).toFixed(2)}`)
     shipping.text(`$${orderAddress.shipping_fees}`)
     itemsCount.text(`${itemsCountVal} items`)
     
-    total.text(`$${totalValue}`)
+    total.text(`$${(totalValue).toFixed(2)}`)
     console.log("order Product: ", orderProducts)
     
 })
@@ -295,7 +295,7 @@ $(function() {
         function isPostalValid() {
             const value = postal.val().trim();
             console.log(value)
-            const regex = /^[A-Za-z0-9]{3,11}$/;
+            const regex = /^(?=.*\d)[A-Za-z0-9\s-]{3,11}$/;
 
             return regex.test(value);
         }
