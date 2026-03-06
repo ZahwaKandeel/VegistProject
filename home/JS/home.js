@@ -204,8 +204,7 @@ function loadCustomerReviews(products){
             reviewCard.innerHTML = `
                 <h5 class="fw-bold">"${review.title}"</h5>
                 <p class="mb-3">"${review.comment}"</p>
-                <!-- <small class="fw-bold">By ${review.uid}</small> -->
-                <small class="fw-bold">By ${userName}</small>
+                <small class="fw-bold">By ${review.uName}</small>
                 <p class="stars">${generateStars(review.rating)}</p>
             `;
             wrapper.appendChild(reviewCard);
