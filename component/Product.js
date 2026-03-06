@@ -134,7 +134,7 @@ export class Product{
                 throw new Error("Each review must be an object");
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
-            const {uid = currentUser.id, uName = currentUser.firstName + " " +currentUser.lastName, title, rating, comment} = review;
+            const {uid = currentUser.id, uName = currentUser.firstName + " " + currentUser.lastName, title, rating, comment} = review;
             if((uid == null ) || (uName == null ) || (title == review) || (rating == review) || (comment == review))
                 throw new Error("Review must contain userId, userName, title, rating and comment properties");
             if(typeof title !== "string" || title.trim().length<5)
