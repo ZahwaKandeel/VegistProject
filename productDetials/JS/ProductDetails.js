@@ -299,21 +299,46 @@ if (idParam === null) {
             let review_rating;
             const Productsreview = products._reviews;
 
-            //Save the review
             const reviewForm = document.getElementById("reviewForm");
+            const reviewTitleInput  = document.getElementById("reviewTitle");
+            const userRatingInput = document.getElementById("reviewRating");
+            const userContentInput =document.getElementById("reviewContent");
+            console.log(userRatingInput)
+            console.log(userContentInput)
+            
+            function isTitalValid(title) {
+                const trimmed = title.trim();
+                const regex = /^[A-Za-z0-9 ]{5,20}$/;
+                return regex.test(trimmed);
+            }
 
+            function setValidation(input, isValid) {
+                if (isValid) {
+                    input.classList.remove("is-invalid");
+                    input.classList.add("is-valid");
+                } else {
+                    input.classList.remove("is-valid");
+                    input.classList.add("is-invalid");
+                }
+            }
+
+            //Save the review
             reviewForm.addEventListener("submit", function (e) {
                 e.preventDefault();
                 if (!idParam) return;
 
-                let userTitle = document.getElementById("reviewTitle").value;
+                const userTitle = reviewTitleInput.value;
+                const validUserTitle = isTitalValid(userTitle);
 
-                let userRating = Number(
-                    document.getElementById("reviewRating").value,
-                );
-                let userContent =
-                    document.getElementById("reviewContent").value;
+                setValidation(reviewTitleInput, validUserTitle);
 
+                if (!validUserTitle) {
+                    alert("Make sure your review title is minimum 5 characters!");
+                    return;
+                }
+
+                const userRating = Number(userRatingInput.value);
+                const userContent = userContentInput.value;
                 // Get form values
                 const review = {
                     userId: currentUser.id,
