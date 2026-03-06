@@ -137,7 +137,7 @@ function generateStars(rating){
 <div     class="    row  "  > <!--container card with icons     -->
 
   
-<div class=" position-relative col-12 col-lg-4 imaglayout2 "  style="height: 250px;" >    <!--Image -->
+<div class=" position-relative col-12 col-lg-4 imaglayout2 "  >    <!--Image -->
   <a href="${detailsPage}?id=${product._id}">
         <img src="${product._imageUrl}" class="w-100 main-img object-fit-cover h-100">
         <!-- Show discount badge if exists -->
@@ -170,7 +170,6 @@ function generateStars(rating){
 
 
             <div class="icons   d-flex gap-2 ">
-
   <span class="   p-2  btnheart2 "  >
 <i class="fa-regular fa-heart "></i>
    </span>
