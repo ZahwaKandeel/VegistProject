@@ -4,26 +4,24 @@ import { Order } from "/models/order.js";
 let products = loadProducts() || [];
 let selectedProduct = null;
 
-document.addEventListener("DOMContentLoaded", function () {
+$(function () {
 
     fetch("/component/quickViewModal.html")
     .then(response => response.text())
     .then(data => {
-        //modalEl.innerHTML = data; 
 
         document.body.insertAdjacentHTML('beforeend', data);
 
-        //creating the modal
-        const modalEl = document.getElementById('quickViewModal')
-        const bsModal = new bootstrap.Modal(modalEl, {
-            backdrop: true,
-            keyboard: true
-        });
+        const myModal = new bootstrap.Modal(document.getElementById('quickViewModal'))
+        console.log(myModal)
 
         // Bind the eye icon to open the modal
         $(document).on('click', '.fa-eye', function() {
             const cardId = parseInt($(this).closest(".cards").attr("id"));
             selectedProduct = products.find(p => p.ID === cardId);
+
+            console.log("cardid",cardId);
+            console.log("selectedproduct",selectedProduct);
 
             if (!selectedProduct) return;
 
@@ -53,15 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
             
             // Calling Buy It Now function
-            $(modalEl).on('click', '#modal-BuyItNow', function () {
+            $('#quickViewModal').off('click', '#modal-BuyItNow');
+            $('#quickViewModal').on('click', '#modal-BuyItNow', function () {
                 buyItNow();
                 window.location.href = "../../checkOut/Template/checkOut.html";
             });
-            bsModal.show();
+            myModal.show();
         }); //end eye icon
-
-        
-
     }); // end fetch
 }); //end event listener
 
@@ -100,6 +96,9 @@ function buyItNow() {
     let quantity = parseInt($('#modal-quantityValue').val()) || 1;
     let selectedSize = $('input[name="size_choice"]:checked').val();
 
+    let freshSubtotal = quantity * getFinalPrice(selectedSize) ;
+
+
     let currentOrder = new Order({
         id: Date.now(),
         sellerId: 1,
@@ -116,7 +115,7 @@ function buyItNow() {
             City: "",
             shipping_fees: null
         },
-        subtotal: selectedProduct.Price * quantity,
+        subtotal: freshSubtotal,
         discount_code: "",
         special_instructions: ""
     });
@@ -141,6 +140,7 @@ $(document).on('click', '.sizediv label', function () {
 
 //calculate the price of each selected size
 function getFinalPrice(selectedSize) {
+    if(!selectedProduct) return 0;
     const price = Number(selectedProduct.Price);
     const discount = Number(selectedProduct.DiscountPercentage) || 0;
     let total = price * selectedSize;
@@ -150,7 +150,10 @@ function getFinalPrice(selectedSize) {
 
 // Update prices when size changes
 $(document).on('change', 'input[name="size_choice"]', function () {
-    selectedSize = parseFloat($(this).val()) || 1;
+    console.log("last",selectedProduct);
+    let selectedSize = parseFloat($(this).val()) || 1;
+    let pricePerKg = selectedProduct.Price;
     $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
     $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
 });
+

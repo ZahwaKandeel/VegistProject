@@ -127,19 +127,14 @@ if (idParam === null) {
                     }
                 });
             });
-
-            // Subtotal
-            let total;
-            function calculateSubTotal() {
-                total = pricePerKg * value;
-                return total;
-            }
-            calculateSubTotal();
-
-            let quantity = parseInt($("#quantityValue").val()) || 1;
-            let subtotal = pricePerKg * quantity;
+            
             // Buy it now
             function buyItNow() {
+                let currentQty = parseInt($("#quantityValue").val()) || 1;
+                let currentSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
+    
+                let freshSubtotal = finalPricePerKg * currentQty * currentSize;
+                
                 let currentOrder = new Order({
                     id: Date.now(),
                     sellerId: 1,
@@ -148,7 +143,7 @@ if (idParam === null) {
                             product_id: idParam,
                             quantity: value,
                             size: selectedSize,
-                            price: pricePerKg,
+                            price: finalPricePerKg * currentSize,
                         },
                     ],
                     createdAt: new Date(),
@@ -163,7 +158,7 @@ if (idParam === null) {
                         City: "",
                         shipping_fees: null,
                     },
-                    subtotal: subtotal,
+                    subtotal: freshSubtotal,
                     discount_code: "",
                     special_instructions: "",
                 });
@@ -176,7 +171,6 @@ if (idParam === null) {
             }
             $(document).ready(function () {
                 $("#buyItNow").on("click", function () {
-                    if (quantity > product.Stock) return;
                     buyItNow();
                     window.location.href ="../../checkOut/Template/checkOut.html";
                 });
@@ -221,19 +215,50 @@ if (idParam === null) {
             function loadRelatedProducts() {
                 if (!product || products.length === 0) return;
 
-                let related = products.filter((p) => p.ID !== product._id);
-                let cards = $(".cards");
+                let related = products.filter((p) => p.ID !== product._id).slice(0,4);
+                let cards = $(".cardsRelatedProducts");
 
-                cards.each(function (index) {
-                    if (index < related.length) {
-                        let p = related[index];
-                        $(this).attr("data-id", p.ID).show();
-                        $(this).find(".main-img").attr("src", p.ImageUrl);
-                        $(this).find(".para").text(p.Name).attr("href", `productDetails.html?id=${p.ID}`);
-                        $(this).find(".fw-bold").text(`€${p.Price}`);
-                    } else {
-                        $(this).hide();
-                    }
+                related.forEach((p)=>{
+                    cards.append(
+                        `
+                        <div id="${p.ID}" class="cards  col-6  col-md-4  col-lg-3   position-relative "> <!--div of card 1 -->
+                        <div class="card-image">
+                            <img src="${p.ImageUrl}" class="img-fluid w-100 main-img">
+                            <img src="" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
+                            <div class="icons" style="margin-bottom: 100px ;">
+                            <span class="  p-2   "  >
+                            <i class="fa-regular fa-heart "></i>
+                            </span>
+                            <span class="  p-2   ">
+                                <i class="fa fa-shopping-bag"></i>
+                            </span>
+                            <!-- add that part to work the popup -->
+                            <span class=" p-2"
+                                data-bs-toggle="modal"
+                                data-bs-target="#quickViewModal"
+                                style="cursor: pointer;">
+                            <i class="fa fa-eye"></i> <!--  opens the popup -->
+                            </span> 
+                            </div>
+                        </div> 
+                        <div>
+                        <p class=""> <a href=""  class="name text-decoration-none  " >${p.Name}</a></p>
+                                <p class="price fw-bold">${p.Price}</p>
+                            <div class="d-flex align-items-center  "> <!-- review by stars -->
+                            <div class="text-warning me-2 rating ">
+                            <i class=" fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            </div>
+                            <span class="text-muted ratingspa"></span>
+                        </div>
+                        </div>
+                    
+                    </div>  <!--end  of card 1 -->
+                        `
+                    )
                 });
             }
 
@@ -281,8 +306,8 @@ if (idParam === null) {
 
             // get currentuser email and name
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            const userEmail = currentUser.email;
-            const userName = currentUser.firstName;
+            const userEmail = currentUser?currentUser.email:"";
+            const userName = currentUser?currentUser.firstName:"";
 
             // Find current product
             const currentProduct = products.find(
@@ -296,7 +321,7 @@ if (idParam === null) {
             document.getElementById("reviewEmail").value = userEmail;
 
             let review_rating;
-            const Productsreview = products._reviews;
+            //const Productsreview = products._reviews;
 
             const reviewForm = document.getElementById("reviewForm");
             const reviewTitleInput  = document.getElementById("reviewTitle");
@@ -306,6 +331,12 @@ if (idParam === null) {
             function isTitalValid(title) {
                 const trimmed = title.trim();
                 const regex = /^[A-Za-z0-9 ]{5,20}$/;
+                return regex.test(trimmed);
+            }
+
+            function isContentValid(comment) {
+                const trimmed = comment.trim();
+                const regex = /^[A-Za-z0-9 ]{10,100}$/;
                 return regex.test(trimmed);
             }
 
@@ -322,20 +353,35 @@ if (idParam === null) {
             //Save the review
             reviewForm.addEventListener("submit", function (e) {
                 e.preventDefault();
+
+                if(!currentUser || !currentUser.id){
+                    alert("You must be logged in to write a review!");
+                    return;
+                }
+
                 if (!idParam) return;
 
                 const userTitle = reviewTitleInput.value;
                 const validUserTitle = isTitalValid(userTitle);
 
+                const  userContent = userContentInput.value;
+                const validUserContent = isContentValid(userContent)
+
                 setValidation(reviewTitleInput, validUserTitle);
+                setValidation(userContentInput, validUserContent);
 
                 if (!validUserTitle) {
                     alert("Make sure your review title is minimum 5 characters!");
                     return;
                 }
 
+                if (!validUserContent) {
+                    alert("Make sure your review content is minimum 10 characters!");
+                    return;
+                }
+
                 const userRating = Number(userRatingInput.value);
-                const userContent = userContentInput.value;
+                //const userContent = userContentInput.value;
                 // Get form values
                 const review = {
                     userId: currentUser.id,
