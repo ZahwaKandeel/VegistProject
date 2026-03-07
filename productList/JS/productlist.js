@@ -269,7 +269,7 @@ function applyFilters(layoutClass) {
 
 
 
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
+  // ------------------------------------------------promotion filter--------------------------------------------------------
 $(function(){
     const discount = localStorage.getItem("discountOnly");
     
@@ -281,6 +281,19 @@ $(function(){
         localStorage.removeItem("discountOnly");
     }
 });
+
+// -------------------------------------------- header/footer category filter ------------------------------------------
+
+$(function() {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+
+    if (category) {
+        activeFilters.category = category;
+        applyFilters("cards");
+    }
+});
+
 // --------------------------------filter by Category  --------------------------------
 
   
