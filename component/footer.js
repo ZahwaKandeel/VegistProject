@@ -254,13 +254,19 @@ export function loadFooterCategorires() {
     TopCategories.forEach(category => {
         $(".accordionCategories").append(
             `
-            <p><a href="" class="text-decoration-none text-body link-warning">${category}</a></p>
+            <p><a href="#" class="text-decoration-none text-body link-warning category-item">${category}</a></p>
             `
         )
         $(".footerCategories").append(
             `
-            <li class="mb-2 li-dashed"><a href="" class="text-decoration-none text-body link-warning">${category}</a></li>
+            <li class="mb-2 li-dashed"><a href="#" class="text-decoration-none text-body link-warning category-item">${category}</a></li>
             `
         )
+    })
+
+    $(".category-item").on("click", function() {
+        const name = $(this).text().trim();
+        console.log("name: ", name);
+        window.location.href = `/productList/Template/product_list?category${encodeURIComponent(name)}`
     })
 }

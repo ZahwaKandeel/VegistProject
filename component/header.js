@@ -26,7 +26,6 @@ export function header() {
             roleMenu = '<li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>';
         }
 
-
     return `
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
@@ -214,8 +213,14 @@ export function loadCategorires() {
     categories.forEach(category => {
         $(".collectionMenu").append(
             `
-            <li><a class="dropdown-item"href="#">${category}</a></li>
+            <li><a class="dropdown-item category-item" href="#">${category}</a></li>
             `
         )
+    })
+
+        $(".category-item").on("click", function() {
+        const name = $(this).text().trim();
+        console.log("name: ", name);
+        window.location.href = `/productList/Template/product_list?category${encodeURIComponent(name)}`
     })
 }
