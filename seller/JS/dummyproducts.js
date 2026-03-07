@@ -7,6 +7,7 @@ export const dummyProducts = [
         100,"Fresh Fruits","../../productList/images/apples.jpg",
         [1,2],4.6,[{
         uid:1,
+        uName:"John Smith",
         title:"Crisp and Sweet",
         rating:4.6,
         comment:"These apples are very fresh and juicy with a satisfying crunch and natural sweetness."
@@ -16,7 +17,8 @@ export const dummyProducts = [
         "Premium ripe avocados rich in healthy fats and nutrients. Smooth creamy texture makes them perfect for salads, sandwiches, smoothies, and homemade guacamole recipes.",
         90,"Tropical Fruits","../../productList/images/avocado.webp",
         [1,2,3],4.5,[{
-        uid:1,
+        uid:2,
+        uName:"Emma Johnson",
         title:"Perfectly Ripe",
         rating:4.5,
         comment:"The avocados arrive fresh and creamy with excellent flavor and no bruising."
@@ -26,7 +28,8 @@ export const dummyProducts = [
         "Naturally sweet bananas packed with potassium and energy. Carefully selected for freshness and ideal for breakfast smoothies or healthy daily snacks.",
         120,"Tropical Fruits","../../productList/images/Banana.jpg",
         [1,2,3],4.4,[{
-        uid:1,
+        uid:3,
+        uName:"Michael Brown",
         title:"Fresh and Sweet",
         rating:4.4,
         comment:"Soft texture with natural sweetness and great quality every time."
@@ -36,7 +39,8 @@ export const dummyProducts = [
         "Fresh mixed red berries packed with antioxidants and natural sweetness. Carefully selected for vibrant color and juicy texture, perfect for smoothies, desserts, fruit bowls, and healthy snacks.",
         80,"Berries","../../productList/images/redberries.jpg",
         [1,2],4.7,[{
-        uid:1,
+        uid:4,
+        uName:"Sophia Davis",
         title:"Sweet and Vibrant",
         rating:4.7,
         comment:"These red berries are extremely fresh, juicy, and full of natural sweetness with beautiful color."
@@ -46,7 +50,8 @@ export const dummyProducts = [
         "Fresh blackberries packed with antioxidants and natural sweetness. Juicy and flavorful, ideal for smoothies, desserts, or healthy snacking.",
         75,"Berries","../../productList/images/BlackBerry.jpg",
         [1,2],4.3,[{
-        uid:1,
+        uid:2,
+        uName:"Emma Johnson",
         title:"Sweet and Juicy",
         rating:4.3,
         comment:"Very flavorful berries with perfect ripeness and freshness."
@@ -56,7 +61,8 @@ export const dummyProducts = [
         "Premium blueberries carefully selected for quality and taste. Rich in nutrients and perfect for breakfast bowls, baking, and smoothies.",
         95,"Berries","../../productList/images/blueberry.webp",
         [1,2,3],4.2,[{
-        uid:1,
+        uid:3,
+        uName:"Michael Brown",
         title:"Great for Smoothies",
         rating:4.2,
         comment:"Fresh blueberries with a nice balance of sweetness and tartness."
@@ -66,7 +72,8 @@ export const dummyProducts = [
         "Fresh green cabbage with tightly packed leaves and crisp texture. Perfect for salads, coleslaw, soups, and healthy home cooking.",
         60,"Leafy Vegetables","../../productList/images/cabbage.jpg",
         [1,2,3],4.5,[{
-        uid:1,
+        uid:5,
+        uName:"Daniel Wilson",
         title:"Crunchy and Fresh",
         rating:4.5,
         comment:"Very fresh cabbage with crisp leaves and excellent flavor."
@@ -76,7 +83,8 @@ export const dummyProducts = [
         "Sweet and juicy cantaloupe melon with refreshing flavor. Carefully selected for ripeness and ideal for fruit salads or summer snacks.",
         40,"Tropical Fruits","../../productList/images/canatalope.jpg",
         [1,2,3],4.8,[{
-        uid:1,
+        uid:4,
+        uName:"Sophia Davis",
         title:"Extremely Sweet",
         rating:4.8,
         comment:"Very juicy and sweet with perfect ripeness and aroma."
@@ -87,6 +95,7 @@ export const dummyProducts = [
         150,"Root Vegetables","../../productList/images/carrots.jpg",
         [1,2],4.4,[{
         uid:1,
+        uName:"John Smith",
         title:"Crunchy and Sweet",
         rating:4.4,
         comment:"Firm texture and naturally sweet flavor. Very high quality."
@@ -96,7 +105,8 @@ export const dummyProducts = [
         "Fresh white cauliflower heads packed with nutrients and mild flavor. Ideal for roasting, steaming, or healthy low carb recipes.",
         70,"Cruciferous Vegetables","../../productList/images/Cauliflower.webp",
         [1,2],4.6,[{
-        uid:1,
+        uid:5,
+        uName:"Daniel Wilson",
         title:"Clean and Fresh",
         rating:4.6,
         comment:"Well packed and very fresh with no discoloration."
@@ -106,7 +116,8 @@ export const dummyProducts = [
         "Natural whole coconuts with rich refreshing water and thick creamy flesh. Perfect for tropical dishes, desserts, and beverages.",
         50,"Tropical Fruits","../../productList/images/Coconut.webp",
         [1,2,5],4.6,[{
-        uid:1,
+        uid:3,
+        uName:"Michael Brown",
         title:"Very Fresh Inside",
         rating:4.6,
         comment:"Fresh coconut water and soft tasty flesh inside."
@@ -116,7 +127,8 @@ export const dummyProducts = [
         "Cool and refreshing cucumbers with crisp texture and high water content. Excellent for salads, sandwiches, and detox drinks.",
         65,"Gourds","../../productList/images/cucumber.webp",
         [1,2,3],4.3,[{
-        uid:1,
+        uid:2,
+        uName:"Emma Johnson",
         title:"Crisp and Hydrating",
         rating:4.3,
         comment:"Very fresh cucumbers with crunchy texture and clean taste."
@@ -127,6 +139,7 @@ export const dummyProducts = [
         70,"Citrus Fruits","../../productList/images/grapefruit.jpg",
         [1,2],4.4,[{
         uid:1,
+        uName:"John Smith",
         title:"Refreshing Taste",
         rating:4.4,
         comment:"Perfect balance between sweetness and citrus tanginess."
@@ -136,7 +149,8 @@ export const dummyProducts = [
         "Tender green coconut filled with naturally refreshing coconut water. Hydrating and perfect for hot weather.",
         85,"Tropical Fruits","../../productList/images/greencoconut.jpg",
         [1,2,3],4.5,[{
-        uid:1,
+        uid:4,
+        uName:"Sophia Davis",
         title:"Very Refreshing",
         rating:4.5,
         comment:"Extremely refreshing coconut water with natural sweetness."
@@ -146,27 +160,19 @@ export const dummyProducts = [
         "Fresh guavas with sweet fragrance and soft juicy interior. Rich in vitamins and perfect for juices or fruit salads.",
         60,"Tropical Fruits","../../productList/images/Guava.jpg",
         [1,2,3],4.2,[{
-        uid:1,
+        uid:3,
+        uName:"Michael Brown",
         title:"Aromatic and Sweet",
         rating:4.2,
         comment:"Delicious aroma and soft texture with natural sweetness."
         }],0),
 
-        // new Product(16,1,"Lemon",25,
-        // "Bright yellow lemons packed with vitamin C and strong citrus flavor. Perfect for cooking, baking, and refreshing drinks.",
-        // 100,"Citrus Fruits","../../productList/images/Lemon.jpg",
-        // [1,2],4.7,[{
-        // uid:1,
-        // title:"Strong Fresh Flavor",
-        // rating:4.7,
-        // comment:"Very fresh lemons with intense citrus aroma and juice."
-        // }],10),
-
         new Product(17,1,"Orange",30,
         "Sweet and juicy oranges full of vitamin C. Easy to peel and perfect for fresh juice or healthy snacks.",
         110,"Citrus Fruits","../../productList/images/Orange.webp",
         [1,2],4.6,[{
-        uid:1,
+        uid:2,
+        uName:"Emma Johnson",
         title:"Juicy and Sweet",
         rating:4.6,
         comment:"Very juicy oranges with natural sweetness and freshness."
@@ -176,7 +182,8 @@ export const dummyProducts = [
         "Ripe papayas with soft texture and tropical sweetness. Rich in nutrients and perfect for smoothies and fruit bowls.",
         45,"Tropical Fruits","../../productList/images/Papaya.jpg",
         [1,2,3],4.8,[{
-        uid:1,
+        uid:4,
+        uName:"Sophia Davis",
         title:"Soft and Delicious",
         rating:4.8,
         comment:"Perfectly ripe papaya with smooth texture and rich sweetness."
@@ -187,6 +194,7 @@ export const dummyProducts = [
         130,"Fresh Fruits","../../productList/images/Peach.jpg",
         [1,2],4.3,[{
         uid:1,
+        uName:"John Smith",
         title:"Very Juicy",
         rating:4.3,
         comment:"Sweet and juicy peaches with great freshness and flavor."
@@ -196,7 +204,8 @@ export const dummyProducts = [
         "Fresh red tomatoes rich in flavor and nutrients. Perfect for salads, sauces, sandwiches, and everyday cooking.",
         95,"Gourds","../../productList/images/Tomato.jpg",
         [1,2,3],4.5,[{
-        uid:1,
+        uid:5,
+        uName:"Daniel Wilson",
         title:"Rich Flavor",
         rating:4.5,
         comment:"Very fresh tomatoes with firm texture and delicious taste."

@@ -3,46 +3,36 @@ import { Order } from "/models/order.js";
 
 let products = loadProducts() || [];
 let selectedProduct = null;
-//let bsModal = null;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById("quickViewModal");
+$(function () {
 
     fetch("/component/quickViewModal.html")
     .then(response => response.text())
     .then(data => {
-        container.innerHTML = data; // modal HTML is now in DOM
 
-        // Initialize the Bootstrap modal AFTER it's in the DOM
-        // const modalEl = container.querySelector(".modal");
-        // if (modalEl) {
-        //     bsModal = new bootstrap.Modal(modalEl, {
-        //         backdrop: true
-        //     });
-        // }
+        document.body.insertAdjacentHTML('beforeend', data);
 
-        // Bind Buy It Now click AFTER the modal exists
-        $(container).on('click', '#modal-BuyItNow', function () {
-            if (quantity > product.Stock) return; 
-            buyItNow();
-            window.location.href = "../../checkOut/Template/checkOut.html";
-        });
+        const myModal = new bootstrap.Modal(document.getElementById('quickViewModal'))
+        console.log(myModal)
 
         // Bind the eye icon to open the modal
         $(document).on('click', '.fa-eye', function() {
             const cardId = parseInt($(this).closest(".cards").attr("id"));
             selectedProduct = products.find(p => p.ID === cardId);
+
+            console.log("cardid",cardId);
+            console.log("selectedproduct",selectedProduct);
+
             if (!selectedProduct) return;
 
             // Fill modal info
             $(".modal-productImage").attr("src", selectedProduct.ImageUrl);
             $("#modal-name").text(selectedProduct.Name);
-            $("#modal-productPrice").text(`€${selectedProduct.Price}`);
             $("#modal-productStock").text(selectedProduct.Stock);
             $("#modal-discount").text(selectedProduct.DiscountPercentage);
             $("#modal-category").text(selectedProduct.Category);
             $("#modal-productDescription").text(selectedProduct.Description || "No description available.");
-
+        
             // Fill sizes
             $('.sizediv').empty();
             selectedProduct.Sizes.forEach((item, index) => {
@@ -54,36 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             // Set prices
-            let pricePerKg = selectedProduct.Price;
             let selectedSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
-            function getFinalPrice(selectedSize) {
-                const price = Number(selectedProduct.Price);
-                const discount = Number(selectedProduct.DiscountPercentage) || 0;
-                let total = price * selectedSize;
-                if (discount > 0) total = total - (total * (discount / 100));
-                return Math.max(0, total);
-            }
+            let pricePerKg = selectedProduct.Price;
 
             $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
             $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
-            // Update prices when size changes
-            $(document).on('change', 'input[name="size_choice"]', function () {
-                selectedSize = parseFloat($(this).val()) || 1;
-                $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
-                $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+            
+            // Calling Buy It Now function
+            $('#quickViewModal').off('click', '#modal-BuyItNow');
+            $('#quickViewModal').on('click', '#modal-BuyItNow', function () {
+                buyItNow();
+                window.location.href = "../../checkOut/Template/checkOut.html";
             });
-
-            // Show the modal
-            //if (bsModal) bsModal.show();
-        });
-
+            myModal.show();
+        }); //end eye icon
     }); // end fetch
-});
+}); //end event listener
 
 //Quantity Plus/Minus
 // Quantity Plus
 $(document).on('click', '.modal-qty-plus', function () {
-    if (value >= product.Stock) return;
     let value = parseInt($('#modal-quantityValue').val()) || 1;
     value++;
     $('#modal-quantityValue').val(value);
@@ -104,10 +84,9 @@ $(document).on('click', '#modal-addToCart', function(e) {
 
     let quantity = parseInt($('#modal-quantityValue').val()) || 1;
     let selectedSize = $('input[name="size_choice"]:checked').val();
-    if (quantity > product.Stock) return; 
+    
     addToCart(selectedProduct.ID, quantity, selectedSize);
-
-    window.location.href = "../../cart/Template/cart.html";
+    alert('Product has already added to your cart')
 });
 
 // Buy It Now function
@@ -116,6 +95,9 @@ function buyItNow() {
 
     let quantity = parseInt($('#modal-quantityValue').val()) || 1;
     let selectedSize = $('input[name="size_choice"]:checked').val();
+
+    let freshSubtotal = quantity * getFinalPrice(selectedSize) ;
+
 
     let currentOrder = new Order({
         id: Date.now(),
@@ -133,7 +115,7 @@ function buyItNow() {
             City: "",
             shipping_fees: null
         },
-        subtotal: selectedProduct.Price * quantity,
+        subtotal: freshSubtotal,
         discount_code: "",
         special_instructions: ""
     });
@@ -155,3 +137,23 @@ $(document).on('click', '.sizediv label', function () {
         .removeClass('btn-outline-warning')
         .addClass('btn-warning text-white');
 });
+
+//calculate the price of each selected size
+function getFinalPrice(selectedSize) {
+    if(!selectedProduct) return 0;
+    const price = Number(selectedProduct.Price);
+    const discount = Number(selectedProduct.DiscountPercentage) || 0;
+    let total = price * selectedSize;
+    if (discount > 0) total = total - (total * (discount / 100));
+    return Math.max(0, total);
+}
+
+// Update prices when size changes
+$(document).on('change', 'input[name="size_choice"]', function () {
+    console.log("last",selectedProduct);
+    let selectedSize = parseFloat($(this).val()) || 1;
+    let pricePerKg = selectedProduct.Price;
+    $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+    $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+});
+

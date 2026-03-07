@@ -52,9 +52,17 @@
                 transition: transform 1s ease-in-out;
                 }
 
-                .carousel-control-prev i,
-                .carousel-control-next i{
-                    width: 5%;
+                .carousel-control-prev{
+                    margin-left: 10px;
+                }
+
+                .carousel-control-next{
+                    margin-right: 10px;
+                }
+
+                .carousel-control-prev,
+                .carousel-control-next{
+                    width: 7%;
                 }
 
                 .carousel-control-prev i,
@@ -78,10 +86,10 @@
                 }
 
                 .carousel-control-prev{
-                    left: -50px;
+                    left: -22px;
                 }
                 .carousel-control-next{
-                    right: -50px;
+                    right: -22px;
                 }
                 .small-img {
                 width: 170px;
@@ -104,18 +112,23 @@
                 }
 
                 .customer-card {
+                margin-top: 20px;
                 width: 350px;
                 max-width: 90%;
-                height: 100%;
+                height: 250px;
+                overflow-y: auto;
                 }
                 #customers {
                 background-color: #f9f9f9;
                 }
                 #customers .carousel-item {
-                min-height: 360px;
+                min-height: 340px;
                 }
                 #customers .card p {
                 line-height: 1.6;
+                }
+                #customers h2{
+                    padding-top: 10px;
                 }
                 .stars {
                 color: #ffb503;
@@ -154,7 +167,7 @@
 
                 }
                 .para:hover{
-                    color: rgb(95, 168, 0);
+                    color: #f5ab1e;
                 }
 
 
@@ -434,11 +447,8 @@
                 data-bs-ride="carousel"
                 data-bs-interval="4000"
                 >
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    </div>
-
-                    <div class="carousel-item"></div>
+                <div class="carousel-inner"></div>
+                   
                 <button
                     class="carousel-control-prev"
                     type="button"
@@ -460,7 +470,7 @@
                 </div>
             </section>
             </main>
-            <div id="quickViewModal"></div>
+            <!-- <div id="quickViewModal"></div> -->
             <script type="module" src="/component/PopUpFunctions.js"></script>
         
         <script src="../../component/addToCart.js"></script>

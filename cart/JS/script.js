@@ -76,7 +76,7 @@ $(document).ready(function () {
 
 
         let zipCode = $('#zip-code').val();
-        const zipRegex = /^[A-Za-z0-9][A-Za-z0-9\s-]{2,10}$/;
+        const zipRegex = /^(?=.*\d)[A-Za-z0-9\s-]{3,11}$/;
 
     $('#zip-code').on('input', function () {
 

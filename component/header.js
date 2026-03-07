@@ -1,8 +1,11 @@
 import { getBasePath } from "./basepath.js";
+
+const basepath = getBasePath();
+const products = JSON.parse(localStorage.getItem("products")) || [];
+const user = JSON.parse(localStorage.getItem("currentUser")) || {};
+const name = user.firstName;
+
 export function header() {
-    const basepath = getBasePath();
-    const user = JSON.parse(localStorage.getItem("currentUser")) || {};
-    const name = user.lastName;
     const authButtons = name
         ? ""
         : `<div class="d-flex">
@@ -82,12 +85,7 @@ export function header() {
                                                 data-bs-toggle="dropdown">
                                                 Collection
                                             </a>
-                                            <ul class="dropdown-menu collectionMenu">
-                                                <li><a class="dropdown-item"href="#">Action</a></li>
-                                                <li><a class="dropdown-item"href="#">Another action</a></li>
-                                                <li><hr class="dropdown-divider"/></li>
-                                                <li><a class="dropdown-item"href="#">Something else here</a></li>
-                                            </ul>
+                                            <ul class="dropdown-menu collectionMenu"></ul>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link text-body dropdown-toggle"
@@ -150,10 +148,10 @@ export function header() {
                         </div>
                     </div>
                     <div class=" d-flex align-items-center">
-                    <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0">🌙</button>
+                    <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 d-block d-xxl-none p-0 icon-size">🌙</button>
                         <!-- Account icon -->
                         <a href="${basepath}account/Template/profile.html">
-                            <i class="fa-regular fa-user text-body px-1"></i>
+                            <i class="fa-regular fa-user text-body px-1 icon-size"></i>
                         </a>
                         <div id="account" class="d-none d-xl-flex flex-column">
                             <a href="${basepath}account/Template/profile.html" class="fs-6  text-decoration-none secondryTextTheme"><b>${name || "Account"}</b></a>
@@ -161,11 +159,11 @@ export function header() {
                         </div>
                         <!-- Heart icon -->
                         <a href="${basepath}wishlist/Template/wishlist.html">
-                            <i class="fa-regular fa-heart text-body px-1"></i>
+                            <i class="fa-regular fa-heart text-body px-1 icon-size"></i>
                         </a>
                         <!-- Bag icon -->
                         <a href="${basepath}cart/Template/cart.html">
-                            <i class="fa-solid fa-bag-shopping text-body px-1"></i>
+                            <i class="fa-solid fa-bag-shopping text-body px-1 icon-size"></i>
                         </a>
                     </div>
                 </section>
@@ -183,12 +181,7 @@ export function header() {
                                 aria-expanded="false">
                                 Collection
                             </a>
-                            <ul class="dropdown-menu collectionMenu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <ul class="dropdown-menu collectionMenu"></ul>
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link text-body dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
                             <ul class="dropdown-menu pagesMenu">
@@ -201,9 +194,33 @@ export function header() {
                         <li class="nav-item"><a class="nav-link text-body" href="/aboutus/Template/aboutUs.html">About us</a></li>
                     </ul>
                 </nav>
-                <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0">🌙</button>
+                <button id="themeToggle" class="btn btn-outline-secondary d-block border border-0 icon-size py-0">🌙</button>
             </section>
         </header>
     `;
 }
 
+
+export function loadCategorires() {
+    const categories = new Set();
+    console.log("products",products)
+    console.log("menu:", $(".collectionMenu"));
+    
+    products.forEach(product => {
+        categories.add(product._category)
+    });
+    
+    categories.forEach(category => {
+        $(".collectionMenu").append(
+            `
+            <li><a class="dropdown-item category-item" href="#">${category}</a></li>
+            `
+        )
+    })
+
+        $(".category-item").on("click", function() {
+        const name = $(this).text().trim();
+        console.log("name: ", name);
+        window.location.href = `/productList/Template/product_list.html?category=${encodeURIComponent(name)}`;
+    })
+}
