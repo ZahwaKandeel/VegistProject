@@ -1,34 +1,27 @@
 import{
     DashboardStats,
     SalesReport,
-    MonthlyTarget,
-    RecentSale,
     TopSellingItem
 } from "../JS/sellerdashdata.js"
 
 $(function(){
     const stats = DashboardStats.getDummyData();
 
-    const recentSales = RecentSale.getDummyList();
     const topSellingItem = TopSellingItem.getDummyList();
 
     const doneOrders = JSON.parse(localStorage.getItem("doneOrders")) || [];
-    const users = JSON.parse(localStorage.getItem("Users")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const sellerId = currentUser.id;
 
-    // const seller = users.find(u => u.id === sellerId);
-    const sellerId = 1;
     const sellerOrders = doneOrders.filter(o => o.sellerId === sellerId);
-
     const totalEarnings = sellerOrders.reduce((sum, order) => sum + order.total, 0);
 
 
 
     $("#totalEarnings h3").html("&pound;"+totalEarnings.toLocaleString());
     $("#totalEarnings span").html(stats.earningsChange+"%");
-
     $("#totalOrders h3").html(sellerOrders.length);
     $("#totalOrders span").html(stats.ordersChange+"%");
-    
     $("#revenueGrowth h3").html(stats.revenueGrowth+"%");
     $("#conversionRate h3").html(stats.conversionRate+"%");
 
@@ -45,11 +38,11 @@ $(function(){
             ordersCount[monthIndex] += 1;
         });
         return{
-            labels: months,
-            revenue: revenue,
+            labels: months, revenue,
             orders: ordersCount
         };
-    }
+    } 
+    
     const monthly = generateMonthlyData(sellerOrders);
 
     const ctx = document.getElementById("SalesReportChart")
@@ -125,8 +118,15 @@ $(function(){
         updateChart(SalesReport.getMonthly());
     });
 
-    const targetData = MonthlyTarget.getDummy();
-    const percentage = targetData.percentageAchieved;
+
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1;
+
+    const actualRevenue = sellerOrders
+        .filter(o => new Date(o.createdAt).getFullYear() === currentYear)
+        .reduce((sum, o) => sum + o.total, 0);
+
+    const projectedRevenue = Math.round((actualRevenue/currentMonth)*12);
 
     const ctx2 = document.getElementById("monthlyTargetChart");
 
@@ -134,11 +134,11 @@ $(function(){
         type: "doughnut",
         data: {
             labels: [
-                `Achieved (${percentage}%)`,
-                `Remaining (${100-percentage}%)`
+                `Achieved (£${actualRevenue.toLocaleString()})`,
+                `Projected (£${projectedRevenue.toLocaleString()})`
             ],
             datasets: [{
-                data:[percentage,100-percentage],
+                data:[actualRevenue, Math.max(projectedRevenue - actualRevenue, 0)],
                 backgroundColor:["#f5ab1e","#fbe2cb"],
                 borderWidth:0
             }]
