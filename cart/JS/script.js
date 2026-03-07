@@ -150,15 +150,16 @@ $(document).ready(function () {
 // ======================================================
 // Render cart items from localStorage into the checkout UI
 // ======================================================
-function displayCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let products = JSON.parse(localStorage.getItem('products')) || [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+const products = JSON.parse(localStorage.getItem('products')) || [];
 
+function displayCart() {
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
     $('.cart-items').empty();
 
     // If cart empty → show message
     if (cart.length === 0) {
-        $('main .container-fluide').empty().append(`
+        $('main .container-fluid').empty().append(`
             <div class="text-center h3 my-5">
                 <span>Your cart is empty</span> 
                 <a href="../../productList/Template/product_list.html" class="text-secondary">Return to store</a>
@@ -242,8 +243,6 @@ function displayCart() {
 // Generate size radio buttons and mark selected one
 // ======================================================
 function checkSize(productId) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let products = JSON.parse(localStorage.getItem('products')) || [];
 
     const cartItem = cart.find(item => item.product_id == productId);
     if (!cartItem) return '';
@@ -279,7 +278,6 @@ $(document).on('change', '.choose-size', function () {
     let productId = $(this).data('id');
     let selectedSize = $(this).val();
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let item = cart.find(i => i.product_id == productId);
 
     if (item) item.size = selectedSize;
@@ -309,14 +307,12 @@ $(document).on("click", ".remove-btn", function () {
 // Quantity increase/decrease handlers
 // ======================================================
 function increaseQuantity(product_id) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const item = cart.find(item => item.product_id == product_id);
     if (item) item.quantity += 1;
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function decreaseQuantity(product_id) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const item = cart.find(item => item.product_id == product_id);
 
     if (item) {
@@ -383,8 +379,6 @@ $('#discount-code-btn').on('click', function () {
 // Calculate subtotal including discounts
 // ======================================================
 function calculateSubtotal() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let products = JSON.parse(localStorage.getItem('products')) || [];
 
     let subtotal = 0;
 
@@ -420,12 +414,16 @@ $('#instructions').on('input', function () {
 // Build order object to store in localStorage
 // ======================================================
 function buildOrderData() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const subtotal = calculateSubtotal();
-
+    let sellerId ;
+    cart.map(item => {
+        const product = products.find(p => p._id == item.product_id);
+        sellerId = product._sellerId;
+    })
+    
     let newOrder = new Order({
         id: Date.now(),
-        sellerId: 1,
+        sellerId: sellerId,
         cart: cart,
         createdAt: new Date(),
         shipping: {
@@ -454,8 +452,6 @@ function buildOrderData() {
 // Checkout button handler
 // ======================================================
 $('#checkout-btn').on('click', function () {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
     // Prevent checkout if any product missing size
     const missingSize = cart.some(item => !item.size);
     if (missingSize) {
