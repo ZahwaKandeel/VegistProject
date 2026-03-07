@@ -45,7 +45,13 @@ $(document).ready(function () {
     // ================================
     $('#countries').change(function () {
         let selectedCountry = $(this).val();
-        if (!selectedCountry) return;
+
+         if ($(this).val()) {
+            $(this).removeClass('bg-transparent').addClass('bg-white')
+        } else{
+            $(this).removeClass('bg-white').addClass('bg-transparent')
+            return
+        }
 
         $.ajax({
             url: "https://countriesnow.space/api/v0.1/countries/cities",
@@ -74,9 +80,20 @@ $(document).ready(function () {
         });
     });
 
+    $('#cities').change(function () {
+        if ($(this).val()) {
+            $(this).removeClass('bg-transparent').addClass('bg-white')
+        } else{
+            $(this).removeClass('bg-white').addClass('bg-transparent')
+        }
+    });
 
-        let zipCode = $('#zip-code').val();
-        const zipRegex = /^(?=.*\d)[A-Za-z0-9\s-]{3,11}$/;
+    // ================================
+    // Zip-code validation
+    // ================================
+
+    let zipCode = $('#zip-code').val();
+    const zipRegex = /^(?=.*\d)[A-Za-z0-9\s-]{3,11}$/;
 
     $('#zip-code').on('input', function () {
 
