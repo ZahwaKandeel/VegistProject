@@ -126,7 +126,8 @@ $(function(){
         .filter(o => new Date(o.createdAt).getFullYear() === currentYear)
         .reduce((sum, o) => sum + o.total, 0);
 
-    const projectedRevenue = Math.round((actualRevenue/currentMonth)*12);
+    const Yearly_Target = 10000;    
+    const projectedRevenue = Math.min(Math.round((actualRevenue/currentMonth)*12), Yearly_Target);
 
     const ctx2 = document.getElementById("monthlyTargetChart");
 
@@ -135,10 +136,10 @@ $(function(){
         data: {
             labels: [
                 `Achieved (£${actualRevenue.toLocaleString()})`,
-                `Projected (£${projectedRevenue.toLocaleString()})`
+                `Projected (£${Math.max(Yearly_Target - actualRevenue, 0).toLocaleString()})`
             ],
             datasets: [{
-                data:[actualRevenue, Math.max(projectedRevenue - actualRevenue, 0)],
+                data:[actualRevenue, Math.max(Yearly_Target - actualRevenue, 0)],
                 backgroundColor:["#f5ab1e","#fbe2cb"],
                 borderWidth:0
             }]
@@ -170,7 +171,7 @@ $(function(){
                 <td>${sale.productId}</td>
                 <td>${sale.name}</td>
                 <td>${sale.stock}</td>
-                <td>${sale.price}</td>
+                <td>£${sale.price}</td>
                 <td>${sale.totalSales}</td>
                 <td>${sale.status}</td>
             </tr>
@@ -184,7 +185,7 @@ $(function(){
                     const row = `
                     <tr>
                         <td>${order.id}</td>
-                        <td>Customer #${order.customerId}</td>
+                        <td>${order.customerName}</td>
                         <td>${order.orderDetail.cart.length} items</td>
                         <td>£${order.total}</td>
                         <td>${order.payment}</td>
