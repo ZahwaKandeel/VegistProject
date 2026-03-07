@@ -158,7 +158,7 @@ No backend setup required.
 
 ## Author
 
-Mohamed Mahdy
+Ahmed Samy, Yamen Aly, Nada Ayman, Zahwa Bassam ,Mohamed Mahdy
 
 This project demonstrates frontend architecture and e-commerce business
 logic using vanilla JavaScript.
