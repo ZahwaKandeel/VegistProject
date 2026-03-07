@@ -10,7 +10,6 @@ $(function(){
     const topSellingItem = TopSellingItem.getDummyList();
 
     const doneOrders = JSON.parse(localStorage.getItem("doneOrders")) || [];
-    const users = JSON.parse(localStorage.getItem("Users")) || [];
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const sellerId = currentUser.id;
 
@@ -128,7 +127,6 @@ $(function(){
         .reduce((sum, o) => sum + o.total, 0);
 
     const projectedRevenue = Math.round((actualRevenue/currentMonth)*12);
-    // const percentage = projectedRevenue > 0 ? Math.round((actualRevenue / projectedRevenue)*100) : 0;
 
     const ctx2 = document.getElementById("monthlyTargetChart");
 
