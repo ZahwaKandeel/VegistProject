@@ -353,6 +353,7 @@ $(function() {
         const newDoneOrder  = {
                 id: plainOrder.id,
                 customerId: plainUser.id,
+                customerName: plainUser.firstName,
                 sellerId: plainOrder.sellerId,
                 total: totalFinalPriceSum,
                 orderDetail: plainOrder,
