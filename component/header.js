@@ -221,6 +221,6 @@ export function loadCategorires() {
         $(".category-item").on("click", function() {
         const name = $(this).text().trim();
         console.log("name: ", name);
-        window.location.href = `/productList/Template/product_list?category${encodeURIComponent(name)}`
+        window.location.href = `/productList/Template/product_list.html?category=${encodeURIComponent(name)}`;
     })
 }
