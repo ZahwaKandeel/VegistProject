@@ -256,7 +256,7 @@ if (idParam === null) {
                             ${
                                 p._discountPercentage
                                     ? `
-                            <div class="badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color:#e30514;">
+                            <div class="badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-3 rounded-5" style="background-color:#e30514;">
                             ${p._discountPercentage}% 
                             </div>`
                                     : ``
@@ -378,7 +378,6 @@ if (idParam === null) {
             document.getElementById("reviewEmail").value = userEmail;
 
             let review_rating;
-            //const Productsreview = products._reviews;
 
             const reviewForm = document.getElementById("reviewForm");
             const reviewTitleInput = document.getElementById("reviewTitle");
@@ -442,7 +441,6 @@ if (idParam === null) {
                 }
 
                 const userRating = Number(userRatingInput.value);
-                //const userContent = userContentInput.value;
                 // Get form values
                 const review = {
                     userId: currentUser.id,
@@ -455,10 +453,8 @@ if (idParam === null) {
                 };
 
                 review_rating = review.rating;
-                //console.log("review_rating", review_rating);
 
                 // Basic validation
-                //console.log("set reviq", review);
                 if (
                     !review.rating ||
                     !review.title ||
@@ -470,11 +466,7 @@ if (idParam === null) {
                     return;
                 }
 
-                // Push review inside product
-                reviews.push(review);
-                localStorage.setItem("Productsreview", JSON.stringify(reviews));
-
-                // Save updated products back
+                currentProduct.Reviews = [...currentProduct._reviews, review]; 
                 saveProducts(products);
 
                 // Reset form
@@ -492,19 +484,7 @@ if (idParam === null) {
 
             //product rating
             if (currentProduct) {
-                let rating;
-                if (reviews.length > 0) {
-                    let total = 0;
-
-                    reviews.forEach((review) => {
-                        total += review.rating;
-                    });
-                    rating = Number((total / reviews.length).toFixed(2));
-                } else {
-                    rating = 0;
-                }
-
-                currentProduct._rating = rating;
+                
                 const divstars = $(".getRating");
 
                 function generateStars(rating) {
@@ -515,7 +495,7 @@ if (idParam === null) {
                         else divstars.append(`<i class="bi bi-star"></i>`);
                     }
                 }
-                generateStars(rating, divstars);
+                generateStars(currentProduct._rating, divstars);
             }
 
             //Display saved reviews

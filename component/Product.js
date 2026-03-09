@@ -135,12 +135,12 @@ export class Product{
                 throw new Error("Each review must be an object");
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             
-            const {uid = currentUser.id, uName = currentUser.firstName + " " + currentUser.lastName, title, rating, comment} = review;
-            if((uid == null ) || (uName == null ) || (title == review) || (rating == review) || (comment == review))
+            const {userId = currentUser.id, name = currentUser.firstName + " " + currentUser.lastName, title, rating, comment} = review;
+            if((userId == null ) || (name == null ) || (title == review) || (rating == review) || (comment == review))
                 throw new Error("Review must contain userId, userName, title, rating and comment properties");
             if(typeof title !== "string" || title.trim().length<5)
                 throw new Error("Title length must be at least 5 characters");
-            if(typeof uid !== "number" || uid.length<0)
+            if(typeof userId !== "number" || userId.length<0)
                 throw new Error("UserId invalid");
             if(typeof rating !== "number" || rating.length<0)
                 throw new Error("Rating invalid")
@@ -155,8 +155,8 @@ export class Product{
             });
             this._rating = Number((total/reviews.length).toFixed(2));
         }else{
-            this.rating = 0;
-        }
+            this._rating = 0;
+            }
     }
     get Reviews()
     {
@@ -254,7 +254,7 @@ export function editProduct(productID, updatedData){
         product.Rating = updatedData.rating;
 
     if(updatedData.reviews !== undefined)
-        product.Reviews = updatedData.reviews;
+    product.Reviews = [...product.Reviews, ...updatedData.reviews];
 
     if(updatedData.discountPercentage !== undefined)
         product.DiscountPercentage = updatedData.discountPercentage;

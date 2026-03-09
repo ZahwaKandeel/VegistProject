@@ -17,9 +17,8 @@ $(function () {
 
         // Bind the eye icon to open the modal
         $(document).on('click', '.fa-eye', function() {
-            const cardId = parseInt($(this).closest(".cards").attr("id"));
+            const cardId = parseInt($(this).closest(".cards").attr("id")) || parseInt($(this).closest(".cards2").attr("id"));
             selectedProduct = products.find(p => p.ID === cardId);
-
             console.log("cardid",cardId);
             console.log("selectedproduct",selectedProduct);
 

@@ -376,7 +376,8 @@ $(function() {
         // Add doneOrder Object
         addDoneOrder(newDoneOrder );
         // Remove currentOrder
-        localStorage.removeItem("currentOrder")
+        localStorage.removeItem("currentOrder");
+        localStorage.removeItem("cart");
 
         alert("Order Completed Successfully!")
         window.location.replace("/home/Template/home.html");
