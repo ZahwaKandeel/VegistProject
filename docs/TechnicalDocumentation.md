@@ -104,17 +104,17 @@
 ## Product Details & Quick View
 
 - Product details page:
-    - [ProductDetails.js](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js)
+    - [ProductDetails.js](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js)
     - Loads product by ID, fills detail UI, shows discount and size selection.
     - Actions:
         - Add to wishlist/cart, remove product (seller view): [deleteProductById](file:///d:/Mohamed/Projects/ITI/VegistProject/component/deleteProduct.js#L6-L12).
-        - Price computation: [getFinalPrice logic](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js#L57-L71), size change updates: [handler](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js#L187-L209).
-        - Subtotal: [calculateSubTotal](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js#L135-L141).
-        - Order creation: [buyItNow](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js#L143-L169).
+        - Price computation: [getFinalPrice logic](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js#L57-L71), size change updates: [handler](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js#L187-L209).
+        - Subtotal: [calculateSubTotal](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js#L135-L141).
+        - Order creation: [buyItNow](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js#L143-L169).
     - Reviews:
-        - Star UI and rating capture; form submit validates, pushes review, updates product rating, and re-renders reviews: [displayReviews](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js#L378-L409).
+        - Star UI and rating capture; form submit validates, pushes review, updates product rating, and re-renders reviews: [displayReviews](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js#L378-L409).
     - Related products:
-        - [loadRelatedProducts](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetials/JS/ProductDetails.js#L213-L231) fills cards list.
+        - [loadRelatedProducts](file:///d:/Mohamed/Projects/ITI/VegistProject/productDetails/JS/ProductDetails.js#L213-L231) fills cards list.
 - Quick view modal:
     - [PopUpFunctions.js](file:///d:/Mohamed/Projects/ITI/VegistProject/component/PopUpFunctions.js)
     - Fetches modal HTML, binds interactions, computes prices with discount and size, supports Add to Cart and Buy It Now: [buyItNow](file:///d:/Mohamed/Projects/ITI/VegistProject/component/PopUpFunctions.js#L114-L143).
@@ -229,7 +229,7 @@
         - displayWishlist() renders list.
     - cart/script.js:
         - displayCart(), checkSize(), removeFromCart(), increaseQuantity(), decreaseQuantity(), checkFreeShipping(), calculateSubtotal(), buildOrderData().
-    - productDetials/ProductDetails.js:
+    - productDetails/ProductDetails.js:
         - getFinalPrice(), calculateSubTotal(), buyItNow(), loadRelatedProducts(), displayReviews().
     - checkOut/checkOut.js:
         - getDoneOrders(), addDoneOrder(), order completion handler, address persistence.
