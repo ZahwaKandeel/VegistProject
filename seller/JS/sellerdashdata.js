@@ -1,8 +1,6 @@
 export class DashboardStats{
-    constructor(totalEarnings, earningsChange, totalOrders, ordersChange, revenueGrowth, conversionRate){
-        this.totalEarnings = totalEarnings;
+    constructor(earningsChange, ordersChange, revenueGrowth, conversionRate){
         this.earningsChange = earningsChange;
-        this.totalOrders = totalOrders;
         this.ordersChange = ordersChange;
         this.revenueGrowth = revenueGrowth;
         this.conversionRate = conversionRate;
@@ -10,9 +8,7 @@ export class DashboardStats{
 
     static getDummyData(){
         return new DashboardStats(
-        128450,
         12.5,
-        1842,
         8.3,
         14.2,
         3.8
@@ -47,71 +43,6 @@ export class SalesReport{
             [120,240,310,280,450,520,610,390],
             [3,5,7,6,9,12,14,8]
         );
-    }
-}
-export class MonthlyTarget{
-    constructor(targetRevenue, currentRevenue){
-        this.targetRevenue = targetRevenue;
-        this.currentRevenue = currentRevenue;
-    }
-    
-    get percentageAchieved(){
-        return Math.round((this.currentRevenue/this.targetRevenue)*100);
-    }
-
-    static getDummy(){
-        return new MonthlyTarget(20000, 16200);
-    }
-}
-
-export class RevenueGrowth{
-    constructor(labels, growthPercent){
-        this.labels = labels;
-        this.growthPercent = growthPercent;
-    }
-    static getDummy(){
-        return new RevenueGrowth(
-            ["Jul","Aug","Sep","Oct","Nov","Dec"],
-            [5.2,6.1,4.8,7.3,9.5,11.4]
-        );
-    }
-}
-
-export class ConversionData{
-    constructor(visitors, addToCart, checkoutStarted, purchases){
-        this.visitors = visitors;
-        this.addToCart = addToCart;
-        this.checkoutStarted = checkoutStarted;
-        this.purchases = purchases;
-    }
-
-    get conversionRate(){
-        return ((this.purchases/this.visitors)*100).toFixed(2);
-    }
-
-    static getDummy(){
-        return new ConversionData(48500, 6200, 4100, 1842);
-    }
-}
-
-export class RecentSale{
-    constructor(orderId, customer, product, amount, payment, status){
-        this.orderId = orderId;
-        this.customer = customer;
-        this.product = product;
-        this.amount = amount;
-        this.payment = payment;
-        this.status = status;
-    }
-
-    static getDummyList(){
-        return[
-            new RecentSale("#ORD-10234","Ahmed Hassan","Apple",75,"Cash on Delivery","Completed"),
-            new RecentSale("#ORD-10235","Mariam Ali","Avocado",45,"Credit Card","Pending"),
-            new RecentSale("#ORD-10236","Omar Khaled","Banana",90,"Cash on Delivery","Pending"),
-            new RecentSale("#ORD-10237","Salma Youssef","Red Berries",52,"Credit Card","Completed"),
-            new RecentSale("#ORD-10238","Youssef Adel","Papaya",85,"Credit Card","Completed")
-    ];
     }
 }
 

@@ -10,11 +10,10 @@ $(function(){
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-
+    //Load products into the local storage
     const products = JSON.parse(localStorage.getItem("products")) || [];
+
     const carouselInner = document.getElementById("carouselInner");
-
-
     function buildProductCarousel(){
         if(!carouselInner) return;
 
@@ -48,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function(){
     buildProductCarousel();
     loadCustomerReviews(products);
 
+    //stops the buildProductCarousel function from constantly rebuilding the carousel while the user is resizing the window 
     let resizeTimer;
     window.addEventListener("resize", function(){
         clearTimeout(resizeTimer);
@@ -55,9 +55,6 @@ document.addEventListener("DOMContentLoaded", function(){
             buildProductCarousel();
         }, 250);
     });
-
-
-
 
 });
 
@@ -121,6 +118,8 @@ function createProductCard(products){
         </div>
     `
 }
+
+// Generates the rating stars
 function generateStars(rating){
     let stars ="";
     for (let i = 1; i<=5; i++){
@@ -133,24 +132,25 @@ function generateStars(rating){
     return stars;
 }
 
+//Adds Product to Wishlist
 $(document).ready(function(){
     $(document).on("click", ".wishlist-icon", function(){
         const productId = parseInt($(this).data("id"));
         addToWishlist(productId);
-        alert("Added to wishlist");
     });
+    //Adds Product to Cart
     $(document).on("click", ".cart-icon", function(){
         const productId = parseInt($(this).data("id"));
         addToCart(productId,1);
-        alert("Added to cart");
     });
+    //Redirects to the details page of the selected product
     $(document).on("click", ".cards", function(e){
         if($(e.target).closest(".icons").length) return;
         const productId = $(this).attr("id");
         window.location.href = `/productDetials/Template/productDetails.html?id=${productId}`;
     });
 });
-
+// loads the reviews in the customer carousel
 function loadCustomerReviews(products){
     const carouselInner = document.querySelector("#customersCarousel .carousel-inner");
     if(!carouselInner) return;
@@ -194,10 +194,6 @@ function loadCustomerReviews(products){
         wrapper.className = "d-flex justify-content-center gap-4 align-items-stretch";
 
         slideReviews.forEach((review, index) => {
-            const users = JSON.parse(localStorage.getItem("users")) || [];
-            const user = users.find(u => u._id == review.uid);
-            const userName = user ? user._name :"Unknown User";
-
             const reviewCard = document.createElement("div");
             reviewCard.className = "customer-card card text-center p-4 bg-transparent" 
             + (index === 1 ? " d-none d-md-block" : "");
