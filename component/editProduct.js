@@ -2,26 +2,24 @@ import { saveProducts } from "./Product.js";
 export function initializeEditProduct (productId){    
 
     const products = JSON.parse(localStorage.getItem("products")) || [];
-    const product = products.find(p => Number(p._id) === Number(productId));   
-
-
+    const product = products.find(p => Number(p._id) === Number(productId));
     
-
-    let imageBase64 = product._imageUrl;//maintain old image
+    //Display old image
+    let imageBase64 = product._imageUrl;
     
-    //load product data in form fields
+    //load product data in form fields as placeholders
     $("#updateName").val(product._name);
     $("#updatePrice").val(product._price);
     $("#updateDescription").val(product._description);
     $("#updateStock").val(product._stock);
     $("#category").val(product._category);
-    $("#updateImagePreview").attr("src", product._imageUrl)
-                            .removeClass("d-none");
+    $("#updateImagePreview").attr("src", product._imageUrl).removeClass("d-none");
+    
     product._sizes.forEach(size =>{
             $(`.size-option[value="${size}"]`).prop("checked", true);
     });
+    
     $("#discountPercentage").val(product._discountPercentage);
-
 
     $("#updateImage").off("change").on("change", function(){
         const file = this.files[0];
@@ -45,6 +43,8 @@ export function initializeEditProduct (productId){
                                 "Gourds", "Citrus Fruits"
     ];
         
+    //Validating and Saving the updates in the local storage
+    
     $("#editProductForm").off("submit").on("submit", function(e){
         e.preventDefault();
         let isValid = true;

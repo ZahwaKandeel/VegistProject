@@ -12,7 +12,7 @@
         color: #f5ab1e;
         }
 </style>
-
+<!--Add Product Form-->
 <div class="modal fade" id="addProductModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -103,7 +103,8 @@
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="productSubmit btn btn-light fw-bold mt-2 px-4 py-2">
-                            Add Product</button>
+                            Add Product
+                        </button>
                     </div>
                 </form>
             </div>
@@ -112,156 +113,159 @@
 </div>
 
 
-    <script type = "module">
-        import{Product, loadProducts, saveProducts} from "../../component/Product.js"
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            
-        $(document).ready(function(){
-            
-            const sellerId = currentUser.id;
-            const allowedCategories = ["Fresh Fruits",
-                                        "Tropical Fruits",
-                                        "Berries",
-                                        "Leafy Vegetables",
-                                        "Root Vegetables",
-                                        "Cruciferous Vegetables",
-                                        "Gourds",
-                                        "Citrus Fruits"
-            ];
-            let imageBase64 = "";
-            $("#image").on("change", function(){
-                const file = this.files[0];
+<script type = "module">
+    //Validating and Saving the added Product
 
-                if(!file) return;
 
-                if(!file.type.startsWith("image/")){
-                    alert("Please select a valid image file.");
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function(e){
-                    imageBase64 = e.target.result;
-                $("#imagePreview").attr("src", imageBase64)
-                                .removeClass("d-none");
-                };
-                reader.readAsDataURL(file);
-            });
+    import{Product, loadProducts, saveProducts} from "../../component/Product.js"
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        
+    $(document).ready(function(){
+        
+        const sellerId = currentUser.id;
+        const allowedCategories = ["Fresh Fruits",
+                                    "Tropical Fruits",
+                                    "Berries",
+                                    "Leafy Vegetables",
+                                    "Root Vegetables",
+                                    "Cruciferous Vegetables",
+                                    "Gourds",
+                                    "Citrus Fruits"
+        ];
+        let imageBase64 = "";
+        $("#image").on("change", function(){
+            const file = this.files[0];
 
-            $("form").off("submit").on("submit", function(e){
-                e.preventDefault();
-                let isValid = true;
+            if(!file) return;
 
-                $(".form-control").removeClass("is-invalid");
-                $(".invalid-feedback").remove();
-
-                let name = $("#name").val().trim();
-                let price = parseFloat($("#price").val());
-                let description = $("#description").val().trim();
-                let stock = parseInt($("#stock").val());
-                let category = $("#category").val().trim();
-                if(!imageBase64){
-                    alert("Please Upload an image");
-                    return;
-                }
-
-                let sizes = $(".size-option:checked").map(function(){
-                    return parseInt($(this).val(),10);
-                }).get();
-
-                let discountPercentage = parseInt($("#discountPercentage").val());
-
-                
-                if (name.length<3){
-                    showError("#name", "Name must be at least 3 characters");
-                    isValid = false;
-                }
-                if (isNaN(price) || price<=0){
-                    showError("#price", "Price must be a number greater than 0");
-                    isValid = false;
-                }
-                if (description.length < 20 || description.length > 200){
-                    showError("#description", "Description must be at least 100 characters and less than 200");
-                    isValid = false;
-                }
-                if (isNaN(stock) || stock<=0){
-                    showError("#stock", "Stock must be a number greater than 0");
-                    isValid = false;
-                }
-                if (!allowedCategories.includes(category)){
-                    showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
-                    isValid = false;
-                }
-                if (sizes.length === 0) {
-                    $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
-                    isValid = false;
-                } else {
-                    $("#sizesError").html("");
-                }
-                if(isNaN(discountPercentage) || discountPercentage<0 || discountPercentage>100){
-                    showError("#discountPercentage","Discount Percentage must be a number between 0 and 100");
-                    isValid = false;
-                }
-                if (!isValid) return;
-
-                try{
-                    let products = loadProducts() || [];
-
-                    const newProduct = new Product(
-                        Date.now(),
-                        sellerId,
-                        name,
-                        price,
-                        description,
-                        stock,
-                        category,
-                        imageBase64,
-                        sizes,
-                        0,
-                        [],
-                        discountPercentage
-                    );
-                    products.push(newProduct);
-
-                    saveProducts(products);
-                    alert("Product added Successfully!");
-                    const modalElement = document.getElementById("addProductModal");
-                    const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-                
-                    modal.hide();
-                    document.body.classList.remove("modal-open");
-                    $(".modal-backdrop").remove();
-                    location.reload();
-                    
-                }catch(error){
-                    alert(error.message)
-                }
-            });
-            $(".dropdown-menu").on("click", function(e){
-                    e.stopPropagation();
-                });
-                $(".size-option").on("change", function(){
-                    let selected = $(".size-option:checked").map(function(){
-                        return $(this).next("label").text();
-                    }).get();
-
-                    if(selected.length === 0){
-                        $("#sizesDropdown").text("Select Sizes");
-                    } else{
-                        $("#sizesDropdown").text(selected.join(", "));
-                    }
-                });
-
-            function showError(selector, message){
-                $(selector).addClass("is-invalid");
-                $(selector).after(`<div class= "invalid-feedback">${message}<div>`);
+            if(!file.type.startsWith("image/")){
+                alert("Please select a valid image file.");
+                return;
             }
-            function isValidURL(url){
-                try{
-                    new URL(url);
-                    return true;
-                } catch(err){
-                    return false;
-                }
+            const reader = new FileReader();
+            reader.onload = function(e){
+                imageBase64 = e.target.result;
+            $("#imagePreview").attr("src", imageBase64)
+                            .removeClass("d-none");
+            };
+            reader.readAsDataURL(file);
+        });
+
+        $("form").off("submit").on("submit", function(e){
+            e.preventDefault();
+            let isValid = true;
+
+            $(".form-control").removeClass("is-invalid");
+            $(".invalid-feedback").remove();
+
+            let name = $("#name").val().trim();
+            let price = parseFloat($("#price").val());
+            let description = $("#description").val().trim();
+            let stock = parseInt($("#stock").val());
+            let category = $("#category").val().trim();
+            if(!imageBase64){
+                alert("Please Upload an image");
+                return;
+            }
+
+            let sizes = $(".size-option:checked").map(function(){
+                return parseInt($(this).val(),10);
+            }).get();
+
+            let discountPercentage = parseInt($("#discountPercentage").val());
+
+            
+            if (name.length<3){
+                showError("#name", "Name must be at least 3 characters");
+                isValid = false;
+            }
+            if (isNaN(price) || price<=0){
+                showError("#price", "Price must be a number greater than 0");
+                isValid = false;
+            }
+            if (description.length < 20 || description.length > 200){
+                showError("#description", "Description must be at least 100 characters and less than 200");
+                isValid = false;
+            }
+            if (isNaN(stock) || stock<=0){
+                showError("#stock", "Stock must be a number greater than 0");
+                isValid = false;
+            }
+            if (!allowedCategories.includes(category)){
+                showError("#category", "Invalid Category, allowed categories: bagel, candy, beans, bestseller, bread, biscuite, breakfast, cake, cookie, cupcake, Dairy&Cheese, Dinner");
+                isValid = false;
+            }
+            if (sizes.length === 0) {
+                $("#sizesError").html('<div class="text-danger mt-2">Please select at least one size</div>');
+                isValid = false;
+            } else {
+                $("#sizesError").html("");
+            }
+            if(isNaN(discountPercentage) || discountPercentage<0 || discountPercentage>100){
+                showError("#discountPercentage","Discount Percentage must be a number between 0 and 100");
+                isValid = false;
+            }
+            if (!isValid) return;
+
+            try{
+                let products = loadProducts() || [];
+
+                const newProduct = new Product(
+                    Date.now(),
+                    sellerId,
+                    name,
+                    price,
+                    description,
+                    stock,
+                    category,
+                    imageBase64,
+                    sizes,
+                    0,
+                    [],
+                    discountPercentage
+                );
+                products.push(newProduct);
+
+                saveProducts(products);
+                alert("Product added Successfully!");
+                const modalElement = document.getElementById("addProductModal");
+                const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+            
+                modal.hide();
+                document.body.classList.remove("modal-open");
+                $(".modal-backdrop").remove();
+                location.reload();
+                
+            }catch(error){
+                alert(error.message)
             }
         });
-    </script>
+        $(".dropdown-menu").on("click", function(e){
+                e.stopPropagation();
+            });
+            $(".size-option").on("change", function(){
+                let selected = $(".size-option:checked").map(function(){
+                    return $(this).next("label").text();
+                }).get();
+
+                if(selected.length === 0){
+                    $("#sizesDropdown").text("Select Sizes");
+                } else{
+                    $("#sizesDropdown").text(selected.join(", "));
+                }
+            });
+
+        function showError(selector, message){
+            $(selector).addClass("is-invalid");
+            $(selector).after(`<div class= "invalid-feedback">${message}<div>`);
+        }
+        function isValidURL(url){
+            try{
+                new URL(url);
+                return true;
+            } catch(err){
+                return false;
+            }
+        }
+    });
+</script>
