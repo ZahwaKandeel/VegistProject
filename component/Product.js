@@ -33,6 +33,7 @@ export class Product{
     {
         return this._sellerId
     }
+    // Product Name validation
     set Name(name)
     {
         if(name.length<3) throw new Error("Name must be at least 3 characters");
@@ -42,7 +43,7 @@ export class Product{
     {
         return this._name;
     }
-
+    // Product Price Validation
     set Price(price)
     {
         if(price <= 0) throw new Error("Price cannot be 0 or negative");
@@ -52,7 +53,7 @@ export class Product{
     {
         return this._price;
     }
-    
+    // Product Description Validation
     set Description(description)
     {
         if(description.length<20)
@@ -63,7 +64,7 @@ export class Product{
     {
         return this._description;
     }
-
+    // Product Stock Validation
     set Stock(stock)
     {
         if(stock < 0) throw new Error("Stock cannot be negative");
@@ -73,7 +74,7 @@ export class Product{
     {
         return this._stock;
     }
-
+    // Product Category Validation
     set Category(category)
     {
         const allowed = ["Fresh Fruits", "Tropical Fruits", "Citrus Fruits", "Berries",
@@ -87,7 +88,7 @@ export class Product{
     {
         return this._category;
     }
-
+    // Product Image Validation
     set ImageUrl(imageUrl)
     {
         const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
@@ -115,7 +116,7 @@ export class Product{
     {
         return this._sizes;
     }
-
+    // Product Rating Validation
     set Rating(rating)
     {
         if(rating < 0 || rating >5) throw new Error("Rating must be a number between 1 and 5");
@@ -125,7 +126,7 @@ export class Product{
     {
         return this._rating;
     }
-  
+    // Product Reviews Validation
     set Reviews(reviews)
     {
         if(!Array.isArray(reviews)) throw new Error("Reviews must be an array");
@@ -162,7 +163,7 @@ export class Product{
         return this._reviews;
     }
 
-
+    // Product Discount Validation
     set DiscountPercentage(discountPercentage)
     {
         if(discountPercentage<0) throw new Error("Discounts must be positive");
@@ -173,10 +174,13 @@ export class Product{
         return this._discountPercentage;
     }
 }
+
+// Saves the products in the local storage
 export function saveProducts(products){
         localStorage.setItem("products", JSON.stringify(products));
     }
 
+// Loads the data objects into the browser local storage
 export function loadProducts(){
     let data = localStorage.getItem("products");
     if(!data) return;
@@ -198,6 +202,7 @@ export function loadProducts(){
     ));
 }
 
+//Updates the data from the Edit Product Pop Up
 export function editProduct(productID, updatedData){
     
     let products = JSON.parse(localStorage.getItem("products")) || [];
@@ -254,7 +259,7 @@ export function editProduct(productID, updatedData){
     if(updatedData.discountPercentage !== undefined)
         product.DiscountPercentage = updatedData.discountPercentage;
     
-    localStorage.setItem("products", JSON.stringify(products));
+    saveProducts(products);
 
     return true;
     

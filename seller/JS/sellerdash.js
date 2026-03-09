@@ -17,7 +17,7 @@ $(function(){
     const totalEarnings = sellerOrders.reduce((sum, order) => sum + order.total, 0);
 
 
-
+    // Card Data
     $("#totalEarnings h3").html("&pound;"+totalEarnings.toLocaleString());
     $("#totalEarnings span").html(stats.earningsChange+"%");
     $("#totalOrders h3").html(sellerOrders.length);
@@ -118,17 +118,14 @@ $(function(){
         updateChart(SalesReport.getMonthly());
     });
 
-
+    //Monthly Target Chart
     const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1;
 
     const actualRevenue = sellerOrders
         .filter(o => new Date(o.createdAt).getFullYear() === currentYear)
         .reduce((sum, o) => sum + o.total, 0);
 
-    const Yearly_Target = 10000;    
-    const projectedRevenue = Math.min(Math.round((actualRevenue/currentMonth)*12), Yearly_Target);
-
+    const Yearly_Target = 10000;
     const ctx2 = document.getElementById("monthlyTargetChart");
 
     new Chart(ctx2, {
@@ -161,10 +158,7 @@ $(function(){
         }
     });
 
-
-
-
-    
+    //TopSelling Items
     topSellingItem.forEach(sale =>{
         const row = `
             <tr>
@@ -179,6 +173,7 @@ $(function(){
         $("#TopSellingItems tbody").append(row);
     });
 
+    //Recent Sales
     sellerOrders.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
                 .slice(0,5)
                 .forEach(order =>{

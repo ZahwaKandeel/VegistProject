@@ -22,11 +22,11 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-    <script type="module" src="/component/basepath.js"></script>
-    <script type="module" src="/component/header.js"></script>
-    <script type="module" src="/component/footer.js"></script>
-    <script type="module" src="/component/layout.js"></script>
-    <script src="/component/moodToggle.js"></script>
+        <script type="module" src="/component/basepath.js"></script>
+        <script type="module" src="/component/header.js"></script>
+        <script type="module" src="/component/footer.js"></script>
+        <script type="module" src="/component/layout.js"></script>
+        <script src="/component/moodToggle.js"></script>
     
     </head>
     <body>
@@ -44,6 +44,9 @@
                 max-width: 100%;
                 height: auto;
                 }
+                h1{
+                    color: #232323;
+                }
                 #main_carousel {
                 margin-bottom: 50px;
                 }
@@ -54,10 +57,12 @@
 
                 .carousel-control-prev{
                     margin-left: 10px;
+                    left: -22px;
                 }
 
                 .carousel-control-next{
                     margin-right: 10px;
+                    right: -22px;
                 }
 
                 .carousel-control-prev,
@@ -85,12 +90,6 @@
                     transition: 0.3s;
                 }
 
-                .carousel-control-prev{
-                    left: -22px;
-                }
-                .carousel-control-next{
-                    right: -22px;
-                }
                 .small-img {
                 width: 170px;
                 height: 90px;
@@ -170,8 +169,6 @@
                     color: #f5ab1e;
                 }
 
-
-
                 .hover-img {
                     opacity: 0;
                     transition: 0.4s ease;
@@ -181,14 +178,6 @@
                     opacity: 1;
                 }
 
-                .myul{
-                    list-style: none;
-                
-                }
-                .myul label:hover{
-                    color:  rgb(95, 168, 0);
-
-                }
 
                 .bannerImage{
                     overflow: hidden;  
@@ -213,21 +202,6 @@
                         opacity: 1;
                         
                     }
-                }
-
-                .btnpage:hover{
-                    background-color: rgb(245, 171, 30);
-                    color: white !important;
-                }
-                .leftside{
-                    height: 300px ;
-                    
-                }
-                .leftside3{
-                    height: 200px ;
-                }
-                .leftside5{
-                    height: 250px ;
                 }
 
                 .rating i{
@@ -282,7 +256,7 @@
                     >
                         <div class = "container">    
                             <div class="row">    
-                                <div class="col-lg-6 text-start text-color-#232323">
+                                <div class="col-lg-6 text-start">
                                     <span class="fs-6 fs-md-5 fs-lg-4">Summer vege sale</span>
                                     <h1 class="fw-bold display-6 display-md-5 display-lg-4">
                                         Fresh Fruits <br />& Vegetables <br />
@@ -470,14 +444,12 @@
                 </div>
             </section>
             </main>
-            <!-- <div id="quickViewModal"></div> -->
             <script type="module" src="/component/PopUpFunctions.js"></script>
         
         <script src="../../component/addToCart.js"></script>
         <script src="../../component/addToWishlist.js"></script>
         <script type="module" src="../../seller/JS/dummyproducts.js"></script>
         <script type="module" src="/home/JS/home.js"></script>
-        
         <footer></footer>
     </body>
 </html>
