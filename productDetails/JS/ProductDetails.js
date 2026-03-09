@@ -1,8 +1,4 @@
-import {
-    Product,
-    loadProducts,
-    saveProducts,
-} from "../../component/Product.js";
+import {Product, loadProducts,saveProducts,} from "../../component/Product.js";
 import { Order } from "/models/order.js";
 import { deleteProductById } from "/component/deleteProduct.js";
 import { isAuth } from "../../component/isAuth.js";
@@ -296,9 +292,31 @@ if (idParam === null) {
                     
                     </div>  <!--end  of card 1 -->
                         `,
-                    );
+                    )
+
+                    const card = $(`#${p.ID}`);
+                    const divstars = card.find(".rating");
+                    let rating = 0;
+                        divstars.empty();
+                        if (p._reviews && p._reviews.length > 0) {
+                            let total = 0;
+                            p._reviews.forEach((review)=>{
+                                total += review.rating;
+                            });
+                            rating = Number((total / p._reviews.length).toFixed(2));
+                    }
+                    function generateStars(rating){
+                    divstars.empty();
+                        for (let i = 0; i < 5; i++) {
+                            if (i < Math.floor(rating))
+                                divstars.append(`<i class="bi bi-star-fill"></i>`);
+                            else divstars.append(`<i class="bi bi-star"></i>`);
+                        }
+                    }
+                    generateStars(rating, divstars);
                 });
             }
+
             loadRelatedProducts();
 
             // Wishlist icon beside the popup
