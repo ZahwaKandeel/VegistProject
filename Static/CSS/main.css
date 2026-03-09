@@ -71,6 +71,19 @@ header rform > #search {
 header .nav {
   --bs-nav-link-color: black;
 }
+header .searchResults{
+  top: 100%;
+  max-height: 300px;
+  overflow: auto;
+  z-index: 10;
+}
+header .search-item{
+  padding: 10px;
+  cursor: pointer;
+}
+header .search-item:hover{
+  background-color: #f5f5f5;
+}
 
 svg {
   fill: black;
