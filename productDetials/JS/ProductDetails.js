@@ -257,7 +257,7 @@ if (idParam === null) {
                         <p class=""> <a href=""  class="name text-decoration-none text-black" >${p.Name}</a></p>
                                 <p class="price fw-bold">€${p.Price}</p>
                             <div class="d-flex align-items-center  "> <!-- review by stars -->
-                            <div class="text-warning me-2 rating ">
+                            <div class="text-warning me-2 rating">
                                 
                             </div>
                             <span class="text-muted ratingspa"></span>
@@ -267,6 +267,27 @@ if (idParam === null) {
                     </div>  <!--end  of card 1 -->
                         `
                     )
+                
+                    const card = $(`#${p.ID}`);
+                    const divstars = card.find(".rating");
+                    let rating = 0;
+                        divstars.empty();
+                        if (p._reviews && p._reviews.length > 0) {
+                            let total = 0;
+                            p._reviews.forEach((review)=>{
+                                total += review.rating;
+                            });
+                            rating = Number((total / p._reviews.length).toFixed(2));
+                    }
+                    function generateStars(rating){
+                    divstars.empty();
+                        for (let i = 0; i < 5; i++) {
+                            if (i < Math.floor(rating))
+                                divstars.append(`<i class="bi bi-star-fill"></i>`);
+                            else divstars.append(`<i class="bi bi-star"></i>`);
+                        }
+                    }
+                    generateStars(rating, divstars);
                 });
             }
             loadRelatedProducts();
