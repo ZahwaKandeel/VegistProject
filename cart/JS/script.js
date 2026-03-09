@@ -147,9 +147,6 @@ $(document).ready(function () {
 });
 
 
-// ======================================================
-// Render cart items from localStorage into the checkout UI
-// ======================================================
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const products = JSON.parse(localStorage.getItem('products')) || [];
 
