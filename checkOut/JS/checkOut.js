@@ -9,7 +9,7 @@ console.log(`Plan User:` ,plainUser)
 let user = Object.assign(new User({}), plainUser );
 
 $(function() {
-    // LOGOUT
+    // Logout / Sign in
     $(".logoutBtn").off("click").on("click", (function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -52,7 +52,6 @@ singInButton.on("click", function() {
 })
 
 $(function() {
-
     // Load Current User
     $("#userContact").hide();
 
@@ -64,8 +63,6 @@ $(function() {
         singInButton.hide();
     }
 });
-
-
 
 const currentAddress = plainUser.address || [];
 const order = localStorage.getItem("currentOrder");
@@ -111,11 +108,17 @@ $(function() {
 
 let total = $(".total");
 let totalFinalPriceSum = 0;
+let discountValue = 0;
 const subtotal = $(".subtotal");
 const shipping = $(".shipping");
+const codeDiscountSection = $(".CodeDiscount");
+const codePercntage = $(".discountpercentage");
+const codeValue = $(".codeDiscountValue");
 const itemsCount = $(".itemNumber");
 const subtotalValue = Number(plainOrder.subtotal);
 const shippingValue = Number(orderAddress.shipping_fees);
+const discountCode = plainOrder.discount_code || "";
+const discountCodeLiset = plainOrder.discount_codes_list;
 const totalValue = subtotalValue + shippingValue;
 const products = JSON.parse(localStorage.getItem("products"));
 const cart = plainOrder.cart;
@@ -133,11 +136,18 @@ const orderProducts = cart.map(item => {
     };
 });
 
-$(function() {
-    console.log("Products",products);
-    console.log("cart", cart);
-    console.log("plain order", plainOrder)
+if (discountCode) {
+    const match = discountCodeLiset.find(code => code.code === discountCode);
+    if (match) {
+        discountValue = match.value;
+        codePercntage.text(`${discountValue}%`)
+    }
+}
+else {
+    codeDiscountSection.addClass("d-none")
+}
 
+$(function() {
     function getFinalPrice(product) {
         const price = Number(product._price);
         const discount = Number(product._discountPercentage) || 0;
@@ -156,6 +166,7 @@ $(function() {
         const totalOriginalPrice = (originalPrice * Number(product.size)) * product.quantity;
         const totalFinalPrice = (finalPrice * Number(product.size)) * product.quantity;
         totalFinalPriceSum += totalFinalPrice;
+        codeValue.text(`$${((totalFinalPriceSum * discountValue) /100).toFixed(2)}`)
 
         $("#accordionForm").prepend(
             `
@@ -173,7 +184,7 @@ $(function() {
                         ${
                             finalPrice < originalPrice
                             ? `
-                                <del><i class="text-warning">$${totalOriginalPrice.toFixed(2)}</i></del>
+                                <del><i class="mainTextTheme">$${totalOriginalPrice.toFixed(2)}</i></del>
                                 <span>$${totalFinalPrice.toFixed(2)}</span>
                             `
                             : `
@@ -200,7 +211,7 @@ $(function() {
                         ${
                             finalPrice < originalPrice
                             ? `
-                                <del><i class="text-warning">$${totalOriginalPrice.toFixed(2)}</i></del>
+                                <del><i class="mainTextTheme">$${totalOriginalPrice.toFixed(2)}</i></del>
                                 <span>$${totalFinalPrice.toFixed(2)}</span>
                             `
                             : `
@@ -364,6 +375,8 @@ $(function() {
 
         // Add doneOrder Object
         addDoneOrder(newDoneOrder );
+        // Remove currentOrder
+        localStorage.removeItem("currentOrder")
 
         alert("Order Completed Successfully!")
         window.location.replace("/home/Template/home.html");

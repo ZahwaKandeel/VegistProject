@@ -1,22 +1,21 @@
 // Discount display function
-$(function(){
-    $(".shopnow").click(function(){
-        window.location.href = "/productList/Template/product_list.html"
-    }); 
-    $(".shopnowdisc").click(function(){
+$(function () {
+    $(".shopnow").click(function () {
+        window.location.href = "/productList/Template/product_list.html";
+    });
+    $(".shopnowdisc").click(function () {
         localStorage.setItem("discountOnly", "true");
-        window.location.href = "/productList/Template/product_list.html"
-    });    
+        window.location.href = "/productList/Template/product_list.html";
+    });
 });
 
-document.addEventListener("DOMContentLoaded", function(){
-
+document.addEventListener("DOMContentLoaded", function () {
+    //Load products into the local storage
     const products = JSON.parse(localStorage.getItem("products")) || [];
+
     const carouselInner = document.getElementById("carouselInner");
-
-
-    function buildProductCarousel(){
-        if(!carouselInner) return;
+    function buildProductCarousel() {
+        if (!carouselInner) return;
 
         carouselInner.innerHTML = "";
 
@@ -25,17 +24,20 @@ document.addEventListener("DOMContentLoaded", function(){
         const limitedProducts = products.slice(0, maxProducts);
 
         let slideIndex = 0;
-        for(let i=0; i<limitedProducts.length; i+= productsPerSlide){
-            const slideProducts = limitedProducts.slice(i, i+productsPerSlide);
+        for (let i = 0; i < limitedProducts.length; i += productsPerSlide) {
+            const slideProducts = limitedProducts.slice(
+                i,
+                i + productsPerSlide,
+            );
             const carouselItem = document.createElement("div");
             carouselItem.className = "carousel-item";
-            if(slideIndex === 0) carouselItem.classList.add("active");
-            
+            if (slideIndex === 0) carouselItem.classList.add("active");
+
             const row = document.createElement("div");
             row.className = "row g-3";
 
-            slideProducts.forEach(product =>{
-            row.innerHTML += createProductCard(product);
+            slideProducts.forEach((product) => {
+                row.innerHTML += createProductCard(product);
             });
 
             carouselItem.appendChild(row);
@@ -48,44 +50,43 @@ document.addEventListener("DOMContentLoaded", function(){
     buildProductCarousel();
     loadCustomerReviews(products);
 
+    //stops the buildProductCarousel function from constantly rebuilding the carousel while the user is resizing the window
     let resizeTimer;
-    window.addEventListener("resize", function(){
+    window.addEventListener("resize", function () {
         clearTimeout(resizeTimer);
-        resizeTimer = this.setTimeout(function(){
+        resizeTimer = this.setTimeout(function () {
             buildProductCarousel();
         }, 250);
     });
-
-
-
-
 });
 
-function getProductsPerSlide(){
-        const width = window.innerWidth;
-        if(width>=992){
-            return 8;
-        }
-        else if(width>=768){
-            return 6;
-        }
-        else{
-            return 4;
-        }        
+function getProductsPerSlide() {
+    const width = window.innerWidth;
+    if (width >= 992) {
+        return 8;
+    } else if (width >= 768) {
+        return 6;
+    } else {
+        return 4;
     }
+}
 
-function createProductCard(products){
+function createProductCard(products) {
     const ratingStars = generateStars(products._rating);
-    return`
+    return `
         <div id="${products._id}" class="cards col-6 col-md-4 col-lg-3 position-relative">
             <div class="position-relative">
                 <img src="${products._imageUrl}" class="img-fluid w-100 main-img"/>
                 <img src="${products._imageUrl}" class="img-fluid w-100 hover-img position-absolute top-0 start-0"/>
                     <!-- Show discount badge if exists -->
-                    ${products._discountPercentage ? `
+                    ${
+                        products._discountPercentage
+                            ? `
                         <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
                             ${products._discountPercentage}%
-                        </div>` : ``}    
+                        </div>`
+                            : ``
+                    }    
             </div>
             <div class="icons position-absolute start-50 translate-middle-x d-flex gap-2">
                 <span class="" id="iconbtns">
@@ -103,7 +104,7 @@ function createProductCard(products){
             </div>
             <div>
                 <p>
-                    <a href="/productDetials/productDetails.html?id=${products._id}"
+                    <a href="/productDetails/productDetails.html?id=${products._id}"
                         class="para text-decoration-none">
                         ${products._name}
                     </a>
@@ -119,59 +120,64 @@ function createProductCard(products){
                 </div>
             </div>
         </div>
-    `
+    `;
 }
-function generateStars(rating){
-    let stars ="";
-    for (let i = 1; i<=5; i++){
-        if(i<=Math.floor(rating)){
+
+// Generates the rating stars
+function generateStars(rating) {
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
             stars += `<i class="fa fa-star"></i>`;
-        }else{
-            stars += `<i class="fa-regular fa-star"></i>`
+        } else {
+            stars += `<i class="fa-regular fa-star"></i>`;
         }
     }
     return stars;
 }
 
-$(document).ready(function(){
-    $(document).on("click", ".wishlist-icon", function(){
+//Adds Product to Wishlist
+$(document).ready(function () {
+    $(document).on("click", ".wishlist-icon", function () {
         const productId = parseInt($(this).data("id"));
         addToWishlist(productId);
-        alert("Added to wishlist");
     });
-    $(document).on("click", ".cart-icon", function(){
+    //Adds Product to Cart
+    $(document).on("click", ".cart-icon", function () {
         const productId = parseInt($(this).data("id"));
-        addToCart(productId,1);
-        alert("Added to cart");
+        addToCart(productId, 1);
     });
-    $(document).on("click", ".cards", function(e){
-        if($(e.target).closest(".icons").length) return;
+    //Redirects to the details page of the selected product
+    $(document).on("click", ".cards", function (e) {
+        if ($(e.target).closest(".icons").length) return;
         const productId = $(this).attr("id");
-        window.location.href = `/productDetials/Template/productDetails.html?id=${productId}`;
+        window.location.href = `/productDetails/Template/productDetails.html?id=${productId}`;
     });
 });
-
-function loadCustomerReviews(products){
-    const carouselInner = document.querySelector("#customersCarousel .carousel-inner");
-    if(!carouselInner) return;
+// loads the reviews in the customer carousel
+function loadCustomerReviews(products) {
+    const carouselInner = document.querySelector(
+        "#customersCarousel .carousel-inner",
+    );
+    if (!carouselInner) return;
 
     let allReviews = [];
-    products.forEach(product =>{
-        if (Array.isArray(product._reviews)){
-            product._reviews.forEach(review =>{ 
+    products.forEach((product) => {
+        if (Array.isArray(product._reviews)) {
+            product._reviews.forEach((review) => {
                 allReviews.push({
                     title: review.title,
                     comment: review.comment,
                     rating: review.rating,
                     uid: review.uid,
-                    uName : review.uName
+                    uName: review.uName,
                 });
             });
         }
     });
-    
-    if (allReviews.length === 0){
-        carouselInner.innerHTML= `
+
+    if (allReviews.length === 0) {
+        carouselInner.innerHTML = `
             <div class = "carousel-item active">
                 <div class="d-flex justify-content-center">
                     <p class = "text-muted"> No Reviews yet.</p>
@@ -184,23 +190,21 @@ function loadCustomerReviews(products){
     const reviewsPerSlide = 2;
     let slideIndex = 0;
 
-    for(let i=0; i<allReviews.length; i+=reviewsPerSlide){
+    for (let i = 0; i < allReviews.length; i += reviewsPerSlide) {
         const slideReviews = allReviews.slice(i, i + reviewsPerSlide);
         const carouselItem = document.createElement("div");
         carouselItem.className = "carousel-item";
-        if(slideIndex === 0) carouselItem.classList.add("active");
+        if (slideIndex === 0) carouselItem.classList.add("active");
 
         const wrapper = document.createElement("div");
-        wrapper.className = "d-flex justify-content-center gap-4 align-items-stretch";
+        wrapper.className =
+            "d-flex justify-content-center gap-4 align-items-stretch";
 
         slideReviews.forEach((review, index) => {
-            const users = JSON.parse(localStorage.getItem("users")) || [];
-            const user = users.find(u => u._id == review.uid);
-            const userName = user ? user._name :"Unknown User";
-
             const reviewCard = document.createElement("div");
-            reviewCard.className = "customer-card card text-center p-4 bg-transparent" 
-            + (index === 1 ? " d-none d-md-block" : "");
+            reviewCard.className =
+                "customer-card card text-center p-4 bg-transparent" +
+                (index === 1 ? " d-none d-md-block" : "");
 
             reviewCard.innerHTML = `
                 <h5 class="fw-bold">"${review.title}"</h5>

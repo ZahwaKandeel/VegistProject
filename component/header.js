@@ -26,6 +26,54 @@ export function header() {
             roleMenu = '<li><a class="dropdown-item adminpanel" href="/admin/Template/adminPanal.html">Admin Panel</a></li>';
         }
 
+    $(document).ready(function () {
+        const resultContainer = $(".searchResults");
+
+        function handelSearch(inputElement) {
+            const value = $(inputElement).val().toLowerCase().trim();
+
+            if (value === "") {
+                resultContainer.addClass("d-none").empty();
+                return;
+            }
+            const matches = products.filter(product =>
+                product._name.toLowerCase().includes(value)
+            );
+
+            resultContainer.empty();
+
+            if (matches.length === 0) {
+                resultContainer.addClass("d-none");
+                return;
+            }
+
+            matches.forEach(product => {
+                const item = $(`
+                        <div class="search-item p-2 border-bottom">
+                            <strong>${product._name}</strong>
+                            <div class="small text-muted">${product._category}</div>
+                        </div>
+                    `);
+                item.on("click", function() {
+                    window.location.href = `/productDetails/Template/productDetails.html?id=${product._id}`;
+                });
+
+                resultContainer.append(item);
+            });
+            
+            resultContainer.removeClass("d-none");
+        };
+        //fullScreen search
+        $("#global-search").on("input", function() {
+            handelSearch(this);
+        })
+
+        // offCanvas search
+        $("#searchOffCanvas").on("input", function() {
+            handelSearch(this);
+        })
+    })
+
     return `
         <header class="container-fluid px-lg-5 sticky-top p-3 bg-body">
             <div class="d-flex align-items-center justify-content-between px-xxl-4">
@@ -48,6 +96,7 @@ export function header() {
                             id="search"type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
+                        <div class="position-absolute bg-white w-100 shadow rounded mt-1 searchResults"></div>
                     </label>
                 </form>
                 <section class="d-flex align-items-center">
@@ -138,12 +187,13 @@ export function header() {
                             </h5>
                             <br />
                             <form class="d-flex input-group" role="search">
-                                <input class="form-control rounded-pill me-2"
+                                <input id="searchOffCanvas" class="form-control rounded-pill me-2"
                                     type="search" placeholder="Search our store" aria-label="Search"/>
                                 <button class="btn py-2 search-btn input-group-text rounded-pill"
                                     id="search" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
+                                <div class="position-absolute bg-white w-100 shadow rounded mt-1 searchResults"></div>
                             </form>
                         </div>
                     </div>

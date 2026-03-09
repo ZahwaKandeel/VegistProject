@@ -12,7 +12,7 @@
         color: #f5ab1e;
         }
 </style>
-
+<!--Edit Product Form-->
 <div class="modal fade" id="editProductModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -53,7 +53,6 @@
                     </div>
                     <div class="mb-3">
                         <label for="updateImage" class="form-label fw-bold">Image:</label>
-                        <!-- <input type="text" class="form-control" id="image" name="image" placeholder="images.google.com"> -->
                         <input type="file" class = "form-control" id="updateImage" accept="image/*">
                         <img id="updateImagePreview" class="mt-3 w-100 d-none" style="max-height: 200px; object-fit:contain">
                     </div>
@@ -103,7 +102,8 @@
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="productSubmit btn btn-light fw-bold mt-2 px-4 py-2">
-                            Update Product</button>
+                            Update Product
+                        </button>
                     </div>
                 </form>
             </div>
@@ -112,8 +112,6 @@
 </div>
 
 <script type = "module">
-            
-            
         $(".dropdown-menu").on("click", function(e){
             e.stopPropagation();
         });
@@ -128,5 +126,4 @@
                 $("#sizesDropdown").text(selected.join(", "));
             }
         });
-
     </script>

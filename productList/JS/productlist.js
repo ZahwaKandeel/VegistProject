@@ -1,54 +1,48 @@
-import { isAuth } from '../../component/isAuth.js';
+import { isAuth } from "../../component/isAuth.js";
 
-$(function(){
+$(function () {
+    const user = isAuth(); //return currentUser to compare it
+    console.log("User", user);
 
-const user = isAuth();  //return currentUser to compare it 
- console.log("User",user)
- 
-// to show button add product if he is a seller
-if (!user) {
-    $(".sellerBtn").hide();
-}
-else if (user.role === "seller") {
-    $(".sellerBtn").show();
-} else{
-    $(".sellerBtn").hide();
-}
-
-// href to send user to product details page and seller to details page with edit product and remove
-const detailsPage = user?.role == "seller"
-    ? "../../productDetials/Template/SellerProductDetaill.html"
-    : "../../productDetials/Template/productDetails.html";
-
- localStorage.getItem("products")
-
-
-const userData = JSON.parse(localStorage.getItem("products"));
-console.log(userData); 
-
-
-
-
-
-  //-------------------------------- get data to layout onee--------------------------------
-let cards = "";
-
-userData.forEach(product => {
-// to append raiting to card
-function generateStars(rating){
-    let stars ="";
-    for (let i = 1; i<=5; i++){
-        if(i<=Math.floor(rating)){
-            stars += `<i class="fa fa-star"></i>`;
-        }else{
-            stars += `<i class="fa-regular fa-star"></i>`
-        }
+    // to show button add product if he is a seller
+    if (!user) {
+        $(".sellerBtn").hide();
+    } else if (user.role === "seller") {
+        $(".sellerBtn").show();
+    } else {
+        $(".sellerBtn").hide();
     }
-    return stars;
-}
-// to calc raiting
-     let ratingStars = generateStars(product._rating);
-  cards += `
+
+    // href to send user to product details page and seller to details page with edit product and remove
+    const detailsPage =
+        user?.role == "seller"
+            ? "../../productDetails/Template/SellerProductDetaill.html"
+            : "../../productDetails/Template/productDetails.html";
+
+    localStorage.getItem("products");
+
+    const userData = JSON.parse(localStorage.getItem("products"));
+    console.log(userData);
+
+    //-------------------------------- get data to layout onee--------------------------------
+    let cards = "";
+
+    userData.forEach((product) => {
+        // to append raiting to card
+        function generateStars(rating) {
+            let stars = "";
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += `<i class="fa fa-star"></i>`;
+                } else {
+                    stars += `<i class="fa-regular fa-star"></i>`;
+                }
+            }
+            return stars;
+        }
+        // to calc raiting
+        let ratingStars = generateStars(product._rating);
+        cards += `
   
 <div id="${product._id}" class="col-6  col-lg-3  cards " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" data-discountPercentage="${product._discountPercentage}">
 <!--div of card 1 -->
@@ -59,10 +53,14 @@ function generateStars(rating){
    <a class="position-relative" href="${detailsPage}?id=${product._id}">
         <img src="${product._imageUrl}" class="w-100 main-img ">
         <!-- Show discount badge if exists -->
-        ${product._discountPercentage ? `
+        ${
+            product._discountPercentage
+                ? `
         <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
             ${product._discountPercentage}%
-        </div>` : ``}
+        </div>`
+                : ``
+        }
       </a>
   
 
@@ -82,8 +80,8 @@ function generateStars(rating){
 </div>
     </div>   
 <div>
-<p class=""> <a href=""  class="para text-decoration-none  " >${ product._name}</a></p>
-        <p class="fw-bold">€${ product._price}</p>
+<p class=""> <a href=""  class="para text-decoration-none  " >${product._name}</a></p>
+        <p class="fw-bold">€${product._price}</p>
 
         <div class="d-flex align-items-center  "> <!-- review by stars -->
     <div class="text-warning me-2 rating ">
@@ -102,36 +100,31 @@ function generateStars(rating){
 
 
  `;
+    });
 
-
-
- 
-});
-
-document.getElementById("divlayout1").innerHTML = cards;
-
+    document.getElementById("divlayout1").innerHTML = cards;
 
     // breakkkkk--------------------------------------------------------
     //-------------------------------- get data to layout twoo--------------------------------
-let cards2 = "";
+    let cards2 = "";
 
-userData.forEach(product => {
-// to append raiting to card
-function generateStars(rating){
-    let stars ="";
-    for (let i = 1; i<=5; i++){
-        if(i<=Math.floor(rating)){
-            stars += `<i class="fa fa-star"></i>`;
-        }else{
-            stars += `<i class="fa-regular fa-star"></i>`
+    userData.forEach((product) => {
+        // to append raiting to card
+        function generateStars(rating) {
+            let stars = "";
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += `<i class="fa fa-star"></i>`;
+                } else {
+                    stars += `<i class="fa-regular fa-star"></i>`;
+                }
+            }
+            return stars;
         }
-    }
-    return stars;
-}
-// to calc raiting
- let ratingStars = generateStars(product._rating);
+        // to calc raiting
+        let ratingStars = generateStars(product._rating);
 
-  cards2 += `
+        cards2 += `
 <div id="${product._id}" class="  cards2    col-12  my-5  " data-category="${product._category}" data-stock="${product._stock}" data-price="${product._price}" data-size="${JSON.stringify(product._sizes)}" data-discountPercentage="${product._discountPercentage}" > <!--div of card 1  with icons   -->
 
 <div     class="    row  "  > <!--container card with icons     -->
@@ -141,10 +134,14 @@ function generateStars(rating){
   <a href="${detailsPage}?id=${product._id}">
         <img src="${product._imageUrl}" class="w-100 main-img object-fit-cover h-100">
         <!-- Show discount badge if exists -->
-        ${product._discountPercentage ? `
+        ${
+            product._discountPercentage
+                ? `
         <div class="discount-per badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color: #e30514;">
             ${product._discountPercentage}%
-        </div>` : ``}
+        </div>`
+                : ``
+        }
       </a>
     
     
@@ -153,8 +150,8 @@ function generateStars(rating){
 <div class="  col-12 col-lg-8 card  mt-2">     <!--   name and price and raitng  -->
 
 
-<p class=""> <a href=""  class="para text-decoration-none  " > ${ product._name}</a></p>  <!--   name and price   -->
-        <p class="fw-bold">€${ product._price}</p>   
+<p class=""> <a href=""  class="para text-decoration-none  " > ${product._name}</a></p>  <!--   name and price   -->
+        <p class="fw-bold">€${product._price}</p>   
 
         <div class="d-flex align-items-center  "> <!-- review by stars -->
     <div class="text-warning me-2 rating ">
@@ -165,7 +162,7 @@ function generateStars(rating){
   </div>    <!--   name and price   -->
   <div class=" "> <!--   paragraph   -->
             <p class="text-muted mt-3  ">
-             ${ product._description}
+             ${product._description}
             </p>
 
 
@@ -188,501 +185,412 @@ function generateStars(rating){
 </div>    <!--div of card 1 with icons -->
 
  `;
+    });
 
-
-
- 
-});
-
-document.getElementById("divlayout2").innerHTML = cards2;
-
-
-
+    document.getElementById("divlayout2").innerHTML = cards2;
 
     // ------------------------------------------------breakkkkk--------------------------------------------------------
 
-    
-//----------------------------------- filters work with each other--------------------------------
-let activeFilters = {
-    category: null,
-    stock: null,
-    sizes: [],
-    maxPrice: null,
-     discountOnly: false
-};
+    //----------------------------------- filters work with each other--------------------------------
+    let activeFilters = {
+        category: null,
+        stock: null,
+        sizes: [],
+        maxPrice: null,
+        discountOnly: false,
+    };
 
-function applyFilters(layoutClass) {
+    function applyFilters(layoutClass) {
+        $(`.${layoutClass}`).each(function () {
+            const category = $(this).data("category");
+            const stock = $(this).data("stock");
+            const price = parseFloat($(this).data("price"));
+            const sizes = JSON.parse($(this).attr("data-size"));
+            const discount = parseFloat($(this).data("discountpercentage"));
 
-    $(`.${layoutClass}`).each(function () {
+            let show = true;
 
-        const category = $(this).data("category");
-        const stock = $(this).data("stock");
-        const price = parseFloat($(this).data("price"));
-        const sizes = JSON.parse($(this).attr("data-size"));
-        const discount = parseFloat($(this).data("discountpercentage")) 
+            // Category
+            if (activeFilters.category && category != activeFilters.category) {
+                show = false;
+            }
 
-        let show = true;
+            // Stock
+            if (activeFilters.stock == "in" && stock <= 0) {
+                show = false;
+            }
 
-        // Category
-        if (activeFilters.category && category != activeFilters.category) {
-            show = false;
+            if (activeFilters.stock == "out" && stock > 0) {
+                show = false;
+            }
+
+            // Price
+            if (
+                activeFilters.maxPrice != null &&
+                price > activeFilters.maxPrice
+            ) {
+                show = false;
+            }
+
+            // Sizes
+            if (activeFilters.sizes.length > 0) {
+                const hasMatch = sizes.some((size) =>
+                    activeFilters.sizes.includes(size),
+                );
+                if (!hasMatch) show = false;
+            }
+
+            if (activeFilters.discountOnly && discount <= 0) {
+                show = false;
+            }
+
+            if (show) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    // ------------------------------------------------promotion filter--------------------------------------------------------
+    $(function () {
+        const discount = localStorage.getItem("discountOnly");
+
+        if (discount === "true") {
+            activeFilters.discountOnly = true;
+            applyFilters("cards");
+            setupPagination("divlayout1", "cards", "pagination1", 16);
+
+            localStorage.removeItem("discountOnly");
         }
-      
-
-        // Stock
-        if (activeFilters.stock == "in" && stock <= 0) {
-            show = false;
-        }
-
-        if (activeFilters.stock == "out" && stock > 0) {
-            show = false;
-        }
-
-        // Price
-        if (activeFilters.maxPrice != null && price > activeFilters.maxPrice) {
-            show = false;
-        }
-
-        // Sizes
-        if (activeFilters.sizes.length > 0) {
-            const hasMatch = sizes.some(size =>
-                activeFilters.sizes.includes(size)
-            );
-            if (!hasMatch) show = false;
-        }
-
-        if (activeFilters.discountOnly && discount <= 0) {
-    show = false;
-}
-
-
-
-        if (show) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
-
     });
 
-}
+    // -------------------------------------------- header/footer category filter ------------------------------------------
 
+    $(function () {
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get("category");
+        console.log(category);
+        if (category) {
+            activeFilters.category = category;
+            applyFilters("cards");
+        }
 
+        $(".catmemb").text(category);
+        $(".categName").text(category);
+    });
 
-  // ------------------------------------------------promotion filter--------------------------------------------------------
-$(function(){
-    const discount = localStorage.getItem("discountOnly");
-    
-    if (discount === "true") {
-        activeFilters.discountOnly = true;
+    // --------------------------------filter by Category  --------------------------------
+
+    $('input[name="categories"]').on("change", function () {
+        const selectedCategory = $(this).val();
+        activeFilters.category = selectedCategory || null;
+        // activeFilters.category = selectedCategory;
+
+        // Layout 1
         applyFilters("cards");
         setupPagination("divlayout1", "cards", "pagination1", 16);
-    
-        localStorage.removeItem("discountOnly");
-    }
-});
 
-// -------------------------------------------- header/footer category filter ------------------------------------------
+        // Layout 2
+        applyFilters("cards2");
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
 
-$(function() {
-    const params = new URLSearchParams(window.location.search);
-    const category = params.get("category");
+        let visibleCount = $(".cards:visible").length;
 
-    if (category) {
-        activeFilters.category = category;
+        $(".filternum").text(`(${visibleCount})`);
+        $(".catmemb").text(selectedCategory);
+        $(".categName").text(selectedCategory);
+        $(".numcat").text(`(${visibleCount}) selected`);
+    });
+
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
+    // --------------------------------filter by sizes  --------------------------------
+
+    //         ------------------------filterBysize layout one ----------------------------------
+    $('input[name="size"]').on("change", function () {
+        let selectedSizes = [];
+
+        $('input[name="size"]:checked').each(function () {
+            selectedSizes.push(parseInt($(this).val()));
+        });
+
+        activeFilters.sizes = selectedSizes;
+
         applyFilters("cards");
-    }
-});
-
-// --------------------------------filter by Category  --------------------------------
-
-  
-
-
-$('input[name="categories"]').on('change', function () {
-
-    const selectedCategory = $(this).val();
- activeFilters.category = selectedCategory || null;
-    // activeFilters.category = selectedCategory;
-
-
-    // Layout 1
-    applyFilters("cards");
-    setupPagination("divlayout1", "cards", "pagination1", 16);
-
-    // Layout 2
-    applyFilters("cards2");
-    setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-    
-    let visibleCount = $('.cards:visible').length;
-
-    $(".filternum").text(`(${visibleCount})`);
-    $(".catmemb").text(selectedCategory);
-    $(".categName").text(selectedCategory);
-    $(".numcat").text(`(${visibleCount}) selected` );
-
-});
-
-// ------------------------------------------------breakkkkk--------------------------------------------------------
-// --------------------------------filter by sizes  --------------------------------
-
-//         ------------------------filterBysize layout one ---------------------------------- 
-$('input[name="size"]').on('change', function () {
-
-    let selectedSizes = [];
-
-    $('input[name="size"]:checked').each(function () {
-        selectedSizes.push(parseInt($(this).val()));
+        setupPagination("divlayout1", "cards", "pagination1", 16);
     });
 
-    activeFilters.sizes = selectedSizes;
+    //         ------------------------filterBysize layout two ----------------------------------
 
-    applyFilters("cards");
-    setupPagination("divlayout1", "cards", "pagination1", 16);
-});
+    $('input[name="size"]').on("change", function () {
+        let selectedSizes = [];
 
-//         ------------------------filterBysize layout two ---------------------------------- 
+        $('input[name="size"]:checked').each(function () {
+            selectedSizes.push(parseInt($(this).val()));
+        });
 
-$('input[name="size"]').on('change', function () {
+        activeFilters.sizes = selectedSizes;
 
-    let selectedSizes = [];
-
-    $('input[name="size"]:checked').each(function () {
-        selectedSizes.push(parseInt($(this).val()));
+        applyFilters("cards2");
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
     });
 
-    activeFilters.sizes = selectedSizes;
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
+    // --------------------------------filter by price  --------------------------------
 
-    applyFilters("cards2");
-    setupPagination("divlayout2", "cards2", "pagination2", 8);
-});
+    $('input[type="range"]').on("input", function () {
+        activeFilters.maxPrice = parseFloat($(this).val());
 
+        applyFilters("cards");
+        setupPagination("divlayout1", "cards", "pagination1", 16);
 
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
-// --------------------------------filter by price  --------------------------------
+        applyFilters("cards2");
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
 
-$('input[type="range"]').on("input", function () {
+        $(".form-label").text(
+            `The highest price is €${activeFilters.maxPrice}`,
+        );
+    });
 
-    activeFilters.maxPrice = parseFloat($(this).val());
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
 
-    applyFilters("cards");
-    setupPagination("divlayout1", "cards", "pagination1", 16);
+    // --------------------------------filter by stock  --------------------------------------
 
-    applyFilters("cards2");
-    setupPagination("divlayout2", "cards2", "pagination2", 8);
+    $(".out").click(function () {
+        activeFilters.stock = "out";
 
-    $(".form-label").text(`The highest price is €${activeFilters.maxPrice}`);
-});
+        applyFilters("cards");
+        setupPagination("divlayout1", "cards", "pagination1", 16);
 
+        applyFilters("cards2");
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
+        let visibleCount =
+            $("#divlayout1 .cards:visible").length +
+            $("#divlayout2 .cards2:visible").length;
 
+        $(".numstock").text(`${visibleCount} selected`);
+    });
 
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
+    $(".ins").click(function () {
+        activeFilters.stock = "in";
 
-// --------------------------------filter by stock  --------------------------------------
+        applyFilters("cards");
+        setupPagination("divlayout1", "cards", "pagination1", 16);
 
+        applyFilters("cards2");
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
 
-$(".out").click(function () {
+        let visibleCount =
+            $("#divlayout1 .cards:visible").length +
+            $("#divlayout2 .cards2:visible").length;
 
-    activeFilters.stock = "out";
+        $(".numstock").text(`${visibleCount} selected`);
+    });
 
-    applyFilters("cards");
-    setupPagination("divlayout1", "cards", "pagination1", 16);
+    $(".allStock").click(function () {
+        activeFilters.stock = null;
 
+        applyFilters("cards");
+        setupPagination("divlayout1", "cards", "pagination1", 16);
 
-    applyFilters("cards2");
-    setupPagination("divlayout2", "cards2", "pagination2", 8);
-let visibleCount =
-    $("#divlayout1 .cards:visible").length +
-    $("#divlayout2 .cards2:visible").length;
+        applyFilters("cards2");
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
+        let visibleCount =
+            $("#divlayout1 .cards:visible").length +
+            $("#divlayout2 .cards2:visible").length;
 
-    $(".numstock").text(`${visibleCount} selected` );
-   
-});
+        $(".numstock").text(`${visibleCount} selected`);
+    });
 
-
-$(".ins").click(function () {
-
-    activeFilters.stock = "in";
-
-    applyFilters("cards");
-    setupPagination("divlayout1", "cards", "pagination1", 16);
-
-    applyFilters("cards2");
-    setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-    let visibleCount =
-    $("#divlayout1 .cards:visible").length +
-    $("#divlayout2 .cards2:visible").length;
-
-    $(".numstock").text(`${visibleCount} selected` );
-});
-
-$(".allStock").click(function () {
-
-    activeFilters.stock = null;
-
-    applyFilters("cards");
-    setupPagination("divlayout1", "cards", "pagination1", 16);
-
-    applyFilters("cards2");
-    setupPagination("divlayout2", "cards2", "pagination2", 8);
-    let visibleCount =
-    $("#divlayout1 .cards:visible").length +
-    $("#divlayout2 .cards2:visible").length;
-
-    $(".numstock").text(`${visibleCount} selected` );
-});
-
-
-
- // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-
-
-
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
-// ------------------------------------------------------------------------------------------------
-// title of products and there numbers
-$(".filternum").text(`(${userData.length})`)
-$(".catmemb").text(`All products`)
-
-
-// breakkkkk--------------------------------------------------------
-
-
-
-
-// that btn to back to defult layout of divs 
-$(".btnlay1").click(function(){
-
-
-$(".filternum").text(`(${userData.length})`)
-$(".catmemb").text(`All products`)
-$(".categName").text('All products')
-
-    $("#divlayoutdefult").removeClass("d-none");
-    $("#divlayout2").addClass("d-none");
-
-     $("#paginationnav2").addClass("d-none")
-      $("#paginationnav").removeClass("d-none");
-
-})
-
-setupPagination("divlayout1", "cards", "pagination1", 16);
-
-  // that btn to change layout of divs to make it single
-    
-$(".btnlay2").click(function(){
-
-
-$(".filternum").text(`(${userData.length})`)
-$(".catmemb").text(`All products`)
-$(".categName").text('All products')
-
-    $("#divlayoutdefult").addClass("d-none");
-    $("#divlayout2").removeClass("d-none");
-
-     $("#paginationnav2").removeClass("d-none");
-    $("#paginationnav").addClass("d-none");
-
-
-
-setupPagination("divlayout2", "cards2", "pagination2", 8);
-
-})
-
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
-//----------------------------------- add to cart layout one -----------------------------------
-
-$(".btnbag").click(function(){
-    const parentId = $(this).parent().parent().parent().parent().attr("id");
-    addToCart(parentId, 1);
-//    addToCart(this.userData._id, p_quantity=1)
- })
-
- // -----------------------------------add to cart layout two -----------------------------------
-
-$(".btnbag2").click(function(){
-    const parentId = $(this).parent().parent().parent().parent().parent().attr("id");
-    addToCart(parentId, 1);
-//    addToCart(this.userData._id, p_quantity=1)
- })
-
-
- // -----------------------------------add to wishlist layout two -----------------------------------
- $(".btnheart").click(function(){
-       const parentId = $(this).parent().parent().parent().parent().attr("id");
-   addToWishlist(parentId)
-
- })
- $(".btnheart2").click(function(){
-       const parentId = $(this).parent().parent().parent().parent().parent().attr("id");
-   addToWishlist(parentId)
-
- })
-
-
-
- // $(".btneye").click(function(){
-//    open("../../productDetials/Template/ProductPopUp.html" )
-// })
-
-
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-// $("#acs").click(function(){
-
-
-//  let nedat = userData.sort((a, b) => a._name.localeCompare(b._name));
-// console.log(nedat)
-
-
- 
-// })
-
-$("#acs").click(function () {
-
-  let cards = $(".cards").get();
-
-  cards.sort(function (a, b) {
-    let nameA = $(a).find(".para").text().toLowerCase();
-    let nameB = $(b).find(".para").text().toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
-
-  $.each(cards, function (index, card) {
-    $("#divlayout1").append(card);
-  });
-
-});
-
-$("#acs").click(function () {
-
-  let cards = $(".cards2").get();
-
-  cards.sort(function (a, b) {
-    let nameA = $(a).find(".para").text().toLowerCase();
-    let nameB = $(b).find(".para").text().toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
-
-  $.each(cards, function (index, card) {
-    $("#divlayout2").append(card);
-  });
-
-});
-
-$("#decs").click(function () {
-
-  let cards = $(".cards").get();
-
-  cards.sort(function (a, b) {
-    let nameA = $(a).find(".para").text().toLowerCase();
-    let nameB = $(b).find(".para").text().toLowerCase();
-
-    return nameB.localeCompare(nameA);
-  });
-
-  $.each(cards, function (index, card) {
-    $("#divlayout1").append(card);
-  });
-
-});
-
-$("#decs").click(function () {
-
-  let cards = $(".cards2").get();
-
-  cards.sort(function (a, b) {
-    let nameA = $(a).find(".para").text().toLowerCase();
-    let nameB = $(b).find(".para").text().toLowerCase();
-
-    return nameB.localeCompare(nameA);
-  });
-
-  $.each(cards, function (index, card) {
-    $("#divlayout2").append(card);
-  });
-
-});
-
-//    setupPagination("divlayout1", "cards", "pagination1", 16);
-
-
-
-
-
-
-
-
-
+    // ------------------------------------------------------------------------------------------------
+    // title of products and there numbers
+    $(".filternum").text(`(${userData.length})`);
+    $(".catmemb").text(`All products`);
 
     // breakkkkk--------------------------------------------------------
 
+    // that btn to back to defult layout of divs
+    $(".btnlay1").click(function () {
+        $(".filternum").text(`(${userData.length})`);
+        $(".catmemb").text(`All products`);
+        $(".categName").text("All products");
 
+        $("#divlayoutdefult").removeClass("d-none");
+        $("#divlayout2").addClass("d-none");
 
+        $("#paginationnav2").addClass("d-none");
+        $("#paginationnav").removeClass("d-none");
+    });
 
-//----------------------------------- function of pagination -----------------------------------
-function setupPagination(containerId, cardClass, paginationId, itemsPerPage) {
+    setupPagination("divlayout1", "cards", "pagination1", 16);
 
-  //  let items = $(`#${containerId} .${cardClass}`);
-let items = $(`#${containerId} .${cardClass}:visible`);
-    let totalItems = items.length;
+    // that btn to change layout of divs to make it single
 
-    let totalPages = Math.ceil(totalItems / itemsPerPage);
+    $(".btnlay2").click(function () {
+        $(".filternum").text(`(${userData.length})`);
+        $(".catmemb").text(`All products`);
+        $(".categName").text("All products");
 
-    function showPage(page) {
-        items.hide();
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        items.slice(start, end).show();
-    }
+        $("#divlayoutdefult").addClass("d-none");
+        $("#divlayout2").removeClass("d-none");
 
-    function createPagination() {
-        $(`#${paginationId}`).html("");
+        $("#paginationnav2").removeClass("d-none");
+        $("#paginationnav").addClass("d-none");
 
-        for (let i = 1; i <= totalPages; i++) {
-            $(`#${paginationId}`).append(`
+        setupPagination("divlayout2", "cards2", "pagination2", 8);
+    });
+
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
+    //----------------------------------- add to cart layout one -----------------------------------
+
+    $(".btnbag").click(function () {
+        const parentId = $(this).parent().parent().parent().parent().attr("id");
+        addToCart(parentId, 1);
+        //    addToCart(this.userData._id, p_quantity=1)
+    });
+
+    // -----------------------------------add to cart layout two -----------------------------------
+
+    $(".btnbag2").click(function () {
+        const parentId = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .attr("id");
+        addToCart(parentId, 1);
+        //    addToCart(this.userData._id, p_quantity=1)
+    });
+
+    // -----------------------------------add to wishlist layout two -----------------------------------
+    $(".btnheart").click(function () {
+        const parentId = $(this).parent().parent().parent().parent().attr("id");
+        addToWishlist(parentId);
+    });
+    $(".btnheart2").click(function () {
+        const parentId = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .attr("id");
+        addToWishlist(parentId);
+    });
+
+    // ------------------------------------------------breakkkkk--------------------------------------------------------
+
+    // ------------------------------------------------sort function--------------------------------------------------------
+
+    $("#acs").click(function () {
+        let cards = $(".cards").get();
+
+        cards.sort(function (a, b) {
+            let nameA = $(a).find(".para").text().toLowerCase();
+            let nameB = $(b).find(".para").text().toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        $.each(cards, function (index, card) {
+            $("#divlayout1").append(card);
+        });
+    });
+
+    $("#acs").click(function () {
+        let cards = $(".cards2").get();
+
+        cards.sort(function (a, b) {
+            let nameA = $(a).find(".para").text().toLowerCase();
+            let nameB = $(b).find(".para").text().toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        $.each(cards, function (index, card) {
+            $("#divlayout2").append(card);
+        });
+    });
+
+    $("#decs").click(function () {
+        let cards = $(".cards").get();
+
+        cards.sort(function (a, b) {
+            let nameA = $(a).find(".para").text().toLowerCase();
+            let nameB = $(b).find(".para").text().toLowerCase();
+
+            return nameB.localeCompare(nameA);
+        });
+
+        $.each(cards, function (index, card) {
+            $("#divlayout1").append(card);
+        });
+    });
+
+    $("#decs").click(function () {
+        let cards = $(".cards2").get();
+
+        cards.sort(function (a, b) {
+            let nameA = $(a).find(".para").text().toLowerCase();
+            let nameB = $(b).find(".para").text().toLowerCase();
+
+            return nameB.localeCompare(nameA);
+        });
+
+        $.each(cards, function (index, card) {
+            $("#divlayout2").append(card);
+        });
+    });
+
+    // ------------------------------------------------end of sort function--------------------------------------------------------
+
+    //----------------------------------- function of pagination -----------------------------------
+    function setupPagination(
+        containerId,
+        cardClass,
+        paginationId,
+        itemsPerPage,
+    ) {
+        //  let items = $(`#${containerId} .${cardClass}`);
+        let items = $(`#${containerId} .${cardClass}:visible`);
+        let totalItems = items.length;
+
+        let totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        function showPage(page) {
+            items.hide();
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            items.slice(start, end).show();
+        }
+
+        function createPagination() {
+            $(`#${paginationId}`).html("");
+
+            for (let i = 1; i <= totalPages; i++) {
+                $(`#${paginationId}`).append(`
                 <li class="page-item">
                     <a class="page-link" href="#">${i}</a>
                 </li>
             `);
+            }
+
+            $(`#${paginationId} li:first`).addClass("active");
+
+            $(`#${paginationId} .page-link`).click(function (e) {
+                // e.preventDefault();
+
+                const page = parseInt($(this).text());
+
+                $(`#${paginationId} .page-item`).removeClass("active");
+                $(this).parent().addClass("active");
+
+                showPage(page);
+            });
         }
 
-        $(`#${paginationId} li:first`).addClass("active");
-
-        $(`#${paginationId} .page-link`).click(function (e) {
-            // e.preventDefault();
-
-            const page = parseInt($(this).text());
-
-            $(`#${paginationId} .page-item`).removeClass("active");
-            $(this).parent().addClass("active");
-
-            showPage(page);
-        });
+        showPage(1);
+        createPagination();
     }
 
-    showPage(1);
-    createPagination();
-}
-
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-
-
-
-
-
     // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-
-
- // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-})//end of load
+}); //end of load

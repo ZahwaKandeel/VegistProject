@@ -17,7 +17,7 @@ $(function(){
     const totalEarnings = sellerOrders.reduce((sum, order) => sum + order.total, 0);
 
 
-
+    // Card Data
     $("#totalEarnings h3").html("&pound;"+totalEarnings.toLocaleString());
     $("#totalEarnings span").html(stats.earningsChange+"%");
     $("#totalOrders h3").html(sellerOrders.length);
@@ -118,16 +118,14 @@ $(function(){
         updateChart(SalesReport.getMonthly());
     });
 
-
+    //Monthly Target Chart
     const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1;
 
     const actualRevenue = sellerOrders
         .filter(o => new Date(o.createdAt).getFullYear() === currentYear)
         .reduce((sum, o) => sum + o.total, 0);
 
-    const projectedRevenue = Math.round((actualRevenue/currentMonth)*12);
-
+    const Yearly_Target = 10000;
     const ctx2 = document.getElementById("monthlyTargetChart");
 
     new Chart(ctx2, {
@@ -135,10 +133,10 @@ $(function(){
         data: {
             labels: [
                 `Achieved (£${actualRevenue.toLocaleString()})`,
-                `Projected (£${projectedRevenue.toLocaleString()})`
+                `Projected (£${Math.max(Yearly_Target - actualRevenue, 0).toLocaleString()})`
             ],
             datasets: [{
-                data:[actualRevenue, Math.max(projectedRevenue - actualRevenue, 0)],
+                data:[actualRevenue, Math.max(Yearly_Target - actualRevenue, 0)],
                 backgroundColor:["#f5ab1e","#fbe2cb"],
                 borderWidth:0
             }]
@@ -160,17 +158,14 @@ $(function(){
         }
     });
 
-
-
-
-    
+    //TopSelling Items
     topSellingItem.forEach(sale =>{
         const row = `
             <tr>
                 <td>${sale.productId}</td>
                 <td>${sale.name}</td>
                 <td>${sale.stock}</td>
-                <td>${sale.price}</td>
+                <td>£${sale.price}</td>
                 <td>${sale.totalSales}</td>
                 <td>${sale.status}</td>
             </tr>
@@ -178,13 +173,14 @@ $(function(){
         $("#TopSellingItems tbody").append(row);
     });
 
+    //Recent Sales
     sellerOrders.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
                 .slice(0,5)
                 .forEach(order =>{
                     const row = `
                     <tr>
                         <td>${order.id}</td>
-                        <td>Customer #${order.customerId}</td>
+                        <td>${order.customerName}</td>
                         <td>${order.orderDetail.cart.length} items</td>
                         <td>£${order.total}</td>
                         <td>${order.payment}</td>

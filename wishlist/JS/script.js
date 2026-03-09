@@ -1,13 +1,11 @@
-import { Order } from "../../models/order.js";
-
 // Get products list from localStorage
-// (Assumes products were already saved there earlier)
 let products = JSON.parse(localStorage.getItem('products'));
+// Get wishlist from localStorage or default to empty array
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 let subtotal;
 
 // Run when page loads → display wishlist
 $(document).ready(function () {
-    // addToWishlist(3) // For testing only
     displayWishlist();
 });
 
@@ -16,9 +14,6 @@ $(document).ready(function () {
 // Render wishlist items on the page
 // ======================================================
 function displayWishlist() {
-
-    // Get wishlist from localStorage or default to empty array
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
     // Clear current wishlist UI
     $('.wishlist-items').empty();
@@ -145,7 +140,7 @@ function renderStars(rating) {
 // ======================================================
 function removeFromWishlist(product_id) {
 
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
     // Filter out the removed product
     wishlist = wishlist.filter(item => item.product_id != product_id);

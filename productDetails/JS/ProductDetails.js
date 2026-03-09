@@ -1,4 +1,8 @@
-import {Product, loadProducts,saveProducts,} from "../../component/Product.js";
+import {
+    Product,
+    loadProducts,
+    saveProducts,
+} from "../../component/Product.js";
 import { Order } from "/models/order.js";
 import { deleteProductById } from "/component/deleteProduct.js";
 import { isAuth } from "../../component/isAuth.js";
@@ -15,6 +19,11 @@ let pricePerKg = 0;
 let finalPricePerKg = 0;
 let product = null;
 
+$(function () {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    });
+
 if (idParam === null) {
     console.log("No product ID found in URL");
 } else {
@@ -29,18 +38,25 @@ if (idParam === null) {
             // Fill main product info
             document.getElementById("name").innerText = product._name;
             document.getElementById("productPrice");
-            document.getElementById("productStock").innerHTML = `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
-            document.getElementById("productDescription").textContent = product.Description;
+            document.getElementById("productStock").innerHTML =
+                `<strong>Availability:</strong> <span class="text-success">● ${product.Stock} in stock</span>`;
+            document.getElementById("productDescription").textContent =
+                product.Description;
             document.getElementById("productSKU").textContent = product._id;
             document.getElementById("category").textContent = product.Category;
-            document.getElementById("table-productsize").textContent = product.Sizes.join(" - ");
-            document.getElementById("moreDetail").textContent = product.Description;
-            document.getElementById("table-productCategory").textContent = product.Category;
-            document.getElementById("table-productSKU").textContent = product._id;
+            document.getElementById("table-productsize").textContent =
+                product.Sizes.join(" - ");
+            document.getElementById("moreDetail").textContent =
+                product.Description;
+            document.getElementById("table-productCategory").textContent =
+                product.Category;
+            document.getElementById("table-productSKU").textContent =
+                product._id;
             $("#discount").text(`${product._discountPercentage}%`);
 
             // Carousel images
-            const carouselImages =document.querySelectorAll("#carouselVeg img");
+            const carouselImages =
+                document.querySelectorAll("#carouselVeg img");
             carouselImages.forEach((img) => (img.src = product.ImageUrl));
 
             // Thumbnail images
@@ -71,10 +87,10 @@ if (idParam === null) {
             const originalPrice = product._price;
 
             if (finalPrice < originalPrice) {
-                productafterDiscount.text("€"+ finalPrice);
-                productPrice.text("€"+ originalPrice);
+                productafterDiscount.text("€" + finalPrice);
+                productPrice.text("€" + originalPrice);
             } else {
-                productafterDiscount.text("€"+ finalPrice);
+                productafterDiscount.text("€" + finalPrice);
             }
 
             // Wishlist
@@ -113,7 +129,7 @@ if (idParam === null) {
                         ).val();
                         let totalPrice = pricePerKg * quantity;
                         addToCart(product._id, quantity, selectedSize);
-                        alert('Product has already added to your cart')
+                        alert("Product has already added to your cart");
                     }
                 });
             });
@@ -124,18 +140,21 @@ if (idParam === null) {
                     e.preventDefault();
                     if (product) {
                         deleteProductById(product._id);
-                        window.location.href = "/productList/Template/product_list.html";
+                        window.location.href =
+                            "/productList/Template/product_list.html";
                     }
                 });
             });
-            
+
             // Buy it now
             function buyItNow() {
                 let currentQty = parseInt($("#quantityValue").val()) || 1;
-                let currentSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
-    
+                let currentSize =
+                    parseFloat($('input[name="size_choice"]:checked').val()) ||
+                    1;
+
                 let freshSubtotal = finalPricePerKg * currentQty * currentSize;
-                
+
                 let currentOrder = new Order({
                     id: Date.now(),
                     sellerId: 1,
@@ -168,12 +187,12 @@ if (idParam === null) {
                     "currentOrder",
                     JSON.stringify(currentOrder),
                 );
-                
             }
             $(document).ready(function () {
                 $("#buyItNow").on("click", function () {
                     buyItNow();
-                    window.location.href ="../../checkOut/Template/checkOut.html";
+                    window.location.href =
+                        "../../checkOut/Template/checkOut.html";
                 });
             });
 
@@ -200,11 +219,15 @@ if (idParam === null) {
                 pricePerKg = finalPricePerKg * selectedSize;
 
                 if (product._discountPercentage > 0) {
-                    $("#productAfterDiscount").text("€"+ newAfterDiscount.toFixed(2),);
-                    $("#productPrice").text("€"+ newOriginalPrice.toFixed(2));
-                    $("#discount").text(product._discountPercentage + "%") 
+                    $("#productAfterDiscount").text(
+                        "€" + newAfterDiscount.toFixed(2),
+                    );
+                    $("#productPrice").text("€" + newOriginalPrice.toFixed(2));
+                    $("#discount").text(product._discountPercentage + "%");
                 } else {
-                    $("#productAfterDiscount").text("€"+ newAfterDiscount.toFixed(2),);
+                    $("#productAfterDiscount").text(
+                        "€" + newAfterDiscount.toFixed(2),
+                    );
                     $("#productPrice").text("");
                     $("#discount").text("");
                 }
@@ -214,15 +237,18 @@ if (idParam === null) {
             function loadRelatedProducts() {
                 if (!product || products.length === 0) return;
 
-                let related = products.filter((p) => p.ID !== product._id).slice(0,4);
+                let related = products
+                    .filter((p) => p.ID !== product._id)
+                    .slice(0, 4);
                 let cards = $(".cardsRelatedProducts");
 
-                const user = isAuth() //get currentUser
-                const detailsPage = user?.role=="seller"
-                    ? "../../productDetials/Template/SellerProductDetaill.html"
-                    : "../../productDetials/Template/productDetails.html";
-                
-                related.forEach((p)=>{
+                const user = isAuth(); //get currentUser
+                const detailsPage =
+                    user?.role == "seller"
+                        ? "../../productDetails/Template/SellerProductDetaill.html"
+                        : "../../productDetails/Template/productDetails.html";
+
+                related.forEach((p) => {
                     cards.append(
                         `
                         <div id="${p.ID}" class="cards  col-6  col-md-4  col-lg-3   position-relative "> <!--div of card 1 -->
@@ -231,10 +257,14 @@ if (idParam === null) {
                             <img src="${p.ImageUrl}" class="img-fluid w-100 main-img">
                             <img src="" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
                             <!-- discount -->
-                            ${p._discountPercentage ? `
+                            ${
+                                p._discountPercentage
+                                    ? `
                             <div class="badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color:#e30514;">
                             ${p._discountPercentage}% 
-                            </div>`: `` }
+                            </div>`
+                                    : ``
+                            }
                             </a>
                             
                             <div class="icons" style="margin-bottom: 100px ;">
@@ -265,29 +295,8 @@ if (idParam === null) {
                         </div>
                     
                     </div>  <!--end  of card 1 -->
-                        `
-                    )
-                
-                    const card = $(`#${p.ID}`);
-                    const divstars = card.find(".rating");
-                    let rating = 0;
-                        divstars.empty();
-                        if (p._reviews && p._reviews.length > 0) {
-                            let total = 0;
-                            p._reviews.forEach((review)=>{
-                                total += review.rating;
-                            });
-                            rating = Number((total / p._reviews.length).toFixed(2));
-                    }
-                    function generateStars(rating){
-                    divstars.empty();
-                        for (let i = 0; i < 5; i++) {
-                            if (i < Math.floor(rating))
-                                divstars.append(`<i class="bi bi-star-fill"></i>`);
-                            else divstars.append(`<i class="bi bi-star"></i>`);
-                        }
-                    }
-                    generateStars(rating, divstars);
+                        `,
+                    );
                 });
             }
             loadRelatedProducts();
@@ -336,8 +345,8 @@ if (idParam === null) {
 
             // get currentuser email and name
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            const userEmail = currentUser?currentUser.email:"";
-            const userName = currentUser?currentUser.firstName:"";
+            const userEmail = currentUser ? currentUser.email : "";
+            const userName = currentUser ? currentUser.firstName : "";
 
             // Find current product
             const currentProduct = products.find(
@@ -354,10 +363,10 @@ if (idParam === null) {
             //const Productsreview = products._reviews;
 
             const reviewForm = document.getElementById("reviewForm");
-            const reviewTitleInput  = document.getElementById("reviewTitle");
+            const reviewTitleInput = document.getElementById("reviewTitle");
             const userRatingInput = document.getElementById("reviewRating");
-            const userContentInput =document.getElementById("reviewContent");
-            
+            const userContentInput = document.getElementById("reviewContent");
+
             function isTitalValid(title) {
                 const trimmed = title.trim();
                 const regex = /^[A-Za-z0-9 ]{5,20}$/;
@@ -384,7 +393,7 @@ if (idParam === null) {
             reviewForm.addEventListener("submit", function (e) {
                 e.preventDefault();
 
-                if(!currentUser || !currentUser.id){
+                if (!currentUser || !currentUser.id) {
                     alert("You must be logged in to write a review!");
                     return;
                 }
@@ -394,19 +403,23 @@ if (idParam === null) {
                 const userTitle = reviewTitleInput.value;
                 const validUserTitle = isTitalValid(userTitle);
 
-                const  userContent = userContentInput.value;
-                const validUserContent = isContentValid(userContent)
+                const userContent = userContentInput.value;
+                const validUserContent = isContentValid(userContent);
 
                 setValidation(reviewTitleInput, validUserTitle);
                 setValidation(userContentInput, validUserContent);
 
                 if (!validUserTitle) {
-                    alert("Make sure your review title is minimum 5 characters!");
+                    alert(
+                        "Make sure your review title is minimum 5 characters!",
+                    );
                     return;
                 }
 
                 if (!validUserContent) {
-                    alert("Make sure your review content is minimum 10 characters!");
+                    alert(
+                        "Make sure your review content is minimum 10 characters!",
+                    );
                     return;
                 }
 
@@ -476,7 +489,7 @@ if (idParam === null) {
                 currentProduct._rating = rating;
                 const divstars = $(".getRating");
 
-                function generateStars(rating){
+                function generateStars(rating) {
                     divstars.empty();
                     for (let i = 0; i < 5; i++) {
                         if (i < Math.floor(rating))
@@ -484,7 +497,7 @@ if (idParam === null) {
                         else divstars.append(`<i class="bi bi-star"></i>`);
                     }
                 }
-                generateStars(rating,divstars);
+                generateStars(rating, divstars);
             }
 
             //Display saved reviews
