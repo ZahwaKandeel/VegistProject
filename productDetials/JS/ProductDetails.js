@@ -1,6 +1,7 @@
 import {Product, loadProducts,saveProducts,} from "../../component/Product.js";
 import { Order } from "/models/order.js";
 import { deleteProductById } from "/component/deleteProduct.js";
+import { isAuth } from "../../component/isAuth.js";
 
 // Load products from localStorage
 let products = loadProducts() || [];
@@ -70,10 +71,10 @@ if (idParam === null) {
             const originalPrice = product._price;
 
             if (finalPrice < originalPrice) {
-                productafterDiscount.text(finalPrice);
-                productPrice.text(originalPrice);
+                productafterDiscount.text("€"+ finalPrice);
+                productPrice.text("€"+ originalPrice);
             } else {
-                productafterDiscount.text(finalPrice);
+                productafterDiscount.text("€"+ finalPrice);
             }
 
             // Wishlist
@@ -167,7 +168,7 @@ if (idParam === null) {
                     "currentOrder",
                     JSON.stringify(currentOrder),
                 );
-                console.log(currentOrder);
+                
             }
             $(document).ready(function () {
                 $("#buyItNow").on("click", function () {
@@ -199,13 +200,11 @@ if (idParam === null) {
                 pricePerKg = finalPricePerKg * selectedSize;
 
                 if (product._discountPercentage > 0) {
-                    $("#productAfterDiscount").text( newAfterDiscount.toFixed(2),);
-                    $("#productPrice").text(newOriginalPrice.toFixed(2));
-                    $("#discount").text(product._discountPercentage + "%");
+                    $("#productAfterDiscount").text("€"+ newAfterDiscount.toFixed(2),);
+                    $("#productPrice").text("€"+ newOriginalPrice.toFixed(2));
+                    $("#discount").text(product._discountPercentage + "%") 
                 } else {
-                    $("#productAfterDiscount").text(
-                        newAfterDiscount.toFixed(2),
-                    );
+                    $("#productAfterDiscount").text("€"+ newAfterDiscount.toFixed(2),);
                     $("#productPrice").text("");
                     $("#discount").text("");
                 }
@@ -218,13 +217,26 @@ if (idParam === null) {
                 let related = products.filter((p) => p.ID !== product._id).slice(0,4);
                 let cards = $(".cardsRelatedProducts");
 
+                const user = isAuth() //get currentUser
+                const detailsPage = user?.role=="seller"
+                    ? "../../productDetials/Template/SellerProductDetaill.html"
+                    : "../../productDetials/Template/productDetails.html";
+                
                 related.forEach((p)=>{
                     cards.append(
                         `
                         <div id="${p.ID}" class="cards  col-6  col-md-4  col-lg-3   position-relative "> <!--div of card 1 -->
                         <div class="card-image">
+                            <a href="${detailsPage}?id=${p.ID}">
                             <img src="${p.ImageUrl}" class="img-fluid w-100 main-img">
                             <img src="" class="img-fluid w-100  hover-img position-absolute top-0 start-0">
+                            <!-- discount -->
+                            ${p._discountPercentage ? `
+                            <div class="badge position-absolute top-0 end-0 text-white px-3 py-2 mt-2 me-2 rounded-5" style="background-color:#e30514;">
+                            ${p._discountPercentage}% 
+                            </div>`: `` }
+                            </a>
+                            
                             <div class="icons" style="margin-bottom: 100px ;">
                             <span class="  p-2   "  >
                             <i class="fa-regular fa-heart "></i>
@@ -242,15 +254,11 @@ if (idParam === null) {
                             </div>
                         </div> 
                         <div>
-                        <p class=""> <a href=""  class="name text-decoration-none  " >${p.Name}</a></p>
-                                <p class="price fw-bold">${p.Price}</p>
+                        <p class=""> <a href=""  class="name text-decoration-none text-black" >${p.Name}</a></p>
+                                <p class="price fw-bold">€${p.Price}</p>
                             <div class="d-flex align-items-center  "> <!-- review by stars -->
                             <div class="text-warning me-2 rating ">
-                            <i class=" fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                                
                             </div>
                             <span class="text-muted ratingspa"></span>
                         </div>
@@ -261,7 +269,6 @@ if (idParam === null) {
                     )
                 });
             }
-
             loadRelatedProducts();
 
             // Wishlist icon beside the popup
@@ -270,6 +277,7 @@ if (idParam === null) {
                 const product = products.find((p) => p.ID === cardId);
                 if (!product) return;
                 addToWishlist(product._id);
+                alert("Product added to your wishlist");
             });
 
             // Shopping bag icon beside the popup
@@ -279,6 +287,7 @@ if (idParam === null) {
                 if (!product) return;
                 // Replace quantity & size with defaults
                 addToCart(product._id, 1, product.Sizes[0]);
+                alert("Product added to your cart");
             });
 
             //Stars Rating inside review
@@ -394,10 +403,10 @@ if (idParam === null) {
                 };
 
                 review_rating = review.rating;
-                console.log("review_rating", review_rating);
+                //console.log("review_rating", review_rating);
 
                 // Basic validation
-                console.log("set reviq", review);
+                //console.log("set reviq", review);
                 if (
                     !review.rating ||
                     !review.title ||
@@ -444,15 +453,17 @@ if (idParam === null) {
                 }
 
                 currentProduct._rating = rating;
-
                 const divstars = $(".getRating");
-                divstars.empty();
 
-                for (let i = 0; i < 5; i++) {
-                    if (i < Math.floor(rating))
-                        divstars.append(`<i class="bi bi-star-fill"></i>`);
-                    else divstars.append(`<i class="bi bi-star"></i>`);
+                function generateStars(rating){
+                    divstars.empty();
+                    for (let i = 0; i < 5; i++) {
+                        if (i < Math.floor(rating))
+                            divstars.append(`<i class="bi bi-star-fill"></i>`);
+                        else divstars.append(`<i class="bi bi-star"></i>`);
+                    }
                 }
+                generateStars(rating,divstars);
             }
 
             //Display saved reviews
