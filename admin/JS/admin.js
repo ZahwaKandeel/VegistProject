@@ -21,7 +21,7 @@ let matchedUsers = users.filter(user =>
 
 console.log(matchedUsers.length);
 
-
+// -------------------data of users and active and newRegister
 const dashboardData = {
     totalUsers : {
         current : users.length ,
@@ -50,13 +50,13 @@ const dashboardData = {
 
 
 
-
+//------------------- calculate percent -------------------
 
 function calculatePercent(current ,last ){
     return ( ( (current -last) / last) *100 ).toFixed(2);
   };
 
-  // data of total users
+  //------------------- data of total users-------------------
 
 document.getElementById("totalUsers").innerText = dashboardData.totalUsers.current.toLocaleString();
 
@@ -66,7 +66,7 @@ document.getElementById("totalPrecent").innerText =  "+" +
   document.getElementById("lastusers").innerText = dashboardData.totalUsers.lastMonth.toLocaleString();
 
 
-  // data of active users
+  //------------------- data of active users-------------------
 
 
 document.getElementById("activeUsers").innerText = dashboardData.activeUseres.current.toLocaleString() ;
@@ -76,7 +76,7 @@ document.getElementById("activeUsers").innerText = dashboardData.activeUseres.cu
 
  document.getElementById("lastactiveusers").innerText = dashboardData.activeUseres.lastMonth.toLocaleString();
 
-  // data of new Registrations 
+  //------------------- data of new Registrations -------------------
 
 
 document.getElementById("newRegistrations").innerText = dashboardData.newRegistrations.current.toLocaleString() ;
@@ -87,113 +87,8 @@ document.getElementById("newRegistrations").innerText = dashboardData.newRegistr
 
 document.getElementById("lastRegistrations").innerText = dashboardData.newRegistrations.lastMonth.toLocaleString();
 
- // data of Blocks
+ 
 
-// document.getElementById("blockusres").innerText = dashboardData.blockedUsers.current.toLocaleString() ;
-
-
-//  document.getElementById("blockusrespercent").innerText =  "+" + 
-//  calculatePercent(dashboardData.newRegistrations.current ,  dashboardData.blockedUsers.lastMonth ) +"%";
-
-// document.getElementById("blocklastmonth").innerText = dashboardData.blockedUsers.lastMonth.toLocaleString();
-
-// const ctx = document.getElementById('revenueChart').getContext('2d');
-
-// // Create gradient
-// const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-// gradient.addColorStop(0, '#6C5DD3');
-// gradient.addColorStop(1, '#A066FF');
-
-// new Chart(ctx, {
-//   type: 'bar',
-//   data: {
-//     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-//     datasets: [{
-//       data: [120000,350000,450000,120000,200000,180000,200000,120000,250000,350000,250000,180000],
-//       backgroundColor: gradient,
-//       borderRadius: 10,
-//       borderSkipped: false,
-//       barThickness: 30
-//     }]
-//   },
-//   options: {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     plugins: {
-//       legend: { display: false },
-//       tooltip: {
-//         backgroundColor: '#111',
-//         titleColor: '#fff',
-//         bodyColor: '#fff'
-//       }
-//     },
-
-
-// ------------Retention Rate--------------------
-// const ctx2 = document.getElementById('retentionChart').getContext('2d');
-
-// new Chart(ctx2, {
-//   type: 'bar',
-//   data: {
-//     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-//     datasets: [
-//       {
-//         label: 'SMEs',
-//         data: [20, 35, 30, 10, 8, 12],
-//         backgroundColor: '#f5ab1e',
-//         borderRadius: 8,
-//         borderSkipped: false,
-//         stack: 'stack1'
-//       },
-//       {
-//         label: 'Startups',
-//         data: [15, 25, 20, 25, 12, 15],
-//         backgroundColor: '#f2c36d',
-//         borderRadius: 8,
-//         borderSkipped: false,
-//         stack: 'stack1'
-//       },
-//       {
-//         label: 'Enterprises',
-//         data: [25, 40, 35, 30, 18, 20],
-//         backgroundColor: '#efd7aa',
-//         borderRadius: 8,
-//         borderSkipped: false,
-//         stack: 'stack1'
-//       }
-//     ]
-//   },
-//   options: {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     plugins: {
-//       legend: {
-//         position: 'bottom',
-//         labels: {
-//           boxWidth: 12,
-//           usePointStyle: true,
-//           pointStyle: 'rect'
-//         }
-//       },
-//       tooltip: {
-//         backgroundColor: '#111',
-//         titleColor: '#fff',
-//         bodyColor: '#fff'
-//       }
-//     },
-//     scales: {
-//       x: {
-//         stacked: true,
-//         grid: { display: false }
-//       },
-//       y: {
-//         stacked: true,
-//         grid: { display: false },
-//         ticks: { display: false }
-//       }
-//     }
-//   }
-// });
 
  // ------------Revenue--------------------
 const ctx = document.getElementById('revenueChart').getContext('2d');
@@ -227,7 +122,7 @@ function formatHour(date) {
   return hours + ampm;
 }
 
-
+// get data from total order to revenue
 
 function getRevenueData() {
 // range by 3 hours
@@ -359,12 +254,6 @@ document.getElementById('monthBtn').onclick = () => updateChart('month');
 
 
 
-// let product = JSON.parse(localStorage.getItem("products"))
-// console.log(product)
-
-// product.forEach(
-
-// )
 
 let product = JSON.parse(localStorage.getItem("products")) // fetch of products to get rating 
 
@@ -380,7 +269,7 @@ console.log(averageRating)
 
 
 
-//----------------Sales Pipeline Overview and deals ---------
+//----------------meeting Overview and deals and average raiting---------
 const getDashboardData =  {
   
 closeDeals : 26 , 
@@ -407,26 +296,6 @@ totalcontact:{current: contacts.length,
 
   document.getElementById("avargerating").innerText =  averageRating.toFixed(1) + " % " ;
 
-
-// Deals Overview
-
-//document.getElementById("closeDeals").innerText = getDashboardData.closeDeals;
-
-//document.getElementById("pipelineValue").innerText = "$" + (getDashboardData.pipelineValue / 1000000 ) + "M" ;
-
-//document.getElementById("conversionRate").innerText = getDashboardData.conversation + "%";
-
-// pipeline 
-
-// document.getElementById("salesTotal").innerText = "$" + getDashboardData.salesTotal.toLocaleString() ; 
-
-// document.getElementById("leads").innerText = getDashboardData.pipeline.leads ;
-
-// document.getElementById("prospects").innerText = getDashboardData.pipeline.prospectts ;
-
-// document.getElementById("opportunities").innerText = getDashboardData.pipeline.opporunities ;
-
-// document.getElementById("closed").innerText = getDashboardData.pipeline.closed ;
 
 
 
