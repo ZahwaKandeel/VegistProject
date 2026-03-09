@@ -22,15 +22,7 @@ let product = null;
 $(function () {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-    console.log(category);
-    if (category) {
-        activeFilters.category = category;
-        applyFilters("cards");
-    }
-
-    $(".catmemb").text(category);
-    $(".categName").text(category);
-});
+    });
 
 if (idParam === null) {
     console.log("No product ID found in URL");

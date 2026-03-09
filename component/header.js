@@ -55,7 +55,7 @@ export function header() {
                         </div>
                     `);
                 item.on("click", function() {
-                    window.location.href = `productDetails/Template/productDetails.html?id=${product._id}`;
+                    window.location.href = `/productDetails/Template/productDetails.html?id=${product._id}`;
                 });
 
                 resultContainer.append(item);
