@@ -174,9 +174,9 @@ function displayCart() {
                 <!-- Product information -->
                 <div class="col-12 col-md-6">
                     <div class="card mb-3 bg-transparent border-0">
-                        <div class="row g-0 ">
+                        <div class="row g-0">
                             <div class="col-4">
-                                <img src="${product?._imageUrl}" class="img-fluid" alt="${product?._name}" />
+                                <img src="${product?._imageUrl}" class="img-fluid" alt="${product?._name}" style="margin-top:.6rem"/>
                             </div>
                             <div class="col-8">
                                 <div class="card-body p-2">
@@ -389,10 +389,14 @@ function calculateSubtotal() {
 
     // Apply coupon discount if exists
     if (appliedCoupon) {
+        let beforeDiscount = subtotal;
         subtotal -= subtotal * appliedCoupon.value / 100;
+        $('.before-disc').removeClass('d-none').text(`$ ${beforeDiscount.toFixed(2)}`)
+    } else {
+        $('.before-disc').addClass('d-none')
     }
 
-    $('.subtotal').text(`$ ${subtotal.toFixed(2)} dollar`);
+    $('.subtotal').text(`$ ${subtotal.toFixed(2)}`);
     checkFreeShipping(subtotal);
 
     return subtotal;
@@ -463,7 +467,6 @@ $('#checkout-btn').on('click', function () {
     orders.push(order);
 
     localStorage.setItem('orders', JSON.stringify(orders));
-    localStorage.removeItem('cart');
 
     displayCart();
 
