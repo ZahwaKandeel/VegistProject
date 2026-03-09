@@ -103,9 +103,6 @@ function generateStars(rating){
 
  `;
 
-
-
- 
 });
 
 document.getElementById("divlayout1").innerHTML = cards;
@@ -287,12 +284,17 @@ $(function(){
 $(function() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get("category");
-
+console.log(category)
     if (category) {
         activeFilters.category = category;
         applyFilters("cards");
     }
+
+     $(".catmemb").text(category);
+    $(".categName").text(category);
 });
+
+
 
 // --------------------------------filter by Category  --------------------------------
 
@@ -436,13 +438,6 @@ $(".allStock").click(function () {
 
 
 
- // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-
-
-
-  // ------------------------------------------------breakkkkk--------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // title of products and there numbers
 $(".filternum").text(`(${userData.length})`)
@@ -525,22 +520,10 @@ $(".btnbag2").click(function(){
 
 
 
- // $(".btneye").click(function(){
-//    open("../../productDetials/Template/ProductPopUp.html" )
-// })
-
-
   // ------------------------------------------------breakkkkk--------------------------------------------------------
 
-// $("#acs").click(function(){
+  // ------------------------------------------------sort function--------------------------------------------------------
 
-
-//  let nedat = userData.sort((a, b) => a._name.localeCompare(b._name));
-// console.log(nedat)
-
-
- 
-// })
 
 $("#acs").click(function () {
 
@@ -608,20 +591,8 @@ $("#decs").click(function () {
 
 });
 
-//    setupPagination("divlayout1", "cards", "pagination1", 16);
 
-
-
-
-
-
-
-
-
-
-    // breakkkkk--------------------------------------------------------
-
-
+  // ------------------------------------------------end of sort function--------------------------------------------------------
 
 
 //----------------------------------- function of pagination -----------------------------------
@@ -670,19 +641,5 @@ let items = $(`#${containerId} .${cardClass}:visible`);
 }
 
   // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-
-
-
-
-
-    // ------------------------------------------------breakkkkk--------------------------------------------------------
-
-
-
-
- // ------------------------------------------------breakkkkk--------------------------------------------------------
-
 
 })//end of load

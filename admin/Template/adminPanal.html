@@ -1,134 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-     <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> </title>
-        <link rel="icon" type="image/png" href="/Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
-        <link rel="stylesheet" type="text/css" href="/Static/CSS/main.css"/>
-        <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-        ></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> </title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/Static/icons/favicon_dbbdd964-343e-4c1f-ab35-a8ed8a654f84.webp"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/Static/CSS/main.css" />
+    <script
+      src="https://code.jquery.com/jquery-4.0.0.min.js"
+      integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="/component/basepath.js"></script>
     <script type="module" src="/component/header.js"></script>
     <script type="module" src="/component/footer.js"></script>
     <script type="module" src="/component/layout.js"></script>
     <script src="/component/moodToggle.js"></script>
-   
-<style>
-    .fspan{
-        font-size: .7rem;
-    }
-    .clrspan1{
-background-color: rgb(245, 245, 252) ;
-color: rgb(89, 85, 209) ;
-text-align: center;
 
-    }
-.clrspan2{
-   background-color: rgb(240, 249, 246);
-        color: rgb(23, 156, 102);
-}
-.clrspan3{
-    background-color: rgb(246, 240, 254);
-        color: rgb(112, 8, 231);
-}
-  
-    .btnclr1{
+    <style>
+      .fspan {
+        font-size: 0.7rem;
+      }
+      .clrspan1 {
+        background-color: rgb(245, 245, 252);
+        color: rgb(89, 85, 209);
+        text-align: center;
+      }
+      .clrspan2 {
         background-color: rgb(240, 249, 246);
         color: rgb(23, 156, 102);
-    }
-  
-    .card-custom {
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      background: #fff;
-      height: 100%;
-     
-    }
-        .pipeline-bar {
-      height: 40px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+      }
+      .clrspan3 {
+        background-color: rgb(246, 240, 254);
+        color: rgb(112, 8, 231);
+      }
+
+      .btnclr1 {
+        background-color: rgb(240, 249, 246);
+        color: rgb(23, 156, 102);
+      }
+
+      .card-custom {
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        background: #fff;
+        height: 100%;
+      }
+      .pipeline-bar {
+        height: 40px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
       .bg-soft-purple {
-         background: #e9e6ff; 
-        }
-    .bg-soft-green {
-         background: #d9f2e6; 
+        background: #e9e6ff;
+      }
+      .bg-soft-green {
+        background: #d9f2e6;
+      }
+      .bg-soft-pink {
+        background: #ffe3e3;
+      }
 
-        }
-    .bg-soft-pink {
-         background: #ffe3e3;
-         }
+      canvas {
+        width: 100% !important;
+      }
 
-canvas {
-  width: 100% !important;
-}
+      .card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        transition: transform 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+      }
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      .stat-change {
+        font-weight: 500;
+      }
 
+      .hiegh {
+        height: 350px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
 
-.card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1rem;
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-    }
-    .stat-number {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .stat-change {
-      font-weight: 500;
-    }
+    <main>
+      <div class="container-fluid container-lg">
+        <!---------------------------------------------------------------------->
+        <div class="row my-2">
+          <!--start of the row 1 -->
 
-    .hiegh{
-      height: 350px;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-      
-    }
+          <div class="col-6 col-lg-4 my-2">
+            <!-- start first cart-->
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-around">
+                  <h6 class="card-title">Total Users</h6>
+                </div>
+                <!--end of the dropdown -->
+                <div class="my-2 border-bottom p-1">
+                  <p>
+                    <span class="rounded-circle p-3 clrspan1">
+                      <i class="fa-regular fa-user"></i>
+                    </span>
+                    <span id="totalUsers" class="mx-3"></span>
+                  </p>
+                </div>
 
-</style>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span id="totalPrecent" class="btn p-1 btnclr1"> </span>
+                  <span class="text-secondary fspan"
+                    >Vs last month: <span id="lastusers"></span
+                  ></span>
+                </div>
+              </div>
+              <!--end of body  card -->
+            </div>
+            <!-- end of first cart-->
+          </div>
+          <!---------------------------------------------------------------------->
+          <div class="col-6 col-lg-4 my-2">
+            <!-- start second  cart-->
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-around">
+                  <h6 class="card-title">Active Users</h6>
+                 
+                </div>
+                <!--end of the dropdown -->
+                <div class="my-2 border-bottom p-1">
+                  <p>
+                    <span
+                      class="border rounded-circle clrspan2 p-3 text-center"
+                    >
+                      <i class="fa-regular fa-circle-check"></i>
+                    </span>
+                    <span id="activeUsers" class="mx-3"> </span>
+                  </p>
+                </div>
 
-</head>
-<body>
-      
-<header></header>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span id="activePercent" class="btn btnclr1 p-1"> </span>
+                  <span class="text-secondary fspan"
+                    >Vs last month: <span id="lastactiveusers"></span
+                  ></span>
+                </div>
+              </div>
+              <!--end of body  card -->
+            </div>
+          </div>
+          <!--end of second card -->
 
+          <!------------------------------------------------------------------------->
+          <div class="col-12 col-lg-4 my-2">
+            <!-- start third  cart-->
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-around">
+                  <h6 class="card-title">New Registrations</h6>
 
-        <main>
-<div class="container-fluid container-lg">
-<!---------------------------------------------------------------------->
-<div class="row my-2"> <!--start of the row 1 -->
-
-<div class="col-6 col-lg-4 my-2" >  <!-- start first cart-->
-<div class="card" >
-  <div class="card-body">
-
-<div class="d-flex justify-content-around">
-
- <h6 class="card-title">Total Users</h6>
- 
-<!-- <div class="dropdown">
+                  <!-- <div class="dropdown">
   <a class="btn btn-white shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
    <i class="fa-solid fa-ellipsis"></i>
   </a>
@@ -138,193 +199,93 @@ canvas {
     <li><a class="dropdown-item" href="#">Delete</a></li>
   </ul>
 </div> -->
+                </div>
+                <!--end of the dropdown -->
+                <div class="my-2 border-bottom p-1">
+                  <p>
+                    <span
+                      class="border rounded-circle clrspan3 p-3 text-center"
+                    >
+                      <i class="fa-solid fa-user-plus"></i>
+                    </span>
+                    <span id="newRegistrations" class="mx-3"></span>
+                  </p>
+                </div>
 
-   
-</div>  <!--end of the dropdown -->
-    <div class="my-2 border-bottom p-1">
-  <p > 
-
-    <span class="  rounded-circle  p-3 clrspan1"> 
-        <i class="fa-regular fa-user"></i>
-    </span>
-    <span id="totalUsers" class="mx-3 "></span>
- </p> 
-
-    </div>
-    
-    <div class="d-flex align-items-center justify-content-between">
-        <span id="totalPrecent" class="btn  p-1 btnclr1"> </span>
-        <span class="text-secondary fspan">Vs last month: <span id="lastusers"></span></span>
-    </div>
- 
-  </div><!--end of body  card -->
-
-</div> <!-- end of first cart-->
-
-
-</div>
-<!---------------------------------------------------------------------->
-<div class="col-6 col-lg-4 my-2"  ><!-- start second  cart-->
-<div class="card">
-  <div class="card-body">
-
-<div class="d-flex justify-content-around">
-
- <h6 class="card-title">Active Users</h6>
-<!--  
-<div class="dropdown">
-  <a class="btn btn-white shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-   <i class="fa-solid fa-ellipsis"></i>
-  </a>
-
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Edit</a></li>
-    <li><a class="dropdown-item" href="#">Delete</a></li>
-  </ul>
-</div> -->
-
-   
-</div> 
-<!--end of the dropdown -->
-    <div class="my-2 border-bottom p-1">
-  <p > 
-    <span class="border rounded-circle clrspan2 p-3 text-center">
-        <i class="fa-regular fa-circle-check"></i>
-    </span>
-    <span id="activeUsers" class="mx-3"> </span>
- </p> 
-
-    </div>
-    
-    <div class="d-flex align-items-center justify-content-between">
-        <span id="activePercent" class="btn btnclr1 p-1"> </span>
-        <span class="text-secondary  fspan">Vs last month: <span id="lastactiveusers"></span></span>
-    </div>
- 
-  </div><!--end of body  card -->
-
-</div> 
-
-
-</div><!--end of second card -->
-
-<!------------------------------------------------------------------------->
-<div class="col-12 col-lg-4 my-2"  ><!-- start third  cart-->
-<div class="card">
-  <div class="card-body">
-
-<div class="d-flex justify-content-around">
-
- <h6 class="card-title">New Registrations</h6>
- 
-<!-- <div class="dropdown">
-  <a class="btn btn-white shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-   <i class="fa-solid fa-ellipsis"></i>
-  </a>
-
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Edit</a></li>
-    <li><a class="dropdown-item" href="#">Delete</a></li>
-  </ul>
-</div> -->
-
-   
-</div> <!--end of the dropdown -->
-    <div class="my-2 border-bottom p-1">
-  <p > 
-    <span class="border rounded-circle clrspan3 p-3 text-center">
-      <i class="fa-solid fa-user-plus"></i>
-    </span>
-    <span id="newRegistrations" class="mx-3"></span>
- </p> 
-
-    </div>
-    
-    <div class="d-flex align-items-center justify-content-between">
-        <span id="Registrationspercent" class="btn btnclr1 p-1"> </span>
-        <span class="text-secondary  fspan">Vs last month: <span id="lastRegistrations"></span></span>
-    </div>
- 
-  </div><!--end of body  card -->
-
-</div> 
-
-
-</div><!--end of third card -->
-<!--------------------------------------------------------------------------->
-
-
-</div><!--end of the row 1 -->
-<!--------------------------------------------------------------------------->
-
-
-
-
-
-
-<div class="row my-2"><!--start of the row 3 -->
-
-<div class="col-12 col-md-6 col-xl-4 my-2">     <!--start of the card  -->
-      <div class="card-custom card">
-        <div class="d-flex justify-content-around">
-        <h5 class="mb-4">Upcoming Meetings</h5>
-
-        <!-- <div class="dropdown">
-  <a class="btn bg-soft-green shadow " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-   <i class="fa-solid fa-ellipsis"></i>
-  </a>
-
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Edit</a></li>
-    <li><a class="dropdown-item" href="#">Delete</a></li>
-  </ul>
-</div> -->
-</div>
-
-        
-        <div class="mb-3 p-3 bg-light rounded">
-          <strong>HR</strong>
-          <div class="text-muted small">06:00 - 07:00</div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span id="Registrationspercent" class="btn btnclr1 p-1">
+                  </span>
+                  <span class="text-secondary fspan"
+                    >Vs last month: <span id="lastRegistrations"></span
+                  ></span>
+                </div>
+              </div>
+              <!--end of body  card -->
+            </div>
+          </div>
+          <!--end of third card -->
+          <!--------------------------------------------------------------------------->
         </div>
+        <!--end of the row 1 -->
+        <!--------------------------------------------------------------------------->
 
-        <div class="mb-3 p-3 bg-light rounded">
-          <strong>Team Stand Up</strong>
-          <div class="text-muted small">Marketing · 06:00 - 07:00</div>
-        </div>
+        <div class="row my-2">
+          <!--start of the row 3 -->
 
-        <div class="p-3 bg-light rounded ">
-          <strong>All Hands Meeting</strong>
-          <div class="text-muted small">Manager · 06:00 - 07:00</div>
-        </div>
-      </div>
-    </div><!--end of the card  -->
-<!--------------------------------------------------------------------------->
-<!--------------------------------------------------------------------------->
-    <!-- Total Contacts -->
-   <div class="col-6 col-md-6 col-lg-4 ">
-      <div class="card hiegh">
+          <div class="col-12 col-md-6 col-xl-4 my-2">
+            <!--start of the card  -->
+            <div class="card-custom card">
+              <div class="d-flex justify-content-around">
+                <h5 class="mb-4">Upcoming Meetings</h5>
+              </div>
 
-        <h6 class="text-muted">Total Contacts</h6>
-        <div class="stat-number "> <span  id="totalcontact"></span> <span id="totalcontactPrecent" class="text-success fs-6 stat-change"></span></div>
-        <small class="text-muted">Vs last month: <span id="lasttotalcontact"></span> </small>
-       
+              <div class="mb-3 p-3 bg-light rounded">
+                <strong>HR</strong>
+                <div class="text-muted small">06:00 - 07:00</div>
+              </div>
 
-      </div>
-    </div>
+              <div class="mb-3 p-3 bg-light rounded">
+                <strong>Team Stand Up</strong>
+                <div class="text-muted small">Marketing · 06:00 - 07:00</div>
+              </div>
 
+              <div class="p-3 bg-light rounded">
+                <strong>All Hands Meeting</strong>
+                <div class="text-muted small">Manager · 06:00 - 07:00</div>
+              </div>
+            </div>
+          </div>
+          <!--end of the card  -->
+          <!--------------------------------------------------------------------------->
+          <!--------------------------------------------------------------------------->
+          <!-- Total Contacts -->
+          <div class="col-6 col-md-6 col-lg-4">
+            <div class="card hiegh">
+              <h6 class="text-muted">Total Contacts</h6>
+              <div class="stat-number">
+                <span id="totalcontact"></span>
+                <span
+                  id="totalcontactPrecent"
+                  class="text-success fs-6 stat-change"
+                ></span>
+              </div>
+              <small class="text-muted"
+                >Vs last month: <span id="lasttotalcontact"></span>
+              </small>
+            </div>
+          </div>
 
-<!--------------------------------------------------------------------------->
- <!-- Product Raiting -->
-    <div class="col-6 col-md-6 col-lg-4 ">
-      <div class="card hiegh ">
-        <h6 class="text-muted">Product Raiting</h6>
-        <div id="avargerating"  class="stat-number text-success"> </div>
-        <small class="text-muted">Compared to Last Month</small>
-       
-      </div>
-    </div>
-<!--------------------------------------------------------------------------->
-<!-- <div class="col-12 col-md-12 col-xl-4 my-2">
+          <!--------------------------------------------------------------------------->
+          <!-- Product Raiting -->
+          <div class="col-6 col-md-6 col-lg-4">
+            <div class="card hiegh">
+              <h6 class="text-muted">Product Raiting</h6>
+              <div id="avargerating" class="stat-number text-success"></div>
+              <small class="text-muted">Compared to Last Month</small>
+            </div>
+          </div>
+          <!--------------------------------------------------------------------------->
+          <!-- <div class="col-12 col-md-12 col-xl-4 my-2">
       <div class="card-custom">
         <h5 class="mb-4">Sales Pipeline Overview</h5>
         <h3 id="salesTotal"></h3>
@@ -346,59 +307,55 @@ canvas {
         </div>
       </div>
     </div> -->
-
-
-</div><!--end of the row 3 -->
-
-<!--------------------------------------------------------------------------->
-<div class="row my-2"> <!--start of the row 2 -->
-
-
-
-    
-    <div class=" col-12   col-lg-12 my-2 "><!--start  Card onee-->
-      <div class="card p-4">
-        
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0">Revenue</h5>
-
-
-
-          <div class="btn-toggle btn-group">
-            <button id="todayBtn" class="btn btn-sm btn-light">Today</button>
-            <button  id="weekBtn" class="btn btn-sm btn-light">Week</button>
-            <button id="monthBtn" class="btn btn-sm btn-primary">Month</button>
-          </div>
         </div>
+        <!--end of the row 3 -->
 
+        <!--------------------------------------------------------------------------->
+        <div class="row my-2">
+          <!--start of the row 2 -->
 
-      <div style="height:300px;">
-    <canvas id="revenueChart"></canvas>
-  </div>
+          <div class="col-12 col-lg-12 my-2">
+            <!--start  Card onee-->
+            <div class="card p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <h5 class="mb-0">Revenue</h5>
 
-     
+                <div class="btn-toggle btn-group">
+                  <button id="todayBtn" class="btn btn-sm btn-light">
+                    Today
+                  </button>
+                  <button id="weekBtn" class="btn btn-sm btn-light">
+                    Week
+                  </button>
+                  <button id="monthBtn" class="btn btn-sm btn-primary">
+                    Month
+                  </button>
+                </div>
+              </div>
 
+              <div style="height: 300px">
+                <canvas id="revenueChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <!--end  Card onee-->
+        </div>
+        <!--end of the row 2 -->
+        <!--------------------------------------------------------------------------->
+
+        <div class="row g-3 my-2"><!--start of the row 4 --></div>
       </div>
-    </div><!--end  Card onee-->
+      <!--end of the container-->
+    </main>
+    <!--end of the main-->
 
-</div> <!--end of the row 2 -->
-<!--------------------------------------------------------------------------->
+    <footer></footer>
 
-<div class="row g-3 my-2  "> <!--start of the row 4 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> -->
 
-  </div>
-</div><!--end of the container-->
-
-
-        </main><!--end of the main-->
-
-
-<footer></footer>
-
-
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> -->
-       
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="../JS/admin.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../JS/admin.js"></script>
+  </body>
 </html>
