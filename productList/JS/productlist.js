@@ -446,6 +446,7 @@ $(function () {
     $(".btnbag").click(function () {
         const parentId = $(this).parent().parent().parent().parent().attr("id");
         addToCart(parentId, 1);
+        alert("added to Cart")
         //    addToCart(this.userData._id, p_quantity=1)
     });
 
@@ -460,6 +461,7 @@ $(function () {
             .parent()
             .attr("id");
         addToCart(parentId, 1);
+          alert("added to Cart")
         //    addToCart(this.userData._id, p_quantity=1)
     });
 
@@ -467,6 +469,7 @@ $(function () {
     $(".btnheart").click(function () {
         const parentId = $(this).parent().parent().parent().parent().attr("id");
         addToWishlist(parentId);
+        alert("added to wishlist")
     });
     $(".btnheart2").click(function () {
         const parentId = $(this)
@@ -477,6 +480,7 @@ $(function () {
             .parent()
             .attr("id");
         addToWishlist(parentId);
+        alert("added to wishlist")
     });
 
     // ------------------------------------------------breakkkkk--------------------------------------------------------
