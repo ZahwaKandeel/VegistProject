@@ -170,7 +170,6 @@ function displayCart() {
 
         $('.cart-items').append(`
             <div class="row align-items-center border-bottom p-2 mb-3">
-
                 <!-- Product information -->
                 <div class="col-12 col-md-6">
                     <div class="card mb-3 bg-transparent border-0">
@@ -295,8 +294,10 @@ function removeFromCart(product_id) {
 
 $(document).on("click", ".remove-btn", function () {
     const id = Number($(this).data("id"));
-    removeFromCart(id);
-    displayCart();
+    if (confirm("Are you sure that you want to remove this item?")) {
+        removeFromCart(id);
+        displayCart();
+    }
 });
 
 

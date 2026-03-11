@@ -156,9 +156,10 @@ function removeFromWishlist(product_id) {
 $(document).on("click", ".remove", function () {
 
     const id = Number($(this).data("id"));
-
-    removeFromWishlist(id);
-    displayWishlist();
+    if (confirm("Are you sure that you want to remove this item?")) {
+        removeFromWishlist(id);
+        displayWishlist();
+    }
 });
 
 
@@ -176,6 +177,7 @@ $(document).on("click", ".add-to-cart", function () {
     const id = Number($(this).data("id"));
 
     addToCart(id);        // Add item to cart
+    alert("Product added to cart successfully")
     removeFromWishlist(id); // Remove it from wishlist
     displayWishlist();      // Refresh UI
 });
