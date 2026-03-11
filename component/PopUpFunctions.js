@@ -31,24 +31,24 @@ $(function () {
             $("#modal-productDescription").text(selectedProduct.Description || "No description available.");
         
             // Fill sizes
-            $('.sizediv').empty();
+            $('.modal-sizediv').empty();
             selectedProduct.Sizes.forEach((item, index) => {
-                let sizeId = `size_${index}`;
-                $('.sizediv').append(`
-                    <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
-                    <label class="btn ${index === 0 ? "btn-warning text-white" : "btn-outline-warning"} rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
+                let modalSizeId = `modalSize_${index}`;
+                $('.modal-sizediv').append(`
+                    <input type="radio" class="btn-check" name="modalSize_choice" id="${modalSizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
+                    <label class="btn ${index === 0 ? "btn-warning text-white" : "btn-outline-warning"} rounded-pill px-4 me-2" for="${modalSizeId}">${item}KG</label>
                 `);
             });
 
             // Set prices
-            let selectedSize = parseFloat($('input[name="size_choice"]:checked').val()) || 1;
+            let selectedSize = parseFloat($('input[name="modalSize_choice"]:checked').val()) || 1;
             let pricePerKg = selectedProduct.Price;
 
             $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
             $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
 
             // Update prices when size changes
-            $(document).on('change', 'input[name="size_choice"]', function () {
+            $(document).on('change', 'input[name="modalSize_choice"]', function () {
                 let selectedSize = parseFloat($(this).val()) || 1;
                 let pricePerKg = selectedProduct.Price;
 
@@ -89,7 +89,7 @@ $(document).on('click', '#modal-addToCart', function(e) {
     if (!selectedProduct) return;
 
     let quantity = parseInt($('#modal-quantityValue').val()) || 1;
-    let selectedSize = $('input[name="size_choice"]:checked').val();
+    let selectedSize = $('input[name="modalSize_choice"]:checked').val();
     
     addToCart(selectedProduct.ID, quantity, selectedSize);
     alert('Product added to your cart')
@@ -100,7 +100,7 @@ function buyItNow() {
     if (!selectedProduct) return;
 
     let quantity = parseInt($('#modal-quantityValue').val()) || 1;
-    let selectedSize = $('input[name="size_choice"]:checked').val();
+    let selectedSize = $('input[name="modalSize_choice"]:checked').val();
 
     let freshSubtotal = quantity * getFinalPrice(selectedSize) ;
 
@@ -130,10 +130,10 @@ function buyItNow() {
 }
 
 // Change size button style when clicked
-$(document).on('click', '.sizediv label', function () {
+$(document).on('click', '.modal-sizediv label', function () {
 
     // remove active style from all labels
-    $('.sizediv label')
+    $('.modal-sizediv label')
         .removeClass('btn-warning text-white')
         .addClass('btn-outline-warning');
 

@@ -199,14 +199,16 @@ if (idParam === null) {
             });
 
             // Sizes
-            $(".sizediv").empty();
-            product.Sizes.forEach((item, index) => {
-                let sizeId = `size_${index}`;
-                $(".sizediv").append(`
-                <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
-                <label class="btn btn-outline-warning rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
-            `);
-            });
+            $(function() {
+                $(".sizediv").empty();
+                product.Sizes.forEach((item, index) => {
+                    let sizeId = `size_${index}`;
+                    $(".sizediv").append(`
+                    <input type="radio" class="btn-check" name="size_choice" id="${sizeId}" value="${item}" ${index === 0 ? "checked" : ""} autocomplete="off">
+                    <label class="btn btn-outline-warning rounded-pill px-4 me-2" for="${sizeId}">${item}KG</label>
+                `);
+                });
+            })
 
             // Update price when size changes
             $(document).on("change", 'input[name="size_choice"]', function () {
