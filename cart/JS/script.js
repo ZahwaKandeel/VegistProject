@@ -294,8 +294,10 @@ function removeFromCart(product_id) {
 
 $(document).on("click", ".remove-btn", function () {
     const id = Number($(this).data("id"));
-    removeFromCart(id);
-    displayCart();
+    if (confirm("Are you sure that you want to remove this item?")) {
+        removeFromCart(id);
+        displayCart();
+    }
 });
 
 
