@@ -68,7 +68,7 @@ Provides deep insights into individual products and interactive engagement tools
 
 - **Advanced Review System**: `**Beyond Requirements**` - A full feedback loop where users can submit star ratings and comments. The product's overall rating is automatically recalculated and updated in [ProductDetails.js].
 
-- **Interactive Quick View**: `**Beyond Requirements**` - Developed by **ZahwaKandeel**, the [PopUpFunctions.js] script enables users to preview details and add to cart directly from the catalog.
+- **Interactive Quick View**: `**Beyond Requirements**` - Developed by **Zahwa Kandeel**, the [PopUpFunctions.js] script enables users to preview details and add to cart directly from the catalog.
 
 - **Related Products**: Suggests similar items to enhance the shopping experience.
 
