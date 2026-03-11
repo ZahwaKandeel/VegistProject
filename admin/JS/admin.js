@@ -1,6 +1,3 @@
-
-
-
 let users = JSON.parse(localStorage.getItem("Users")) || []; // number of users 
 //console.log(users[0].id); 
 console.log(users); 
@@ -43,11 +40,6 @@ const dashboardData = {
 
 
 };
-
-
-
-
-
 
 
 //------------------- calculate percent -------------------
@@ -96,23 +88,6 @@ const ctx = document.getElementById('revenueChart').getContext('2d');
 
 
 //----------------break-----------------
-
-// ===== Data =====
-// const dataSets = {
-//   today: {
-//     labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
-//     data: [2000, 5000, 8000, 6000, 9000, 7000]
-//   },
-//   week: {
-//     labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-//     data: [12000,19000,15000,22000,18000,25000,21000]
-//   },
-//   month: {
-//     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-//     data: [120000,350000,450000,120000,200000,180000,300000,120000,250000,350000,250000,180000]
-//   }
-// };
-
 
 // to transformation from 24 hours to 12 hours
 function formatHour(date) {
@@ -297,14 +272,11 @@ totalcontact:{current: contacts.length,
   document.getElementById("avargerating").innerText =  averageRating.toFixed(1) + " % " ;
 
 
-
-
 //-----------------------
 
 // number of doneorer  and this is mean total contact
 document.getElementById("totalcontact").innerText = getDashboardData.totalcontact.current.toLocaleString();
 document.getElementById("lasttotalcontact").innerText = getDashboardData.totalcontact.lastMonth.toLocaleString();
-
 
 
 document.getElementById("totalcontactPrecent").innerText =  "+" +
