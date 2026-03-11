@@ -19,8 +19,6 @@ $(function () {
         $(document).on('click', '.fa-eye', function() {
             const cardId = parseInt($(this).closest(".cards").attr("id")) || parseInt($(this).closest(".cards2").attr("id"));
             selectedProduct = products.find(p => p.ID === cardId);
-            console.log("cardid",cardId);
-            console.log("selectedproduct",selectedProduct);
 
             if (!selectedProduct) return;
 
@@ -48,6 +46,15 @@ $(function () {
 
             $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
             $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+
+            // Update prices when size changes
+            $(document).on('change', 'input[name="size_choice"]', function () {
+                let selectedSize = parseFloat($(this).val()) || 1;
+                let pricePerKg = selectedProduct.Price;
+
+                $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
+                $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
+            });
             
             // Calling Buy It Now function
             $('#quickViewModal').off('click', '#modal-BuyItNow');
@@ -85,7 +92,7 @@ $(document).on('click', '#modal-addToCart', function(e) {
     let selectedSize = $('input[name="size_choice"]:checked').val();
     
     addToCart(selectedProduct.ID, quantity, selectedSize);
-    alert('Product has already added to your cart')
+    alert('Product added to your cart')
 });
 
 // Buy It Now function
@@ -120,7 +127,6 @@ function buyItNow() {
     });
 
     localStorage.setItem("currentOrder", JSON.stringify(currentOrder));
-    console.log("Order saved:", currentOrder);
 }
 
 // Change size button style when clicked
@@ -146,13 +152,3 @@ function getFinalPrice(selectedSize) {
     if (discount > 0) total = total - (total * (discount / 100));
     return Math.max(0, total);
 }
-
-// Update prices when size changes
-$(document).on('change', 'input[name="size_choice"]', function () {
-    console.log("last",selectedProduct);
-    let selectedSize = parseFloat($(this).val()) || 1;
-    let pricePerKg = selectedProduct.Price;
-    $("#modal-productPrice").text((pricePerKg * selectedSize).toFixed(2));
-    $("#modal-productAfterDiscount").text(getFinalPrice(selectedSize).toFixed(2));
-});
-

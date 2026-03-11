@@ -125,9 +125,15 @@ if (idParam === null) {
                         ).val();
                         let totalPrice = pricePerKg * quantity;
                         addToCart(product._id, quantity, selectedSize);
-                        alert("Product has already added to your cart");
+                        alert("Product added to your cart");
                     }
                 });
+            });
+
+            //Back to Catalog
+            $(".backToCatalog").on("click", function () {
+                window.location.href ="../../productList/Template/product_list.html";
+                
             });
 
             // Remove product (Seller page)
@@ -135,9 +141,9 @@ if (idParam === null) {
                 $(".removeProduct").on("click", function (e) {
                     e.preventDefault();
                     if (product) {
+                        alert("Are you sure of deleting that product ?");
                         deleteProductById(product._id);
-                        window.location.href =
-                            "/productList/Template/product_list.html";
+                        window.location.href ="/productList/Template/product_list.html";
                     }
                 });
             });
@@ -316,7 +322,6 @@ if (idParam === null) {
                     generateStars(rating, divstars);
                 });
             }
-
             loadRelatedProducts();
 
             // Wishlist icon beside the popup
