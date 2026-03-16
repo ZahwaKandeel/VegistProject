@@ -1,4 +1,5 @@
 
+import {showToast} from "../../component/toast.js";
 import {User} from "/models/user.js";
 
 $(function() {
@@ -34,7 +35,7 @@ $(function() {
         const emailValid = isEmailValid();
         setValidation(email, emailValid);
         if (!emailValid) {
-            alert("Please enter a valid email");
+            showToast("warning", "Please enter a valid email");
             return;
         }
 
@@ -42,7 +43,7 @@ $(function() {
         const plainUser = users.find(u => u.email === emailValue);
 
         if(!plainUser) {
-            alert("Email not registerd");
+            showToast("error", "Email not registerd");
             email.addClass("is-invalid");
             return;
         }
@@ -51,7 +52,7 @@ $(function() {
         const hashedPassword = await User.hashPassword(passValue);
 
         if (hashedPassword !== plainUser.password) {
-            alert("Wrong password");
+            showToast("error", "Wrong password");
             password.addClass("is-invalid");
             return;
         }

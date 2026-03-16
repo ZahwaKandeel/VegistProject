@@ -1,4 +1,5 @@
 
+import {showToast} from "../../component/toast.js";
 import { User } from "/models/user.js";
 
 $(async function () {
@@ -53,17 +54,17 @@ $(async function () {
             setValidation(password, passValid);
     
             if (!firstValid || !lastValid || !emailValid || !passValid) {
-                alert("Please fix invalid fields");
+                showToast("warning","Please fix invalid fields");
                 return;
             }
     
             if (User.emailExists(email.val().trim())) {
-                alert("This email is already registered.");
+                showToast("error","This email is already registered.");
                 return;
             }
     
             if (!$("input[name='usertype']:checked").length) {
-                alert("You must select a user type!");
+                showToast("error", "You must select a user type!");
                 return;
             }
     

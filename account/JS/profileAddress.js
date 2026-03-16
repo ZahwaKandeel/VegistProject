@@ -1,4 +1,5 @@
 // Addresses Logic
+import {showToast} from "../../component/toast.js";
 import { User } from "/models/user.js";
 import {isAuth } from "/component/isAuth.js"
 
@@ -66,7 +67,7 @@ $(function () {
                 };
 
                 if (!newAddress.firstName || !newAddress.address || !newAddress.city) {
-                    alert("Please fill required fields");
+                    showToast("warning", "Please fill required fields");
                     return;
                 }
                 // check for default addresses, remove previous default

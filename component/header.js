@@ -208,12 +208,14 @@ export function header() {
                             ${authButtons}
                         </div>
                         <!-- Heart icon -->
-                        <a href="${basepath}wishlist/Template/wishlist.html">
+                        <a href="${basepath}wishlist/Template/wishlist.html" class="position-relative">
                             <i class="fa-regular fa-heart text-body px-1 icon-size"></i>
+                            <span id="wishlist-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
                         </a>
                         <!-- Bag icon -->
-                        <a href="${basepath}cart/Template/cart.html">
+                        <a href="${basepath}cart/Template/cart.html" class="position-relative">
                             <i class="fa-solid fa-bag-shopping text-body px-1 icon-size"></i>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
                         </a>
                     </div>
                 </section>
@@ -272,5 +274,31 @@ export function loadCategorires() {
         const name = $(this).text().trim();
         console.log("name: ", name);
         window.location.href = `/productList/Template/product_list.html?category=${encodeURIComponent(name)}`;
+    })
+}
+
+// Update badges (cart - wishlist)
+
+export function updateBadges() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    setBadge($("#cart-badge"), cart.length)
+    setBadge($("#wishlist-badge"), wishlist.length)
+}
+
+function setBadge(body, count) {
+    if (count > 0) {
+        body.text(count).removeClass("d-none");
+    } else {
+        body.addClass("d-none");
+    }
+}
+
+export function initBadgeListeners() {
+    window.addEventListener("localStorageChange", (e) => {
+        if (e.detail.key === "cart" || e.detail.key === "wishlist") {
+            updateBadges();
+        }
     })
 }

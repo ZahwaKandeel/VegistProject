@@ -1,4 +1,5 @@
 // Import Order model
+import {showToast} from "../../component/toast.js";
 import { Order } from '../../models/order.js';
 
 // Available discount coupons list
@@ -457,7 +458,7 @@ $('#checkout-btn').on('click', function () {
     // Prevent checkout if any product missing size
     const missingSize = cart.some(item => !item.size);
     if (missingSize) {
-        alert("Please select a size for each product in your cart");
+        showToast("warning","Please select a size for each product in your cart");
         return;
     }
 
@@ -471,6 +472,6 @@ $('#checkout-btn').on('click', function () {
 
     displayCart();
 
-    alert("Order placed successfully!");
+    showToast("success", "Order placed successfully!");
     window.location.href = '../../checkOut/Template/checkOut.html'
 });

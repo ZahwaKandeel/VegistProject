@@ -1,5 +1,5 @@
 // profile Logic
-
+import {showToast} from "../../component/toast.js";
 import { User } from "/models/user.js"
 import {isAuth } from "/component/isAuth.js"
 
