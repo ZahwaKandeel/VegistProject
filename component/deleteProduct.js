@@ -3,6 +3,7 @@
 //get the product will be removed
 //filter it from other products
 //update to set the remained products
+import { showToast } from "./toast.js";
 export function deleteProductById(id) {
 
   let products = JSON.parse(localStorage.getItem("products")) || [];

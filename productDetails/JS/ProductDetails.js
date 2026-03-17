@@ -1,4 +1,4 @@
-import {showConfirm, showToast} from "../../component/toast.js";
+import {showConfirm, showToast, showToastAndRedirect} from "../../component/toast.js";
 import {Product, loadProducts,saveProducts,} from "../../component/Product.js";
 import { Order } from "/models/order.js";
 import { deleteProductById } from "/component/deleteProduct.js";
@@ -146,8 +146,7 @@ if (idParam === null) {
                         const confirmed = await showConfirm("Are you sure of deleting that product ?", "Delete")
                         if (confirmed) {
                             deleteProductById(product._id);
-                            window.location.href ="/productList/Template/product_list.html";
-                            showToast("error", "Product Removed!")
+                            showToastAndRedirect("error", "Product Removed", "/productList/Template/product_list.html")
                         }
                     }
                 });

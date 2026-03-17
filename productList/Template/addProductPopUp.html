@@ -229,14 +229,16 @@
                 showToast("success", "Product added Successfully!");
                 const modalElement = document.getElementById("addProductModal");
                 const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-            
-                modal.hide();
-                document.body.classList.remove("modal-open");
-                $(".modal-backdrop").remove();
-                location.reload();
+                
+                setTimeout(() => {
+                    modal.hide();
+                    document.body.classList.remove("modal-open");
+                    $(".modal-backdrop").remove();
+                    location.reload();
+                }, 1000);
                 
             }catch(error){
-                showToast("error", error.message)
+                showToast("error", error.message);
             }
         });
         $(".dropdown-menu").on("click", function(e){

@@ -109,11 +109,13 @@ export function initializeEditProduct (productId){
         saveProducts(products);
 
         showToast("success", "Product updated successfully");
-        const modal = bootstrap.Modal.getInstance(
-            document.getElementById("editProductModal")
-        )
-        modal.hide();
-        location.reload();
+        setTimeout(() => {
+            const modal = bootstrap.Modal.getInstance(
+                document.getElementById("editProductModal")
+            )
+            modal.hide();
+            location.reload();
+        }, 1000);
     });
         
     function showError(selector, message){

@@ -1,4 +1,3 @@
-import {showToast} from "../../component/toast.js";
 let users = JSON.parse(localStorage.getItem("Users")) || []; // number of users 
 //console.log(users[0].id); 
 console.log(users); 
