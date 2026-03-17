@@ -1,4 +1,5 @@
 import { saveProducts } from "./Product.js";
+import { showToast } from "./toast.js";
 export function initializeEditProduct (productId){    
 
     const products = JSON.parse(localStorage.getItem("products")) || [];
@@ -25,7 +26,7 @@ export function initializeEditProduct (productId){
         const file = this.files[0];
         if(!file) return;
         if(!file.type.startsWith("image/")){
-            alert("Please select a valid image file.");
+            showToast("warning","Please select a valid image file.");
             return;
         }
 
@@ -107,7 +108,7 @@ export function initializeEditProduct (productId){
 
         saveProducts(products);
 
-        alert("Product updated successfully");
+        showToast("success", "Product updated successfully");
         const modal = bootstrap.Modal.getInstance(
             document.getElementById("editProductModal")
         )

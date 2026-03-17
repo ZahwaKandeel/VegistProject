@@ -1,3 +1,4 @@
+import { showToast } from "./toast.js";
 import { loadProducts } from "../../component/Product.js";
 import { Order } from "/models/order.js";
 
@@ -92,7 +93,7 @@ $(document).on('click', '#modal-addToCart', function(e) {
     let selectedSize = $('input[name="modalSize_choice"]:checked').val();
     
     addToCart(selectedProduct.ID, quantity, selectedSize);
-    alert('Product added to your cart')
+    showToast("success", 'Product added to your cart')
 });
 
 // Buy It Now function

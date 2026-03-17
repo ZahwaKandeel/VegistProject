@@ -1,7 +1,9 @@
+import {showConfirm, showToast} from "../../component/toast.js";
 import {Product, loadProducts,saveProducts,} from "../../component/Product.js";
 import { Order } from "/models/order.js";
 import { deleteProductById } from "/component/deleteProduct.js";
 import { isAuth } from "../../component/isAuth.js";
+import {addToWishlist} from "../../component/addToWishlist.js"
 
 // Load products from localStorage
 let products = loadProducts() || [];
@@ -125,7 +127,7 @@ if (idParam === null) {
                         ).val();
                         let totalPrice = pricePerKg * quantity;
                         addToCart(product._id, quantity, selectedSize);
-                        alert("Product added to your cart");
+                        showToast("success", "Product added to your cart");
                     }
                 });
             });
@@ -138,12 +140,15 @@ if (idParam === null) {
 
             // Remove product (Seller page)
             $(document).ready(function () {
-                $(".removeProduct").on("click", function (e) {
+                $(".removeProduct").on("click", async function (e) {
                     e.preventDefault();
                     if (product) {
-                        alert("Are you sure of deleting that product ?");
-                        deleteProductById(product._id);
-                        window.location.href ="/productList/Template/product_list.html";
+                        const confirmed = await showConfirm("Are you sure of deleting that product ?", "Delete")
+                        if (confirmed) {
+                            deleteProductById(product._id);
+                            window.location.href ="/productList/Template/product_list.html";
+                            showToast("error", "Product Removed!")
+                        }
                     }
                 });
             });
@@ -332,7 +337,6 @@ if (idParam === null) {
                 const product = products.find((p) => p.ID === cardId);
                 if (!product) return;
                 addToWishlist(product._id);
-                alert("Product added to your wishlist");
             });
 
             // Shopping bag icon beside the popup
@@ -342,7 +346,7 @@ if (idParam === null) {
                 if (!product) return;
                 // Replace quantity & size with defaults
                 addToCart(product._id, 1, product.Sizes[0]);
-                alert("Product added to your cart");
+                showToast("success", "Product added to your cart");
             });
 
             //Stars Rating inside review
@@ -418,7 +422,7 @@ if (idParam === null) {
                 e.preventDefault();
 
                 if (!currentUser || !currentUser.id) {
-                    alert("You must be logged in to write a review!");
+                    showToast("warning", "You must be logged in to write a review!");
                     return;
                 }
 
@@ -434,16 +438,12 @@ if (idParam === null) {
                 setValidation(userContentInput, validUserContent);
 
                 if (!validUserTitle) {
-                    alert(
-                        "Make sure your review title is minimum 5 characters!",
-                    );
+                    showToast("warning", "Make sure your review title is minimum 5 characters!");
                     return;
                 }
 
                 if (!validUserContent) {
-                    alert(
-                        "Make sure your review content is minimum 10 characters!",
-                    );
+                    showToast("warning", "Make sure your review content is minimum 10 characters!");
                     return;
                 }
 
@@ -469,7 +469,7 @@ if (idParam === null) {
                     !review.name ||
                     !review.email
                 ) {
-                    alert("All fields must be filled");
+                    showToast("error", "All fields must be filled");
                     return;
                 }
 

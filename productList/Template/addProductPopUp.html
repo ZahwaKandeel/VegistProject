@@ -115,8 +115,7 @@
 
 <script type = "module">
     //Validating and Saving the added Product
-
-
+    import {showToast} from "../../component/toast.js";
     import{Product, loadProducts, saveProducts} from "../../component/Product.js"
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
         
@@ -139,7 +138,7 @@
             if(!file) return;
 
             if(!file.type.startsWith("image/")){
-                alert("Please select a valid image file.");
+                showToast("war", "Please select a valid image file.");
                 return;
             }
             const reader = new FileReader();
@@ -164,7 +163,7 @@
             let stock = parseInt($("#stock").val());
             let category = $("#category").val().trim();
             if(!imageBase64){
-                alert("Please Upload an image");
+                showToast("warning", "Please Upload an image");
                 return;
             }
 
@@ -227,7 +226,7 @@
                 products.push(newProduct);
 
                 saveProducts(products);
-                alert("Product added Successfully!");
+                showToast("success", "Product added Successfully!");
                 const modalElement = document.getElementById("addProductModal");
                 const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
             
@@ -237,7 +236,7 @@
                 location.reload();
                 
             }catch(error){
-                alert(error.message)
+                showToast("error", error.message)
             }
         });
         $(".dropdown-menu").on("click", function(e){

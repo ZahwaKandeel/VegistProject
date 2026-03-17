@@ -1,5 +1,5 @@
 // Import Order model
-import {showToast} from "../../component/toast.js";
+import {showToast, showToastAndRedirect} from "../../component/toast.js";
 import { Order } from '../../models/order.js';
 
 // Available discount coupons list
@@ -471,7 +471,5 @@ $('#checkout-btn').on('click', function () {
     localStorage.setItem('orders', JSON.stringify(orders));
 
     displayCart();
-
-    showToast("success", "Order placed successfully!");
-    window.location.href = '../../checkOut/Template/checkOut.html'
+    showToastAndRedirect("success", "Order placed successfully!", '../../checkOut/Template/checkOut.html');
 });

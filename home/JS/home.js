@@ -1,4 +1,6 @@
 // Discount display function
+import {addToWishlist} from "../../component/addToWishlist.js"
+import { showToast } from "../../component/toast.js";
 $(function () {
     $(".shopnow").click(function () {
         window.location.href = "/productList/Template/product_list.html";
@@ -146,6 +148,7 @@ $(document).ready(function () {
     $(document).on("click", ".cart-icon", function () {
         const productId = parseInt($(this).data("id"));
         addToCart(productId, 1);
+        showToast("success", "Product Added to Cart")
     });
     //Redirects to the details page of the selected product
     $(document).on("click", ".cards", function (e) {

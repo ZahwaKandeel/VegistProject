@@ -1,3 +1,5 @@
+import { showConfirm, showToast } from "../../component/toast.js";
+
 // Get products list from localStorage
 let products = JSON.parse(localStorage.getItem('products'));
 // Get wishlist from localStorage or default to empty array
@@ -153,12 +155,14 @@ function removeFromWishlist(product_id) {
 // ======================================================
 // Click handler → remove item from wishlist
 // ======================================================
-$(document).on("click", ".remove", function () {
+$(document).on("click", ".remove", async function () {
 
     const id = Number($(this).data("id"));
-    if (confirm("Are you sure that you want to remove this item?")) {
+    const confirm = await showConfirm("Are you sure that you want to remove this item?", "Remove")
+    if (confirm) {
         removeFromWishlist(id);
         displayWishlist();
+        showToast("error", "Item removed from wishlist.");
     }
 });
 
@@ -177,7 +181,7 @@ $(document).on("click", ".add-to-cart", function () {
     const id = Number($(this).data("id"));
 
     addToCart(id);        // Add item to cart
-    alert("Product added to cart successfully")
+    showToast("success", "Product added to cart successfully")
     removeFromWishlist(id); // Remove it from wishlist
     displayWishlist();      // Refresh UI
 });

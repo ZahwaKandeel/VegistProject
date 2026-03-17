@@ -1,5 +1,6 @@
 // checkout logic
 
+import {showToast, showToastAndRedirect} from "../../component/toast.js";
 import { User } from "/models/user.js"
 
 const userData = localStorage.getItem("currentUser");
@@ -123,7 +124,7 @@ const totalValue = subtotalValue + shippingValue;
 const products = JSON.parse(localStorage.getItem("products"));
 const cart = plainOrder.cart;
 if(!cart || cart?.length ===0){
-    alert("Please place an order First.")
+    showToast("warning","Please place an order First.")
 }
 const orderProducts = cart.map(item => {
     const product = products.find(p => p._id === Number(item.product_id));
@@ -269,7 +270,7 @@ $(function() {
     $("#orderBtn").click(function() {
 
         if (!user) {
-            alert("Please login first");
+            showToast("warning","Please login first");
             return;
         }
         
@@ -333,7 +334,7 @@ $(function() {
         setValidation(postal, postalValid);
         
         if (!firstValid || !lastValid || !addressValid || !apartmentValid || !postalValid) {
-            alert("Please fix invalid fields");
+            showToast("warning", "Please fix invalid fields");
             return;
         }
         
@@ -379,7 +380,6 @@ $(function() {
         localStorage.removeItem("currentOrder");
         localStorage.removeItem("cart");
 
-        alert("Order Completed Successfully!")
-        window.location.replace("/home/Template/home.html");
+        showToastAndRedirect("success", "Order Completed Successfully!", "/home/Template/home.html")
     })
 })

@@ -115,3 +115,17 @@ export function showConfirm(message = "Are you sure?", confirmText = "Confirm") 
         });
     });
 }
+
+/**
+ * Show a toast then redirect after it's visible
+ * @param {"success"|"error"|"warning"|"info"} type
+ * @param {string} message
+ * @param {string} url - redirect destination
+ * @param {number} delay - ms before redirect (default 2000)
+ */
+export function showToastAndRedirect(type, message, url, delay = 2000) {
+    showToast(type, message);
+    setTimeout(() => {
+        window.location.replace(url);
+    }, delay);
+}
